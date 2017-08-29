@@ -19,15 +19,15 @@ config.coveo.ops_identity = { 'name': '<%= authorEmail %>', 'provider': 'Email S
 config.coveo.filter = '';
 
 // custom
-config.<%= customerSafeName %> = {};
-config.<%= customerSafeName %>.webpack_config = {};
+config.<%= projectSafeName %> = {};
+config.<%= projectSafeName %>.webpack_config = {};
 
 // webpack config for support bundle -- PHASE 1
-config.<%= customerSafeName %>.webpack_config.support = {
+config.<%= projectSafeName %>.webpack_config.support = {
     entry: ['./src/Index.ts'],
     output: {
         path: path.resolve('./bin/js'),
-        filename: minimize ? 'Coveo.<%= capitalizeCustomerSafeName %>.min.js' : 'Coveo.<%= capitalizeCustomerSafeName %>.js',
+        filename: minimize ? 'Coveo.<%= capitalizeprojectSafeName %>.min.js' : 'Coveo.<%= capitalizeprojectSafeName %>.js',
         libraryTarget: 'umd',
         library: 'CoveoExtension',
         publicPath: '/js/'
@@ -37,11 +37,11 @@ config.<%= customerSafeName %>.webpack_config.support = {
 
 // Sample 
 // webpack config for customer bundle -- PHASE 2
-// config.<%= customerSafeName %>.webpack_config.customer = {
+// config.<%= projectSafeName %>.webpack_config.customer = {
 //     entry: ['./src/Index.ts'],
 //     output: {
 //         path: path.resolve('./bin/js'),
-//         filename: minimize ? 'Coveo.<%= capitalizeCustomerSafeName %>.Customer.min.js' : 'Coveo.<%= capitalizeCustomerSafeName %>.Customer.js',
+//         filename: minimize ? 'Coveo.<%= capitalizeprojectSafeName %>.Customer.min.js' : 'Coveo.<%= capitalizeprojectSafeName %>.Customer.js',
 //         libraryTarget: 'umd',
 //         library: 'CoveoExtension',
 //         publicPath: '/js/'
@@ -50,11 +50,11 @@ config.<%= customerSafeName %>.webpack_config.support = {
 
 // Sample
 // webpack config for internal bundle -- PHASE 3
-// config.<%= customerSafeName %>.webpack_config.internal = {
+// config.<%= projectSafeName %>.webpack_config.internal = {
 //     entry: ['./src/Index.ts'],
 //     output: {
 //         path: path.resolve('./bin/js'),
-//         filename: minimize ? 'Coveo.<%= capitalizeCustomerSafeName %>.Internal.min.js' : 'Coveo.<%= capitalizeCustomerSafeName %>.Internal.js',
+//         filename: minimize ? 'Coveo.<%= capitalizeprojectSafeName %>.Internal.min.js' : 'Coveo.<%= capitalizeprojectSafeName %>.Internal.js',
 //         libraryTarget: 'umd',
 //         library: 'CoveoExtension',
 //         publicPath: '/js/'

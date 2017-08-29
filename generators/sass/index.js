@@ -16,15 +16,15 @@ module.exports = class extends Generator {
 
     initializing() {
         this.props = {};
-        this.props.customerName = this.options.customer;
-        this.props.customerSafeName = _.snakeCase(this.options.customer);
+        this.props.project = this.options.project;
+        this.props.projectSafeName = _.snakeCase(this.options.project);
     }
 
     writing() {
 
         const templateObj = { 
-          customerSafeName : this.props.customerSafeName,
-          capitalizeCustomerSafeName : this.props.customerSafeName.replace(/\b\w/g, l => l.toUpperCase()),
+          projectSafeName : this.props.projectSafeName,
+          capitalizeprojectSafeName : this.props.projectSafeName.replace(/\b\w/g, l => l.toUpperCase()),
         }
 
         this.fs.copyTpl(

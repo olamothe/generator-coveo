@@ -1,7 +1,6 @@
 'use strict';
 const path = require('path');
 const Generator = require('yeoman-generator');
-const askName = require('inquirer-npm-name');
 const _ = require('lodash');
 const extend = require('deep-extend');
 const mkdirp = require('mkdirp');
@@ -18,22 +17,31 @@ module.exports = class extends Generator {
     prompting() {
         // Have Yeoman greet the user.
         this.log(yosay(
-            'Welcome to the fabulous ' + chalk.red('ps-search-ui-sfdc') + ' generator!'
+            'Welcome to the fabulous ' + chalk.red('Coveo Project') + ' generator!'
         ));
 
-        var prompts = [{
-          type: 'input',
-          name: 'customer',
-          message: 'Your customer(project) name?',
-          default: path.basename(process.cwd())
+        const prompts = [{
+            type: 'input',
+            name: 'project',
+            message: 'Your project name?',
+            default: path.basename(process.cwd())
+        }, {
+            type: 'list',
+            name: 'projecttype',
+            message: 'Your project type?',
+            choices: ['Salesforce', 'Coveo hosted search pages', 'Local only']
+        }, {
+            type: 'confirm',
+            name: 'typescript',
+            message: 'Do you want to generate the code for a custom component built with TypeScript using Webpack ?'
         }];
 
         return this.prompt(prompts).then(function (props) {
-          this.props = props;
-          this.props.repoName = utils.makeRepoName(this.props.customer);
-          this.props.customerSafeName = _.snakeCase(this.props.customer);
+            this.props = props;
+            this.props.repoName = utils.makeRepoName(this.props.project);
+            this.props.projectSafeName = _.snakeCase(this.props.project);
         }.bind(this));
-        
+
     }
 
     default() {
@@ -45,113 +53,75 @@ module.exports = class extends Generator {
             mkdirp(this.props.repoName);
             this.destinationRoot(this.destinationPath(this.props.repoName));
         }
-        const readmeTpl = _.template(this.fs.read(this.templatePath('README.md')));
-        this.composeWith(require.resolve('generator-node/generators/app'), {
-          babel: false,
-          boilerplate: false,
-          name: this.props.repoName,
-          projectRoot: this.props.repoName,
-          skipInstall: this.options.skipInstall,
-          readme: readmeTpl({
-              repoName : this.props.repoName
-          })
+
+        /*this.composeWith(require.resolve('../config'), {
+            project: this.props.project
         });
 
-        this.composeWith(require.resolve('../config'), {
-          customer: this.props.customer
-        });
-
-        this.composeWith(require.resolve('../typescript'), {
-          customer: this.props.customer
-        });
+        
 
         this.composeWith(require.resolve('../sass'), {
-          customer: this.props.customer
+            project: this.props.project
         });
 
         this.composeWith(require.resolve('../routes'), {
-          customer: this.props.customer
+            project: this.props.project
         });
 
         this.composeWith(require.resolve('../vendor'), {
-          customer: this.props.customer
+            project: this.props.project
         });
 
         this.composeWith(require.resolve('../views'), {
-          customer: this.props.customer
+            project: this.props.project
         });
-        
+
         this.composeWith(require.resolve('../sfdc'), {
-            customer: this.props.customer
-          });
+            project: this.props.project
+        });*/
     }
 
     writing() {
-        const pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
-        const templatePkg = this.fs.readJSON(this.templatePath('package.json'), {});
         const templateObj = {
-            customerSafeName : this.props.customerSafeName,
-            capitalizeCustomerSafeName : this.props.customerSafeName.replace(/\b\w/g, l => l.toUpperCase())
+            projectSafeName: this.props.projectSafeName,
+            capitalizeProjectSafeName: this.props.projectSafeName.replace(/\b\w/g, l => l.toUpperCase())
         }
 
-        extend(pkg, {
-            dependencies: templatePkg.dependencies,
-            devDependencies: templatePkg.devDependencies,
-            keywords: templatePkg.keywords
+        this.fs.copyTpl(
+            this.templatePath('package.json'),
+            this.destinationPath('package.json'),
+            templateObj
+        );
+
+        this.fs.copyTpl(
+            this.templatePath('README.MD'),
+            this.destinationPath('README.MD'),
+            templateObj
+        );
+
+        if (this.props.typescript) {
+            this.composeWith(
+                require.resolve('../typescript'), {
+                    baseProps: this.props
+                }
+            );
+        }
+
+        this.composeWith(
+            require.resolve('../pages'), {
+                baseProps: this.props
+            }
+        )
+
+    }
+
+    installing() {
+        this.npmInstall(null, null, () => {
+            if (this.props.typescript) {
+                this.spawnCommandSync(this.destinationPath('node_modules/webpack/bin/webpack.js'));
+            }
         });
 
-        // overwrite default scripts by template ones
-        pkg.scripts = templatePkg.scripts
-
-        this.fs.writeJSON(this.destinationPath('package.json'), pkg);
-
-        // gulp tasks
-        this.fs.copyTpl(
-          this.templatePath('gulpTasks/*'),
-          this.destinationPath('gulpTasks'),
-          templateObj
-        );
-
-        // typescript configuration
-        this.fs.copyTpl(
-          this.templatePath('tsconfig.json'),
-          this.destinationPath('tsconfig.json'),
-          templateObj
-        );
-
-        // webpack
-        this.fs.copyTpl(
-          this.templatePath('webpack.config.js'),
-          this.destinationPath('webpack.config.js'),
-          templateObj
-        );
     }
 
-    install() {
-        this.log(this.props);
-        // make sure to overwrite gulpfile with our template before installation.
-        const templateObj = {
-            customerSafeName : this.props.customerSafeName,
-            capitalizeCustomerSafeName : this.props.customerSafeName.replace(/\b\w/g, l => l.toUpperCase())
-        }
-        // gulpfile
-        this.fs.copyTpl(
-          this.templatePath('gulpfile.js'),
-          this.destinationPath('gulpfile.js'),
-          templateObj
-        );
-        // this.installDependencies({bower: false});
-    }
-
-    end() {
-        
-    }
-
-    method1() {
-        this.log('method 1 just ran');
-    }
-
-    method2() {
-        this.log('method 2 just ran');
-    }
 };

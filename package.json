@@ -1,7 +1,7 @@
 {
-  "name": "generator-ps-search-ui-sfdc",
+  "name": "generator-coveo",
   "version": "0.1.7",
-  "description": "generator to serve CoveoPS folks with a nodejs module as development environment to interact with the Coveo JS Search UI framework",
+  "description": "Generator for Coveo project",
   "repository": {
     "type": "git",
     "url": "https://github.com/jfallaire/generator-ps-search-ui-sfdc.git"
@@ -37,10 +37,11 @@
     "inquirer-npm-name": "^2.0.0",
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
-    "yeoman-generator": "^1.1.0",
+    "yeoman-generator": "^1.1.1",
     "yosay": "^1.2.1"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1"
+    "babel-eslint": "^7.1.1",
+    "require-dir": "^0.3.2"
   }
 }

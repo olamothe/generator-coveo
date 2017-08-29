@@ -16,21 +16,21 @@ module.exports = class extends Generator {
 
     initializing() {
         this.props = {};
-        this.props.customerName = this.options.customer;
-        this.props.customerSafeName = _.snakeCase(this.options.customer);
+        this.props.project = this.options.project;
+        this.props.projectSafeName = _.snakeCase(this.options.project);
     }
 
     writing() {
         const authorEmail = this.fs.readJSON(this.destinationPath('package.json')).author.email || 'platform@coveo.com';
 
-        this.log('writing: ' + this.options.customer);
+        this.log('writing: ' + this.options.project);
 
         this.fs.copyTpl(
           this.templatePath('**'),
           this.destinationPath('config'), 
           { 
-            customerSafeName : this.props.customerSafeName,
-            capitalizeCustomerSafeName : this.props.customerSafeName.replace(/\b\w/g, l => l.toUpperCase()),
+            projectSafeName : this.props.projectSafeName,
+            capitalizeprojectSafeName : this.props.projectSafeName.replace(/\b\w/g, l => l.toUpperCase()),
             authorEmail : authorEmail
           }
         );

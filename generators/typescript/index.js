@@ -5,62 +5,54 @@ var mkdirp = require('mkdirp');
 const Generator = require('yeoman-generator');
 
 module.exports = class extends Generator {
-    constructor(args, opts) {
-        super(args, opts);
+  constructor(args, opts) {
+    super(args, opts);
 
-        this.option('customer', {
-            type: String,
-            required: true,
-            desc: 'Customer name'
-        });
-    }
+    this.option('project', {
+      type: String,
+      required: true,
+      desc: 'Project name'
+    });
+  }
 
-    initializing() {
-        this.props = {};
-        this.props.customerName = this.options.customer;
-        this.props.customerSafeName = _.snakeCase(this.options.customer);
-    }
+  initializing() {
+    this.props = {};
+    this.props.project = this.options.project;
+    this.props.projectSafeName = _.snakeCase(this.options.project);
+    this.props.capitalizeprojectSafeName = this.props.projectSafeName.replace(/\b\w/g, l => l.toUpperCase());
+  }
 
-    writing() {
-        const templateObj = { 
-          customerSafeName : this.props.customerSafeName,
-          capitalizeCustomerSafeName : this.props.customerSafeName.replace(/\b\w/g, l => l.toUpperCase()),
-        }
+  writing() {
 
-        // Custo
-        this.fs.copyTpl(
-          this.templatePath('src/custo/ProjectCusto.ts'),
-          this.destinationPath(path.join('src', 'custo', templateObj.capitalizeCustomerSafeName + 'Custo.ts')),
-          templateObj 
-        );
+    this.fs.copyTpl(
+      this.templatePath('tsconfig.json'),
+      this.destinationPath('tsconfig.json'),
+      this.props
+    );
 
-        // Helper
-        this.fs.copyTpl(
-          this.templatePath('src/custo/ProjectHelper.ts'),
-          this.destinationPath(path.join('src', 'custo', templateObj.capitalizeCustomerSafeName + 'Helper.ts')),
-          templateObj 
-        );
+    this.fs.copyTpl(
+      this.templatePath('webpack.config.js'),
+      this.destinationPath('webpack.config.js'),
+      this.props
+    );
 
-        // Initialization
-        this.fs.copyTpl(
-          this.templatePath('src/custo/ProjectInitialization.ts'),
-          this.destinationPath(path.join('src', 'custo', templateObj.capitalizeCustomerSafeName + 'Initialization.ts')),
-          templateObj 
-        );
+    this.fs.copyTpl(
+      this.templatePath('tslint.json'),
+      this.destinationPath('tslint.json'),
+      this.props
+    );
 
-        // Index.ts
-        this.fs.copyTpl(
-          this.templatePath('src/Index.ts'),
-          this.destinationPath('src/Index.ts'),
-          templateObj 
-        );
+    this.fs.copyTpl(
+      this.templatePath('src/ui/HelloWorld.ts'),
+      this.destinationPath('src/ui/HelloWorld.ts'),
+      this.props
+    );
 
-        this.fs.copy(
-          this.templatePath('src/events/CustomEvents.ts'),
-          this.destinationPath('src/events/CustomEvents.ts')
-        );
+    this.fs.copyTpl(
+      this.templatePath('src/Index.ts'),
+      this.destinationPath('src/Index.ts'),
+      this.props
+    );
 
-        mkdirp.sync(this.destinationPath('src/ui'));
-        
-    }
+  }
 }
