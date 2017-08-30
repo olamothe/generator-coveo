@@ -15,7 +15,7 @@ module.exports = {
     path: require('path').resolve('./bin/js'),
     filename: minimize ? `[name].min.js` : `[name].js`,
     libraryTarget: 'umd',
-    library: 'CoveoExtension',
+    library: '<%= projectSafeName %>',
     publicPath: '/js/'
   },
   externals: {

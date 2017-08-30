@@ -4,8 +4,14 @@
   "description": "Coveo custom package for <%= projectSafeName %>",
   "main": "./bin/coveo.customization.js",
   "scripts": {
-    "build": "TODO",
-    "dev": "TODO"
+    "setup": "node scripts/setup.js",
+    <% if(typescript) { %>"build": "webpack",<% } %>
+    <% if(typescript) { %>"dev": "webpack-dev-server --open",<% } %>
+    <% if(sass) { %>"sass": "node-sass sass/Index.scss bin/css/coveo.customization.<%= projectSafeName %>.css",<% } %>
+    <% if(sass) { %>"sass:watch": "node-sass sass/Index.scss bin/css/coveo.customization.<%= projectSafeName %>.css --watch",<% } %>
+    <% if(typescript) { %>"prettier": "prettier --single-quote --print-width 120 --write 'src/**/*.ts'",<% } %>
+    <% if(typescript) { %>"tslint": "tslint -c tslint.json src/**/*.ts",<% } %>
+    "postinstall": "npm run setup <% if(typescript) { %>&& npm run build && npm run dev<% } %>"
   },
   "keywords": [
     "coveo",
@@ -15,9 +21,11 @@
     "typescript": "^2.3.4",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2",
+    "node-sass": "^4.5.3",
     "prettier": "^1.5.2",
     "tslint": "^5.5.0",
-    "ts-loader": "^2.0.3"
+    "ts-loader": "^2.0.3",
+    "ncp": "^2.0.0"
   },
   "dependencies": {
     "coveo-search-ui": "^2.2900.x"

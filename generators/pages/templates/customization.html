@@ -6,11 +6,11 @@
   <title>
     <%= project %>
   </title>
-  <link rel="stylesheet" href="vendor/css/CoveoFullSearch.css" />
-  <link rel="stylesheet" href="css/coveoextension.css" />
-  <script src="vendor/js/CoveoJsSearch.js"></script>
-  <script src="vendor/js/templatesNew.js"></script>
-  <script src="js/coveo.extension.js"></script>
+  <link rel="stylesheet" href="bin/vendor/coveo/css/CoveoFullSearch.css" />
+  <link rel="stylesheet" href="bin/css/coveo.customization.<%= projectSafeName %>.css" />
+  <script src="bin/vendor/coveo/js/CoveoJsSearch.js"></script>
+  <script src="bin/vendor/coveo/js/templates/templates.js"></script>
+  <script src="bin/js/coveo.customization.<%= projectSafeName %>.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       Coveo.SearchEndpoint.configureSampleEndpoint();
@@ -20,7 +20,6 @@
 </head>
 
 <body id="search" class="CoveoSearchInterface" data-enable-history="true">
-
   <div class="coveo-tab-section">
     <a class="CoveoTab" data-id="All" data-caption="All Content"></a>
   </div>

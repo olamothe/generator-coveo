@@ -14,13 +14,13 @@ module.exports = class extends Generator {
         if (this.options.baseProps.typescript) {
             this.fs.copyTpl(
                 this.templatePath('customization.html'),
-                this.destinationPath('pages/index.html'),
+                this.destinationPath('index.html'),
                 this.options.baseProps
             )
         } else {
             this.fs.copyTpl(
                 this.templatePath('standard.html'),
-                this.destinationPath('pages/index.html'),
+                this.destinationPath('index.html'),
                 this.options.baseProps
             )
         }
