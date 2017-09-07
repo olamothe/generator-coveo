@@ -30,7 +30,11 @@ module.exports = class extends Generator {
             type: 'list',
             name: 'projecttype',
             message: 'Your project type?',
-            choices: ['Salesforce', 'Coveo hosted search pages', 'Local only']
+            choices: [
+                'Salesforce',
+                'Coveo hosted search pages',
+                'Local only'
+            ]
         }, {
             type: 'confirm',
             name: 'typescript',
@@ -43,7 +47,11 @@ module.exports = class extends Generator {
             type: 'list',
             name: 'coveolink',
             message: 'How do you want to connect to your Coveo Organization ?',
-            choices: ['Using an anonymous API key to query public content inside your Coveo Index.', 'Using an API key with the power to impersonate users to perform authenticated queries against your Coveo Index.', 'Connect to a sample organization owned by Coveo for demo purposes']
+            choices: [
+                'Using an anonymous API key to query public content inside your Coveo Index.',
+                'Using an API key with the power to impersonate users to perform authenticated queries against your Coveo Index.',
+                'Connect to a sample organization owned by Coveo for demo purposes'
+            ]
         }, {
             type: 'input',
             name: 'coveoorganizationid',
@@ -56,10 +64,20 @@ module.exports = class extends Generator {
             }
         }, {
             type: 'input',
-            name: 'anonymousapikey',
-            message: 'Please insert your anonymous API key. Make sure it has the "Execute query" privilege.',
+            name: 'apikey',
+            message: 'Please input your anonymous API key. Make sure it has the "Search : Execute queries" and "Analytics : Analytics Data (Edit)" privileges',
             when: (answers) => {
                 if (answers.coveolink == 'Using an anonymous API key to query public content inside your Coveo Index.') {
+                    return true;
+                }
+                return false;
+            }
+        }, {
+            type: 'input',
+            name: 'apikey',
+            message: 'Please input your API Key that will allow you to generate search token. Make sure it has the "Search : Impersonate" privilege.',
+            when: (answers) => {
+                if (answers.coveolink == 'Using an API key with the power to impersonate users to perform authenticated queries against your Coveo Index.') {
                     return true;
                 }
                 return false;
@@ -70,18 +88,8 @@ module.exports = class extends Generator {
             this.props = answers;
             this.props.repoName = utils.makeRepoName(this.props.project);
             this.props.projectSafeName = _.snakeCase(this.props.project);
-
-            return this.prompt({
-                type: 'list',
-                name: 'coveolink',
-                message: 'How do you want to connect to your Coveo Organization ?',
-                choices: ['Using an anonymous API key to query public content inside your Coveo Index.', 'Using an API key with the power to impersonate users to perform authenticated queries against your Coveo Index.', 'Connect to a sample organization owned by Coveo for demo purposes']
-            }).then((connectionChoice) => {
-                this.props.connectionChoice = connectionChoice;
-                if (connectionChoice == 'Using an anonymous API key to query public content inside your Coveo Index.') {
-                    return promptForAnonymousApiKey(this);
-                }
-            })
+            this.props.coveoplatformurl = 'https://platform.cloud.coveo.com';
+            this.props.searchtokenbody = '';
         });
     }
 
@@ -94,35 +102,11 @@ module.exports = class extends Generator {
             mkdirp(this.props.repoName);
             this.destinationRoot(this.destinationPath(this.props.repoName));
         }
-
-        /*this.composeWith(require.resolve('../config'), {
-            project: this.props.project
-        });
-
-        
-
-        this.composeWith(require.resolve('../sass'), {
-            project: this.props.project
-        });
-
-        this.composeWith(require.resolve('../routes'), {
-            project: this.props.project
-        });
-
-        this.composeWith(require.resolve('../vendor'), {
-            project: this.props.project
-        });
-
-        this.composeWith(require.resolve('../views'), {
-            project: this.props.project
-        });
-
-        this.composeWith(require.resolve('../sfdc'), {
-            project: this.props.project
-        });*/
     }
 
     writing() {
+        this.config.set(this.props);
+
         this.fs.copyTpl(
             this.templatePath('package.json'),
             this.destinationPath('package.json'),
@@ -158,7 +142,13 @@ module.exports = class extends Generator {
         }
 
         this.composeWith(
-            require.resolve('../pages'), {
+            require.resolve('../views'), {
+                baseProps: this.props
+            }
+        )
+
+        this.composeWith(
+            require.resolve('../server'), {
                 baseProps: this.props
             }
         )

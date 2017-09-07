@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/ChatterLikedBy/ChatterLikedBy.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/ChatterLikedBy/ChatterLikedBy.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">95% <small>(57 / 60)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">86.36% <small>(19 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">83.33% <small>(5 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">94.34% <small>(50 / 53)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/ChatterLikedBy/</a> &#187; ChatterLikedBy.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Initialization } from '../Base/Initialization';
+import { ComponentOptions } from '../Base/ComponentOptions';
+import { Component } from '../Base/Component';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { IQueryResult } from '../../rest/QueryResult';
+import { Utils } from '../../utils/Utils';
+import { $$ } from '../../utils/Dom';
+import { l } from '../../strings/Strings';
+import { ChatterUtils } from '../../utils/ChatterUtils';
+import { exportGlobally } from '../../GlobalExports';
+&nbsp;
+export interface IChatterLikedByOptions {
+  nbLikesToRender: number;
+  openInPrimaryTab: boolean;
+  openInSubTab: boolean;
+}
+&nbsp;
+export class ChatterLikedBy extends Component {
+  static ID = 'ChatterLikedBy';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'ChatterLikedBy': ChatterLikedBy
+    });
+  }
+&nbsp;
+  static options: IChatterLikedByOptions = {
+    nbLikesToRender: ComponentOptions.buildNumberOption({ defaultValue: 2, min: 0 }),
+    openInPrimaryTab: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+    openInSubTab: ComponentOptions.buildBooleanOption({ defaultValue: true })
+  };
+&nbsp;
+  constructor(public element: HTMLElement, public options?: IChatterLikedByOptions, public bindings?: IComponentBindings, public result?: IQueryResult) {
+    super(element, ChatterLikedBy.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+    this.options = ComponentOptions.initComponentOptions(element, ChatterLikedBy, options);
+&nbsp;
+    if (!Utils.isNullOrUndefined(Utils.getFieldValue(result, 'sflikedby')) &amp;&amp; !Utils.isNullOrUndefined(Utils.getFieldValue(result, 'sflikedbyid'))) {
+      let likeNames = Utils.getFieldValue(result, 'sflikedby').split(';');
+      let likeIds = Utils.getFieldValue(result, 'sflikedbyid').split(';');
+&nbsp;
+      let rootElement = $$('div', {
+        className: 'coveo-chatter-result-box-row'
+      });
+      $$(element).append(rootElement.el);
+&nbsp;
+      let thumbIcon = $$('div', {
+        className: 'coveo-sprites-common-thumbup_inactive coveo-chatter-result-box-icon'
+      });
+      rootElement.append(thumbIcon.el);
+&nbsp;
+      let fullListElement = $$('div', {
+        className: 'coveo-chatter-result-likes'
+      });
+      rootElement.append(fullListElement.el);
+&nbsp;
+      this.renderLikesList(fullListElement.el, result, likeNames, likeIds, this.options.nbLikesToRender);
+    }
+  }
+&nbsp;
+  private renderLikesList(element: HTMLElement, result: IQueryResult, likeNames: string[], likeIds: string[], nbLikesToRender: number) {
+    let tempElement = $$('div');
+&nbsp;
+    for (let i = 0; i &lt; likeIds.length - 1 &amp;&amp; (nbLikesToRender == 0 || i &lt; nbLikesToRender); i++) {
+      tempElement.append(this.renderLikeLink(result, likeNames[i], likeIds[i]));
+&nbsp;
+      if ((nbLikesToRender == 0 || i &lt; nbLikesToRender - 1) &amp;&amp; i &lt; likeIds.length - 2) {
+        tempElement.append($$('span', {}, ', ').el);
+      } else <span class="missing-if-branch" title="else path not taken" >E</span>if (i &lt; likeIds.length - 1) {
+        tempElement.append($$('span', {}, ` ${l('And').toLowerCase()} `).el);
+      }
+    }
+&nbsp;
+    if (nbLikesToRender == 0 || likeIds.length &lt;= nbLikesToRender) {
+      tempElement.append(this.renderLikeLink(result, likeNames[likeIds.length - 1], likeIds[likeIds.length - 1]));
+    } else {
+      let othersCount = likeIds.length - nbLikesToRender;
+      let clickableLink = $$('a');
+      clickableLink.text(` ${l('Others', othersCount.toString(), othersCount)}`);
+      clickableLink.on('click', <span class="fstat-no" title="function not covered" >(e: Event)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >        e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >        $$(element).empty();</span>
+<span class="cstat-no" title="statement not covered" >        this.renderLikesList(element, result, likeNames, likeIds, 0);</span>
+      });
+      tempElement.append(clickableLink.el);
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (likeIds.length &gt; 0) {
+      let name = $$('span');
+      name.el.innerHTML = l('LikesThis', tempElement.el.innerHTML, likeIds.length);
+      $$(element).append(name.el);
+    }
+  }
+&nbsp;
+  private renderLikeLink(result: IQueryResult, likeName: string, likeId: string): HTMLElement {
+    let link = $$('a', {
+      href: ChatterUtils.buildURI(result.clickUri, Utils.getFieldValue(result, 'sffeeditemid'), likeId)
+    });
+    link.text(likeName);
+    return link.el;
+  }
+}
+&nbsp;
+Initialization.registerAutoCreateComponent(ChatterLikedBy);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/models/Model.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/models/Model.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">85.61% <small>(113 / 132)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">63.89% <small>(46 / 72)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">83.33% <small>(25 / 30)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">85.16% <small>(109 / 128)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/models/</a> &#187; Model.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">556</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">555</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">555</span>
+<span class="cline-any cline-yes">555</span>
+<span class="cline-any cline-yes">555</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">76</span>
+<span class="cline-any cline-yes">76</span>
+<span class="cline-any cline-yes">76</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">161</span>
+<span class="cline-any cline-yes">161</span>
+<span class="cline-any cline-yes">161</span>
+<span class="cline-any cline-yes">161</span>
+<span class="cline-any cline-yes">356</span>
+<span class="cline-any cline-yes">356</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">356</span>
+<span class="cline-any cline-yes">356</span>
+<span class="cline-any cline-yes">356</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">344</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">161</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">292</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">292</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2515</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">161</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">70</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">356</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">356</span>
+<span class="cline-any cline-yes">355</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">322</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">322</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">322</span>
+<span class="cline-any cline-yes">322</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">316</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">356</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">323</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">323</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">344</span>
+<span class="cline-any cline-yes">344</span>
+<span class="cline-any cline-yes">343</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { $$ } from '../utils/Dom';
+import { Assert } from '../misc/Assert';
+import { Utils } from '../utils/Utils';
+import { BaseComponent } from '../ui/Base/BaseComponent';
+import * as _ from 'underscore';
+&nbsp;
+export const MODEL_EVENTS = {
+  PREPROCESS: 'preprocess',
+  CHANGE_ONE: 'change:',
+  CHANGE: 'change',
+  RESET: 'reset',
+  ALL: 'all'
+};
+&nbsp;
+export interface IModelSetOptions {
+  silent?: boolean;
+  customAttribute?: boolean;
+  validateType?: boolean;
+}
+&nbsp;
+export interface IAttributeChangedEventArg {
+  attribute: string;
+  value: any;
+}
+&nbsp;
+export interface IAttributesChangedEventArg {
+  attributes: {};
+}
+&nbsp;
+export interface IModelChangedEventArg {
+  model: Model;
+}
+&nbsp;
+/**
+ * A *model* is a key-value store that triggers various JavaScript events when any value associated to one of its key changes.&lt;br/&gt;
+ * This class is meant to be extended, one of the most important extension being the {@link QueryStateModel} class.&lt;br/&gt;
+ * Components set values in this key-value store and listen to triggered events in order to update themselves accordingly.&lt;br/&gt;
+ */
+export class Model extends BaseComponent {
+  /**
+   * The attributes contained in this model.&lt;/br&gt;
+   * Normally, you should not set attributes directly on this property, as this would prevent required events from being triggered.
+   */
+  public attributes: { [key: string]: any };
+  public defaultAttributes: { [key: string]: any };
+  private eventNameSpace;
+&nbsp;
+  /**
+   * The event types that can be triggered:&lt;br/&gt;
+   * • `preprocess`: triggered before a value is set on an attribute. This allows the value to be modified before it is set.&lt;br/&gt;
+   * • `changeOne`: triggered when a single value changes.&lt;/br&gt;
+   * • `change`: triggered when one or many values change.&lt;/br&gt;
+   * • `reset`: triggered when all attributes are reset to their default values. &lt;/br&gt;
+   * • `all`: triggered after the `change` event.&lt;/br&gt;
+   * @type {{preprocess: string, changeOne: string, change: string, reset: string, all: string}}
+   */
+  public static eventTypes = {
+    preprocess: 'preprocess',
+    changeOne: 'change:',
+    change: 'change',
+    reset: 'reset',
+    all: 'all'
+  };
+&nbsp;
+  constructor(element: HTMLElement, id: string, attributes: { [key: string]: any }) {
+    super(element, id);
+    this.eventNameSpace = id;
+&nbsp;
+    this.defaultAttributes = Utils.extendDeep(this.defaultAttributes, attributes);
+    this.attributes = attributes;
+    this.logger.debug('Creating model');
+  }
+&nbsp;
+  /**
+   * Sets the value of a single specific attribute.&lt;/br&gt;
+   * Note: this method calls the `setMultiple` method.
+   * @param attribute
+   * the specific attribute whose value is to be set.
+   * @param value
+   * the value to set the attribute to.
+   * @param options
+   * the options (see {@link setMultiple}).
+   */
+  public set(attribute: string, value: any, options?: IModelSetOptions) {
+    let toSet: { [key: string]: any } = {};
+    toSet[attribute] = value;
+    this.setMultiple(toSet, options);
+  }
+&nbsp;
+  /**
+   * Gets an object containing all *active* registered attribute key-values.&lt;/br&gt;
+   * An attribute is considered active when its value is not in its default state.
+   * @returns {{object}}
+   */
+  public getAttributes() {
+    let attributes: { [key: string]: any } = {};
+    _.each(this.attributes, (attribute, key) =&gt; {
+      if (_.isObject(attribute)) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!Utils.objectEqual(attribute, this.defaultAttributes[key])) {
+          attributes[key] = attribute;
+        }
+      } else if (attribute != this.defaultAttributes[key]) {
+        attributes[key] = attribute;
+      }
+    });
+    return attributes;
+  }
+&nbsp;
+  /**
+   * Sets the values of one or many attributes.&lt;/br&gt;
+   * This method may trigger the following events (in order):&lt;/br&gt;
+   * • `preprocess`&lt;/br&gt;
+   * • `changeOne`&lt;/br&gt;
+   * • `change`&lt;/br&gt;
+   * • `all`
+   * @param toSet
+   * the key-value list of attributes with their new intended values.
+   * @param options
+   * if the `customAttribute` option is set to `true`, the method will not validate whether an attribute is registered or not.&lt;/br&gt;
+   * If the `validateType` option is set to `true`, the method will ensure that each value type is correct.&lt;/br&gt;
+   * If the `silent` option is set to `true`, then the `changeOne`, `change` and `all` events will not be triggered.
+   */
+  public setMultiple(toSet: { [key: string]: any }, options?: IModelSetOptions) {
+    let anythingChanged = false;
+    this.preprocessEvent(toSet);
+    _.each(&lt;_.Dictionary&lt;any&gt;&gt;toSet, (value, attribute?) =&gt; {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!options || <span class="branch-1 cbranch-no" title="branch not covered" >!options.customAttribute)</span> {
+        this.checkIfAttributeExists(attribute);
+      }
+      value = this.parseToCorrectType(attribute, value);
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!options || <span class="branch-1 cbranch-no" title="branch not covered" >options.validateType)</span> {
+        if (!this.typeIsValid(attribute, value)) {
+          return;
+        }
+      }
+      if (this.checkIfAttributeChanged(attribute, value)) {
+        this.attributes[attribute] = value;
+        anythingChanged = true;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (options == null || <span class="branch-1 cbranch-no" title="branch not covered" >!options.silent)</span> {
+          this.attributeHasChangedEvent(attribute);
+        }
+      }
+    });
+    if (anythingChanged &amp;&amp; (options == null || <span class="branch-2 cbranch-no" title="branch not covered" >!options.silent)</span>) {
+      this.attributesHasChangedEvent();
+      this.anyEvent();
+    }
+  }
+&nbsp;
+  /**
+   * Sets a new default value to a single specific attribute.&lt;/br&gt;
+   * Note: specifying a new attribute default value does not set the attribute to that value. This can be done using the {@link setDefault} method.
+   * @param attribute
+   * the specific attribute whose default value is to be changed.
+   * @param value
+   * the new intended default value.
+   * @param options
+   * if the `customAttribute` option is set to `true`, the method will not validate whether the attribute is registered or not.
+   */
+<span class="fstat-no" title="function not covered" >  public setNewDefault(attribute: string, value: any, options?: IModelSetOptions)</span> {
+<span class="cstat-no" title="statement not covered" >    if (!options || !options.customAttribute) {</span>
+<span class="cstat-no" title="statement not covered" >      this.checkIfAttributeExists(attribute);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    this.defaultAttributes[attribute] = value;</span>
+  }
+&nbsp;
+  /**
+   * Sets a single specific attribute to its default value.&lt;/br&gt;
+   * Note: this method calls the {@link setMultiple} method without specifying any option.
+   * @param attribute
+   * the specific attribute whose value is to be set to its default value.
+   */
+<span class="fstat-no" title="function not covered" >  public setDefault(attribute: string)</span> {
+<span class="cstat-no" title="statement not covered" >    this.set(attribute, this.defaultAttributes[attribute]);</span>
+  }
+&nbsp;
+  /**
+   * Gets the value of a single specific attribute.&lt;/br&gt;
+   * If no attribute is specified, the method instead returns an object containing all registered attribute key-values.
+   * @param attribute
+   * the specific attribute whose value should be returned.
+   * @returns {any}
+   */
+  public get(attribute?: string): any {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (attribute == undefined) {
+<span class="cstat-no" title="statement not covered" >      return this.attributes;</span>
+    } else {
+      return this.attributes[attribute];
+    }
+  }
+&nbsp;
+  /**
+   * Gets the default value of a single specific attribute.&lt;/br&gt;
+   * If no attribute is specified, the method instead returns an object containing all registered attribute key-default values.
+   * @param attribute
+   * the specific attribute whose default value should be returned.
+   * @returns {any}
+   */
+<span class="fstat-no" title="function not covered" >  public getDefault(attribute?: string)</span>: any {
+<span class="cstat-no" title="statement not covered" >    if (attribute == undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      return this.defaultAttributes;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return this.defaultAttributes[attribute];</span>
+    }
+  }
+&nbsp;
+  /**
+   * Resets each registered attribute to its default value.&lt;/br&gt;
+   * Note: this method calls the {@link setMultiple} method without specifying any options.&lt;/br&gt;
+   * After the `setMultiple` call has returned, this method triggers the `reset` event.
+   */
+  public reset() {
+    this.setMultiple(this.defaultAttributes);
+    this.modelWasResetEvent();
+  }
+&nbsp;
+  /**
+   * Registers a new attribute key-value.
+   * @param attribute
+   * the name of the new attribute to register.
+   * @param defaultValue
+   * the newly registered attribute default value.
+   */
+  public registerNewAttribute(attribute: string, defaultValue: any) {
+    this.defaultAttributes[attribute] = defaultValue;
+    this.attributes[attribute] = defaultValue;
+  }
+&nbsp;
+  /**
+   * Gets a string displaying the event namespace followed by the specific event name. The returned string is formatted thus:&lt;/br&gt;
+   * `[eventNameSpace]:[eventName]`
+   * @example `getEventName("reset");` could return `"state:reset"`.
+   * @param event
+   * the event name.
+   * @returns {string}
+   */
+  public getEventName(event: string) {
+    return this.eventNameSpace + ':' + event;
+  }
+&nbsp;
+  private attributesHasChangedEvent() {
+    $$(this.element).trigger(this.getEventName(Model.eventTypes.change), this.createAttributesChangedArgument());
+  }
+&nbsp;
+  private attributeHasChangedEvent(attr: string) {
+    $$(this.element).trigger(this.getEventName(Model.eventTypes.changeOne) + attr, this.createAttributeChangedArgument(attr));
+  }
+&nbsp;
+  private preprocessEvent(attributes: { [key: string]: any }) {
+    $$(this.element).trigger(this.getEventName(Model.eventTypes.preprocess), attributes);
+  }
+&nbsp;
+  private modelWasResetEvent() {
+    $$(this.element).trigger(this.getEventName(Model.eventTypes.reset), this.createModelChangedArgument());
+  }
+&nbsp;
+  private anyEvent() {
+    $$(this.element).trigger(this.getEventName(Model.eventTypes.all), this.createModelChangedArgument());
+  }
+&nbsp;
+  private createAttributeChangedArgument(attribute: string): IAttributeChangedEventArg {
+    return { attribute: attribute, value: this.attributes[attribute] };
+  }
+&nbsp;
+  private createAttributesChangedArgument(): IAttributesChangedEventArg {
+    return { attributes: this.attributes };
+  }
+&nbsp;
+  private createModelChangedArgument(): IModelChangedEventArg {
+    return { model: this };
+  }
+&nbsp;
+  private checkIfAttributeExists(attribute: string) {
+    Assert.check(_.has(this.attributes, attribute));
+  }
+&nbsp;
+  private typeIsValid(attribute: string, value: any): boolean {
+    if (!Utils.isNullOrUndefined(this.attributes[attribute]) &amp;&amp; !Utils.isUndefined(value)) {
+      if (_.isNumber(this.attributes[attribute])) {
+        return this.validateNumber(attribute, value);
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (_.isBoolean(this.attributes[attribute])) {
+<span class="cstat-no" title="statement not covered" >        return this.validateBoolean(attribute, value);</span>
+      } else {
+        return this.validateOther(attribute, value);
+      }
+    }
+    return true;
+  }
+&nbsp;
+  private validateNumber(attribute: string, value: any): boolean {
+    if (!_.isNumber(value) || isNaN(value)) {
+      this.logger.error(`Non-matching type for ${attribute}. Expected number and got ${value}`);
+      return false;
+    }
+    return true;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private validateBoolean(attribute: string, value: any)</span> {
+<span class="cstat-no" title="statement not covered" >    if (!_.isBoolean(value) &amp;&amp; !Utils.parseBooleanIfNotUndefined(value) !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      this.logger.error(`Non matching type for ${attribute}. Expected boolean and got ${value}`);</span>
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return true;</span>
+  }
+&nbsp;
+  private validateOther(attribute: string, value: any) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!Utils.isNullOrUndefined(this.defaultAttributes[attribute])) {
+      if (typeof value !== typeof this.defaultAttributes[attribute]) {
+        this.logger.error(`Non-matching type for ${attribute}. Expected ${typeof this.defaultAttributes[attribute]} and got ${value}`);
+        return false;
+      }
+    }
+    return true;
+  }
+&nbsp;
+  private parseToCorrectType(attribute: string, value: any): any {
+    if (_.isNumber(this.attributes[attribute])) {
+      return parseInt(value, 10);
+    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (_.isBoolean(this.attributes[attribute])) {
+<span class="cstat-no" title="statement not covered" >      if (_.isBoolean(value)) {</span>
+<span class="cstat-no" title="statement not covered" >        return value;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        return Utils.parseBooleanIfNotUndefined(value);</span>
+      }
+    }
+    return value;
+  }
+&nbsp;
+  private checkIfAttributeChanged(attribute: string, newValue: any): boolean {
+    let oldValue = this.attributes[attribute];
+    if (_.isNumber(oldValue) || _.isString(oldValue) || _.isBoolean(oldValue)) {
+      return oldValue !== newValue;
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (_.isArray(oldValue)) {
+<span class="cstat-no" title="statement not covered" >      return !Utils.arrayEqual(oldValue, newValue);</span>
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (_.isObject(oldValue)) {
+<span class="cstat-no" title="statement not covered" >      return !Utils.objectEqual(oldValue, newValue);</span>
+    }
+    return true;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public debugInfo() {</span>
+<span class="cstat-no" title="statement not covered" >    return null;</span>
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/rest/SearchEndpointWithDefaultCallOptions.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/rest/SearchEndpointWithDefaultCallOptions.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">60.71% <small>(34 / 56)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">15.38% <small>(4 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">58.49% <small>(31 / 53)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/rest/</a> &#187; SearchEndpointWithDefaultCallOptions.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ISearchEndpoint, IEndpointCallOptions, IGetDocumentOptions, ISearchEndpointOptions, IViewAsHtmlOptions } from './SearchEndpointInterface';
+import { IQuery } from './Query';
+import { ITaggingRequest } from './TaggingRequest';
+import { IRatingRequest } from './RatingRequest';
+import { IQuerySuggestRequest } from './QuerySuggest';
+import { IQuerySuggestResponse } from './QuerySuggest';
+import { IIndexFieldValue } from '../rest/FieldValue';
+import { IQueryResult } from '../rest/QueryResult';
+import { IEndpointError } from '../rest/EndpointError';
+import { IExtension } from '../rest/Extension';
+import { IQueryResults } from './QueryResults';
+import { IFieldDescription } from '../rest/FieldDescription';
+import { IListFieldValuesRequest } from './ListFieldValuesRequest';
+import { ISubscriptionRequest, ISubscription } from './Subscription';
+import { ISentryLog } from './SentryLog';
+import * as _ from 'underscore';
+&nbsp;
+export class SearchEndpointWithDefaultCallOptions implements ISearchEndpoint {
+  options: ISearchEndpointOptions;
+&nbsp;
+  constructor(private endpoint: ISearchEndpoint, private callOptions?: IEndpointCallOptions) {
+    this.options = endpoint.options;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getBaseUri(): string {</span>
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getBaseUri();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getBaseAlertsUri(): string {</span>
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getBaseAlertsUri();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getAuthenticationProviderUri(provider: string, returnUri: string, message: string)</span>: string {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getAuthenticationProviderUri(provider, returnUri, message);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public isJsonp(): boolean {</span>
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.isJsonp();</span>
+  }
+&nbsp;
+  public search(query: IQuery, callOptions?: IEndpointCallOptions): Promise&lt;IQueryResults&gt; {
+    return this.endpoint.search(query, this.enrichCallOptions(callOptions));
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getExportToExcelLink(query: IQuery, numberOfResults: number, callOptions?: IEndpointCallOptions)</span>: string {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getExportToExcelLink(query, numberOfResults, this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public tagDocument(taggingRequest: ITaggingRequest, callOptions?: IEndpointCallOptions)</span>: Promise&lt;boolean&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.tagDocument(taggingRequest, this.enrichCallOptions(taggingRequest));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getQuerySuggest(request: IQuerySuggestRequest, callOptions?: IEndpointCallOptions)</span>: Promise&lt;IQuerySuggestResponse&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getQuerySuggest(request, this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public rateDocument(ratingRequest: IRatingRequest, callOptions?: IEndpointCallOptions)</span>: Promise&lt;boolean&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.rateDocument(ratingRequest, this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getRawDataStream(documentUniqueId: string, dataStreamType: string, callOptions?: IViewAsHtmlOptions)</span>: Promise&lt;ArrayBuffer&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getRawDataStream(documentUniqueId, dataStreamType, this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getDocument(documentUniqueId: string, callOptions?: IGetDocumentOptions)</span>: Promise&lt;IQueryResult&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getDocument(documentUniqueId, this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getDocumentText(documentUniqueID: string, callOptions?: IEndpointCallOptions)</span>: Promise&lt;string&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getDocumentText(documentUniqueID, this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getDocumentHtml(documentUniqueID: string, callOptions?: IViewAsHtmlOptions)</span>: Promise&lt;HTMLDocument&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getDocumentHtml(documentUniqueID, this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getViewAsHtmlUri(documentUniqueID: string, callOptions?: IViewAsHtmlOptions)</span>: string {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getViewAsHtmlUri(documentUniqueID, this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getViewAsDatastreamUri(documentUniqueID: string, dataStreamType: string, callOptions?: IViewAsHtmlOptions)</span>: string {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.getViewAsDatastreamUri(documentUniqueID, dataStreamType, this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public listFieldValues(request: IListFieldValuesRequest, callOptions?: IEndpointCallOptions)</span>: Promise&lt;IIndexFieldValue[]&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.listFieldValues(request, this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public listFields(callOptions?: IEndpointCallOptions)</span>: Promise&lt;IFieldDescription[]&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.listFields(this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public extensions(callOptions?: IEndpointCallOptions)</span>: Promise&lt;IExtension[]&gt; | Promise&lt;IEndpointError&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.extensions(this.enrichCallOptions(callOptions));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public follow(request: ISubscriptionRequest)</span>: Promise&lt;ISubscription&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.follow(request);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public listSubscriptions(page: number)</span>: Promise&lt;ISubscription[]&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.listSubscriptions(page);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public updateSubscription(subscription: ISubscription)</span>: Promise&lt;ISubscription&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.updateSubscription(subscription);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public deleteSubscription(subscription: ISubscription)</span>: Promise&lt;ISubscription&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.deleteSubscription(subscription);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public logError(sentryLog: ISentryLog)</span>: Promise&lt;boolean&gt; {
+<span class="cstat-no" title="statement not covered" >    return this.endpoint.logError(sentryLog);</span>
+  }
+&nbsp;
+  private enrichCallOptions&lt;T extends IEndpointCallOptions&gt;(callOptions?: T): T {
+    return _.extend({}, callOptions, this.callOptions);
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

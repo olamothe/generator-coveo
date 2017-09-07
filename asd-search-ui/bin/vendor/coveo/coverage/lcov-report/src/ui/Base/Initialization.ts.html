@@ -1,0 +1,2532 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Base/Initialization.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/Base/Initialization.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">88.89% <small>(352 / 396)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">63.57% <small>(89 / 140)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">84.51% <small>(60 / 71)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">88.83% <small>(342 / 385)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Base/</a> &#187; Initialization.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">52</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">1304</span>
+<span class="cline-any cline-yes">1304</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1385</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1347</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-yes">48376</span>
+<span class="cline-any cline-yes">48360</span>
+<span class="cline-any cline-yes">48360</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48360</span>
+<span class="cline-any cline-yes">48360</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48360</span>
+<span class="cline-any cline-yes">1370</span>
+<span class="cline-any cline-yes">1370</span>
+<span class="cline-any cline-yes">1370</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-yes">1370</span>
+<span class="cline-any cline-yes">1370</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">701</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1352</span>
+<span class="cline-any cline-yes">1352</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1350</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1350</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1310</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1370</span>
+<span class="cline-any cline-yes">1370</span>
+<span class="cline-any cline-yes">1371</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1370</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">10553</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1346</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1345</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1345</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1344</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IQueryResult } from '../../rest/QueryResult';
+import { Logger } from '../../misc/Logger';
+import { IComponentDefinition, Component } from '../Base/Component';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { Utils } from '../../utils/Utils';
+import { Assert } from '../../misc/Assert';
+import { $$ } from '../../utils/Dom';
+import { InitializationEvents } from '../../events/InitializationEvents';
+import { SearchInterface, StandaloneSearchInterface } from '../SearchInterface/SearchInterface';
+import { QueryController } from '../../controllers/QueryController';
+import { HashUtils } from '../../utils/HashUtils';
+import { QueryStateModel } from '../../models/QueryStateModel';
+import { ComponentStateModel } from '../../models/ComponentStateModel';
+import { ComponentOptionsModel } from '../../models/ComponentOptionsModel';
+import { IAnalyticsNoMeta, analyticsActionCauseList } from '../Analytics/AnalyticsActionListMeta';
+import { JQueryUtils } from '../../utils/JQueryutils';
+import { IJQuery } from './CoveoJQuery';
+import * as _ from 'underscore';
+import { IStringMap } from '../../rest/GenericParam';
+import { InitializationPlaceholder } from './InitializationPlaceholder';
+import { get } from './RegisteredNamedMethods';
+declare const require: any;
+&nbsp;
+/**
+ * Represent the initialization parameters required to init a new component.
+ */
+export interface IInitializationParameters {
+  options: any;
+  result?: IQueryResult;
+  bindings: IComponentBindings;
+}
+&nbsp;
+export interface IInitResult {
+  initResult: Promise&lt;boolean&gt;;
+  isLazyInit: boolean;
+}
+&nbsp;
+/**
+ * The main purpose of this class is to initialize the framework (a.k.a the code executed when calling `Coveo.init`).&lt;br/&gt;
+ * It's also in charge or registering the available components, as well as the method that we expost to the global Coveo scope.&lt;br/&gt;
+ * For example, the `Coveo.executeQuery` function will be registed in this class by the {@link QueryController}.
+ */
+export class Initialization {
+  // This is the only difference between an "eager" initialization and a "lazy" initialization
+  // This function will be set to EagerInitialization.functionGeneratorForComponents or LazyInitialization.functionGeneratorForComponents
+  // This is done in Eager.ts or Lazy.ts (the entry point)
+  // In eager mode, the generator return an array of function. Each function returns "void" when called. After all the function have been called, all the components are initialized, synchronously.
+  // In lazy mode, the generator return an array of function. Each function return an array of Promise when called. When all the promises are resolved, the components are correctly initialized, asynchronously.
+  // We need the 2 different mode for a specific reason :
+  // In eager mode, when someone calls Coveo.init, this means the initialization is synchronous, and someone can then immediately start interacting with components.
+  // In lazy mode, when someone calls Coveo.init, they have to wait for the returned promise to resolve before interacting with components.
+  public static componentsFactory: (elements: HTMLElement[], componentClassId: string, initParameters: IInitializationParameters) =&gt; { factory: () =&gt; Promise&lt;Component&gt;[] | void, isLazyInit: boolean };
+&nbsp;
+  private static logger = new Logger('Initialization');
+  public static registeredComponents: String[] = [];
+  private static namedMethods: { [s: string]: any; } = {};
+&nbsp;
+  // List of every fields that are needed by components when doing a query (the fieldsToInclude property in the query)
+  // Since results components are lazy loaded after the first query (when doing the rendering) we need to register the needed fields before their implementation are loaded in the page.
+  private static fieldsNeededForQuery: string[] = [];
+  // List of every fields that are needed by components when doing a query (the fieldsToInclude property in the query), linked to the component that needs them
+  // It is a bit different from `fieldsNeededForQuery` because we can, in some scenarios, optimize to only get fields for components that are actually in the page
+  private static fieldsNeededForQueryByComponent: IStringMap&lt;string[]&gt; = {};
+&nbsp;
+&nbsp;
+  /**
+   * Register a new set of options for a given element.&lt;br/&gt;
+   * When the element is eventually initialized as a component, those options will be used / merged to create the final option set to use for this component.&lt;br/&gt;
+   * Note that this function should not normally be called directly, but instead using the global `Coveo.options` function
+   * @param element
+   * @param options
+   */
+  public static registerDefaultOptions(element: HTMLElement, options: {}): void {
+    let existing = element['CoveoDefaultOptions'] || {};
+    let updated = Utils.extendDeep(existing, options);
+    element['CoveoDefaultOptions'] = updated;
+  }
+&nbsp;
+  public static resolveDefaultOptions(element: HTMLElement, options: {}): {} {
+    let optionsForThisElement = element['CoveoDefaultOptions'];
+&nbsp;
+    let optionsSoFar: {};
+    if (Utils.exists(optionsForThisElement)) {
+      optionsSoFar = Utils.extendDeep(optionsForThisElement, options);
+    } else {
+      optionsSoFar = options;
+    }
+&nbsp;
+    if (element.parentElement) {
+      return Initialization.resolveDefaultOptions(element.parentElement, optionsSoFar);
+    } else {
+      return optionsSoFar;
+    }
+  }
+&nbsp;
+  /**
+   * Register a new Component to be recognized by the framework.
+   * This essentially mean that when we call `Coveo.init`, the Initialization class will scan the DOM for known component (which have registed themselves with this call) and create a new component on each element.
+   *
+   * This is meant to register the component to be loaded "eagerly" (Immediately available when the UI scripts are included)
+   * @param componentClass
+   */
+  public static registerAutoCreateComponent(componentClass: IComponentDefinition): void {
+    Assert.exists(componentClass);
+    Assert.exists(componentClass.ID);
+    Assert.doesNotExists(Initialization.namedMethods[componentClass.ID]);
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!_.contains(Initialization.registeredComponents, componentClass.ID)) {
+      Initialization.registeredComponents.push(componentClass.ID);
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (EagerInitialization.eagerlyLoadedComponents[componentClass.ID] == null) {
+      EagerInitialization.eagerlyLoadedComponents[componentClass.ID] = componentClass;
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (LazyInitialization.lazyLoadedComponents[componentClass.ID] == null) {
+      LazyInitialization.lazyLoadedComponents[componentClass.ID] = () =&gt; {
+        return new Promise((resolve, reject) =&gt; {
+          resolve(componentClass);
+        });
+      };
+    }
+  }
+&nbsp;
+  /**
+   * Set the fields that the component needs to add to the query.
+   *
+   * This is used when the {@link ResultList.options.autoSelectFieldsToInclude } is set to `true` (which is `true` by default).
+   *
+   * The framework tries to only include the needed fields from the index, for performance reasons.
+   *
+   * @param componentId The id for the component (eg: CoveoFacet)
+   * @param fields
+   */
+  public static registerComponentFields(componentId: string, fields: string[]) {
+    Initialization.fieldsNeededForQuery = Utils.concatWithoutDuplicate(Initialization.fieldsNeededForQuery, fields);
+&nbsp;
+    // Register with both name (eg : Facet and CoveoFacet) to reduce possible confusion.
+    // The id concept for component is fuzzy for a lot of people (include the Coveo prefix or not)
+    let registerById = (id) =&gt; {
+      if (Initialization.fieldsNeededForQueryByComponent[id] == null) {
+        Initialization.fieldsNeededForQueryByComponent[id] = fields;
+      } else {
+        Initialization.fieldsNeededForQueryByComponent[id] = Utils.concatWithoutDuplicate(Initialization.fieldsNeededForQueryByComponent[id], fields);
+      }
+    };
+&nbsp;
+    registerById(componentId);
+    registerById(Component.computeCssClassNameForType(componentId));
+  }
+&nbsp;
+  /**
+   * Returns all the fields that the framework currently knows should be added to the query.
+   *
+   * This is used when the {@link ResultList.options.autoSelectFieldsToInclude } is set to `true` (which is `true` by default).
+   *
+   * The framework tries to only include the needed fields from the index, for performance reasons.
+   * @returns {string[]}
+   */
+  public static getRegisteredFieldsForQuery() {
+    return Initialization.fieldsNeededForQuery;
+  }
+&nbsp;
+  /**
+   * Returns all the fields that the framework currently knows should be added to the query, for a given component.
+   *
+   * This is used when the {@link ResultList.options.autoSelectFieldsToInclude } is set to `true` (which is `true` by default).
+   *
+   * The framework tries to only include the needed fields from the index, for performance reasons.
+   * @param componentId
+   * @returns {string[]|Array}
+   */
+  public static getRegisteredFieldsComponentForQuery(componentId: string): string[] {
+    const basicId = Initialization.fieldsNeededForQueryByComponent[componentId] || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+    const coveoId = Initialization.fieldsNeededForQueryByComponent[Component.computeCssClassNameForType(componentId)] || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+    return Utils.concatWithoutDuplicate(basicId, coveoId);
+  }
+&nbsp;
+  /**
+   * Check if a component is already registered, using it's ID (e.g. : 'Facet').
+   * @param componentClassId
+   * @returns {boolean}
+   */
+  public static isComponentClassIdRegistered(componentClassId: string): boolean {
+    return _.contains(Initialization.registeredComponents, componentClassId) || <span class="branch-1 cbranch-no" title="branch not covered" >_.contains(Initialization.registeredComponents, Component.computeCssClassNameForType(componentClassId));</span>
+  }
+&nbsp;
+  /**
+   * Return the list of all known components (the list of ID for each component), whether they are actually loaded or not.
+   * @returns {string[]}
+   */
+  public static getListOfRegisteredComponents() {
+    return Initialization.registeredComponents;
+  }
+&nbsp;
+  /**
+   * Return the list of all components that are currently eagerly loaded.
+   * @returns {string[]}
+   */
+  public static getListOfLoadedComponents() {
+    return _.keys(EagerInitialization.eagerlyLoadedComponents);
+  }
+&nbsp;
+  /**
+   * Return the component class definition, using it's ID (e.g. : 'CoveoFacet').
+   *
+   * This means the component needs to be eagerly loaded.
+   *
+   * @param name
+   * @returns {IComponentDefinition}
+   */
+  public static getRegisteredComponent(name: string) {
+    return EagerInitialization.eagerlyLoadedComponents[name];
+  }
+&nbsp;
+  /**
+   * Initialize the framework. Note that this function should not normally be called directly, but instead using a globally registered function (e.g.: Coveo.init), or {@link Initialization.initSearchInterface} or {@link Initialization.initStandaloneSearchInterface} &lt;br/&gt;
+   * (e.g. : `Coveo.init` or `Coveo.initSearchbox`).
+   * @param element The element on which to initialize the interface.
+   * @param options The options for all components (eg: {Searchbox : {enableSearchAsYouType : true}}).
+   * @param initSearchInterfaceFunction The function to execute to create the {@link SearchInterface} component. Different init call will create different {@link SearchInterface}.
+   */
+  public static initializeFramework(element: HTMLElement, options: any, initSearchInterfaceFunction: (...args: any[]) =&gt; IInitResult): Promise&lt;{ elem: HTMLElement }&gt; {
+    Assert.exists(element);
+    let alreadyInitialized = Component.get(element, QueryController, true);
+    if (alreadyInitialized) {
+      this.logger.error('This DOM element has already been initialized as a search interface, skipping initialization', element);
+      return new Promise((resolve, reject) =&gt; {
+        resolve({ elem: element });
+      });
+    }
+&nbsp;
+    new InitializationPlaceholder(element);
+&nbsp;
+    options = Initialization.resolveDefaultOptions(element, options);
+&nbsp;
+    Initialization.performInitFunctionsOption(options, InitializationEvents.beforeInitialization);
+    $$(element).trigger(InitializationEvents.beforeInitialization);
+&nbsp;
+    const toExecuteOnceSearchInterfaceIsInitialized = () =&gt; {
+      Initialization.initExternalComponents(element, options);
+&nbsp;
+      Initialization.performInitFunctionsOption(options, InitializationEvents.afterComponentsInitialization);
+      $$(element).trigger(InitializationEvents.afterComponentsInitialization);
+&nbsp;
+      $$(element).trigger(InitializationEvents.restoreHistoryState);
+&nbsp;
+      Initialization.performInitFunctionsOption(options, InitializationEvents.afterInitialization);
+      $$(element).trigger(InitializationEvents.afterInitialization);
+&nbsp;
+      let searchInterface = &lt;SearchInterface&gt;Component.get(element, SearchInterface);
+      if (searchInterface.options.autoTriggerQuery) {
+        Initialization.logFirstQueryCause(searchInterface);
+        let shouldLogInActionHistory = true;
+        // We should not log an action history if the interface is a standalone recommendation component.
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (Coveo['Recommendation']) {
+          shouldLogInActionHistory = !(searchInterface instanceof Coveo['Recommendation']);
+        }
+        (&lt;QueryController&gt;Component.get(element, QueryController)).executeQuery({
+          logInActionsHistory: shouldLogInActionHistory,
+          isFirstQuery: true
+        });
+      }
+    };
+&nbsp;
+    const resultOfSearchInterfaceInitialization = initSearchInterfaceFunction(element, options);
+&nbsp;
+    // We are executing a "lazy" initialization, which returns a Promise
+    // eg : CoveoJsSearch.Lazy.js was included in the page
+    // this means that we can only execute the function after the promise has resolved
+    if (resultOfSearchInterfaceInitialization.isLazyInit) {
+      return resultOfSearchInterfaceInitialization.initResult.then(() =&gt; {
+        toExecuteOnceSearchInterfaceIsInitialized();
+<span class="cstat-no" title="statement not covered" >        return {</span>
+          elem: element
+        };
+      });
+    } else {
+      // Else, we are executing an "eager" initialization, which returns void;
+      // eg : CoveoJsSearch.js was included in the page
+      // this mean that this function gets executed immediately
+      toExecuteOnceSearchInterfaceIsInitialized();
+      return new Promise((resolve, reject) =&gt; {
+        resolve({ elem: element });
+      });
+&nbsp;
+    }
+  }
+&nbsp;
+  /**
+   * Create a new standard search interface. This is the function executed when calling `Coveo.init`.
+   * @param element
+   * @param options
+   * @returns {IInitResult}
+   */
+  public static initSearchInterface(element: HTMLElement, <span class="missing-if-branch" title="if path not taken" >I</span>options: any = {}): IInitResult {
+    options = Initialization.resolveDefaultOptions(element, options);
+    let searchInterface = new SearchInterface(element, options.SearchInterface, options.Analytics);
+    searchInterface.options.originalOptionsObject = options;
+    let initParameters: IInitializationParameters = { options: options, bindings: searchInterface.getBindings() };
+    return Initialization.automaticallyCreateComponentsInside(element, initParameters, ['Recommendation']);
+  }
+&nbsp;
+  /**
+   * Create a new standalone search interface (standalone search box). This is the function executed when calling `Coveo.initSearchbox`.
+   * @param element
+   * @param options
+   * @returns {IInitResult}
+   */
+  public static initStandaloneSearchInterface(element: HTMLElement, <span class="missing-if-branch" title="if path not taken" >I</span>options: any = {}): IInitResult {
+    options = Initialization.resolveDefaultOptions(element, options);
+&nbsp;
+    // Set trigger query on clear to false for standalone search interface automatically
+    // Take care of not overriding any options that could have been set by external code.
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!options.Querybox) {
+      options.Querybox = {};
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!options.Omnibox) {
+      options.Omnibox = {};
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!options.Searchbox) {
+<span class="cstat-no" title="statement not covered" >      options.Searchbox = {};</span>
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!options.Querybox.triggerQueryOnClear || <span class="branch-1 cbranch-no" title="branch not covered" >!options.Omnibox.triggerQueryOnClear </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >!options.Searchbox.triggerOnQueryClear)</span> {
+      options.Querybox.triggerQueryOnClear = false;
+      options.Omnibox.triggerQueryOnClear = false;
+      options.Searchbox.triggerQueryOnClear = false;
+    }
+&nbsp;
+    let searchInterface = new StandaloneSearchInterface(element, options.StandaloneSearchInterface, options.Analytics);
+    searchInterface.options.originalOptionsObject = options;
+    let initParameters: IInitializationParameters = { options: options, bindings: searchInterface.getBindings() };
+    return Initialization.automaticallyCreateComponentsInside(element, initParameters);
+  }
+&nbsp;
+  /**
+   * Create a new recommendation search interface. This is the function executed when calling `Coveo.initRecommendation`.
+   * @param element
+   * @param options
+   * @returns {IInitResult}
+   */
+  public static initRecommendationInterface(element: HTMLElement, <span class="missing-if-branch" title="if path not taken" >I</span>options: any = {}): IInitResult {
+    options = Initialization.resolveDefaultOptions(element, options);
+    // Since a recommendation interface inherits from a search interface, we need to merge those if passed on init
+    let optionsForRecommendation = _.extend({}, options.SearchInterface, options.Recommendation);
+    // If there is a main search interface, modify the loading animation for the recommendation interface to a "noop" element
+    // We don't want 2 animation overlapping
+    if (optionsForRecommendation.mainSearchInterface) {
+      optionsForRecommendation.firstLoadingAnimation = $$('span').el;
+    }
+    let recommendation = new window['Coveo']['Recommendation'](element, optionsForRecommendation, options.Analytics);
+    recommendation.options.originalOptionsObject = options;
+    let initParameters: IInitializationParameters = { options: options, bindings: recommendation.getBindings() };
+    return Initialization.automaticallyCreateComponentsInside(element, initParameters);
+  }
+&nbsp;
+  /**
+   * Scan the element and all its children for known components. Initialize every known component found.
+   * @param element
+   * @param initParameters
+   * @param ignore
+   * @returns {IInitResult}
+   */
+  public static automaticallyCreateComponentsInside(element: HTMLElement, initParameters: IInitializationParameters, ignore?: string[]): IInitResult {
+    Assert.exists(element);
+&nbsp;
+    let codeToExecute: { (): Promise&lt;Component&gt;[] | void }[] = [];
+&nbsp;
+    let htmlElementsToIgnore: HTMLElement[] = [];
+&nbsp;
+    // Scan for elements to ignore which can be a container component (with other component inside)
+    // When a component is ignored, all it's children component should be ignored too.
+    // Add them to the array of html elements that should be skipped.
+    _.each(ignore, (toIgnore) =&gt; {
+      let rootToIgnore = $$(element).find(`.${Component.computeCssClassNameForType(toIgnore)}`);
+      if (rootToIgnore) {
+        let childsElementsToIgnore = $$(rootToIgnore).findAll('*');
+        htmlElementsToIgnore = htmlElementsToIgnore.concat(childsElementsToIgnore);
+      }
+    });
+&nbsp;
+    let isLazyInit;
+&nbsp;
+    _.each(Initialization.getListOfRegisteredComponents(), (componentClassId: string) =&gt; {
+      if (!_.contains(ignore, componentClassId)) {
+        let classname = Component.computeCssClassNameForType(`${componentClassId}`);
+        let elements = $$(element).findAll('.' + classname);
+        // From all the component we found which match the current className, remove those that should be ignored
+        elements = _.difference(elements, htmlElementsToIgnore);
+        if ($$(element).hasClass(classname) &amp;&amp; !_.contains(htmlElementsToIgnore, element)) {
+          elements.push(element);
+        }
+        if (elements.length != 0) {
+          const resultsOfFactory = this.componentsFactory(elements, componentClassId, initParameters);
+          isLazyInit = resultsOfFactory.isLazyInit;
+          codeToExecute.push(resultsOfFactory.factory);
+        }
+      }
+    });
+&nbsp;
+    // We log the fatal error on init, but then we try to continue the initialization for the rest of the components.
+    // In most case, this would be caused by a fatal error in a component constructor.
+    // In some cases, it might be for a minor component not essential to basic function of the interface, meaning we could still salvage things here.
+    const logFatalErrorOnComponentInitialization = <span class="fstat-no" title="function not covered" >(e: Error)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      this.logger.error(e);</span>
+<span class="cstat-no" title="statement not covered" >      this.logger.warn(`Skipping initialization of previous component in error ... `);</span>
+    };
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (isLazyInit) {
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        initResult: Promise.all(_.map(codeToExecute, <span class="fstat-no" title="function not covered" >(code)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          const resultsOfFactory = code();</span>
+<span class="cstat-no" title="statement not covered" >          if (_.isArray(resultsOfFactory)) {</span>
+<span class="cstat-no" title="statement not covered" >            return Promise.all(resultsOfFactory).then(<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>true)</span>;</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            return Promise.resolve(true);</span>
+          }
+        })).then(<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>true)</span>.catch(<span class="fstat-no" title="function not covered" >(e: Error)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          logFatalErrorOnComponentInitialization(e);</span>
+<span class="cstat-no" title="statement not covered" >          return true;</span>
+        }),
+        isLazyInit: true
+      };
+    } else {
+      _.each(codeToExecute, (code) =&gt; {
+        try {
+          code();
+        } catch (e) {
+<span class="cstat-no" title="statement not covered" >          logFatalErrorOnComponentInitialization(e);</span>
+        }
+      });
+      return {
+        initResult: Promise.resolve(true),
+        isLazyInit: false
+      };
+    }
+  }
+&nbsp;
+  /**
+   * Register a new globally available method in the Coveo namespace (e.g.: `Coveo.init`).
+   * @param methodName The method name to register.
+   * @param handler The function to execute when the method is called.
+   */
+  public static registerNamedMethod(methodName: string, handler: (...args: any[]) =&gt; any) {
+    Assert.isNonEmptyString(methodName);
+    Assert.doesNotExists(EagerInitialization.eagerlyLoadedComponents[methodName]);
+    Assert.doesNotExists(Initialization.namedMethods[methodName]);
+    Assert.exists(handler);
+    Initialization.namedMethods[methodName] = handler;
+  }
+&nbsp;
+  /**
+   * Check if the method is already registed.
+   * @param methodName
+   * @returns {boolean}
+   */
+  public static isNamedMethodRegistered(methodName: string): boolean {
+    return Utils.exists(Initialization.namedMethods[methodName]);
+  }
+&nbsp;
+  /**
+   * 'Monkey patch' (replace the function with a new one) a given method on a component instance.
+   * @param methodName
+   * @param element
+   * @param handler
+   */
+  public static monkeyPatchComponentMethod(methodName: string, element: HTMLElement, handler: (...args: any[]) =&gt; any) {
+    Assert.isNonEmptyString(methodName);
+    Assert.exists(handler);
+&nbsp;
+    let componentClass;
+    if (methodName.indexOf('.') &gt; 0) {
+      let splitArg = methodName.split('.');
+      Assert.check(splitArg.length == 2, 'Invalid method name, correct syntax is CoveoComponent.methodName.');
+      componentClass = splitArg[0];
+      methodName = &lt;string&gt;splitArg[1];
+    }
+&nbsp;
+    let boundComponent = Component.get(element, componentClass);
+    Assert.exists(boundComponent);
+    Assert.exists(boundComponent[methodName]);
+&nbsp;
+    let originalMethodName = '__' + methodName;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!Utils.exists(boundComponent[originalMethodName])) {
+      boundComponent[originalMethodName] = boundComponent[methodName];
+    }
+&nbsp;
+    boundComponent[methodName] = handler;
+  }
+&nbsp;
+  public static initBoxInterface(element: HTMLElement, <span class="missing-if-branch" title="if path not taken" >I</span>options: any = {}, <span class="missing-if-branch" title="else path not taken" >E</span>type: string = 'Standard', <span class="missing-if-branch" title="else path not taken" >E</span>injectMarkup: boolean = true): IInitResult {
+    options = Initialization.resolveDefaultOptions(element, options);
+    let fromInitTypeToBoxReference = 'Box';
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (type != 'Standard') {
+<span class="cstat-no" title="statement not covered" >      fromInitTypeToBoxReference += 'For' + type;</span>
+    }
+    const boxRef = Component.getComponentRef(fromInitTypeToBoxReference);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (boxRef) {
+<span class="cstat-no" title="statement not covered" >      new Logger(element).info('Initializing box of type ' + fromInitTypeToBoxReference);</span>
+<span class="cstat-no" title="statement not covered" >      let injectFunction: () =&gt; any = injectMarkup ? boxRef.getInjection : <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+      };
+<span class="cstat-no" title="statement not covered" >      let box = new boxRef(element, options[fromInitTypeToBoxReference], options.Analytics, injectFunction, options);</span>
+<span class="cstat-no" title="statement not covered" >      box.options.originalOptionsObject = options;</span>
+<span class="cstat-no" title="statement not covered" >      let initParameters: IInitializationParameters = { options: options, bindings: box.getBindings() };</span>
+<span class="cstat-no" title="statement not covered" >      return Initialization.automaticallyCreateComponentsInside(element, initParameters);</span>
+    } else {
+      return {
+        initResult: new Promise((resolve, reject) =&gt; {
+          new Logger(element).error('Trying to initialize box of type : ' + fromInitTypeToBoxReference + ' but not found in code (not compiled)!');
+          Assert.fail('Cannot initialize unknown type of box');
+<span class="cstat-no" title="statement not covered" >          reject(false);</span>
+        }),
+        isLazyInit: false
+      };
+    }
+  }
+&nbsp;
+  public static dispatchNamedMethodCall(methodName: string, element: HTMLElement, args: any[]): any {
+    Assert.isNonEmptyString(methodName);
+    Assert.exists(element);
+&nbsp;
+    let namedMethodHandler: (element: HTMLElement, ...args: any[]) =&gt; any = Initialization.namedMethods[methodName];
+    Assert.exists(namedMethodHandler);
+&nbsp;
+    Initialization.logger.trace('Dispatching named method call of ' + methodName, element, args);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (args.length != 0) {
+<span class="cstat-no" title="statement not covered" >      return namedMethodHandler.apply(null, [element].concat(args));</span>
+    } else {
+      return namedMethodHandler.apply(null, [element]);
+    }
+&nbsp;
+  }
+&nbsp;
+  public static dispatchNamedMethodCallOrComponentCreation(token: string, element: HTMLElement, args: any[]): any {
+    Assert.isNonEmptyString(token);
+    Assert.exists(element);
+&nbsp;
+    if (Initialization.isNamedMethodRegistered(token)) {
+      return Initialization.dispatchNamedMethodCall(token, element, args);
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (Initialization.isThereASingleComponentBoundToThisElement(element)) {
+      return Initialization.dispatchMethodCallOnBoundComponent(token, element, args);
+    } else {
+<span class="cstat-no" title="statement not covered" >      Assert.fail('No method or component named ' + token + ' are registered.');</span>
+    }
+  }
+&nbsp;
+  public static isSearchFromLink(searchInterface: SearchInterface) {
+    return Utils.isNonEmptyString(searchInterface.getBindings().queryStateModel.get('q'));
+  }
+&nbsp;
+  public static isThereASingleComponentBoundToThisElement(element: HTMLElement): boolean {
+    Assert.exists(element);
+    return Utils.exists(Component.get(element, null, true));
+  }
+&nbsp;
+  public static isThereANonSearchInterfaceComponentBoundToThisElement(element: HTMLElement): boolean {
+    // We automatically consider "Recommendation" component to be a special case of search interface
+    // and thus do not check those.
+    <span class="missing-if-branch" title="if path not taken" >I</span>if ($$(element).hasClass('CoveoRecommendation')) {
+<span class="cstat-no" title="statement not covered" >      return true;</span>
+    }
+    return Initialization.isThereASingleComponentBoundToThisElement(element) &amp;&amp; !get(element, SearchInterface, true) &amp;&amp; !$$(element).hasClass('CoveoRecommendation');
+  }
+&nbsp;
+  private static dispatchMethodCallOnBoundComponent(methodName: string, element: HTMLElement, args: any[]): any {
+    Assert.isNonEmptyString(methodName);
+    Assert.exists(element);
+&nbsp;
+    let boundComponent = Component.get(element);
+    Assert.exists(boundComponent);
+&nbsp;
+    let method = boundComponent[methodName];
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (Utils.exists(method)) {
+      return method.apply(boundComponent, args);
+    } else {
+<span class="cstat-no" title="statement not covered" >      Assert.fail('No method named ' + methodName + ' exist on component ' + boundComponent.type);</span>
+    }
+  }
+&nbsp;
+&nbsp;
+  private static logFirstQueryCause(searchInterface: SearchInterface) {
+    let firstQueryCause = HashUtils.getValue('firstQueryCause', HashUtils.getHash());
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (firstQueryCause != null) {
+<span class="cstat-no" title="statement not covered" >      let meta = HashUtils.getValue('firstQueryMeta', HashUtils.getHash()) || {};</span>
+<span class="cstat-no" title="statement not covered" >      searchInterface.usageAnalytics.logSearchEvent&lt;IAnalyticsNoMeta&gt;(analyticsActionCauseList[firstQueryCause], meta);</span>
+    } else {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (Initialization.isSearchFromLink(searchInterface)) {
+<span class="cstat-no" title="statement not covered" >        searchInterface.usageAnalytics.logSearchEvent&lt;IAnalyticsNoMeta&gt;(analyticsActionCauseList.searchFromLink, {});</span>
+      } else {
+        searchInterface.usageAnalytics.logSearchEvent&lt;IAnalyticsNoMeta&gt;(analyticsActionCauseList.interfaceLoad, {});
+      }
+    }
+  }
+&nbsp;
+  private static performInitFunctionsOption(options, event: string) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (Utils.exists(options)) {
+      Initialization.performFunctions(options[event]);
+    }
+  }
+&nbsp;
+  private static performFunctions(option) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (Utils.exists(option)) {
+<span class="cstat-no" title="statement not covered" >      _.each(option, <span class="fstat-no" title="function not covered" >(func: () =&gt; void)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (typeof func == 'function') {</span>
+<span class="cstat-no" title="statement not covered" >          func();</span>
+        }
+      });
+    }
+  }
+&nbsp;
+  private static initExternalComponents(element: HTMLElement, options?: any) {
+    if (options &amp;&amp; options['externalComponents']) {
+      let searchInterface = &lt;SearchInterface&gt;Component.get(element, SearchInterface);
+      let queryStateModel = &lt;QueryStateModel&gt;Component.get(element, QueryStateModel);
+      let componentStateModel = &lt;ComponentStateModel&gt;Component.get(element, ComponentStateModel);
+      let queryController = &lt;QueryController&gt;Component.get(element, QueryController);
+      let componentOptionsModel = &lt;ComponentOptionsModel&gt;Component.get(element, ComponentOptionsModel);
+      let usageAnalytics = searchInterface.usageAnalytics;
+      Assert.exists(searchInterface);
+      Assert.exists(queryStateModel);
+      Assert.exists(queryController);
+      Assert.exists(componentStateModel);
+      Assert.exists(usageAnalytics);
+      let initParameters: IInitializationParameters = {
+        options: options,
+        bindings: {
+          searchInterface: searchInterface,
+          queryStateModel: queryStateModel,
+          queryController: queryController,
+          usageAnalytics: usageAnalytics,
+          componentStateModel: componentStateModel,
+          componentOptionsModel: componentOptionsModel,
+          root: element
+        }
+      };
+      _.each(options['externalComponents'], (externalComponent: HTMLElement | IJQuery) =&gt; {
+        let elementToInstantiate = externalComponent;
+        if (Utils.isHtmlElement(elementToInstantiate)) {
+          return Initialization.automaticallyCreateComponentsInside(&lt;HTMLElement&gt;elementToInstantiate, initParameters);
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>if (JQueryUtils.isInstanceOfJQuery(elementToInstantiate)) {
+          return Initialization.automaticallyCreateComponentsInside(&lt;HTMLElement&gt;((&lt;any&gt;elementToInstantiate).get(0)), initParameters);
+        }
+      });
+    }
+  }
+}
+&nbsp;
+export class LazyInitialization {
+  private static logger = new Logger('LazyInitialization');
+&nbsp;
+  // Map of every component to a promise that resolve with their implementation (lazily loaded)
+  public static lazyLoadedComponents: IStringMap&lt;() =&gt; Promise&lt;IComponentDefinition&gt;&gt; = {};
+  public static lazyLoadedModule: IStringMap&lt;() =&gt; Promise&lt;any&gt;&gt; = {};
+&nbsp;
+  public static getLazyRegisteredComponent(name: string): Promise&lt;IComponentDefinition&gt; {
+    return LazyInitialization.lazyLoadedComponents[name]();
+  }
+&nbsp;
+  public static getLazyRegisteredModule(name: string): Promise&lt;any&gt; {
+    return LazyInitialization.lazyLoadedModule[name]();
+  }
+&nbsp;
+  public static registerLazyComponent(id: string, load: () =&gt; Promise&lt;IComponentDefinition&gt;): void {
+    if (LazyInitialization.lazyLoadedComponents[id] == null) {
+      Assert.exists(load);
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!_.contains(Initialization.registeredComponents, id)) {
+        Initialization.registeredComponents.push(id);
+      }
+      LazyInitialization.lazyLoadedComponents[id] = load;
+    } else {
+      this.logger.warn('Component being registered twice', id);
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public static buildErrorCallback(chunkName: string, resolve: Function)</span> {
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >(error)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      LazyInitialization.logger.warn(`Cannot load chunk for ${chunkName}. You may need to configure the paths of the ressources using Coveo.configureRessourceRoot. Current path is ${__webpack_public_path__}.`);</span>
+<span class="cstat-no" title="statement not covered" >      resolve(<span class="fstat-no" title="function not covered" >() =&gt; { </span>});</span>
+    };
+  }
+&nbsp;
+  public static registerLazyModule(id: string, load: () =&gt; Promise&lt;any&gt;): void {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (LazyInitialization.lazyLoadedModule[id] == null) {
+      Assert.exists(load);
+      LazyInitialization.lazyLoadedModule[id] = load;
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.logger.warn('Module being registered twice', id);</span>
+    }
+  }
+&nbsp;
+  public static componentsFactory(elements: Element[], componentClassId: string, initParameters: IInitializationParameters): { factory: () =&gt; Promise&lt;Component&gt;[], isLazyInit: boolean } {
+    const factory = () =&gt; {
+      let promises: Promise&lt;Component&gt;[] = [];
+      _.each(elements, (matchingElement: HTMLElement) =&gt; {
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (Component.get(matchingElement, componentClassId) == null) {
+          // If options were provided, lookup options for this component class and
+          // also for the element id. Merge them and pass those to the factory method.
+          let optionsToUse = undefined;
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (Utils.exists(initParameters.options)) {
+<span class="cstat-no" title="statement not covered" >            let optionsForComponentClass = initParameters.options[componentClassId];</span>
+<span class="cstat-no" title="statement not covered" >            let optionsForElementId = initParameters.options[matchingElement.id];</span>
+<span class="cstat-no" title="statement not covered" >            let initOptions = initParameters.options['initOptions'] ? initParameters.options['initOptions'][componentClassId] : {};</span>
+<span class="cstat-no" title="statement not covered" >            optionsToUse = Utils.extendDeep(optionsForElementId, initOptions);</span>
+<span class="cstat-no" title="statement not covered" >            optionsToUse = Utils.extendDeep(optionsForComponentClass, optionsToUse);</span>
+          }
+          let initParamToUse = _.extend({}, initParameters, { options: optionsToUse });
+&nbsp;
+          promises.push(LazyInitialization.createComponentOfThisClassOnElement(componentClassId, matchingElement, initParamToUse));
+        }
+      });
+      return promises;
+    };
+&nbsp;
+    return {
+      factory: factory,
+      isLazyInit: true
+    };
+  }
+&nbsp;
+  private static createComponentOfThisClassOnElement(componentClassId: string, element: HTMLElement, initParameters?: IInitializationParameters): Promise&lt;Component&gt; {
+    Assert.isNonEmptyString(componentClassId);
+    Assert.exists(element);
+&nbsp;
+    // If another component exist on that element, we do not want to re-initialize again.
+    // The exception being the "SearchInterface", since in some case we want end user to initialize directly on the root of the interface
+    // For example, when we are initializing a standalone search box, we might want to target the div for the search box directly.
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (Initialization.isThereANonSearchInterfaceComponentBoundToThisElement(element)) {
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    }
+&nbsp;
+    return LazyInitialization.getLazyRegisteredComponent(componentClassId).then((lazyLoadedComponent: IComponentDefinition) =&gt; {
+      Assert.exists(lazyLoadedComponent);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (Initialization.isThereANonSearchInterfaceComponentBoundToThisElement(element)) {
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+      }
+&nbsp;
+      let bindings: IComponentBindings = {};
+      let options = {};
+      let result: IQueryResult = undefined;
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (initParameters != undefined) {
+        _.each(&lt;{ [key: string]: any }&gt;initParameters.bindings, (value, key) =&gt; {
+          bindings[key] = value;
+        });
+        options = initParameters.options;
+        result = initParameters.result;
+      }
+&nbsp;
+      LazyInitialization.logger.trace('Creating component of class ' + componentClassId, element, options);
+      return new lazyLoadedComponent(element, options, bindings, result);
+    });
+  }
+}
+&nbsp;
+export class EagerInitialization {
+  private static logger = new Logger('EagerInitialization');
+&nbsp;
+  // Map of every component with their implementation (eagerly loaded)
+  public static eagerlyLoadedComponents: IStringMap&lt;IComponentDefinition&gt; = {};
+&nbsp;
+  public static componentsFactory(elements: Element[], componentClassId: string, initParameters: IInitializationParameters): { factory: () =&gt; void, isLazyInit: boolean } {
+    const factory = () =&gt; {
+      _.each(elements, (matchingElement: HTMLElement) =&gt; {
+        if (Component.get(matchingElement, componentClassId) == null) {
+          // If options were provided, lookup options for this component class and
+          // also for the element id. Merge them and pass those to the factory method.
+          let optionsToUse = undefined;
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (Utils.exists(initParameters.options)) {
+            let optionsForComponentClass = initParameters.options[componentClassId];
+            let optionsForElementId = initParameters.options[matchingElement.id];
+            let initOptions = initParameters.options['initOptions'] ? initParameters.options['initOptions'][componentClassId] : {};
+            optionsToUse = Utils.extendDeep(optionsForElementId, initOptions);
+            optionsToUse = Utils.extendDeep(optionsForComponentClass, optionsToUse);
+          }
+          let initParamToUse = _.extend({}, initParameters, { options: optionsToUse });
+          EagerInitialization.createComponentOfThisClassOnElement(componentClassId, matchingElement, initParamToUse);
+        }
+      });
+    };
+&nbsp;
+    return {
+      factory: factory,
+      isLazyInit: false
+    };
+  }
+&nbsp;
+  private static createComponentOfThisClassOnElement(componentClassId: string, element: HTMLElement, initParameters?: IInitializationParameters): Component {
+    Assert.isNonEmptyString(componentClassId);
+    Assert.exists(element);
+&nbsp;
+    let eagerlyLoadedComponent: IComponentDefinition = Initialization.getRegisteredComponent(componentClassId);
+    let bindings: IComponentBindings = {};
+    let options = {};
+    let result: IQueryResult = undefined;
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (initParameters != undefined) {
+      _.each(&lt;{ [key: string]: any }&gt;initParameters.bindings, (value, key) =&gt; {
+        bindings[key] = value;
+      });
+      options = initParameters.options;
+      result = initParameters.result;
+    }
+&nbsp;
+    // If another component exist on that element, we do not want to re-initialize again.
+    // The exception being the "SearchInterface", since in some case we want end user to initialize directly on the root of the interface
+    // For example, when we are initializing a standalone search box, we might want to target the div for the search box directly.
+    if (Initialization.isThereANonSearchInterfaceComponentBoundToThisElement(element)) {
+      return null;
+    }
+&nbsp;
+    EagerInitialization.logger.trace(`Creating component of class ${componentClassId}`, element, options);
+    // This is done so that external code that extends a base component does not have to have two code path for lazy vs eager;
+    // If we do not find the eager component registered, we can instead try to load the one found in lazy mode.
+    // If it still fails there... tough luck. The component simply won't work.
+    if (eagerlyLoadedComponent == null) {
+      LazyInitialization.getLazyRegisteredComponent(componentClassId).then((lazyLoadedComponent) =&gt; {
+        EagerInitialization.logger.warn(`Component of class ${componentClassId} was not found in "Eager" mode. Using lazy mode as a fallback.`);
+        new lazyLoadedComponent(element, options, bindings, result);
+      }).catch(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        EagerInitialization.logger.error(`Component of class ${componentClassId} was not found in "Eager" mode nor "Lazy" mode. It will not be initialized properly...`);</span>
+      });
+      return null;
+    } else {
+      return new eagerlyLoadedComponent(element, options, bindings, result);
+    }
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

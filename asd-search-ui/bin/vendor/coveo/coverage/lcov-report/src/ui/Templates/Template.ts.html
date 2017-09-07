@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Templates/Template.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/Templates/Template.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">95.65% <small>(110 / 115)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">94.74% <small>(72 / 76)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">89.47% <small>(17 / 19)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">95.45% <small>(105 / 110)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Templates/</a> &#187; Template.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1230</span>
+<span class="cline-any cline-yes">1230</span>
+<span class="cline-any cline-yes">1230</span>
+<span class="cline-any cline-yes">1230</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1218</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1217</span>
+<span class="cline-any cline-yes">1215</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">302</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">302</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">302</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">76</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">52</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">49</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">48</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">47</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">46</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">46</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">45</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">43</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">175</span>
+<span class="cline-any cline-yes">88</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">683</span>
+<span class="cline-any cline-yes">47133</span>
+<span class="cline-any cline-yes">47133</span>
+<span class="cline-any cline-yes">1318</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">45815</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">683</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">665</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-yes">1304</span>
+<span class="cline-any cline-yes">1304</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-yes">574</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-yes">646</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Logger } from '../../misc/Logger';
+import { ValidLayout } from '../ResultLayout/ResultLayout';
+import { $$ } from '../../utils/Dom';
+import { TemplateConditionEvaluator } from './TemplateConditionEvaluator';
+import { TemplateFieldsEvaluator } from './TemplateFieldsEvaluator';
+import { IQueryResult } from '../../rest/QueryResult';
+import { ResponsiveComponents } from '../ResponsiveComponents/ResponsiveComponents';
+import * as _ from 'underscore';
+import { Initialization, LazyInitialization } from '../Base/Initialization';
+import { Utils } from '../../utils/Utils';
+&nbsp;
+export type TemplateRole = 'table-header' | 'table-footer';
+&nbsp;
+export interface ITemplateProperties {
+  condition?: Function;
+  conditionToParse?: string;
+  layout?: ValidLayout;
+  mobile?: boolean;
+  tablet?: boolean;
+  desktop?: boolean;
+  fieldsToMatch?: IFieldsToMatch[];
+  role?: TemplateRole;
+}
+&nbsp;
+export interface IFieldsToMatch {
+  values?: string[];
+  field: string;
+}
+&nbsp;
+export interface IInstantiateTemplateOptions {
+  currentLayout?: ValidLayout;
+  checkCondition?: boolean;
+  wrapInDiv?: boolean;
+  responsiveComponents?: ResponsiveComponents;
+}
+&nbsp;
+export class DefaultInstantiateTemplateOptions implements IInstantiateTemplateOptions {
+  public currentLayout: ValidLayout;
+  public checkCondition: boolean;
+  public wrapInDiv: boolean;
+  public responsiveComponents: ResponsiveComponents;
+&nbsp;
+  constructor() {
+    this.currentLayout = null;
+    this.checkCondition = true;
+    this.wrapInDiv = true;
+    this.responsiveComponents = new ResponsiveComponents();
+  }
+&nbsp;
+  get(): IInstantiateTemplateOptions {
+    return {
+      currentLayout: this.currentLayout,
+      checkCondition: this.checkCondition,
+      wrapInDiv: this.wrapInDiv,
+      responsiveComponents: this.responsiveComponents
+    };
+  }
+&nbsp;
+  merge(other: IInstantiateTemplateOptions): IInstantiateTemplateOptions {
+    if (other) {
+      return _.extend(this.get(), other);
+    }
+    return this.get();
+&nbsp;
+  }
+}
+&nbsp;
+export class Template implements ITemplateProperties {
+&nbsp;
+  private logger: Logger = new Logger(this);
+  public condition: Function;
+  public conditionToParse: string;
+  public fieldsToMatch: IFieldsToMatch[];
+  public mobile: boolean;
+  public tablet: boolean;
+  public desktop: boolean;
+  public fields: string[] = [];
+  public layout: ValidLayout;
+  public role: TemplateRole;
+&nbsp;
+  constructor(public dataToString?: (object?: any) =&gt; string) {
+  }
+&nbsp;
+  instantiateToString(object: IQueryResult, instantiateOptions: IInstantiateTemplateOptions = new DefaultInstantiateTemplateOptions()): string {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.dataToString) {
+      if (instantiateOptions.checkCondition === false) {
+        return this.dataToString(object);
+      }
+&nbsp;
+      // Should not happen but...
+      // Normally, top level call from sub-class will have already created a
+      // DefaultInstantiateTemplateOptions and merged down
+      if (instantiateOptions.responsiveComponents == null) {
+        instantiateOptions.responsiveComponents = new ResponsiveComponents();
+      }
+&nbsp;
+      // Mobile/tablet/desktop checks are only for "hard" set value (triple equal)
+      // If it's undefined, we skip those checks, and we assume the template works correctly for any given screen size
+      if (this.mobile === true &amp;&amp; !instantiateOptions.responsiveComponents.isSmallScreenWidth()) {
+        this.logger.trace('Template was skipped because it is optimized for small screen width', this);
+        return null;
+      } else if (this.mobile === false &amp;&amp; instantiateOptions.responsiveComponents.isSmallScreenWidth()) {
+        this.logger.trace('Template was skipped because it is not optimized for small screen width', this);
+        return null;
+      }
+&nbsp;
+      if (this.tablet === true &amp;&amp; !instantiateOptions.responsiveComponents.isMediumScreenWidth()) {
+        this.logger.trace('Template was skipped because it is optimized for medium screen width', this);
+        return null;
+      } else if (this.tablet === false &amp;&amp; instantiateOptions.responsiveComponents.isMediumScreenWidth()) {
+        this.logger.trace('Template was skipped because it is not optimized for medium screen width', this);
+        return null;
+      }
+&nbsp;
+      if (this.desktop === true &amp;&amp; !instantiateOptions.responsiveComponents.isLargeScreenWidth()) {
+        this.logger.trace('Template was skipped because it is optimized for large screen width', this);
+        return null;
+      } else if (this.desktop === false &amp;&amp; instantiateOptions.responsiveComponents.isLargeScreenWidth()) {
+        this.logger.trace('Template was skipped because it is not optimized for large screen width', this);
+        return null;
+      }
+&nbsp;
+      if (this.layout != null &amp;&amp; instantiateOptions.currentLayout != null &amp;&amp; instantiateOptions.currentLayout !== this.layout) {
+        this.logger.trace('Template was skipped because layout does not match', this, this.layout);
+        return null;
+      }
+&nbsp;
+      this.logger.trace('Evaluating template ...');
+      // Condition (as a function) is eval'ed, first
+      if (this.condition != null &amp;&amp; this.condition(object)) {
+        this.logger.trace('Template was loaded because condition was :', this.condition, object);
+        return this.dataToString(object);
+      }
+      // Condition (as a string) is parsed, if available.
+      if (this.conditionToParse != null &amp;&amp; TemplateConditionEvaluator.evaluateCondition(this.conditionToParse, object, instantiateOptions.responsiveComponents)) {
+        this.logger.trace('Template was loaded because condition was :', this.conditionToParse, object);
+        return this.dataToString(object);
+      }
+      // fieldsToMatch is yet another fallback that allows to specify if a template should be loaded.
+      if (this.fieldsToMatch != null &amp;&amp; TemplateFieldsEvaluator.evaluateFieldsToMatch(this.fieldsToMatch, object)) {
+        this.logger.trace('Template was loaded because condition was :', this.fieldsToMatch, object);
+        return this.dataToString(object);
+      }
+      // If there is no condition at all, this means "true"
+      if (this.condition == null &amp;&amp; this.conditionToParse == null &amp;&amp; this.fieldsToMatch == null) {
+        this.logger.trace('Template was loaded because there was *NO* condition', this.condition, object);
+        return this.dataToString(object);
+      }
+    }
+&nbsp;
+    this.logger.trace('Template was skipped because it did not match any condition', this);
+    return null;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  addField(field: string)</span> {
+<span class="cstat-no" title="statement not covered" >    if (!_.contains(this.fields, field)) {</span>
+<span class="cstat-no" title="statement not covered" >      this.fields.push(field);</span>
+    }
+  }
+&nbsp;
+  addFields(fields: string[]) {
+    if (Utils.isNonEmptyArray(fields)) {
+      this.fields = Utils.concatWithoutDuplicate(this.fields, fields);
+    }
+  }
+&nbsp;
+  getComponentsInside(tmplString: string): string[] {
+    let allComponentsInsideCurrentTemplate = _.map(Initialization.getListOfRegisteredComponents(), (componentId: string) =&gt; {
+      let regex = new RegExp(`Coveo${componentId}`, 'g');
+      if (regex.exec(tmplString)) {
+        return componentId;
+      } else {
+        return null;
+      }
+    });
+&nbsp;
+    return _.compact(allComponentsInsideCurrentTemplate);
+  }
+&nbsp;
+  instantiateToElement(object: IQueryResult, instantiateTemplateOptions: IInstantiateTemplateOptions = {}): Promise&lt;HTMLElement&gt; {
+    let mergedOptions = new DefaultInstantiateTemplateOptions().merge(instantiateTemplateOptions);
+&nbsp;
+    var html = this.instantiateToString(object, mergedOptions);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (html == null) {
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    }
+&nbsp;
+    let allComponentsLazyLoaded = _.map(this.getComponentsInside(html), (component: string) =&gt; {
+      return LazyInitialization.getLazyRegisteredComponent(component).then((lazyLoadedComponent) =&gt; {
+        return lazyLoadedComponent;
+      });
+    });
+&nbsp;
+    return Promise.all(allComponentsLazyLoaded).then(() =&gt; {
+      const layout = this.layout || mergedOptions.currentLayout;
+      const elemType = layout === 'table' ? 'tr' : 'div';
+      var element = $$(elemType, {}, html).el;
+      if (!mergedOptions.wrapInDiv &amp;&amp; element.children.length === 1) {
+        element = &lt;HTMLElement&gt;element.children.item(0);
+      }
+      if (layout) {
+        $$(element).addClass(`coveo-${layout}-layout`);
+      }
+      this.logger.trace('Instantiated result template', object, element);
+      element['template'] = this;
+      return element;
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  toHtmlElement(): HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >    return null;</span>
+  }
+&nbsp;
+  getFields(): string[] {
+    return this.fields;
+  }
+&nbsp;
+  getType() {
+    return 'Template';
+  }
+&nbsp;
+  setConditionWithFallback(condition: string) {
+    // In some circumstances (eg: locker service in SF), with strict Content-Security-Policy, eval / new Function are not allowed by the browser.
+    // Try to use the eval method, if possible. Otherwise fallback to a mechanism where we will try to parse/evaluate the condition as a simple string.
+    try {
+      this.condition = new Function('obj', 'with(obj||{}){return ' + condition + '}');
+    } catch (e) {
+<span class="cstat-no" title="statement not covered" >      this.conditionToParse = condition;</span>
+    }
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

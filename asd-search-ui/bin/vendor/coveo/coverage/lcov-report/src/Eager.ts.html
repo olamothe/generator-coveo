@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/Eager.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/Eager.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">100% <small>(196 / 196)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(184 / 184)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; Eager.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export * from './Core';
+&nbsp;
+export { CoreHelpers } from './ui/Templates/CoreHelpers';
+export { SearchInterface, StandaloneSearchInterface } from './ui/SearchInterface/SearchInterface';
+export { jQueryInstance as $ } from './ui/Base/CoveoJQuery';
+export { underscoreInstance as _ } from './ui/Base/CoveoUnderscore';
+export { HashUtils } from './utils/HashUtils';
+export { DeviceUtils } from './utils/DeviceUtils';
+export { ColorUtils } from './utils/ColorUtils';
+export { Cookie } from './utils/CookieUtils';
+export { CurrencyUtils } from './utils/CurrencyUtils';
+export { DateUtils } from './utils/DateUtils';
+&nbsp;
+import { Initialization, EagerInitialization } from './ui/Base/Initialization';
+Initialization.componentsFactory = EagerInitialization.componentsFactory;
+&nbsp;
+import { AdvancedSearch } from './ui/AdvancedSearch/AdvancedSearch';
+AdvancedSearch.doExport();
+&nbsp;
+import { Aggregate } from './ui/Aggregate/Aggregate';
+Aggregate.doExport();
+&nbsp;
+import { Analytics } from './ui/Analytics/Analytics';
+Analytics.doExport();
+&nbsp;
+import { AnalyticsSuggestions } from './ui/AnalyticsSuggestions/AnalyticsSuggestions';
+AnalyticsSuggestions.doExport();
+&nbsp;
+import { AuthenticationProvider } from './ui/AuthenticationProvider/AuthenticationProvider';
+AuthenticationProvider.doExport();
+&nbsp;
+import { Backdrop } from './ui/Backdrop/Backdrop';
+Backdrop.doExport();
+&nbsp;
+import { Badge } from './ui/Badge/Badge';
+Badge.doExport();
+&nbsp;
+import { Breadcrumb } from './ui/Breadcrumb/Breadcrumb';
+Breadcrumb.doExport();
+&nbsp;
+import { CardActionBar } from './ui/CardActionBar/CardActionBar';
+CardActionBar.doExport();
+&nbsp;
+import { CardOverlay } from './ui/CardOverlay/CardOverlay';
+CardOverlay.doExport();
+&nbsp;
+import { ChatterLikedBy } from './ui/ChatterLikedBy/ChatterLikedBy';
+ChatterLikedBy.doExport();
+import { registerFields as chatterLikedByRegisterFields } from './ui/ChatterLikedBy/ChatterLikedByFields';
+chatterLikedByRegisterFields();
+&nbsp;
+import { ChatterPostAttachment } from './ui/ChatterPostAttachment/ChatterPostAttachment';
+ChatterPostAttachment.doExport();
+import { registerFields as chatterPostAttachmentRegisterFields } from './ui/ChatterPostAttachment/ChatterPostAttachmentFields';
+chatterPostAttachmentRegisterFields();
+&nbsp;
+import { ChatterPostedBy } from './ui/ChatterPostedBy/ChatterPostedBy';
+ChatterPostedBy.doExport();
+import { registerFields as chatterPostedByRegisterFields } from './ui/ChatterPostedBy/ChatterPostedByFields';
+chatterPostedByRegisterFields();
+&nbsp;
+import { ChatterTopic } from './ui/ChatterTopic/ChatterTopic';
+ChatterTopic.doExport();
+import { registerFields as chatterTopicRegisterFields } from './ui/ChatterTopic/ChatterTopicFields';
+chatterTopicRegisterFields();
+&nbsp;
+import { DidYouMean } from './ui/DidYouMean/DidYouMean';
+DidYouMean.doExport();
+&nbsp;
+import { ErrorReport } from './ui/ErrorReport/ErrorReport';
+ErrorReport.doExport();
+&nbsp;
+import { Excerpt } from './ui/Excerpt/Excerpt';
+Excerpt.doExport();
+&nbsp;
+import { ExportToExcel } from './ui/ExportToExcel/ExportToExcel';
+ExportToExcel.doExport();
+&nbsp;
+import { Facet } from './ui/Facet/Facet';
+Facet.doExport();
+&nbsp;
+import { FacetRange } from './ui/FacetRange/FacetRange';
+FacetRange.doExport();
+&nbsp;
+import { FacetSlider } from './ui/FacetSlider/FacetSlider';
+FacetSlider.doExport();
+&nbsp;
+import { FieldSuggestions } from './ui/FieldSuggestions/FieldSuggestions';
+FieldSuggestions.doExport();
+&nbsp;
+import { FieldTable } from './ui/FieldTable/FieldTable';
+FieldTable.doExport();
+&nbsp;
+import { FieldValue } from './ui/FieldValue/FieldValue';
+FieldValue.doExport();
+&nbsp;
+import { Folding } from './ui/Folding/Folding';
+Folding.doExport();
+&nbsp;
+import { FoldingForThread } from './ui/FoldingForThread/FoldingForThread';
+FoldingForThread.doExport();
+&nbsp;
+import { FollowItem } from './ui/FollowItem/FollowItem';
+FollowItem.doExport();
+import { registerFields as followItemRegisterFields } from './ui/FollowItem/FollowItemFields';
+followItemRegisterFields();
+&nbsp;
+import { HiddenQuery } from './ui/HiddenQuery/HiddenQuery';
+HiddenQuery.doExport();
+&nbsp;
+import { HierarchicalFacet } from './ui/HierarchicalFacet/HierarchicalFacet';
+HierarchicalFacet.doExport();
+&nbsp;
+import { Icon } from './ui/Icon/Icon';
+Icon.doExport();
+import { registerFields as iconRegisterFields } from './ui/Icon/IconFields';
+iconRegisterFields();
+&nbsp;
+import { Logo } from './ui/Logo/Logo';
+Logo.doExport();
+&nbsp;
+import { Matrix } from './ui/Matrix/Matrix';
+Matrix.doExport();
+&nbsp;
+import { Omnibox } from './ui/Omnibox/Omnibox';
+Omnibox.doExport();
+&nbsp;
+import { OmniboxResultList } from './ui/OmniboxResultList/OmniboxResultList';
+OmniboxResultList.doExport();
+&nbsp;
+import { Pager } from './ui/Pager/Pager';
+Pager.doExport();
+&nbsp;
+import { PipelineContext } from './ui/PipelineContext/PipelineContext';
+PipelineContext.doExport();
+&nbsp;
+import { PreferencesPanel } from './ui/PreferencesPanel/PreferencesPanel';
+PreferencesPanel.doExport();
+&nbsp;
+import { PrintableUri } from './ui/PrintableUri/PrintableUri';
+PrintableUri.doExport();
+import { registerFields as registerFieldsPrintableUri } from './ui/PrintableUri/PrintableUriFields';
+registerFieldsPrintableUri();
+&nbsp;
+import { Querybox } from './ui/Querybox/Querybox';
+Querybox.doExport();
+&nbsp;
+import { QueryDuration } from './ui/QueryDuration/QueryDuration';
+QueryDuration.doExport();
+&nbsp;
+import { QuerySummary } from './ui/QuerySummary/QuerySummary';
+QuerySummary.doExport();
+&nbsp;
+import { Quickview } from './ui/Quickview/Quickview';
+Quickview.doExport();
+import { registerFields as quickviewRegisterFields } from './ui/Quickview/QuickviewFields';
+quickviewRegisterFields();
+&nbsp;
+import { Recommendation } from './ui/Recommendation/Recommendation';
+Recommendation.doExport();
+&nbsp;
+import { ResultAttachments } from './ui/ResultAttachments/ResultAttachments';
+ResultAttachments.doExport();
+&nbsp;
+import { ResultFolding } from './ui/ResultFolding/ResultFolding';
+ResultFolding.doExport();
+&nbsp;
+import { ResultLayout } from './ui/ResultLayout/ResultLayout';
+ResultLayout.doExport();
+&nbsp;
+import { ResultLink } from './ui/ResultLink/ResultLink';
+ResultLink.doExport();
+import { registerFields as resultLinkRegisterFields } from './ui/ResultLink/ResultLinkFields';
+resultLinkRegisterFields();
+&nbsp;
+import { ResultList } from './ui/ResultList/ResultList';
+ResultList.doExport();
+&nbsp;
+import { ResultRating } from './ui/ResultRating/ResultRating';
+ResultRating.doExport();
+&nbsp;
+import { ResultsFiltersPreferences } from './ui/ResultsFiltersPreferences/ResultsFiltersPreferences';
+ResultsFiltersPreferences.doExport();
+&nbsp;
+import { ResultsPerPage } from './ui/ResultsPerPage/ResultsPerPage';
+ResultsPerPage.doExport();
+&nbsp;
+import { ResultsPreferences } from './ui/ResultsPreferences/ResultsPreferences';
+ResultsPreferences.doExport();
+&nbsp;
+import { ResultTagging } from './ui/ResultTagging/ResultTagging';
+ResultTagging.doExport();
+&nbsp;
+import { SearchAlerts } from './ui/SearchAlerts/SearchAlerts';
+SearchAlerts.doExport();
+&nbsp;
+import { Searchbox } from './ui/Searchbox/Searchbox';
+Searchbox.doExport();
+&nbsp;
+import { SearchButton } from './ui/SearchButton/SearchButton';
+SearchButton.doExport();
+&nbsp;
+import { Settings } from './ui/Settings/Settings';
+Settings.doExport();
+&nbsp;
+import { ShareQuery } from './ui/ShareQuery/ShareQuery';
+ShareQuery.doExport();
+&nbsp;
+import { Sort } from './ui/Sort/Sort';
+Sort.doExport();
+&nbsp;
+import { Tab } from './ui/Tab/Tab';
+Tab.doExport();
+&nbsp;
+import { TemplateLoader } from './ui/TemplateLoader/TemplateLoader';
+TemplateLoader.doExport();
+&nbsp;
+import { Text } from './ui/Text/Text';
+Text.doExport();
+&nbsp;
+import { Thumbnail } from './ui/Thumbnail/Thumbnail';
+Thumbnail.doExport();
+import { registerFields as thumbnailRegisterFields } from './ui/Thumbnail/ThumbnailFields';
+thumbnailRegisterFields();
+&nbsp;
+import { Triggers } from './ui/Triggers/Triggers';
+Triggers.doExport();
+&nbsp;
+import { YouTubeThumbnail } from './ui/YouTube/YouTubeThumbnail';
+YouTubeThumbnail.doExport();
+import { registerFields as youtubeThumbnailRegisterFields } from './ui/YouTube/YouTubeThumbnailFields';
+youtubeThumbnailRegisterFields();
+&nbsp;
+export { Template } from './ui/Templates/Template';
+&nbsp;
+import { Checkbox } from './ui/FormWidgets/Checkbox';
+Checkbox.doExport();
+&nbsp;
+import { DatePicker } from './ui/FormWidgets/DatePicker';
+DatePicker.doExport();
+&nbsp;
+import { Dropdown } from './ui/FormWidgets/Dropdown';
+Dropdown.doExport();
+&nbsp;
+import { FormGroup } from './ui/FormWidgets/FormGroup';
+FormGroup.doExport();
+&nbsp;
+import { MultiSelect } from './ui/FormWidgets/MultiSelect';
+MultiSelect.doExport();
+&nbsp;
+import { NumericSpinner } from './ui/FormWidgets/NumericSpinner';
+NumericSpinner.doExport();
+&nbsp;
+import { RadioButton } from './ui/FormWidgets/RadioButton';
+RadioButton.doExport();
+&nbsp;
+import { TextInput } from './ui/FormWidgets/TextInput';
+TextInput.doExport();
+&nbsp;
+import { swapVar } from './SwapVar';
+swapVar(this);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

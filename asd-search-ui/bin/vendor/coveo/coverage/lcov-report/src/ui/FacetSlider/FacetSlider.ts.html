@@ -1,0 +1,2928 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/FacetSlider/FacetSlider.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/FacetSlider/FacetSlider.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">81.98% <small>(314 / 383)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">69.12% <small>(141 / 204)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">71.01% <small>(49 / 69)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">81.72% <small>(295 / 361)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/FacetSlider/</a> &#187; FacetSlider.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">123</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">70</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/// &lt;reference path="../Facet/FacetHeader.ts" /&gt;
+/// &lt;reference path="../../controllers/FacetSliderQueryController.ts" /&gt;
+&nbsp;
+import { ISliderOptions, Slider, IEndSlideEventArgs, IDuringSlideEventArgs, ISliderGraphData } from '../Misc/Slider';
+import { Component } from '../Base/Component';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { ComponentOptions, IFieldOption } from '../Base/ComponentOptions';
+import { FacetHeader } from '../Facet/FacetHeader';
+import { l } from '../../strings/Strings';
+import { InitializationEvents } from '../../events/InitializationEvents';
+import { FacetSliderQueryController } from '../../controllers/FacetSliderQueryController';
+import { QueryEvents, IQuerySuccessEventArgs, IBuildingQueryEventArgs, IDoneBuildingQueryEventArgs } from '../../events/QueryEvents';
+import { BreadcrumbEvents, IPopulateBreadcrumbEventArgs, IBreadcrumbItem } from '../../events/BreadcrumbEvents';
+import { IAttributeChangedEventArg, Model } from '../../models/Model';
+import { $$ } from '../../utils/Dom';
+import { analyticsActionCauseList, IAnalyticsFacetMeta, IAnalyticsFacetSliderChangeMeta, IAnalyticsFacetGraphSelectedMeta } from '../Analytics/AnalyticsActionListMeta';
+import { QueryStateModel } from '../../models/QueryStateModel';
+import { SliderEvents, IGraphValueSelectedArgs } from '../../events/SliderEvents';
+import { Assert } from '../../misc/Assert';
+import { Utils } from '../../utils/Utils';
+import { ResponsiveComponentsUtils } from '../ResponsiveComponents/ResponsiveComponentsUtils';
+import { Initialization } from '../Base/Initialization';
+import { SearchAlertsEvents, ISearchAlertsPopulateMessageEventArgs } from '../../events/SearchAlertEvents';
+import * as _ from 'underscore';
+import { exportGlobally } from '../../GlobalExports';
+import { ResponsiveFacetSlider } from '../ResponsiveComponents/ResponsiveFacetSlider';
+&nbsp;
+import 'styling/_FacetSlider';
+import { IGroupByResult } from '../../rest/GroupByResult';
+import { Defer } from '../../MiscModules';
+&nbsp;
+&nbsp;
+export interface IFacetSliderOptions extends ISliderOptions {
+  dateField?: boolean;
+  queryOverride?: string;
+  id?: string;
+  field?: IFieldOption;
+  title?: string;
+  enableResponsiveMode?: boolean;
+  responsiveBreakpoint?: number;
+  dropdownHeaderLabel?: string;
+}
+&nbsp;
+/**
+ * The `FacetSlider` component creates a facet which contains a slider widget that allows the end user to filter results
+ * based on a range of numerical values (e.g., a date range, a price range, etc.).
+ *
+ * **Note:**
+ * &gt; This component does **not** inherit from the [`Facet`]{@link Facet} component. Consequently, it does not offer the
+ * &gt; same configuration options. Moreover, some of the `FacetSlider` options (see
+ * &gt; [`getSteps`]{@link FacetSlider.options.getSteps} and [`valueCaption`]{@link FacetSlider.options.valueCaption})
+ * &gt; cannot be configured as `data-` attributes in the markup. If you wish to configure those options, you must either
+ * &gt; do so in the [`init`]{@link init} call of your search interface (see
+ * &gt; [Components - Passing Component Options in the init Call](https://developers.coveo.com/x/PoGfAQ#Components-PassingComponentOptionsintheinitCall)),
+ * &gt; or before the `init` call, using the `options` top-level function (see
+ * &gt; [Components - Passing Component Options Before the init Call](https://developers.coveo.com/x/PoGfAQ#Components-PassingComponentOptionsBeforetheinitCall)).
+ */
+export class FacetSlider extends Component {
+&nbsp;
+  /**
+   * The component options
+   * @componentOptions
+   */
+  static options: IFacetSliderOptions = {
+&nbsp;
+    /**
+     * Specifies the title to display on top of the `FacetSlider`.
+     *
+     * Default value is the localized string for `NoTitle`.
+     */
+    title: ComponentOptions.buildLocalizedStringOption({ defaultValue: l('NoTitle') }),
+&nbsp;
+    /**
+     * Specifies whether the [`field`]{@link FacetSlider.options.field} for which you are requesting a range is a date
+     * field. This allows the `FacetSlider` to correctly build the outgoing [GroupByRequest]{@link IGroupByRequest} and
+     * render itself properly.
+     *
+     * Default value is `false`.
+     */
+    dateField: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+&nbsp;
+    /**
+     * Specifies the index field whose values the `FacetSlider` should use.
+     *
+     * The field must be configured correctly as a Facet field in the index (see
+     * [Adding Fields to a Source](http://www.coveo.com/go?dest=cloudhelp&amp;lcid=9&amp;context=137)).
+     *
+     * Specifying a value for this option is required for the `FacetSlider` component to work.
+     */
+    field: ComponentOptions.buildFieldOption({ groupByField: true, required: true }),
+&nbsp;
+    /**
+     * Specifies a unique identifier for the `FacetSlider`. Among other things, this identifier serves the purpose of
+     * saving the facet state in the URL hash.
+     *
+     * If you have two facets with the same field in the same page, you should specify a unique `id` value for at least
+     * one of those two facets. This `id` must be unique in the page.
+     *
+     * Default value is the [`field`]{@link FacetSlider.options.field} option value.
+     */
+    id: ComponentOptions.buildStringOption({
+      postProcessing: (value, options: IFacetSliderOptions) =&gt; value || &lt;string&gt;options.field
+    }),
+&nbsp;
+    /**
+     * Specifies the format to use when displaying date values.
+     *
+     * See also the [`dateField`]{@link FacetSlider.options.dateField} option.
+     *
+     * Default value is `MMM dd, yyyy`.
+     */
+    dateFormat: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies a query to filter automatic minimum and maximum values for the slider range.
+     *
+     * This is especially useful in the case of date ranges since the index may contain values which are not set, and
+     * thus return values from the year 1400 (the earliest date from the boost C++ library).
+     *
+     * **Example:**
+     *
+     * The query override in the following markup filters out any `@date` value anterior to January 1st 2000.
+     * ```html
+     * &lt;div class="CoveoFacetSlider" data-field="@date" data-date-field="true" data-query-override="@date&gt;2000/01/01"&gt;&lt;/div&gt;
+     * ```
+     */
+    queryOverride: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the starting boundary of the slider.
+     *
+     * Date values are rounded to the nearest year when you set the [`dateField`]{@link FacetSlider.options.dateField}
+     * option to `true`.
+     *
+     * Default value is the lowest available field value in the index.
+     */
+    start: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the ending boundary of the slider.
+     *
+     * Date values are rounded to the nearest year when you set the [`dateField`]{@link FacetSlider.options.dateField}
+     * option to `true`.
+     *
+     * Default value is the highest available field value in the index.
+     */
+    end: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies whether to exclude the outer bounds of the slider in the generated query when they are not active.
+     *
+     * Default value is `false`.
+     */
+    excludeOuterBounds: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+&nbsp;
+    /**
+     * Specifies the number of decimal places to round the displayed numerical values to.
+     *
+     * Default (and minimum) value is `0`.
+     */
+    rounded: ComponentOptions.buildNumberOption({ min: 0 }),
+&nbsp;
+    /**
+     * Specifies the number of steps to split the slider into.
+     *
+     * For example, if your range is [ 0 , 100 ] and you specify `10` steps, then the end user can move the slider only
+     * to the values [ 0, 10, 20, 30 ... , 100 ].
+     *
+     * For performance reasons, the maximum value for this option is `100`
+     *
+     * Default value is `undefined`, and the slider allows up to 100 steps. Minimum value is `2`.
+     */
+    steps: ComponentOptions.buildNumberOption({ min: 2 }),
+&nbsp;
+    /**
+     * Specifies whether you want a slider with two buttons instead of a slider with a single button.
+     *
+     * By default, only one button appears in the slider.
+     */
+    rangeSlider: ComponentOptions.buildBooleanOption(),
+&nbsp;
+    /**
+     * Specifies the caption options to use when displaying the field values.
+     *
+     * Available options are:
+     * - enable (`data-display-as-value-enable`): boolean; specifies whether to display the caption as a value. Default
+     * value is `true`.
+     * - unitSign (`data-display-as-value-unit-sign`): string; specifies the unit sign for this value (e.g., `$`).
+     * Default value is `undefined`.
+     * - separator (`data-display-as-value-separator`): string; specifies the character(s) to use as a separator in the
+     * caption. Default value is `"-"`.
+     */
+    displayAsValue: ComponentOptions.buildObjectOption({
+      subOptions: {
+        enable: ComponentOptions.buildBooleanOption({ defaultValue: true }),
+        unitSign: ComponentOptions.buildStringOption(),
+        separator: ComponentOptions.buildStringOption({ defaultValue: '-' })
+      }
+    }),
+&nbsp;
+    /**
+     * Specifies the percentage caption options to use when displaying the field values.
+     *
+     * Available options are:
+     * - enable (`data-display-as-percent-enable`): boolean; specifies whether to display the caption as a percentage.
+     * Default value is `false`.
+     * separator (`data-display-as-percent-separator`): string; specifies the character(s) to use as a separator in the
+     * caption. Default value is `"-"`.
+     */
+    displayAsPercent: ComponentOptions.buildObjectOption({
+      subOptions: {
+        enable: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+        separator: ComponentOptions.buildStringOption({ defaultValue: '-' })
+      }
+    }),
+&nbsp;
+    /**
+     * Specifies whether to display a small graph on top of the slider.
+     *
+     * Available options are:
+     * - steps (`data-graph-steps`): number; specifies the number of steps/columns to display in your graph. Default
+     * value is `10`. Minimum value is `2`.
+     */
+    graph: ComponentOptions.buildObjectOption({
+      subOptions: {
+        steps: ComponentOptions.buildNumberOption({ min: 2 }),
+        animationDuration: ComponentOptions.buildNumberOption({ min: 0 }),
+        margin: ComponentOptions.buildObjectOption({
+          subOptions: {
+            top: ComponentOptions.buildNumberOption({ min: 0 }),
+            bottom: ComponentOptions.buildNumberOption({ min: 0 }),
+            left: ComponentOptions.buildNumberOption({ min: 0 }),
+            right: ComponentOptions.buildNumberOption({ min: 0 })
+          }
+        })
+      }
+    }),
+&nbsp;
+    /**
+     * Specifies a function to generate the `FacetSlider` steps (see the [`steps`]{@link FacetSlider.options.steps}
+     * option). This function receives the `FacetSlider` boundaries (see the [`start`]{@link FacetSlider.options.start}
+     * and [`end`]{@link FacetSlider.options.end} options), and must return an array of numbers (the steps).
+     *
+     * **Note:**
+     * &gt; You cannot set this option directly in the component markup as an HTML attribute. You must either set it in the
+     * &gt; [`init`]{@link init} call of your search interface (see
+     * &gt; [Components - Passing Component Options in the init Call](https://developers.coveo.com/x/PoGfAQ#Components-PassingComponentOptionsintheinitCall)),
+     * &gt; or before the `init` call, using the `options` top-level function (see
+     * &gt; [Components - Passing Component Options Before the init Call](https://developers.coveo.com/x/PoGfAQ#Components-PassingComponentOptionsBeforetheinitCall)).
+     *
+     * **Example:**
+     * ```javascript
+     *
+     * var myGetStepsFunction = function(start, end) {
+     *   var result = [];
+     *   for (i = start; i &lt; end; i += 2) {
+     *     result.push(i);
+     *   }
+     *   return result;
+     * }
+     *
+     * // You can set the option in the 'init' call:
+     * Coveo.init(document.querySelector("#search"), {
+     *    FacetSlider: {
+     *      getSteps: myGetStepsFunction
+     *    }
+     * });
+     *
+     * // Or before the 'init' call, using the 'options' top-level function:
+     * // Coveo.options(document.querySelector("#search"), {
+     * //   FacetSlider : {
+     * //     valueCaption : myGetStepsFunction
+     * //   }
+     * // });
+     * ```
+     */
+    getSteps: ComponentOptions.buildCustomOption&lt;(start: number, end: number) =&gt; number[]&gt;(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    }),
+&nbsp;
+    /**
+     * Specifies a function to generate the value caption for the `FacetSlider`. This function receives the current
+     * slider values (number[]), and must return the caption (string).
+     *
+     * **Note:**
+     * &gt; You cannot set this option directly in the component markup as an HTML attribute. You must either set it in the
+     * &gt; [`init`]{@link init} call of your search interface (see
+     * &gt; [Components - Passing Component Options in the init Call](https://developers.coveo.com/x/PoGfAQ#Components-PassingComponentOptionsintheinitCall)),
+     * &gt; or before the `init` call, using the `options` top-level function (see
+     * &gt; [Components - Passing Component Options Before the init Call](https://developers.coveo.com/x/PoGfAQ#Components-PassingComponentOptionsBeforetheinitCall)).
+     *
+     * **Example:**
+     * ```javascript
+     *
+     * var myValueCaptionFunction = function(values) {
+     *   return "From " + values[0] + " to " + values[1];
+     * }
+     *
+     * // You can set the option in the 'init' call:
+     * Coveo.init(document.querySelector("#search"), {
+     *   FacetSlider: {
+     *     valueCaption: myValueCaptionFunction
+     *   }
+     * });
+     *
+     * // Or before the 'init' call, using the 'options' top-level function:
+     * // Coveo.options(document.querySelector("#search"), {
+     * //   FacetSlider : {
+     * //     valueCaption : myValueCaptionFunction
+     * //   }
+     * // });
+     * ```
+     */
+    valueCaption: ComponentOptions.buildCustomOption&lt;(values: number[]) =&gt; string&gt;(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+&nbsp;
+    }),
+&nbsp;
+    /**
+     * Specifies whether to enable *responsive mode* for facets. Setting this options to `false` on any
+     * [`Facet`]{@link Facet} or [`FacetSlider`]{@link FacetSlider} in a search interface disables responsive mode for
+     * all other facets in the search interface.
+     *
+     * Responsive mode displays all facets under a single dropdown button whenever the width of the HTML element which
+     * the search interface is bound to reaches or falls behind a certain threshold (see
+     * {@link SearchInterface.responsiveComponents}).
+     *
+     * See also the `FacetSlider` [`dropdownHeaderLabel`]{@link FacetSlider.options.dropdownHeaderLabel} option.
+     *
+     * Default value is `true`.
+     */
+    enableResponsiveMode: ComponentOptions.buildBooleanOption({ defaultValue: true }),
+&nbsp;
+    /**
+     * Specifies the label of the button which the end user can click to display the facets when in responsive mode. If
+     * this option is configured more than once, the button uses the first occurrence of the option as its label.
+     *
+     * Default value is "Filters".
+     */
+    dropdownHeaderLabel: ComponentOptions.buildLocalizedStringOption()
+  };
+&nbsp;
+  static ID = 'FacetSlider';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'FacetSlider': FacetSlider,
+      'Slider': Slider
+    });
+  }
+&nbsp;
+  public static DEBOUNCED_RESIZE_DELAY = 250;
+&nbsp;
+  public startOfSlider: number;
+  public endOfSlider: number;
+  public initialStartOfSlider: number;
+  public initialEndOfSlider: number;
+  public facetQueryController: FacetSliderQueryController;
+  public facetHeader: FacetHeader;
+  public onResize: EventListener;
+&nbsp;
+  private rangeQueryStateAttribute: string;
+  private isEmpty = false;
+  private rangeFromUrlState: number[];
+  private delayedGraphData: ISliderGraphData[];
+&nbsp;
+  /**
+   * Creates a new `FacetSlider` component. Binds multiple query events as well.
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the `FacetSlider` component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   * @param slider
+   */
+  constructor(public element: HTMLElement, public options: IFacetSliderOptions, bindings?: IComponentBindings, private slider?: Slider) {
+    super(element, FacetSlider.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+    this.options = ComponentOptions.initComponentOptions(element, FacetSlider, options);
+&nbsp;
+    ResponsiveFacetSlider.init(this.root, this, this.options);
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.options.excludeOuterBounds == null) {
+<span class="cstat-no" title="statement not covered" >      this.options.excludeOuterBounds = false;</span>
+    }
+&nbsp;
+    if (this.options.start) {
+      this.options.start = this.options.dateField ? &lt;any&gt;new Date(this.options.start.replace(/-/g, '/')).getTime() : &lt;any&gt;<span class="branch-1 cbranch-no" title="branch not covered" >Number(this.options.start);</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.options.end) {
+      this.options.end = this.options.dateField ? &lt;any&gt;new Date(this.options.end.replace(/-/g, '/')).getTime() : &lt;any&gt;Number(this.options.end);
+    }
+&nbsp;
+    this.facetQueryController = new FacetSliderQueryController(this);
+    this.initQueryStateEvents();
+    this.bind.onRootElement(QueryEvents.newQuery, () =&gt; this.handleNewQuery());
+    this.bind.onRootElement(QueryEvents.noResults, () =&gt; this.handleNoresults());
+    this.bind.onRootElement(QueryEvents.deferredQuerySuccess, (args: IQuerySuccessEventArgs) =&gt; this.handleDeferredQuerySuccess(args));
+    this.bind.onRootElement(QueryEvents.buildingQuery, (args: IBuildingQueryEventArgs) =&gt; this.handleBuildingQuery(args));
+    this.bind.onRootElement(QueryEvents.doneBuildingQuery, (args: IDoneBuildingQueryEventArgs) =&gt; this.handleDoneBuildingQuery(args));
+    this.bind.onRootElement(BreadcrumbEvents.populateBreadcrumb, (args: IPopulateBreadcrumbEventArgs) =&gt; this.handlePopulateBreadcrumb(args));
+    this.bind.onRootElement(SearchAlertsEvents.searchAlertsPopulateMessage, <span class="fstat-no" title="function not covered" >(args: ISearchAlertsPopulateMessageEventArgs)</span> =&gt; <span class="cstat-no" title="statement not covered" >this.handlePopulateSearchAlerts(args))</span>;
+    this.bind.onRootElement(BreadcrumbEvents.clearBreadcrumb, <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.reset())</span>;
+&nbsp;
+    this.onResize = _.debounce(() =&gt; {
+      if (ResponsiveComponentsUtils.shouldDrawFacetSlider($$(this.root)) &amp;&amp; this.slider &amp;&amp; !this.isEmpty) {
+        this.slider.drawGraph();
+      }
+    }, FacetSlider.DEBOUNCED_RESIZE_DELAY);
+    window.addEventListener('resize', this.onResize);
+    // This is used inside SF integration
+    this.bind.onRootElement('onPopupOpen', this.onResize);
+    $$(this.root).on(InitializationEvents.nuke, this.handleNuke);
+  }
+&nbsp;
+  public createDom() {
+    this.facetHeader = new FacetHeader({
+      field: &lt;string&gt;this.options.field,
+      facetElement: this.element,
+      title: this.options.title,
+      enableClearElement: true,
+      enableCollapseElement: true,
+      facetSlider: this
+    });
+    this.element.appendChild(this.facetHeader.build());
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public disable() {</span>
+<span class="cstat-no" title="statement not covered" >    super.disable();</span>
+<span class="cstat-no" title="statement not covered" >    $$(this.element).addClass('coveo-disabled-empty');</span>
+  }
+&nbsp;
+  /**
+   * Resets the `FacetSlider` (meaning that you need to set the range value as inactive).
+   */
+<span class="fstat-no" title="function not covered" >  public reset() {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.slider) {</span>
+<span class="cstat-no" title="statement not covered" >      this.slider.initializeState();</span>
+<span class="cstat-no" title="statement not covered" >      this.updateQueryState();</span>
+<span class="cstat-no" title="statement not covered" >      this.updateAppearanceDependingOnState();</span>
+    }
+  }
+&nbsp;
+  /**
+   * Gets the current selection in the slider.
+   *
+   * **Note:**
+   * &gt; This method returns an array of number for selected date values. These numbers represent a number of milliseconds
+   * &gt; before or after January 1, 1970. Therefore, you can use these numbers to instantiate standard JavaScript Date
+   * &gt; objects.
+   *
+   * @returns {any} An array of number containing the first and last selected values, if possible. An array containing
+   * two `undefined` values otherwise.
+   */
+  public getSelectedValues(): number[] {
+    if (this.startOfSlider != undefined &amp;&amp; this.endOfSlider != undefined) {
+      return [this.startOfSlider, this.endOfSlider];
+    } else {
+      return [undefined, undefined];
+    }
+  }
+&nbsp;
+  /**
+   * Sets the selected values in the slider.
+   *
+   * **Note:**
+   * &gt; You must set date values with numbers representing a number of milliseconds before or after January 1, 1970. You
+   * &gt; can easily extract such numbers from standard JavaScript Date objects.
+   *
+   * @param values [start, end] An array containing the first and last values to select in the slider.
+   */
+  public setSelectedValues(values: number[]): void {
+    this.setupSliderIfNeeded(undefined);
+    this.startOfSlider = values[0];
+    this.endOfSlider = values[1];
+    this.slider.setValues([this.startOfSlider, this.endOfSlider]);
+    this.updateAppearanceDependingOnState();
+  }
+&nbsp;
+  /**
+   * Indicates whether the `FacetSlider` is active. An active `FacetSlider` outputs an expression in the query when a
+   * search is performed.
+   * @returns {boolean} `true` if the FacetSlider is active; `false` otherwise.
+   */
+  public isActive(): boolean {
+    return !isNaN(this.startOfSlider)
+      &amp;&amp; !isNaN(this.endOfSlider)
+      &amp;&amp; !isNaN(this.initialStartOfSlider)
+      &amp;&amp; !isNaN(this.initialEndOfSlider)
+      &amp;&amp; (this.startOfSlider != this.initialStartOfSlider || this.endOfSlider != this.initialEndOfSlider);
+  }
+&nbsp;
+  public getSliderBoundaryForQuery(): number[] {
+    let needToReturnABoundary = false;
+    if (!this.slider) {
+      needToReturnABoundary = true;
+    } else if (this.slider &amp;&amp; this.isActive()) {
+      needToReturnABoundary = true;
+    }
+    if (needToReturnABoundary) {
+      return this.generateBoundary();
+    } else {
+      return undefined;
+    }
+  }
+&nbsp;
+  // There is delayed graph data if at the time the facet slider tried to draw, the facet was hidden in the
+  // facet dropdown. This method will draw delayed graph data if it exists.
+  public drawDelayedGraphData() {
+    if (this.delayedGraphData != undefined &amp;&amp; !this.isEmpty) {
+      this.slider.drawGraph(this.delayedGraphData);
+    }
+  }
+&nbsp;
+  public isSimpleSliderConfig() {
+    return this.options.start != null &amp;&amp; this.options.end != null;
+  }
+&nbsp;
+  public hasAGraph() {
+    return this.options.graph != undefined;
+  }
+&nbsp;
+  private handleNoresults(): void {
+    this.isEmpty = true;
+    this.updateAppearanceDependingOnState();
+  }
+&nbsp;
+  private handleNewQuery(): void {
+    this.isEmpty = false;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleRangeQueryStateChanged(args: IAttributeChangedEventArg)</span>: void {
+<span class="cstat-no" title="statement not covered" >    this.setupSliderIfNeeded(args);</span>
+<span class="cstat-no" title="statement not covered" >    this.startOfSlider = args.value[0] == undefined ? this.startOfSlider : args.value[0];</span>
+<span class="cstat-no" title="statement not covered" >    this.endOfSlider = args.value[1] == undefined ? this.endOfSlider : args.value[1];</span>
+<span class="cstat-no" title="statement not covered" >    this.setSelectedValues([this.startOfSlider, this.endOfSlider]);</span>
+  }
+&nbsp;
+  private handlePopulateBreadcrumb(args: IPopulateBreadcrumbEventArgs): void {
+    const populateBreadcrumb = () =&gt; {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.isActive()) {
+        args.breadcrumbs.push(&lt;IBreadcrumbItem&gt;{
+          element: this.buildBreadcrumbFacetSlider()
+        });
+      }
+    };
+    if (this.slider) {
+      populateBreadcrumb();
+    } else {
+      $$(this.root).one(QueryEvents.deferredQuerySuccess, <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        populateBreadcrumb();</span>
+<span class="cstat-no" title="statement not covered" >        $$(this.root).trigger(BreadcrumbEvents.redrawBreadcrumb);</span>
+      });
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handlePopulateSearchAlerts(args: ISearchAlertsPopulateMessageEventArgs)</span> {
+<span class="cstat-no" title="statement not covered" >    if (this.isActive()) {</span>
+<span class="cstat-no" title="statement not covered" >      args.text.push($$(this.buildBreadcrumbFacetSlider()).text());</span>
+    }
+  }
+&nbsp;
+  private buildBreadcrumbFacetSlider(): HTMLElement {
+    const elem = $$('div', {
+      className: 'coveo-facet-slider-breadcrumb'
+    }).el;
+&nbsp;
+    const title = $$('span', {
+      className: 'coveo-facet-slider-breadcrumb-title'
+    });
+    title.text(this.options.title + ': ');
+    elem.appendChild(title.el);
+&nbsp;
+    const values = $$('span', {
+      className: 'coveo-facet-slider-breadcrumb-values'
+    });
+    elem.appendChild(values.el);
+&nbsp;
+    const value = $$('span', {
+      className: 'coveo-facet-slider-breadcrumb-value'
+    });
+    value.text(this.slider.getCaption());
+    values.el.appendChild(value.el);
+&nbsp;
+    const clear = $$('span', {
+      className: 'coveo-facet-slider-breadcrumb-clear'
+    });
+    value.el.appendChild(clear.el);
+&nbsp;
+    value.on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.reset();</span>
+<span class="cstat-no" title="statement not covered" >      this.usageAnalytics.logSearchEvent&lt;IAnalyticsFacetMeta&gt;(analyticsActionCauseList.facetClearAll, {</span>
+        facetId: this.options.id,
+        facetTitle: this.options.title
+      });
+<span class="cstat-no" title="statement not covered" >      this.queryController.executeQuery();</span>
+    });
+    return elem;
+  }
+&nbsp;
+  private initSlider() {
+    this.buildSlider();
+    this.slider.initializeState([this.startOfSlider, this.endOfSlider]);
+    this.updateAppearanceDependingOnState();
+  }
+&nbsp;
+  private initQueryStateEvents() {
+    this.rangeQueryStateAttribute = QueryStateModel.getFacetId(this.options.id) + ':range';
+    this.queryStateModel.registerNewAttribute(this.rangeQueryStateAttribute, [undefined, undefined]);
+    const eventName = this.queryStateModel.getEventName(Model.eventTypes.changeOne + this.rangeQueryStateAttribute);
+    this.bind.onRootElement(eventName, <span class="fstat-no" title="function not covered" >(args: IAttributeChangedEventArg)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      this.slider ? this.handleRangeQueryStateChanged(args) : this.setRangeStateSliderStillNotCreated(args);</span>
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private setRangeStateSliderStillNotCreated(args: IAttributeChangedEventArg)</span> {
+<span class="cstat-no" title="statement not covered" >    this.rangeFromUrlState = this.copyValues(args.value);</span>
+  }
+&nbsp;
+  private buildSlider() {
+    const sliderContainer = $$('div', {
+      className: 'coveo-slider-container'
+    }).el;
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.hasAGraph()) {
+<span class="cstat-no" title="statement not covered" >      $$(sliderContainer).addClass('coveo-with-graph');</span>
+    }
+    const sliderDiv = $$('div').el;
+&nbsp;
+    this.slider = this.slider ? <span class="branch-0 cbranch-no" title="branch not covered" >this.slider </span>: new Slider(sliderDiv, _.extend({}, this.options, { dateField: this.options.dateField }), this.root);
+    $$(sliderDiv).on(SliderEvents.endSlide, <span class="fstat-no" title="function not covered" >(e: MouseEvent, args: IEndSlideEventArgs)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      this.handleEndSlide(args);</span>
+    });
+    $$(sliderDiv).on(SliderEvents.duringSlide, <span class="fstat-no" title="function not covered" >(e: MouseEvent, args: IDuringSlideEventArgs)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      this.handleDuringSlide(args);</span>
+    });
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.hasAGraph()) {
+<span class="cstat-no" title="statement not covered" >      $$(sliderDiv).on(SliderEvents.graphValueSelected, <span class="fstat-no" title="function not covered" >(e: MouseEvent, args: IGraphValueSelectedArgs)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        this.handleGraphValueSelected(args);</span>
+      });
+    }
+    sliderContainer.appendChild(sliderDiv);
+    this.element.appendChild(sliderContainer);
+    this.updateAppearanceDependingOnState();
+  }
+&nbsp;
+  private handleBuildingQuery(data: IBuildingQueryEventArgs) {
+    Assert.exists(data);
+    Assert.exists(data.queryBuilder);
+    const boundary = this.getSliderBoundaryForQuery();
+    if (boundary != undefined) {
+      this.facetQueryController.prepareForNewQuery();
+      const expression = this.facetQueryController.computeOurFilterExpression(boundary);
+      if (Utils.isNonEmptyString(expression)) {
+        this.logger.trace('Putting filter in query', expression);
+        data.queryBuilder.advancedExpression.add(expression);
+      }
+    }
+  }
+&nbsp;
+  private handleDoneBuildingQuery(data: IDoneBuildingQueryEventArgs) {
+    const queryBuilder = data.queryBuilder;
+    this.facetQueryController.putGroupByIntoQueryBuilder(queryBuilder);
+  }
+&nbsp;
+  private handleDeferredQuerySuccess(data: IQuerySuccessEventArgs) {
+    this.ensureDom();
+    this.setupSliderIfNeeded(data);
+    const groupByResults = data.results.groupByResults[this.facetQueryController.lastGroupByRequestIndex];
+    this.isEmpty = this.isFacetEmpty(groupByResults, data);
+    this.updateAppearanceDependingOnState();
+    if (this.hasAGraph() &amp;&amp; !this.isEmpty) {
+      this.renderToSliderGraph(data);
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleEndSlide(args: IEndSlideEventArgs)</span> {
+<span class="cstat-no" title="statement not covered" >    const values = args.slider.getValues();</span>
+<span class="cstat-no" title="statement not covered" >    this.startOfSlider = values[0];</span>
+<span class="cstat-no" title="statement not covered" >    this.endOfSlider = values[1];</span>
+<span class="cstat-no" title="statement not covered" >    if (this.updateQueryState(values)) {</span>
+<span class="cstat-no" title="statement not covered" >      this.updateAppearanceDependingOnState();</span>
+<span class="cstat-no" title="statement not covered" >      this.usageAnalytics.logSearchEvent&lt;IAnalyticsFacetSliderChangeMeta&gt;(analyticsActionCauseList.facetRangeSlider, {</span>
+        facetId: this.options.id,
+        facetRangeStart: this.startOfSlider.toString(),
+        facetRangeEnd: this.endOfSlider.toString()
+      });
+<span class="cstat-no" title="statement not covered" >      this.queryController.executeQuery();</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleDuringSlide(args: IDuringSlideEventArgs)</span> {
+<span class="cstat-no" title="statement not covered" >    const values = args.slider.getValues();</span>
+<span class="cstat-no" title="statement not covered" >    this.startOfSlider = values[0];</span>
+<span class="cstat-no" title="statement not covered" >    this.endOfSlider = values[1];</span>
+<span class="cstat-no" title="statement not covered" >    this.slider.setValues([this.startOfSlider, this.endOfSlider]);</span>
+<span class="cstat-no" title="statement not covered" >    this.updateAppearanceDependingOnState(true);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleGraphValueSelected(args: IGraphValueSelectedArgs)</span> {
+<span class="cstat-no" title="statement not covered" >    if ((this.options.rangeSlider &amp;&amp; this.startOfSlider != args.start) || this.endOfSlider != args.end) {</span>
+<span class="cstat-no" title="statement not covered" >      if (this.options.rangeSlider) {</span>
+<span class="cstat-no" title="statement not covered" >        this.startOfSlider = args.start;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.endOfSlider = args.end;</span>
+<span class="cstat-no" title="statement not covered" >      this.slider.setValues([this.startOfSlider, this.endOfSlider]);</span>
+<span class="cstat-no" title="statement not covered" >      this.updateQueryState();</span>
+<span class="cstat-no" title="statement not covered" >      this.usageAnalytics.logSearchEvent&lt;IAnalyticsFacetGraphSelectedMeta&gt;(analyticsActionCauseList.facetRangeGraph, {</span>
+        facetId: this.options.id,
+        facetRangeStart: this.startOfSlider.toString(),
+        facetRangeEnd: this.endOfSlider.toString()
+      });
+<span class="cstat-no" title="statement not covered" >      this.queryController.executeQuery();</span>
+    }
+  }
+&nbsp;
+  private updateQueryState(<span class="missing-if-branch" title="else path not taken" >E</span>values = this.slider.getValues(), <span class="missing-if-branch" title="else path not taken" >E</span>silent = false) {
+    const copyOfValues = this.copyValues(values);
+    const start = values[0] + 0.0;
+    const end = values[1] + 0.0;
+    const model: number[] = this.queryStateModel.get(this.rangeQueryStateAttribute);
+    if (model == null || copyOfValues[0] != model[0] || copyOfValues[1] != model[1]) {
+      copyOfValues[0] = start;
+      copyOfValues[1] = end;
+      this.queryStateModel.set(this.rangeQueryStateAttribute, copyOfValues, { silent: silent });
+      return true;
+    }
+    return false;
+  }
+&nbsp;
+  private copyValues(values: number[]) {
+    // Creating a copy of the values prevents an unwanted automatic update of the state while sliding
+    // That's the cleanest way I found to copy that array correctly
+    const copyOfValues = [];
+    copyOfValues[0] = Number(values[0]) + 0.0;
+    copyOfValues[1] = Number(values[1]) + 0.0;
+    return copyOfValues;
+  }
+&nbsp;
+  private renderToSliderGraph(data: IQuerySuccessEventArgs) {
+    const rawGroupByResults = data.results.groupByResults[this.facetQueryController.graphGroupByQueriesIndex];
+    let graphData: ISliderGraphData[];
+    let totalGraphResults = 0;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (rawGroupByResults) {
+      graphData = _.map(rawGroupByResults.values, (value) =&gt; {
+        totalGraphResults += value.numberOfResults;
+        let start: any = value.value.split('..')[0];
+        let end: any = value.value.split('..')[1];
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.options.dateField) {
+          start = Number(start);
+          end = Number(end);
+        } else {
+<span class="cstat-no" title="statement not covered" >          start = new Date(start.split('@')[0]).getTime();</span>
+<span class="cstat-no" title="statement not covered" >          end = new Date(end.split('@')[0]).getTime();</span>
+        }
+        const y = value.numberOfResults;
+        return {
+          start: start,
+          y: y,
+          end: end,
+          isDate: this.options.dateField
+        };
+      });
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (totalGraphResults == 0) {
+      // Special corner case for "simple slider facet" : Do not only handle the group by results,
+      // but also look for the complete result set when determining if we should show the facet.
+      // This allows simple slider facet to still show with query function fields
+<span class="cstat-no" title="statement not covered" >      if (this.isSimpleSliderConfig()) {</span>
+<span class="cstat-no" title="statement not covered" >        this.isEmpty = data.results.results.length == 0;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.isEmpty = true;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.updateAppearanceDependingOnState();</span>
+    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (graphData != undefined &amp;&amp; !this.isDropdownHidden()) {
+      // This is deferred since it might be called on initialization with a placehoder over the facet during load time
+      // We need to wait that the animation is gone so that the width/height calculation done by the graph are okay.
+<span class="cstat-no" title="statement not covered" >      Defer.defer(<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.slider.drawGraph(graphData))</span>;</span>
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (graphData != undefined &amp;&amp; this.isDropdownHidden()) {
+      this.delayedGraphData = graphData;
+    }
+  }
+&nbsp;
+  private isDropdownHidden() {
+    const facetDropdown = this.root.querySelector('.coveo-facet-column');
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (facetDropdown) {
+      return $$(&lt;HTMLElement&gt;facetDropdown).css('display') == 'none';
+    }
+<span class="cstat-no" title="statement not covered" >    if ($$(this.root).hasClass('CoveoRecommendation')) {</span>
+<span class="cstat-no" title="statement not covered" >      const recommendationDropdown = $$(this.root).parents('.coveo-recommendation-column')[0] || this.root;</span>
+<span class="cstat-no" title="statement not covered" >      return $$(&lt;HTMLElement&gt;recommendationDropdown).css('display') == 'none';</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+&nbsp;
+  private generateBoundary(): number[] {
+    if (!this.slider) {
+      // If the slider is not initialized, the only boundary we can get is from the state.
+      return this.generateBoundaryFromState();
+    } else {
+      // Else, try to get one from the slider itself. If we cant, try to return one from the state.
+      const boundary = this.generateBoundaryFromSlider();
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (boundary[0] == undefined &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >boundary[1] == undefined)</span> {
+<span class="cstat-no" title="statement not covered" >        return this.generateBoundaryFromState();</span>
+      } else {
+        return boundary;
+      }
+    }
+  }
+&nbsp;
+  private generateBoundaryFromSlider() {
+    let start, end;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.startOfSlider != undefined) {
+      start = this.startOfSlider;
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.endOfSlider != undefined) {
+      end = this.endOfSlider;
+    }
+    return [start, end];
+  }
+&nbsp;
+  private generateBoundaryFromState() {
+    let start, end;
+    const startFromState = this.queryStateModel.get(this.rangeQueryStateAttribute)[0];
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (startFromState != undefined) {
+      start = startFromState;
+    }
+    const endFromState = this.queryStateModel.get(this.rangeQueryStateAttribute)[1];
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (endFromState != undefined) {
+      end = endFromState;
+    }
+    if (start != this.queryStateModel.getDefault(this.rangeQueryStateAttribute)[0] || end != this.queryStateModel.getDefault(this.rangeQueryStateAttribute)[1]) {
+      return [start, end];
+    } else {
+      return [undefined, undefined];
+    }
+  }
+&nbsp;
+  private setupSliderIfNeeded(data: any) {
+    this.ensureDom();
+    if (Utils.isNullOrUndefined(this.slider)) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.alreadySetBoundary()) {
+        this.trySetSliderBoundaryFromOptions();
+      }
+      if (!this.alreadySetBoundary() &amp;&amp; data != undefined) {
+        this.trySetSliderBoundaryFromQueryResult(data);
+      }
+      this.trySetSliderBoundaryFromState();
+      this.setupSliderStateVariables();
+      const isInError = this.verifySetup();
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (isInError) {
+<span class="cstat-no" title="statement not covered" >        this.logger.warn('Unable to initialize slider with current values', this);</span>
+      } else {
+        this.initSlider();
+        this.updateQueryState();
+      }
+    }
+  }
+&nbsp;
+  private verifySetup() {
+    let isInError = 0;
+    isInError += this.initialStartOfSlider == undefined ? <span class="branch-0 cbranch-no" title="branch not covered" >1 </span>: 0;
+    isInError += isNaN(this.initialStartOfSlider) ? <span class="branch-0 cbranch-no" title="branch not covered" >1 </span>: 0;
+    isInError += this.initialEndOfSlider == undefined ? <span class="branch-0 cbranch-no" title="branch not covered" >1 </span>: 0;
+    isInError += isNaN(this.initialEndOfSlider) ? <span class="branch-0 cbranch-no" title="branch not covered" >1 </span>: 0;
+    return isInError;
+  }
+&nbsp;
+  private setupSliderStateVariables() {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(this.initialStartOfSlider) || isNaN(this.initialEndOfSlider)) {
+<span class="cstat-no" title="statement not covered" >      this.logger.warn('Cannnot initialize slider with those values : start: ' + this.initialStartOfSlider + ' end: ' + this.initialEndOfSlider);</span>
+    } else {
+      this.initialStartOfSlider = Number(this.initialStartOfSlider);
+      this.initialEndOfSlider = Number(this.initialEndOfSlider);
+      this.startOfSlider = this.startOfSlider != undefined ? Number(this.startOfSlider) : this.initialStartOfSlider;
+      this.endOfSlider = this.endOfSlider != undefined ? Number(this.endOfSlider) : this.initialEndOfSlider;
+      this.options.start = this.initialStartOfSlider;
+      this.options.end = this.initialEndOfSlider;
+      this.queryStateModel.setNewDefault(this.rangeQueryStateAttribute, [this.initialStartOfSlider, this.initialEndOfSlider]);
+    }
+  }
+&nbsp;
+  private alreadySetBoundary() {
+    return this.startOfSlider != undefined &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >this.endOfSlider != undefined;</span>
+  }
+&nbsp;
+  private trySetSliderBoundaryFromOptions() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!Utils.isNullOrUndefined(this.options.start)) {
+      this.setupInitialSliderStateStart(this.options.start);
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!Utils.isNullOrUndefined(this.options.end)) {
+      this.setupInitialSliderStateEnd(this.options.end);
+    }
+  }
+&nbsp;
+  private trySetSliderBoundaryFromState() {
+    const stateValues = this.rangeFromUrlState || this.queryStateModel.get(this.rangeQueryStateAttribute);
+    if (stateValues &amp;&amp; stateValues[0] != undefined &amp;&amp; stateValues[1] != undefined) {
+      stateValues[0] = Number(stateValues[0]);
+      stateValues[1] = Number(stateValues[1]);
+      this.setupInitialSliderStateStart(stateValues[0]);
+      this.setupInitialSliderStateEnd(stateValues[1]);
+      this.startOfSlider = stateValues[0];
+      this.endOfSlider = stateValues[1];
+    }
+  }
+&nbsp;
+  private trySetSliderBoundaryFromQueryResult(data: IQuerySuccessEventArgs) {
+    const groupByResults = data.results.groupByResults[this.facetQueryController.groupByRequestForFullRange];
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (groupByResults &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >groupByResults.values.length &gt; 0 </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >groupByResults.values[0].numberOfResults != 0)</span> {
+<span class="cstat-no" title="statement not covered" >      this.setupInitialSliderStateStart(groupByResults.values[0].value.split('..')[0]);</span>
+<span class="cstat-no" title="statement not covered" >      this.setupInitialSliderStateEnd(groupByResults.values[groupByResults.values.length - 1].value.split('..')[1]);</span>
+    }
+  }
+&nbsp;
+  private setupInitialSliderStateStart(value: any) {
+    if (this.initialStartOfSlider == undefined) {
+      this.initialStartOfSlider = value;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (this.options.dateField &amp;&amp; isNaN(value)) {
+<span class="cstat-no" title="statement not covered" >        this.initialStartOfSlider = new Date(value.replace('@', ' ')).getTime();</span>
+      }
+    }
+  }
+&nbsp;
+  private setupInitialSliderStateEnd(value: any) {
+    if (this.initialEndOfSlider == undefined) {
+      this.initialEndOfSlider = value;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (this.options.dateField &amp;&amp; isNaN((value))) {
+<span class="cstat-no" title="statement not covered" >        this.initialEndOfSlider = new Date(value.replace('@', ' ')).getTime();</span>
+      }
+    }
+  }
+&nbsp;
+  private updateAppearanceDependingOnState(<span class="missing-if-branch" title="else path not taken" >E</span>sliding = false) {
+    if (this.isEmpty &amp;&amp; !this.isActive() &amp;&amp; !sliding) {
+      $$(this.element).addClass('coveo-disabled-empty');
+    } else {
+      $$(this.element).removeClass('coveo-disabled-empty');
+      $$(this.facetHeader.eraserElement).toggle(this.isActive());
+    }
+    if (!this.isActive() &amp;&amp; !sliding) {
+      $$(this.element).addClass('coveo-disabled');
+    } else {
+      $$(this.element).removeClass('coveo-disabled');
+    }
+&nbsp;
+    if (this.isActive() &amp;&amp; this.slider) {
+      this.slider.onMoving();
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleNuke() {</span>
+<span class="cstat-no" title="statement not covered" >    window.removeEventListener('resize', this.onResize);</span>
+  }
+&nbsp;
+  private isFacetEmpty(groupByResults: IGroupByResult, data: IQuerySuccessEventArgs) {
+    return groupByResults == null || groupByResults.values[0] == null || groupByResults.values[0].numberOfResults == 0 || data.results.results.length == 0;
+  }
+}
+&nbsp;
+Initialization.registerAutoCreateComponent(FacetSlider);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

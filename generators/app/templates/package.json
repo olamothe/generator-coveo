@@ -1,12 +1,12 @@
 {
-  "name": "coveo.customization",
+  "name": "coveo.customization.<%= projectSafeName %>",
   "version": "1.0.0",
   "description": "Coveo custom package for <%= projectSafeName %>",
-  "main": "./bin/coveo.customization.js",
+  "main": "index.js",
   "scripts": {
     "setup": "node scripts/setup.js",
+    "dev": "nodemon index.js -w .yo-rc.json -w views/",
     <% if(typescript) { %>"build": "webpack",<% } %>
-    <% if(typescript) { %>"dev": "webpack-dev-server --open",<% } %>
     <% if(sass) { %>"sass": "node-sass sass/Index.scss bin/css/coveo.customization.<%= projectSafeName %>.css",<% } %>
     <% if(sass) { %>"sass:watch": "node-sass sass/Index.scss bin/css/coveo.customization.<%= projectSafeName %>.css --watch",<% } %>
     <% if(typescript) { %>"prettier": "prettier --single-quote --print-width 120 --write 'src/**/*.ts'",<% } %>
@@ -25,7 +25,13 @@
     "prettier": "^1.5.2",
     "tslint": "^5.5.0",
     "ts-loader": "^2.0.3",
-    "ncp": "^2.0.0"
+    "ncp": "^2.0.0",
+    "node-fetch": "^1.7.2",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "webpack-dev-server": "^2.4.2",
+    "webpack-hot-middleware": "^2.18.2",
+    "nodemon": "^1.11.0"
   },
   "dependencies": {
     "coveo-search-ui": "^2.2900.x"

@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/CardOverlay/CardOverlay.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/CardOverlay/CardOverlay.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">96.15% <small>(75 / 78)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">60% <small>(6 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">83.33% <small>(10 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">98.53% <small>(67 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/CardOverlay/</a> &#187; CardOverlay.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from '../Base/Component';
+import { ComponentOptions } from '../Base/ComponentOptions';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { Initialization } from '../Base/Initialization';
+import { CardOverlayEvents } from '../../events/CardOverlayEvents';
+import { $$ } from '../../utils/Dom';
+import { Assert } from '../../misc/Assert';
+import { KeyboardUtils, KEYBOARD } from '../../utils/KeyboardUtils';
+import { exportGlobally } from '../../GlobalExports';
+import 'styling/_CardOverlay';
+import { SVGIcons } from '../../utils/SVGIcons';
+import { SVGDom } from '../../utils/SVGDom';
+import { Utils } from '../../utils/Utils';
+&nbsp;
+export interface ICardOverlayOptions {
+  title: string;
+  icon?: string;
+}
+&nbsp;
+/**
+ * The CardOverlay component displays a button that the user can click to toggle the visibility of an overlay on top of
+ * an {@link IQueryResult}. While this component typically populates a {@link CardActionBar} component, it is actually
+ * possible to place a CardOverlay component anywhere in any result.
+ *
+ * The primary purpose of the CardOverlay component is to display additional information about a result in a format that
+ * fits well within a card result layout (see [Result Layouts](https://developers.coveo.com/x/yQUvAg)).
+ *
+ * When initialized, this component creates a `&lt;div class="coveo-card-overlay"&gt;` element as the last child of its parent
+ * IQueryResult, and displays a button which toggles the visibility of the overlay.
+ */
+export class CardOverlay extends Component {
+  static ID = 'CardOverlay';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'CardOverlay': CardOverlay
+    });
+  }
+&nbsp;
+  private parentCard: HTMLElement;
+  private overlay: HTMLElement;
+&nbsp;
+  /**
+   * @componentOptions
+   */
+  static options: ICardOverlayOptions = {
+&nbsp;
+    /**
+     * Specifies the string to use for the overlay title and for the button text.
+     *
+     * Setting a value for this option is required for this component to work.
+     */
+    title: ComponentOptions.buildLocalizedStringOption({ required: true, defaultValue: 'NoTitle' }),
+&nbsp;
+    /**
+     * Specifies the icon to use for the overlay icon and for the button icon.
+     *
+     * The name of the icon to use should be specified in dashed case. ie: facet-expand
+     */
+    icon: ComponentOptions.buildIconOption()
+  };
+&nbsp;
+  /**
+   * Creates a new CardOverlay component.
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the CardOverlay component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   */
+  constructor(public element: HTMLElement, public options?: ICardOverlayOptions, bindings?: IComponentBindings) {
+    super(element, CardOverlay.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+    this.options = ComponentOptions.initComponentOptions(element, CardOverlay, options);
+&nbsp;
+    this.parentCard = $$(this.element).closest('.CoveoResult');
+    Assert.exists(this.parentCard);
+    $$(this.parentCard).addClass('coveo-with-card-overlay');
+    this.createOverlay();
+    this.createButton(this.element);
+    this.closeOverlay();
+  }
+&nbsp;
+  /**
+   * Toggles the CardOverlay visibility.
+   *
+   * @param swtch Specifying a value for this parameter forces the component visibility to take the corresponding value
+   * (`true` for visible; `false` for hidden).
+   */
+  public toggleOverlay(swtch?: boolean) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (swtch !== undefined) {
+<span class="cstat-no" title="statement not covered" >      swtch ? this.openOverlay() : this.closeOverlay();</span>
+    } else {
+      if ($$(this.overlay).hasClass('coveo-opened')) {
+        this.closeOverlay();
+      } else {
+        this.openOverlay();
+      }
+    }
+  }
+&nbsp;
+  /**
+   * Opens the CardOverlay.
+   *
+   * Also triggers the {@link CardOverlayEvents.openCardOverlay} event.
+   */
+  public openOverlay() {
+    $$(this.overlay).removeClass('coveo-hidden-for-tab-nav');
+    $$(this.overlay).addClass('coveo-opened');
+    $$(this.parentCard).addClass('coveo-card-overlay-opened');
+    this.bind.trigger(this.element, CardOverlayEvents.openCardOverlay);
+  }
+&nbsp;
+  /**
+   * Closes the CardOverlay.
+   *
+   * Also triggers the {@link CardOverlayEvents.closeCardOverlay} event.
+   */
+  public closeOverlay() {
+    $$(this.overlay).addClass('coveo-hidden-for-tab-nav');
+    $$(this.overlay).removeClass('coveo-opened');
+    $$(this.parentCard).removeClass('coveo-card-overlay-opened');
+    this.bind.trigger(this.element, CardOverlayEvents.closeCardOverlay);
+  }
+&nbsp;
+  private createOverlay() {
+    this.overlay = $$('div', { className: 'coveo-card-overlay' }).el;
+&nbsp;
+    // Create header
+    let overlayHeader = $$('div', { className: 'coveo-card-overlay-header' }).el;
+    this.createButton(overlayHeader);
+    this.overlay.appendChild(overlayHeader);
+&nbsp;
+    // Create body
+    let overlayBody = $$('div', { className: 'coveo-card-overlay-body' }).el;
+    // Transfer all of element's children to the overlay
+    while (this.element.childNodes.length &gt; 0) {
+      overlayBody.appendChild(this.element.firstChild);
+    }
+    this.overlay.appendChild(overlayBody);
+&nbsp;
+    // Create footer
+    const icon = $$('span', { className: 'coveo-icon coveo-open-card-overlay' }, SVGIcons.icons.arrowDown);
+    SVGDom.addClassToSVGInContainer(icon.el, 'coveo-open-card-overlay-svg');
+    let overlayFooter = $$('div', { className: 'coveo-card-overlay-footer', tabindex: '0' }, icon.el);
+    overlayFooter.on('click', () =&gt; this.toggleOverlay(false));
+    this.bind.on(overlayFooter.el, 'keyup', KeyboardUtils.keypressAction(KEYBOARD.ENTER, <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.toggleOverlay(false))</span>);
+&nbsp;
+    this.overlay.appendChild(overlayFooter.el);
+&nbsp;
+    this.parentCard.appendChild(this.overlay);
+  }
+&nbsp;
+  private createButton(element: HTMLElement) {
+    if (this.options.icon) {
+      const icon = $$('span', { className: 'coveo-icon ' }, SVGIcons.icons[this.options.icon]).el;
+      element.appendChild(icon);
+      SVGDom.addClassToSVGInContainer(element, `coveo-${Utils.toDashCase(this.options.icon)}-svg`);
+    }
+    element.appendChild($$('span', { className: 'coveo-label' }, this.options.title).el);
+    element.setAttribute('tabindex', '0');
+    $$(element).on('click', () =&gt; this.toggleOverlay());
+    this.bind.on(element, 'keyup', KeyboardUtils.keypressAction(KEYBOARD.ENTER, <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.toggleOverlay())</span>);
+&nbsp;
+  }
+}
+&nbsp;
+Initialization.registerAutoCreateComponent(CardOverlay);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

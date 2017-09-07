@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= project %>
+  </title>
+  <%- header %>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        <%- endpointscript %>
+        Coveo.init(document.body);
+      })
+    </script>
+</head>
+
+<%- body %>
+
+</html>

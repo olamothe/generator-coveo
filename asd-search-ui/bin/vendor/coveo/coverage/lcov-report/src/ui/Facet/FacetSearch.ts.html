@@ -1,0 +1,1854 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Facet/FacetSearch.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/ui/Facet/FacetSearch.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">59.54% <small>(231 / 388)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">18.95% <small>(18 / 95)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">44% <small>(33 / 75)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">60.06% <small>(218 / 363)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Facet/</a> &#187; FacetSearch.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">101</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-yes">111</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/// &lt;reference path="Facet.ts" /&gt;
+&nbsp;
+import { IIndexFieldValue } from '../../rest/FieldValue';
+import { Facet } from './Facet';
+import { $$, Dom } from '../../utils/Dom';
+import { Utils } from '../../utils/Utils';
+import { InitializationEvents } from '../../events/InitializationEvents';
+import { DeviceUtils } from '../../utils/DeviceUtils';
+import { EventsUtils } from '../../utils/EventsUtils';
+import { FacetSearchParameters } from './FacetSearchParameters';
+import { IAnalyticsFacetMeta, analyticsActionCauseList } from '../Analytics/AnalyticsActionListMeta';
+import { IEndpointError } from '../../rest/EndpointError';
+import { Component } from '../Base/Component';
+import { DomUtils } from '../../utils/DomUtils';
+import { PopupUtils, HorizontalAlignment, VerticalAlignment } from '../../utils/PopupUtils';
+import { l } from '../../strings/Strings';
+import { Assert } from '../../misc/Assert';
+import { KEYBOARD } from '../../utils/KeyboardUtils';
+import { FacetUtils } from './FacetUtils';
+import { FacetValue } from './FacetValues';
+import { StringUtils } from '../../utils/StringUtils';
+import { IFacetSearchValuesListKlass } from './FacetSearchValuesList';
+import { FacetValueElement } from './FacetValueElement';
+import { ModalBox } from '../../ExternalModulesShim';
+import { SearchInterface } from '../SearchInterface/SearchInterface';
+import { ResponsiveComponentsUtils } from '../ResponsiveComponents/ResponsiveComponentsUtils';
+import { FacetValuesOrder } from './FacetValuesOrder';
+import * as _ from 'underscore';
+import 'styling/_FacetSearch';
+import { SVGIcons } from '../../utils/SVGIcons';
+import { SVGDom } from '../../utils/SVGDom';
+&nbsp;
+/**
+ * Used by the {@link Facet} component to render and handle the facet search part of each facet.
+ */
+export class FacetSearch {
+  public currentlyDisplayedResults: string[];
+  public searchResults: HTMLElement;
+  public search: HTMLElement;
+&nbsp;
+  private magnifier: HTMLElement;
+  private wait: HTMLElement;
+  private clear: HTMLElement;
+  private middle: HTMLElement;
+  private input: HTMLInputElement;
+  private facetSearchTimeout: number;
+  private showingFacetSearchWaitAnimation = false;
+  private facetSearchPromise: Promise&lt;IIndexFieldValue[]&gt;;
+  private moreValuesToFetch = true;
+  private onResize: (...args: any[]) =&gt; void;
+  private onDocumentClick: (e: Event) =&gt; void;
+  private searchBarIsAnimating: boolean = false;
+  private lastSearchWasEmpty = true;
+&nbsp;
+  constructor(public facet: Facet, public facetSearchValuesListKlass: IFacetSearchValuesListKlass, private root: HTMLElement) {
+    this.searchResults = document.createElement('ul');
+    $$(this.searchResults).addClass('coveo-facet-search-results');
+    this.onResize = _.debounce(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+      // Mitigate issues in UT where the window in phantom js might get resized in the scope of another test.
+      // These would point to random instance of a test karma object, and not a real search interface.
+<span class="cstat-no" title="statement not covered" >      if (this.facet instanceof Facet &amp;&amp; this.facet.searchInterface instanceof SearchInterface) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.shouldPositionSearchResults()) {</span>
+<span class="cstat-no" title="statement not covered" >          this.positionSearchResults();</span>
+        }
+      }
+    }, 250);
+    this.onDocumentClick = <span class="fstat-no" title="function not covered" >(e: Event)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      this.handleClickElsewhere(e);</span>
+    };
+    window.addEventListener('resize', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.onResize())</span>;
+    document.addEventListener('click', <span class="fstat-no" title="function not covered" >(e: Event)</span> =&gt; <span class="cstat-no" title="statement not covered" >this.onDocumentClick(e))</span>;
+    $$(facet.root).on(InitializationEvents.nuke, <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.handleNuke())</span>;
+  }
+&nbsp;
+  /**
+   * Build the search component and return an `HTMLElement` which can be appended to the {@link Facet}.
+   * @returns {HTMLElement}
+   */
+  public build(): HTMLElement {
+    return this.buildBaseSearch();
+  }
+&nbsp;
+  /**
+   * Position the search results at the footer of the facet.
+   */
+  public positionSearchResults(<span class="missing-if-branch" title="else path not taken" >E</span>nextTo: HTMLElement = this.search) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.searchResults != null) {
+&nbsp;
+      this.searchResults.style.display = 'block';
+      this.searchResults.style.width = this.facet.element.clientWidth - 40 + 'px';
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if ($$(this.searchResults).css('display') == 'none') {
+<span class="cstat-no" title="statement not covered" >        this.searchResults.style.display = '';</span>
+      }
+      let searchBar = $$(this.search);
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (searchBar.css('display') == 'none' || this.searchBarIsAnimating) {
+<span class="cstat-no" title="statement not covered" >        if ($$(this.searchResults).css('display') == 'none') {</span>
+<span class="cstat-no" title="statement not covered" >          this.searchResults.style.display = '';</span>
+        }
+<span class="cstat-no" title="statement not covered" >        let self = this;</span>
+<span class="cstat-no" title="statement not covered" >        EventsUtils.addPrefixedEvent(this.search, 'AnimationEnd', <span class="fstat-no" title="function not covered" >function (evt)</span> {</span>
+<span class="cstat-no" title="statement not covered" >          PopupUtils.positionPopup(self.searchResults, nextTo, self.root,</span>
+            { horizontal: HorizontalAlignment.CENTER, vertical: VerticalAlignment.BOTTOM }
+          );
+<span class="cstat-no" title="statement not covered" >          EventsUtils.removePrefixedEvent(self.search, 'AnimationEnd', this);</span>
+        });
+      } else {
+        PopupUtils.positionPopup(this.searchResults, nextTo, this.root,
+          { horizontal: HorizontalAlignment.CENTER, vertical: VerticalAlignment.BOTTOM }
+        );
+      }
+    }
+  }
+&nbsp;
+  /**
+   * Dismiss the search results
+   */
+  public completelyDismissSearch() {
+    this.cancelAnyPendingSearchOperation();
+    this.facet.unfadeInactiveValuesInMainList();
+    $$(this.searchResults).empty();
+    this.moreValuesToFetch = true;
+    $$(this.search).removeClass('coveo-facet-search-no-results');
+    $$(this.facet.element).removeClass('coveo-facet-searching');
+    this.hideSearchResultsElement();
+    this.input.value = '';
+    $$(this.clear).hide();
+    this.currentlyDisplayedResults = undefined;
+  }
+&nbsp;
+  /**
+   * Trigger a new facet search, and display the results.
+   * @param params
+   */
+  public triggerNewFacetSearch(params: FacetSearchParameters) {
+    this.cancelAnyPendingSearchOperation();
+    this.showFacetSearchWaitingAnimation();
+&nbsp;
+    this.facet.logger.info('Triggering new facet search');
+&nbsp;
+    this.facetSearchPromise = this.facet.facetQueryController.search(params);
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.facetSearchPromise) {
+      this.facetSearchPromise.then((fieldValues: IIndexFieldValue[]) =&gt; {
+        this.facet.usageAnalytics.logCustomEvent&lt;IAnalyticsFacetMeta&gt;(analyticsActionCauseList.facetSearch, {
+          facetId: this.facet.options.id,
+          facetTitle: this.facet.options.title
+        }, this.facet.root);
+        this.facet.logger.debug('Received field values', fieldValues);
+        this.processNewFacetSearchResults(fieldValues, params);
+        this.hideFacetSearchWaitingAnimation();
+        this.facetSearchPromise = undefined;
+      }).catch((error: IEndpointError) =&gt; {
+        // The request might be normally cancelled if another search is triggered.
+        // In this case we do not hide the animation to prevent flicking.
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (Utils.exists(error)) {
+          this.facet.logger.error('Error while retrieving facet values', error);
+          this.hideFacetSearchWaitingAnimation();
+        }
+        this.facetSearchPromise = undefined;
+        return null;
+      });
+    }
+  }
+&nbsp;
+  /**
+   * Trigger the event associated with the focus of the search input.
+   */
+  public focus(): void {
+    this.input.focus();
+    this.handleFacetSearchFocus();
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private shouldPositionSearchResults(): boolean {</span>
+<span class="cstat-no" title="statement not covered" >    return !ResponsiveComponentsUtils.isSmallFacetActivated($$(this.root))</span>
+      &amp;&amp; $$(this.facet.element).hasClass('coveo-facet-searching');
+  }
+&nbsp;
+  private buildBaseSearch(): HTMLElement {
+    this.search = document.createElement('div');
+    $$(this.search).addClass('coveo-facet-search');
+&nbsp;
+    this.magnifier = document.createElement('div');
+    this.magnifier.innerHTML = SVGIcons.icons.search;
+    $$(this.magnifier).addClass('coveo-facet-search-magnifier');
+    SVGDom.addClassToSVGInContainer(this.magnifier, 'coveo-facet-search-magnifier-svg');
+    this.search.appendChild(this.magnifier);
+&nbsp;
+    this.wait = document.createElement('div');
+    this.wait.innerHTML = SVGIcons.icons.loading;
+    $$(this.wait).addClass('coveo-facet-search-wait-animation');
+    SVGDom.addClassToSVGInContainer(this.wait, 'coveo-facet-search-wait-animation-svg');
+    this.search.appendChild(this.wait);
+    this.hideFacetSearchWaitingAnimation();
+&nbsp;
+    this.clear = $$('div', { className: 'coveo-facet-search-clear', title: l('Clear', l('Search')) },
+      SVGIcons.icons.checkboxHookExclusionMore).el;
+    SVGDom.addClassToSVGInContainer(this.clear, 'coveo-facet-search-clear-svg');
+    this.clear.style.display = 'none';
+    this.search.appendChild(this.clear);
+&nbsp;
+    this.middle = document.createElement('div');
+    $$(this.middle).addClass('coveo-facet-search-middle');
+    this.search.appendChild(this.middle);
+&nbsp;
+    this.input = document.createElement('input');
+    this.input.setAttribute('type', 'text');
+    this.input.setAttribute('autocapitalize', 'off');
+    this.input.setAttribute('autocorrect', 'off');
+    $$(this.input).addClass('coveo-facet-search-input');
+    Component.pointElementsToDummyForm(this.input);
+    this.middle.appendChild(this.input);
+&nbsp;
+    $$(this.input).on('keyup', <span class="fstat-no" title="function not covered" >(e: KeyboardEvent)</span> =&gt; <span class="cstat-no" title="statement not covered" >this.handleFacetSearchKeyUp(e))</span>;
+    $$(this.clear).on('click', <span class="fstat-no" title="function not covered" >(e: Event)</span> =&gt; <span class="cstat-no" title="statement not covered" >this.handleFacetSearchClear())</span>;
+    $$(this.input).on('focus', <span class="fstat-no" title="function not covered" >(e: Event)</span> =&gt; <span class="cstat-no" title="statement not covered" >this.handleFacetSearchFocus())</span>;
+&nbsp;
+    this.detectSearchBarAnimation();
+    this.root.appendChild(this.searchResults);
+    this.searchResults.style.display = 'none';
+&nbsp;
+    return this.search;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleFacetSearchKeyUp(event: KeyboardEvent)</span> {
+<span class="cstat-no" title="statement not covered" >    Assert.exists(event);</span>
+<span class="cstat-no" title="statement not covered" >    let isEmpty = this.input.value.trim() == '';</span>
+<span class="cstat-no" title="statement not covered" >    this.showOrHideClearElement(isEmpty);</span>
+<span class="cstat-no" title="statement not covered" >    this.handleKeyboardNavigation(event, isEmpty);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleNuke() {</span>
+<span class="cstat-no" title="statement not covered" >    window.removeEventListener('resize', this.onResize);</span>
+<span class="cstat-no" title="statement not covered" >    document.removeEventListener('click', this.onDocumentClick);</span>
+  }
+&nbsp;
+&nbsp;
+  private handleFacetSearchFocus() {
+    // Trigger a query only if the results are not already rendered.
+    // Protect against the case where user can "focus" out of the search box by clicking not directly on a search results
+    // Then re-focusing the search box
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.currentlyDisplayedResults == null) {
+      this.startNewSearchTimeout(this.buildParamsForExcludingCurrentlyDisplayedValues());
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleClickElsewhere(event: Event)</span> {
+<span class="cstat-no" title="statement not covered" >    if (this.currentlyDisplayedResults &amp;&amp; this.search != event.target &amp;&amp; this.searchResults != event.target &amp;&amp; this.input != event.target) {</span>
+<span class="cstat-no" title="statement not covered" >      this.completelyDismissSearch();</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleFacetSearchClear() {</span>
+<span class="cstat-no" title="statement not covered" >    this.input.value = '';</span>
+<span class="cstat-no" title="statement not covered" >    $$(this.clear).hide();</span>
+<span class="cstat-no" title="statement not covered" >    this.completelyDismissSearch();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private showOrHideClearElement(isEmpty: boolean)</span> {
+<span class="cstat-no" title="statement not covered" >    if (!isEmpty) {</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.clear).show();</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      $$(this.clear).hide();</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.search).removeClass('coveo-facet-search-no-results');</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleKeyboardNavigation(event: KeyboardEvent, isEmpty: boolean)</span> {
+<span class="cstat-no" title="statement not covered" >    switch (event.which) {</span>
+      case KEYBOARD.ENTER:
+<span class="cstat-no" title="statement not covered" >        this.keyboardNavigationEnterPressed(event, isEmpty);</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case KEYBOARD.DELETE:
+<span class="cstat-no" title="statement not covered" >        this.keyboardNavigationDeletePressed(event);</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case KEYBOARD.ESCAPE:
+<span class="cstat-no" title="statement not covered" >        this.completelyDismissSearch();</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case KEYBOARD.DOWN_ARROW:
+<span class="cstat-no" title="statement not covered" >        this.moveCurrentResultDown();</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case KEYBOARD.UP_ARROW:
+<span class="cstat-no" title="statement not covered" >        this.moveCurrentResultUp();</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      default:
+<span class="cstat-no" title="statement not covered" >        this.moreValuesToFetch = true;</span>
+<span class="cstat-no" title="statement not covered" >        this.highlightCurrentQueryWithinSearchResults();</span>
+<span class="cstat-no" title="statement not covered" >        if (!isEmpty) {</span>
+<span class="cstat-no" title="statement not covered" >          this.lastSearchWasEmpty = false;</span>
+<span class="cstat-no" title="statement not covered" >          this.startNewSearchTimeout(this.buildParamsForNormalSearch());</span>
+        } else <span class="cstat-no" title="statement not covered" >if (!this.lastSearchWasEmpty) {</span>
+          // This normally happen if a user delete the search box content to go back to "empty" state.
+<span class="cstat-no" title="statement not covered" >          this.currentlyDisplayedResults = undefined;</span>
+<span class="cstat-no" title="statement not covered" >          $$(this.searchResults).empty();</span>
+<span class="cstat-no" title="statement not covered" >          this.lastSearchWasEmpty = true;</span>
+<span class="cstat-no" title="statement not covered" >          this.startNewSearchTimeout(this.buildParamsForFetchingMore());</span>
+&nbsp;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        break;</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private keyboardNavigationEnterPressed(event: KeyboardEvent, isEmpty: boolean)</span> {
+<span class="cstat-no" title="statement not covered" >    if (event.shiftKey) {</span>
+<span class="cstat-no" title="statement not covered" >      this.triggerNewFacetSearch(this.buildParamsForNormalSearch());</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      if (this.searchResults.style.display != 'none') {</span>
+<span class="cstat-no" title="statement not covered" >        this.performSelectActionOnCurrentSearchResult();</span>
+<span class="cstat-no" title="statement not covered" >        this.completelyDismissSearch();</span>
+      } else <span class="cstat-no" title="statement not covered" >if ($$(this.search).is('.coveo-facet-search-no-results') &amp;&amp; !isEmpty) {</span>
+<span class="cstat-no" title="statement not covered" >        this.selectAllValuesMatchingSearch();</span>
+      }
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private keyboardNavigationDeletePressed(event: KeyboardEvent)</span> {
+<span class="cstat-no" title="statement not covered" >    if (event.shiftKey) {</span>
+<span class="cstat-no" title="statement not covered" >      this.performExcludeActionOnCurrentSearchResult();</span>
+<span class="cstat-no" title="statement not covered" >      this.completelyDismissSearch();</span>
+<span class="cstat-no" title="statement not covered" >      this.input.value = '';</span>
+    }
+  }
+&nbsp;
+  private startNewSearchTimeout(params: FacetSearchParameters) {
+    this.cancelAnyPendingSearchOperation();
+    this.facetSearchTimeout = setTimeout(() =&gt; {
+      let valueInInput = this.getValueInInputForFacetSearch();
+      this.triggerNewFacetSearch(params);
+    }, this.facet.options.facetSearchDelay);
+  }
+&nbsp;
+  private cancelAnyPendingSearchOperation() {
+    if (Utils.exists(this.facetSearchTimeout)) {
+      clearTimeout(this.facetSearchTimeout);
+      this.facetSearchTimeout = undefined;
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (Utils.exists(this.facetSearchPromise)) {
+<span class="cstat-no" title="statement not covered" >      Promise.reject(this.facetSearchPromise).catch(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+      });
+<span class="cstat-no" title="statement not covered" >      this.facetSearchPromise = undefined;</span>
+    }
+&nbsp;
+    this.hideFacetSearchWaitingAnimation();
+  }
+&nbsp;
+  private processNewFacetSearchResults(fieldValues: IIndexFieldValue[], facetSearchParameters: FacetSearchParameters) {
+    Assert.exists(fieldValues);
+    fieldValues = new FacetValuesOrder(this.facet, this.facet.facetSort).reorderValues(fieldValues);
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (fieldValues.length &gt; 0) {
+      $$(this.search).removeClass('coveo-facet-search-no-results');
+      this.facet.fadeInactiveValuesInMainList(this.facet.options.facetSearchDelay);
+      this.rebuildSearchResults(fieldValues, facetSearchParameters);
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!facetSearchParameters.fetchMore) {
+        this.showSearchResultsElement();
+      }
+      this.highlightCurrentQueryWithinSearchResults();
+      this.makeFirstSearchResultTheCurrentOne();
+    } else {
+<span class="cstat-no" title="statement not covered" >      if (facetSearchParameters.fetchMore) {</span>
+<span class="cstat-no" title="statement not covered" >        this.moreValuesToFetch = false;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.hideSearchResultsElement();</span>
+<span class="cstat-no" title="statement not covered" >        $$(this.search).addClass('coveo-facet-search-no-results');</span>
+      }
+    }
+  }
+&nbsp;
+  private rebuildSearchResults(fieldValues: IIndexFieldValue[], facetSearchParameters: FacetSearchParameters) {
+    Assert.exists(fieldValues);
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!facetSearchParameters.fetchMore) {
+      $$(this.searchResults).empty();
+    }
+    let selectAll = document.createElement('li');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (Utils.isNonEmptyString(facetSearchParameters.valueToSearch)) {
+<span class="cstat-no" title="statement not covered" >      $$(selectAll).addClass(['coveo-facet-selectable', 'coveo-facet-search-selectable', 'coveo-facet-search-select-all']);</span>
+<span class="cstat-no" title="statement not covered" >      $$(selectAll).text(l('SelectAll'));</span>
+<span class="cstat-no" title="statement not covered" >      $$(selectAll).on('click', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.selectAllValuesMatchingSearch())</span>;</span>
+<span class="cstat-no" title="statement not covered" >      this.searchResults.appendChild(selectAll);</span>
+    }
+    let facetValues = _.map(fieldValues, (fieldValue) =&gt; {
+      return FacetValue.create(fieldValue);
+    });
+    _.each(new this.facetSearchValuesListKlass(this.facet, FacetValueElement).build(facetValues), (listElement: HTMLElement) =&gt; {
+      this.searchResults.appendChild(listElement);
+    });
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.currentlyDisplayedResults) {
+<span class="cstat-no" title="statement not covered" >      this.currentlyDisplayedResults = this.currentlyDisplayedResults.concat(_.pluck(facetValues, 'value'));</span>
+    } else {
+      this.currentlyDisplayedResults = _.pluck(facetValues, 'value');
+    }
+&nbsp;
+    _.each($$(this.searchResults).findAll('.coveo-facet-selectable'), (elem: HTMLElement) =&gt; {
+      $$(elem).addClass('coveo-facet-search-selectable');
+      this.setupFacetSearchResultsEvents(elem);
+    });
+    $$(this.searchResults).on('scroll', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.handleFacetSearchResultsScroll())</span>;
+  }
+&nbsp;
+  private setupFacetSearchResultsEvents(elem: HTMLElement) {
+    $$(elem).on('mousemove', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.makeCurrentResult(elem);</span>
+    });
+&nbsp;
+    // Prevent closing the search results on the end of a touch drag
+    let touchDragging = false;
+    let mouseDragging = false;
+    $$(elem).on('mousedown', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>mouseDragging = false)</span>;
+    $$(elem).on('mousemove', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>mouseDragging = true)</span>;
+    $$(elem).on('touchmove', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>touchDragging = true)</span>;
+&nbsp;
+    $$(elem).on('mouseup touchend', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (!touchDragging &amp;&amp; !mouseDragging) {</span>
+<span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >          this.completelyDismissSearch();</span>
+        }, 0); // setTimeout is to give time to trigger the click event before hiding the search menu.
+      }
+<span class="cstat-no" title="statement not covered" >      touchDragging = false;</span>
+<span class="cstat-no" title="statement not covered" >      mouseDragging = false;</span>
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleFacetSearchResultsScroll() {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.facetSearchPromise || this.getValueInInputForFacetSearch() != '' || !this.moreValuesToFetch) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let elementHeight = this.searchResults.clientHeight;</span>
+<span class="cstat-no" title="statement not covered" >    let scrollHeight = this.searchResults.scrollHeight;</span>
+<span class="cstat-no" title="statement not covered" >    let bottomPosition = this.searchResults.scrollTop + elementHeight;</span>
+<span class="cstat-no" title="statement not covered" >    if ((scrollHeight - bottomPosition) &lt; elementHeight / 2) {</span>
+<span class="cstat-no" title="statement not covered" >      this.triggerNewFacetSearch(this.buildParamsForFetchingMore());</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private buildParamsForNormalSearch() {</span>
+<span class="cstat-no" title="statement not covered" >    let params = new FacetSearchParameters(this.facet);</span>
+<span class="cstat-no" title="statement not covered" >    params.setValueToSearch(this.getValueInInputForFacetSearch());</span>
+<span class="cstat-no" title="statement not covered" >    params.fetchMore = false;</span>
+<span class="cstat-no" title="statement not covered" >    return params;</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private buildParamsForFetchingMore() {</span>
+<span class="cstat-no" title="statement not covered" >    let params = this.buildParamsForExcludingCurrentlyDisplayedValues();</span>
+<span class="cstat-no" title="statement not covered" >    params.fetchMore = true;</span>
+<span class="cstat-no" title="statement not covered" >    return params;</span>
+  }
+&nbsp;
+  protected buildParamsForExcludingCurrentlyDisplayedValues() {
+    let params = new FacetSearchParameters(this.facet);
+    params.excludeCurrentlyDisplayedValuesInSearch(this.searchResults);
+    params.setValueToSearch(this.getValueInInputForFacetSearch());
+    return params;
+  }
+&nbsp;
+  private showSearchResultsElement() {
+    this.positionSearchResults();
+  }
+&nbsp;
+  private hideSearchResultsElement() {
+    this.searchResults.style.display = 'none';
+  }
+&nbsp;
+  private highlightCurrentQueryWithinSearchResults() {
+    let captions = $$(this.searchResults).findAll('.coveo-facet-value-caption');
+    _.each(captions, (captionElement: HTMLElement) =&gt; {
+      let search = this.getValueInInputForFacetSearch();
+      let regex = new RegExp('(' + StringUtils.wildcardsToRegex(search, this.facet.options.facetSearchIgnoreAccents) + ')', 'ig');
+&nbsp;
+      let text = $$(captionElement).text();
+      let highlighted = text.replace(regex, '&lt;span class="coveo-highlight"&gt;$1&lt;/span&gt;');
+      captionElement.innerHTML = highlighted;
+    });
+  }
+&nbsp;
+  private makeFirstSearchResultTheCurrentOne() {
+    this.makeCurrentResult(this.getSelectables()[0]);
+  }
+&nbsp;
+  private makeCurrentResult(result: HTMLElement) {
+    _.each(this.getSelectables(), (selectable: HTMLElement) =&gt; {
+      $$(selectable).removeClass('coveo-current');
+    });
+    $$(result).addClass('coveo-current');
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private moveCurrentResultDown() {</span>
+<span class="cstat-no" title="statement not covered" >    let current = $$(this.searchResults).find('.coveo-current');</span>
+<span class="cstat-no" title="statement not covered" >    _.each(this.getSelectables(), <span class="fstat-no" title="function not covered" >(selectable: HTMLElement)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      $$(selectable).removeClass('coveo-current');</span>
+    });
+<span class="cstat-no" title="statement not covered" >    let allSelectables = this.getSelectables();</span>
+<span class="cstat-no" title="statement not covered" >    let idx = _.indexOf(allSelectables, current);</span>
+<span class="cstat-no" title="statement not covered" >    let target: Dom;</span>
+<span class="cstat-no" title="statement not covered" >    if (idx &lt; allSelectables.length - 1) {</span>
+<span class="cstat-no" title="statement not covered" >      target = $$(allSelectables[idx + 1]);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      target = $$(allSelectables[0]);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    this.highlightAndShowCurrentResultWithKeyboard(target);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private moveCurrentResultUp() {</span>
+<span class="cstat-no" title="statement not covered" >    let current = $$(this.searchResults).find('.coveo-current');</span>
+<span class="cstat-no" title="statement not covered" >    _.each($$(this.searchResults).findAll('.coveo-facet-selectable'), <span class="fstat-no" title="function not covered" >(s)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      $$(s).removeClass('coveo-current');</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let allSelectables = this.getSelectables();</span>
+<span class="cstat-no" title="statement not covered" >    let idx = _.indexOf(allSelectables, current);</span>
+<span class="cstat-no" title="statement not covered" >    let target: Dom;</span>
+<span class="cstat-no" title="statement not covered" >    if (idx &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      target = $$(allSelectables[idx - 1]);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      target = $$(allSelectables[allSelectables.length - 1]);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    this.highlightAndShowCurrentResultWithKeyboard(target);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private highlightAndShowCurrentResultWithKeyboard(target: Dom)</span> {
+<span class="cstat-no" title="statement not covered" >    target.addClass('coveo-current');</span>
+<span class="cstat-no" title="statement not covered" >    this.searchResults.scrollTop = target.el.offsetTop;</span>
+  }
+&nbsp;
+  private getSelectables(<span class="missing-if-branch" title="else path not taken" >E</span>target = this.searchResults) {
+    return $$(target).findAll('.coveo-facet-selectable');
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private performSelectActionOnCurrentSearchResult() {</span>
+<span class="cstat-no" title="statement not covered" >    let current = $$(this.searchResults).find('.coveo-current');</span>
+<span class="cstat-no" title="statement not covered" >    Assert.check(current != undefined);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let checkbox = &lt;HTMLInputElement&gt;$$(current).find('input[type="checkbox"]');</span>
+<span class="cstat-no" title="statement not covered" >    if (checkbox != undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      checkbox.checked = true;</span>
+<span class="cstat-no" title="statement not covered" >      $$(checkbox).trigger('change');</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      current.click();</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private performExcludeActionOnCurrentSearchResult() {</span>
+<span class="cstat-no" title="statement not covered" >    let current = $$(this.searchResults).find('.coveo-current');</span>
+<span class="cstat-no" title="statement not covered" >    Assert.check(current != null);</span>
+<span class="cstat-no" title="statement not covered" >    let valueCaption = $$(current).find('.coveo-facet-value-caption');</span>
+<span class="cstat-no" title="statement not covered" >    let valueElement = this.facet.facetValuesList.get($$(valueCaption).text());</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    valueElement.toggleExcludeWithUA();</span>
+  }
+&nbsp;
+  public getValueInInputForFacetSearch() {
+    return this.input.value.trim();
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  protected selectAllValuesMatchingSearch() {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.facet.showWaitingAnimation();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let searchParameters = new FacetSearchParameters(this.facet);</span>
+<span class="cstat-no" title="statement not covered" >    searchParameters.nbResults = 1000;</span>
+<span class="cstat-no" title="statement not covered" >    searchParameters.setValueToSearch(this.getValueInInputForFacetSearch());</span>
+<span class="cstat-no" title="statement not covered" >    this.facet.facetQueryController.search(searchParameters).then(<span class="fstat-no" title="function not covered" >(fieldValues: IIndexFieldValue[])</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.completelyDismissSearch();</span>
+<span class="cstat-no" title="statement not covered" >      ModalBox.close(true);</span>
+<span class="cstat-no" title="statement not covered" >      let facetValues = _.map(fieldValues, <span class="fstat-no" title="function not covered" >(fieldValue)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        let facetValue = this.facet.values.get(fieldValue.value);</span>
+<span class="cstat-no" title="statement not covered" >        if (!Utils.exists(facetValue)) {</span>
+<span class="cstat-no" title="statement not covered" >          facetValue = FacetValue.create(fieldValue);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        facetValue.selected = true;</span>
+<span class="cstat-no" title="statement not covered" >        facetValue.excluded = false;</span>
+<span class="cstat-no" title="statement not covered" >        return facetValue;</span>
+      });
+<span class="cstat-no" title="statement not covered" >      this.facet.processFacetSearchAllResultsSelected(facetValues);</span>
+    });
+<span class="cstat-no" title="statement not covered" >    this.completelyDismissSearch();</span>
+  }
+&nbsp;
+  private showFacetSearchWaitingAnimation() {
+    $$(this.magnifier).hide();
+    $$(this.wait).show();
+    this.showingFacetSearchWaitAnimation = true;
+  }
+&nbsp;
+  private hideFacetSearchWaitingAnimation() {
+    $$(this.magnifier).show();
+    $$(this.wait).hide();
+    this.showingFacetSearchWaitAnimation = false;
+  }
+&nbsp;
+  private detectSearchBarAnimation() {
+    EventsUtils.addPrefixedEvent(this.search, 'AnimationStart', <span class="fstat-no" title="function not covered" >(event)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      if (event.animationName == 'grow') {</span>
+<span class="cstat-no" title="statement not covered" >        this.searchBarIsAnimating = true;</span>
+      }
+    });
+&nbsp;
+    EventsUtils.addPrefixedEvent(this.search, 'AnimationEnd', <span class="fstat-no" title="function not covered" >(event)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      if (event.animationName == 'grow') {</span>
+<span class="cstat-no" title="statement not covered" >        this.searchBarIsAnimating = false;</span>
+      }
+    });
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

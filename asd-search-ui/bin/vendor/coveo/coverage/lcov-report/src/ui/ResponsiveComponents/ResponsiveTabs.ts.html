@@ -1,0 +1,1200 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/ResponsiveComponents/ResponsiveTabs.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/ui/ResponsiveComponents/ResponsiveTabs.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">57.72% <small>(142 / 246)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">27.08% <small>(26 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">60% <small>(24 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">56.3% <small>(134 / 238)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/ResponsiveComponents/</a> &#187; ResponsiveTabs.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { $$, Dom } from '../../utils/Dom';
+import { InitializationEvents } from '../../events/InitializationEvents';
+import { PopupUtils, HorizontalAlignment, VerticalAlignment } from '../../utils/PopupUtils';
+import { EventsUtils } from '../../utils/EventsUtils';
+import { Utils } from '../../utils/Utils';
+import { Logger } from '../../misc/Logger';
+import { Component } from '../Base/Component';
+import { SearchInterface } from '../SearchInterface/SearchInterface';
+import { Tab } from '../Tab/Tab';
+import { IResponsiveComponent, ResponsiveComponentsManager, IResponsiveComponentOptions } from './ResponsiveComponentsManager';
+import { ResponsiveComponentsUtils } from './ResponsiveComponentsUtils';
+import { l } from '../../strings/Strings';
+import { ResponsiveComponents } from './ResponsiveComponents';
+import * as _ from 'underscore';
+&nbsp;
+import 'styling/_ResponsiveTabs';
+import { SVGIcons } from '../../utils/SVGIcons';
+import { SVGDom } from '../../utils/SVGDom';
+&nbsp;
+export class ResponsiveTabs implements IResponsiveComponent {
+&nbsp;
+  private static DROPDOWN_HEADER_LABEL_DEFAULT_VALUE = 'More';
+  private static logger: Logger;
+&nbsp;
+  private dropdownHeader: Dom;
+  private dropdownContent: Dom;
+  private tabSection: Dom;
+  private previousSibling: Dom;
+  private parent: Dom;
+  private searchBoxElement: HTMLElement;
+  private documentClickListener: EventListener;
+  private searchInterface: SearchInterface;
+  private dropdownHeaderLabel: string;
+&nbsp;
+  constructor(private coveoRoot: Dom, public ID: string) {
+    this.dropdownHeaderLabel = this.getDropdownHeaderLabel();
+    this.searchInterface = &lt;SearchInterface&gt;Component.get(this.coveoRoot.el, SearchInterface, false);
+    this.searchBoxElement = this.getSearchBoxElement();
+    this.dropdownContent = this.buildDropdownContent();
+    this.dropdownHeader = this.buildDropdownHeader();
+    this.bindDropdownContentEvents();
+    this.bindDropdownHeaderEvents();
+    this.tabSection = $$(&lt;HTMLElement&gt;this.coveoRoot.find('.coveo-tab-section'));
+    this.manageTabSwapping();
+    this.saveTabsPosition();
+    this.bindNukeEvents();
+  }
+&nbsp;
+  public static init(root: HTMLElement, component: Component, options: IResponsiveComponentOptions) {
+    this.logger = new Logger('ResponsiveTabs');
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!$$(root).find('.coveo-tab-section')) {
+      this.logger.info('No element with class coveo-tab-section. Responsive tabs cannot be enabled.');
+      return;
+    }
+<span class="cstat-no" title="statement not covered" >    ResponsiveComponentsManager.register(ResponsiveTabs, $$(root), Tab.ID, component, options);</span>
+  }
+&nbsp;
+  public handleResizeEvent(): void {
+    if (this.needSmallMode() &amp;&amp; !ResponsiveComponentsUtils.isSmallTabsActivated(this.coveoRoot)) {
+      this.changeToSmallMode();
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.needSmallMode() &amp;&amp; ResponsiveComponentsUtils.isSmallTabsActivated(this.coveoRoot)) {
+      this.changeToLargeMode();
+    }
+&nbsp;
+    const tabs = this.getTabsInTabSection();
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.shouldAddTabsToDropdown()) {
+<span class="cstat-no" title="statement not covered" >      this.addTabsToDropdown(tabs);</span>
+    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (this.shouldRemoveTabsFromDropdown()) {
+<span class="cstat-no" title="statement not covered" >      this.removeTabsFromDropdown(tabs);</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.dropdownHeader.hasClass('coveo-dropdown-header-active')) {
+<span class="cstat-no" title="statement not covered" >      this.positionPopup();</span>
+    }
+  };
+&nbsp;
+  private needSmallMode(): boolean {
+    const mediumWidth = this.searchInterface ? <span class="branch-0 cbranch-no" title="branch not covered" >this.searchInterface.responsiveComponents.getMediumScreenWidth() </span>: new ResponsiveComponents().getMediumScreenWidth();
+    if (this.coveoRoot.width() &lt;= mediumWidth) {
+      return true;
+    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (!ResponsiveComponentsUtils.isSmallTabsActivated(this.coveoRoot)) {
+<span class="cstat-no" title="statement not covered" >      return this.isOverflowing(this.tabSection.el);</span>
+    } else {
+      return this.isLargeFormatOverflowing();
+    }
+  }
+&nbsp;
+  private changeToSmallMode(): void {
+    ResponsiveComponentsUtils.activateSmallTabs(this.coveoRoot);
+  }
+&nbsp;
+  private changeToLargeMode(): void {
+    this.emptyDropdown();
+    this.cleanUpDropdown();
+    ResponsiveComponentsUtils.deactivateSmallTabs(this.coveoRoot);
+  }
+&nbsp;
+  private shouldAddTabsToDropdown(): boolean {
+    return this.isOverflowing(this.tabSection.el) &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >ResponsiveComponentsUtils.isSmallTabsActivated(this.coveoRoot);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private addTabsToDropdown(tabs: HTMLElement[])</span>: void {
+<span class="cstat-no" title="statement not covered" >    let currentTab;</span>
+<span class="cstat-no" title="statement not covered" >    if (!this.tabSection.find('.coveo-tab-dropdown-header')) {</span>
+<span class="cstat-no" title="statement not covered" >      const facetDropdownHeader = this.tabSection.find('.coveo-facet-dropdown-header');</span>
+<span class="cstat-no" title="statement not covered" >      if (facetDropdownHeader) {</span>
+<span class="cstat-no" title="statement not covered" >        this.dropdownHeader.insertBefore(facetDropdownHeader);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.tabSection.el.appendChild(this.dropdownHeader.el);</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    for (let i = tabs.length - 1; i &gt;= 0; i--) {</span>
+<span class="cstat-no" title="statement not covered" >      currentTab = tabs[i];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if ($$(currentTab).hasClass('coveo-selected') &amp;&amp; i &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        currentTab = tabs[--i];</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.addToDropdown(currentTab);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (!this.isOverflowing(this.tabSection.el)) {</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      }
+    }
+  }
+&nbsp;
+  private shouldRemoveTabsFromDropdown(): boolean {
+    return !this.isOverflowing(this.tabSection.el) &amp;&amp; ResponsiveComponentsUtils.isSmallTabsActivated(this.coveoRoot) &amp;&amp; !this.isDropdownEmpty();
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private removeTabsFromDropdown(tabs: HTMLElement[])</span> {
+<span class="cstat-no" title="statement not covered" >    const dropdownTabs = this.dropdownContent.findAll('.coveo-tab-dropdown');</span>
+<span class="cstat-no" title="statement not covered" >    let lastTabInSection: HTMLElement, current: HTMLElement;</span>
+<span class="cstat-no" title="statement not covered" >    if (tabs) {</span>
+<span class="cstat-no" title="statement not covered" >      lastTabInSection = tabs.pop();</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    while (!this.isOverflowing(this.tabSection.el) &amp;&amp; !this.isDropdownEmpty()) {</span>
+<span class="cstat-no" title="statement not covered" >      current = dropdownTabs.shift();</span>
+<span class="cstat-no" title="statement not covered" >      this.removeFromDropdown(current);</span>
+<span class="cstat-no" title="statement not covered" >      this.fromDropdownToTabSection($$(current), lastTabInSection);</span>
+<span class="cstat-no" title="statement not covered" >      lastTabInSection = _.clone(current);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (this.isOverflowing(this.tabSection.el)) {</span>
+<span class="cstat-no" title="statement not covered" >      const tabs = this.getTabsInTabSection();</span>
+<span class="cstat-no" title="statement not covered" >      this.addToDropdown(tabs.pop());</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (this.isDropdownEmpty()) {</span>
+<span class="cstat-no" title="statement not covered" >      this.cleanUpDropdown();</span>
+    }
+  }
+&nbsp;
+  private emptyDropdown(): void {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.isDropdownEmpty()) {
+<span class="cstat-no" title="statement not covered" >      const dropdownTabs = this.dropdownContent.findAll('.coveo-tab-dropdown');</span>
+<span class="cstat-no" title="statement not covered" >      const tabs = this.getTabsInTabSection();</span>
+<span class="cstat-no" title="statement not covered" >      let lastTabInSection: HTMLElement;</span>
+<span class="cstat-no" title="statement not covered" >      if (tabs) {</span>
+<span class="cstat-no" title="statement not covered" >        lastTabInSection = tabs.pop();</span>
+      }
+<span class="cstat-no" title="statement not covered" >      while (!this.isDropdownEmpty()) {</span>
+<span class="cstat-no" title="statement not covered" >        const current = dropdownTabs.shift();</span>
+<span class="cstat-no" title="statement not covered" >        this.removeFromDropdown(current);</span>
+<span class="cstat-no" title="statement not covered" >        $$(current).insertBefore(this.dropdownHeader.el);</span>
+<span class="cstat-no" title="statement not covered" >        this.fromDropdownToTabSection($$(current), lastTabInSection);</span>
+<span class="cstat-no" title="statement not covered" >        lastTabInSection = _.clone(current);</span>
+      }
+    }
+  }
+&nbsp;
+  private isLargeFormatOverflowing(): boolean {
+    const virtualTabSection = $$(&lt;HTMLElement&gt;this.tabSection.el.cloneNode(true));
+&nbsp;
+    const dropdownHeader = virtualTabSection.find('.coveo-tab-dropdown-header');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (dropdownHeader) {
+<span class="cstat-no" title="statement not covered" >      virtualTabSection.el.removeChild(dropdownHeader);</span>
+    }
+&nbsp;
+    virtualTabSection.el.style.position = 'absolute';
+    virtualTabSection.el.style.visibility = 'hidden';
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.isDropdownEmpty()) {
+<span class="cstat-no" title="statement not covered" >      _.each(this.dropdownContent.findAll('.CoveoTab'), <span class="fstat-no" title="function not covered" >tab </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        virtualTabSection.el.appendChild(tab.cloneNode(true));</span>
+      });
+    }
+    virtualTabSection.insertBefore(this.tabSection.el);
+&nbsp;
+    ResponsiveComponentsUtils.deactivateSmallTabs(this.coveoRoot);
+    const isOverflowing = this.isOverflowing(virtualTabSection.el);
+    ResponsiveComponentsUtils.activateSmallTabs(this.coveoRoot);
+&nbsp;
+&nbsp;
+    virtualTabSection.detach();
+    return isOverflowing;
+  }
+&nbsp;
+  private isOverflowing(el: HTMLElement) {
+    return el.clientWidth &lt; el.scrollWidth;
+  }
+&nbsp;
+  private buildDropdownHeader(): Dom {
+    const dropdownHeader = $$('a', { className: 'coveo-dropdown-header coveo-tab-dropdown-header' });
+    const content = $$('p');
+    content.text(this.dropdownHeaderLabel);
+    const icon = $$('span', { className: 'coveo-more-tabs' }, SVGIcons.icons.arrowDown);
+    SVGDom.addClassToSVGInContainer(icon.el, 'coveo-more-tabs-svg');
+    content.el.appendChild(icon.el);
+    dropdownHeader.el.appendChild(content.el);
+    return dropdownHeader;
+  }
+&nbsp;
+  private bindDropdownHeaderEvents() {
+    this.dropdownHeader.on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (!this.dropdownHeader.hasClass('coveo-dropdown-header-active')) {</span>
+<span class="cstat-no" title="statement not covered" >        this.positionPopup();</span>
+<span class="cstat-no" title="statement not covered" >        this.dropdownHeader.addClass('coveo-dropdown-header-active');</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.closeDropdown();</span>
+      }
+    });
+  }
+&nbsp;
+  private buildDropdownContent() {
+    const dropdownContent = $$('div', { className: 'coveo-tab-list-container ' + SearchInterface.SMALL_INTERFACE_CLASS_NAME });
+    const contentList = $$('ol', { className: 'coveo-tab-list' });
+    dropdownContent.el.appendChild(contentList.el);
+    return dropdownContent;
+  }
+&nbsp;
+  private bindDropdownContentEvents() {
+    this.documentClickListener = <span class="fstat-no" title="function not covered" >event </span>=&gt; {
+<span class="cstat-no" title="statement not covered" >      if (Utils.isHtmlElement(event.target)) {</span>
+<span class="cstat-no" title="statement not covered" >        const eventTarget = $$(&lt;HTMLElement&gt;event.target);</span>
+<span class="cstat-no" title="statement not covered" >        if (!eventTarget.closest('coveo-tab-list-container') &amp;&amp; !eventTarget.closest('coveo-tab-dropdown-header') &amp;&amp; !eventTarget.closest('coveo-tab-dropdown')) {</span>
+<span class="cstat-no" title="statement not covered" >          this.closeDropdown();</span>
+        }
+      }
+    };
+    $$(document.documentElement).on('click', this.documentClickListener);
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private closeDropdown(): void {</span>
+<span class="cstat-no" title="statement not covered" >    this.dropdownContent.detach();</span>
+<span class="cstat-no" title="statement not covered" >    this.dropdownHeader.removeClass('coveo-dropdown-header-active');</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private addToDropdown(el: HTMLElement)</span> {
+<span class="cstat-no" title="statement not covered" >    if (this.dropdownContent) {</span>
+<span class="cstat-no" title="statement not covered" >      $$(el).addClass('coveo-tab-dropdown');</span>
+<span class="cstat-no" title="statement not covered" >      const list = this.dropdownContent.find('ol');</span>
+<span class="cstat-no" title="statement not covered" >      const listElement = $$('li');</span>
+<span class="cstat-no" title="statement not covered" >      listElement.el.appendChild(el);</span>
+<span class="cstat-no" title="statement not covered" >      $$(&lt;HTMLElement&gt;list).prepend(listElement.el);</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private removeFromDropdown(el: HTMLElement)</span> {
+<span class="cstat-no" title="statement not covered" >    if (this.dropdownContent) {</span>
+<span class="cstat-no" title="statement not covered" >      $$(el).removeClass('coveo-tab-dropdown');</span>
+<span class="cstat-no" title="statement not covered" >      $$(el.parentElement).detach();</span>
+    }
+  }
+&nbsp;
+  private cleanUpDropdown() {
+    this.dropdownHeader.removeClass('coveo-dropdown-header-active');
+    this.dropdownHeader.detach();
+    this.dropdownContent.detach();
+  }
+&nbsp;
+  private isDropdownEmpty(): boolean {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.dropdownContent) {
+      const tabs = this.dropdownContent.findAll('.CoveoTab');
+      return tabs.length == 0;
+    }
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+&nbsp;
+  private manageTabSwapping() {
+    _.each(this.coveoRoot.findAll('.' + Component.computeCssClassNameForType(this.ID)), <span class="fstat-no" title="function not covered" >tabElement </span>=&gt; {
+<span class="cstat-no" title="statement not covered" >      const tab = $$(tabElement);</span>
+<span class="cstat-no" title="statement not covered" >      const fadeOutFadeIn = <span class="fstat-no" title="function not covered" >(event)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        const tabsInSection = this.getTabsInTabSection();</span>
+<span class="cstat-no" title="statement not covered" >        const lastTabInSection = tabsInSection.pop();</span>
+<span class="cstat-no" title="statement not covered" >        const lastTabSectionSibling = lastTabInSection.previousSibling;</span>
+<span class="cstat-no" title="statement not covered" >        if (event.propertyName == 'opacity') {</span>
+<span class="cstat-no" title="statement not covered" >          if (tab.el.style.opacity == '0') {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $$(lastTabInSection).addClass('coveo-tab-dropdown');</span>
+<span class="cstat-no" title="statement not covered" >            tab.replaceWith(lastTabInSection);</span>
+<span class="cstat-no" title="statement not covered" >            tab.removeClass('coveo-tab-dropdown');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.fromDropdownToTabSection(tab, &lt;HTMLElement&gt;lastTabSectionSibling);</span>
+&nbsp;
+            // Because of the DOM manipulation, sometimes the animation will not trigger. Accessing the computed styles makes sure
+            // the animation will happen.
+<span class="cstat-no" title="statement not covered" >            window.getComputedStyle(tab.el).opacity;</span>
+<span class="cstat-no" title="statement not covered" >            window.getComputedStyle(lastTabInSection).opacity;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            tab.el.style.opacity = lastTabInSection.style.opacity = '1';</span>
+          } else <span class="cstat-no" title="statement not covered" >if (tab.el.style.opacity == '1') {</span>
+<span class="cstat-no" title="statement not covered" >            this.closeDropdown();</span>
+<span class="cstat-no" title="statement not covered" >            EventsUtils.removePrefixedEvent(tab.el, 'TransitionEnd', fadeOutFadeIn);</span>
+<span class="cstat-no" title="statement not covered" >            this.handleResizeEvent();</span>
+          }
+        }
+      };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      tab.on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (tab.hasClass('coveo-tab-dropdown')) {</span>
+<span class="cstat-no" title="statement not covered" >          const tabsInSection = this.getTabsInTabSection();</span>
+<span class="cstat-no" title="statement not covered" >          let lastTabInSection = tabsInSection.pop();</span>
+<span class="cstat-no" title="statement not covered" >          if (lastTabInSection) {</span>
+<span class="cstat-no" title="statement not covered" >            EventsUtils.addPrefixedEvent(tab.el, 'TransitionEnd', fadeOutFadeIn);</span>
+<span class="cstat-no" title="statement not covered" >            tab.el.style.opacity = lastTabInSection.style.opacity = '0';</span>
+          }
+        }
+      });
+    });
+  }
+&nbsp;
+  private getSearchBoxElement(): HTMLElement {
+    let searchBoxElement = this.coveoRoot.find('.coveo-search-section');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (searchBoxElement) {
+<span class="cstat-no" title="statement not covered" >      return &lt;HTMLElement&gt;searchBoxElement;</span>
+    } else {
+      return &lt;HTMLElement&gt;this.coveoRoot.find('.CoveoSearchbox');
+    }
+  }
+&nbsp;
+  private saveTabsPosition() {
+    this.previousSibling = this.tabSection.el.previousSibling ? <span class="branch-0 cbranch-no" title="branch not covered" >$$(&lt;HTMLElement&gt;this.tabSection.el.previousSibling) </span>: null;
+    this.parent = $$(this.tabSection.el.parentElement);
+  }
+&nbsp;
+  private bindNukeEvents() {
+    $$(this.coveoRoot).on(InitializationEvents.nuke, <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      $$(document.documentElement).off('click', this.documentClickListener);</span>
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private positionPopup() {</span>
+<span class="cstat-no" title="statement not covered" >    PopupUtils.positionPopup(this.dropdownContent.el, this.dropdownHeader.el, this.coveoRoot.el,</span>
+      { horizontal: HorizontalAlignment.INNERRIGHT, vertical: VerticalAlignment.BOTTOM }, this.coveoRoot.el);
+  }
+&nbsp;
+  private getTabsInTabSection(): HTMLElement[] {
+    let tabsInSection = [];
+    _.each(this.tabSection.el.children, <span class="fstat-no" title="function not covered" >childElement </span>=&gt; {
+<span class="cstat-no" title="statement not covered" >      if (Utils.isHtmlElement(childElement)) {</span>
+<span class="cstat-no" title="statement not covered" >        let child = $$(&lt;HTMLElement&gt;childElement);</span>
+<span class="cstat-no" title="statement not covered" >        if (!child.hasClass('coveo-tab-dropdown') &amp;&amp; child.hasClass(Component.computeCssClassNameForType(this.ID))) {</span>
+<span class="cstat-no" title="statement not covered" >          tabsInSection.push(child.el);</span>
+        }
+      }
+    });
+    return tabsInSection;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private fromDropdownToTabSection(tab: Dom, lastTabInTabSection: HTMLElement)</span> {
+<span class="cstat-no" title="statement not covered" >    if (lastTabInTabSection) {</span>
+<span class="cstat-no" title="statement not covered" >      tab.insertAfter(&lt;HTMLElement&gt;lastTabInTabSection);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.tabSection.prepend(tab.el);</span>
+    }
+  }
+&nbsp;
+  private getDropdownHeaderLabel() {
+    let dropdownHeaderLabel: string;
+    _.each($$(this.coveoRoot.find('.coveo-tab-section')).findAll('.' + Component.computeCssClassName(Tab)), <span class="fstat-no" title="function not covered" >tabElement </span>=&gt; {
+<span class="cstat-no" title="statement not covered" >      let tab = &lt;Tab&gt;Component.get(tabElement, Tab);</span>
+<span class="cstat-no" title="statement not covered" >      if (!dropdownHeaderLabel &amp;&amp; tab.options.dropdownHeaderLabel) {</span>
+<span class="cstat-no" title="statement not covered" >        dropdownHeaderLabel = tab.options.dropdownHeaderLabel;</span>
+      }
+    });
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!dropdownHeaderLabel) {
+      dropdownHeaderLabel = l(ResponsiveTabs.DROPDOWN_HEADER_LABEL_DEFAULT_VALUE);
+    }
+&nbsp;
+    return dropdownHeaderLabel;
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

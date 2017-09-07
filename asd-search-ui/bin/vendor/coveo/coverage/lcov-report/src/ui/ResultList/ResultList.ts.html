@@ -1,0 +1,2415 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/ResultList/ResultList.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/ResultList/ResultList.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">91.53% <small>(335 / 366)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">75.47% <small>(80 / 106)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">91.57% <small>(76 / 83)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">91.96% <small>(309 / 336)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/ResultList/</a> &#187; ResultList.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">110</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82</span>
+<span class="cline-any cline-yes">51</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51</span>
+<span class="cline-any cline-yes">51</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56</span>
+<span class="cline-any cline-yes">56</span>
+<span class="cline-any cline-yes">56</span>
+<span class="cline-any cline-yes">558</span>
+<span class="cline-any cline-yes">558</span>
+<span class="cline-any cline-yes">558</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">558</span>
+<span class="cline-any cline-yes">558</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56</span>
+<span class="cline-any cline-yes">56</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">170</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">562</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">501</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">501</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">70</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">108</span>
+<span class="cline-any cline-yes">108</span>
+<span class="cline-any cline-yes">108</span>
+<span class="cline-any cline-yes">108</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">108</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">108</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">108</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">108</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">53</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51</span>
+<span class="cline-any cline-yes">51</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Template, TemplateRole } from '../Templates/Template';
+import { TableTemplate } from '../Templates/TableTemplate';
+import { DefaultResultTemplate } from '../Templates/DefaultResultTemplate';
+import { Component } from '../Base/Component';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { IResultsComponentBindings } from '../Base/ResultsComponentBindings';
+import { ComponentOptions, IFieldOption } from '../Base/ComponentOptions';
+import { IQueryResult } from '../../rest/QueryResult';
+import { IQueryResults } from '../../rest/QueryResults';
+import { Assert } from '../../misc/Assert';
+import {
+  QueryEvents,
+  INewQueryEventArgs,
+  IBuildingQueryEventArgs,
+  IQuerySuccessEventArgs,
+  IDuringQueryEventArgs,
+  IQueryErrorEventArgs
+} from '../../events/QueryEvents';
+import { MODEL_EVENTS } from '../../models/Model';
+import { QUERY_STATE_ATTRIBUTES } from '../../models/QueryStateModel';
+import { QueryUtils } from '../../utils/QueryUtils';
+import { $$, Win, Doc } from '../../utils/Dom';
+import { analyticsActionCauseList, IAnalyticsNoMeta } from '../Analytics/AnalyticsActionListMeta';
+import { Initialization, IInitializationParameters, IInitResult } from '../Base/Initialization';
+import { Defer } from '../../misc/Defer';
+import { DeviceUtils } from '../../utils/DeviceUtils';
+import { ResultListEvents, IDisplayedNewResultEventArgs, IChangeLayoutEventArgs } from '../../events/ResultListEvents';
+import { ResultLayoutEvents } from '../../events/ResultLayoutEvents';
+import { Utils } from '../../utils/Utils';
+import { DomUtils } from '../../utils/DomUtils';
+import { DefaultRecommendationTemplate } from '../Templates/DefaultRecommendationTemplate';
+import { ValidLayout } from '../ResultLayout/ResultLayout';
+import { TemplateList } from '../Templates/TemplateList';
+import { TemplateCache } from '../Templates/TemplateCache';
+import { ResponsiveDefaultResultTemplate } from '../ResponsiveComponents/ResponsiveDefaultResultTemplate';
+import { ResultListRenderer } from './ResultListRenderer';
+import { ResultListTableRenderer } from './ResultListTableRenderer';
+import { ResultListCardRenderer } from './ResultListCardRenderer';
+import * as _ from 'underscore';
+import { exportGlobally } from '../../GlobalExports';
+import 'styling/_ResultList';
+import 'styling/_ResultFrame';
+import 'styling/_Result';
+import { InitializationPlaceholder } from '../Base/InitializationPlaceholder';
+import { get } from '../Base/RegisteredNamedMethods';
+&nbsp;
+export interface IResultListOptions {
+  resultContainer?: HTMLElement;
+  resultTemplate?: Template;
+  resultOptions?: {};
+  waitAnimationContainer?: HTMLElement;
+  enableInfiniteScroll?: boolean;
+  infiniteScrollPageSize?: number;
+  infiniteScrollContainer?: HTMLElement | Window;
+  waitAnimation?: string;
+  mobileScrollContainer?: HTMLElement;
+  enableInfiniteScrollWaitingAnimation?: boolean;
+  fieldsToInclude?: IFieldOption[];
+  autoSelectFieldsToInclude?: boolean;
+  layout?: string;
+}
+&nbsp;
+/**
+ * The ResultList component is responsible for displaying the results of the current query using one or more result
+ * templates (see [Result Templates](https://developers.coveo.com/x/aIGfAQ)).
+ *
+ * This component supports many additional features, such as infinite scrolling.
+ */
+export class ResultList extends Component {
+&nbsp;
+  private static getDefaultTemplate(e: HTMLElement): Template {
+    const template = ResultList.loadTemplatesFromCache();
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (template != null) {
+<span class="cstat-no" title="statement not covered" >      return template;</span>
+    }
+&nbsp;
+    const component = &lt;ResultList&gt;Component.get(e);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (Coveo['Recommendation'] &amp;&amp; component.searchInterface instanceof Coveo['Recommendation']) {
+<span class="cstat-no" title="statement not covered" >      return new DefaultRecommendationTemplate();</span>
+    }
+    return new DefaultResultTemplate();
+  }
+&nbsp;
+  private static loadTemplatesFromCache(): Template {
+    var pageTemplateNames = TemplateCache.getResultListTemplateNames();
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (pageTemplateNames.length &gt; 0) {
+<span class="cstat-no" title="statement not covered" >      return new TemplateList(_.compact(_.map(pageTemplateNames, <span class="fstat-no" title="function not covered" >(templateName)</span> =&gt; <span class="cstat-no" title="statement not covered" >TemplateCache.getTemplate(templateName))</span>));</span>
+    }
+&nbsp;
+    return null;
+  }
+&nbsp;
+  static ID = 'ResultList';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'ResultList': ResultList
+    });
+  }
+&nbsp;
+  /**
+   * The options for the ResultList
+   * @componentOptions
+   */
+  static options: IResultListOptions = {
+&nbsp;
+    /**
+     * Specifies the element within which to insert the rendered templates for results.
+     *
+     * Performing a new query clears the content of this element.
+     *
+     * You can change the container by specifying its selector (e.g.,
+     * `data-result-container-selector='#someCssSelector'`).
+     *
+     * If you specify no value for this option, a `div` element will be dynamically created and appended to the result
+     * list. This element will then be used as a result container.
+     */
+    resultContainer: ComponentOptions.buildChildHtmlElementOption(),
+    resultTemplate: ComponentOptions.buildTemplateOption({ defaultFunction: ResultList.getDefaultTemplate }),
+&nbsp;
+    /**
+     * Specifies the type of animation to display while waiting for a query to return.
+     *
+     * The possible values are:
+     * - `fade`: Fades out the current list of results while the query is executing.
+     * - `spinner`: Shows a spinning animation while the query is executing.
+     * - `none`: Use no animation during queries.
+     *
+     * See also {@link ResultList.options.waitAnimationContainer}.
+     *
+     * Default value is `none`.
+     */
+    waitAnimation: ComponentOptions.buildStringOption({ defaultValue: 'none' }),
+&nbsp;
+    /**
+     * Specifies the element inside which to display the {@link ResultList.options.waitAnimation}.
+     *
+     * You can change this by specifying a CSS selector (e.g.,
+     * `data-wait-animation-container-selector='#someCssSelector'`).
+     *
+     * Default value is the value of {@link ResultList.options.resultContainer}.
+     */
+    waitAnimationContainer: ComponentOptions.buildChildHtmlElementOption({ postProcessing: (value, options: IResultListOptions) =&gt; value || options.resultContainer }),
+&nbsp;
+    /**
+     * Specifies whether to automatically retrieve an additional page of results and append it to the
+     * results that the ResultList is currently displaying when the user scrolls down to the bottom of the infinite
+     * scroll container.
+     *
+     * See also {@link ResultList.options.infiniteScrollPageSize}, {@link ResultList.options.infiniteScrollContainer}
+     * and {@link ResultList.options.enableInfiniteScrollWaitingAnimation}.
+     *
+     * It is important to specify the {@link ResultList.options.infiniteScrollContainer} manually if you want the scrolling
+     * element to be something else than the default `window` element.
+     * Otherwise, you might get in a weird state where the framework will rapidly trigger multiple successive query.
+     *
+     * Default value is `false`.
+     */
+    enableInfiniteScroll: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+&nbsp;
+    /**
+     * If {@link ResultList.options.enableInfiniteScroll} is `true`, specifies the number of additional results to fetch
+     * when the user scrolls down to the bottom of the {@link ResultList.options.infiniteScrollContainer}.
+     *
+     * Default value is `10`. Minimum value is `1`.
+     */
+    infiniteScrollPageSize: ComponentOptions.buildNumberOption({ defaultValue: 10, min: 1, depend: 'enableInfiniteScroll' }),
+&nbsp;
+    /**
+     * If {@link ResultList.options.enableInfiniteScroll} is `true`, specifies the element that triggers the fetching of
+     * additional results when the end user scrolls down to its bottom.
+     *
+     * You can change the container by specifying its selector (e.g.,
+     * `data-infinite-scroll-container-selector='#someCssSelector'`).
+     *
+     * By default, the framework uses the first vertically scrollable parent element it finds, starting from the
+     * ResultList element itself. A vertically scrollable element is an element whose CSS `overflow-y` attribute is
+     * `scroll`.
+     *
+     * This implies that if the framework can find no scrollable parent, it uses the window itself as a scrollable
+     * container.
+     *
+     * This heuristic is not perfect, for technical reasons. There are always some corner case CSS combination which the framework will
+     * not be able to detect correctly as 'scrollable'.
+     *
+     * It is highly recommended that you manually set this option if you wish to have something else than `window` be the scrollable element.
+     */
+    infiniteScrollContainer: ComponentOptions.buildChildHtmlElementOption({ depend: 'enableInfiniteScroll', defaultFunction: (element) =&gt; ComponentOptions.findParentScrolling(element) }),
+&nbsp;
+    /**
+     * If {@link ResultList.options.enableInfiniteScroll} is `true`, specifies whether to display the
+     * {@link ResultList.options.waitAnimation} while fetching additional results.
+     *
+     * Default value is `true`.
+     */
+    enableInfiniteScrollWaitingAnimation: ComponentOptions.buildBooleanOption({ depend: 'enableInfiniteScroll', defaultValue: true }),
+    mobileScrollContainer: ComponentOptions.buildSelectorOption({ defaultFunction: () =&gt; &lt;HTMLElement&gt;document.querySelector('.coveo-results-column') }),
+&nbsp;
+    /**
+     * Specifies a list of fields to include in the query.
+     *
+     * Specifying a list of values for this option ensures that the Search API does not send fields that are unnecessary
+     * for the UI to function.
+     *
+     * See also {@link ResultList.options.autoSelectFieldsToInclude}.
+     *
+     * Default value is `undefined`.
+     */
+    fieldsToInclude: ComponentOptions.buildFieldsOption({ includeInResults: true }),
+&nbsp;
+    /**
+     * Specifies whether the ResultList should scan its template and discover which fields it needs to render all
+     * results.
+     *
+     * Setting this option to `true` ensures that the Search API does not send fields that are unnecessary for the UI to
+     * function.
+     *
+     * See also {@link ResultList.options.fieldsToInclude}.
+     *
+     * Default value is `false`.
+     *
+     * **Note:**
+     * &gt; Many interfaces created with the Interface Editor explicitly set this option to `true`.
+     */
+    autoSelectFieldsToInclude: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+&nbsp;
+    /**
+     * Specifies the layout to use for displaying the results within this ResultList. Specifying a value for this option
+     * automatically populates a {@link ResultLayout} component with a switcher for the layout.
+     *
+     * For example, if there are two {@link ResultList} components in the page, one with its
+     * {@link ResultList.options.layout} set to `list` and the other with the same option set to `card`, then the
+     * ResultLayout component will render two buttons respectively titled **List** and **Card**.
+     *
+     * See the {@link ValidLayout} type for the list of possible values.
+     *
+     * Default value is `list`.
+     */
+    layout: ComponentOptions.buildStringOption({
+      defaultValue: 'list',
+      required: true,
+    }),
+  };
+&nbsp;
+  public static resultCurrentlyBeingRendered: IQueryResult = null;
+  public currentlyDisplayedResults: IQueryResult[] = [];
+  private fetchingMoreResults: Promise&lt;IQueryResults&gt;;
+  private reachedTheEndOfResults = false;
+&nbsp;
+  private shouldDisplayTableHeader: boolean = true;
+  private shouldDisplayTableFooter: boolean = false;
+&nbsp;
+  private renderer: ResultListRenderer;
+&nbsp;
+  // This variable serves to block some setup where the framework fails to correctly identify the "real" scrolling container.
+  // Since it's not technically feasible to correctly identify the scrolling container in every possible scenario without some very complex logic, we instead try to add some kind of mechanism to
+  // block runaway requests where UI will keep asking more results in the index, eventually bringing the browser to it's knee.
+  // Those successive request are needed in "displayMoreResults" to ensure we fill the scrolling container correctly.
+  // Since the container is not identified correctly, it is never "full", so we keep asking for more.
+  // It is reset every time the user actually scroll the container manually.
+  private successiveScrollCount = 0;
+  private static MAX_AMOUNT_OF_SUCESSIVE_REQUESTS = 5;
+&nbsp;
+  /**
+   * Creates a new ResultList component. Binds various event related to queries (e.g., on querySuccess -&gt;
+   * renderResults). Binds scroll event if {@link ResultList.options.enableInfiniteScroll} is `true`.
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the ResultList component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   * @param elementClassId The class that this component should instantiate. Components that extend the base ResultList
+   * use this. Default value is `CoveoResultList`.
+   */
+  constructor(public element: HTMLElement, public options?: IResultListOptions, public bindings?: IComponentBindings, <span class="missing-if-branch" title="else path not taken" >E</span>elementClassId: string = ResultList.ID) {
+    super(element, elementClassId, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+    this.options = ComponentOptions.initComponentOptions(element, ResultList, options);
+&nbsp;
+    Assert.exists(element);
+    Assert.exists(this.options);
+    Assert.exists(this.options.resultTemplate);
+    Assert.exists(this.options.infiniteScrollContainer);
+&nbsp;
+    this.showOrHideElementsDependingOnState(false, false);
+&nbsp;
+&nbsp;
+    this.bind.onRootElement&lt;INewQueryEventArgs&gt;(QueryEvents.newQuery, (args: INewQueryEventArgs) =&gt; this.handleNewQuery());
+    this.bind.onRootElement&lt;IBuildingQueryEventArgs&gt;(QueryEvents.buildingQuery, (args: IBuildingQueryEventArgs) =&gt; this.handleBuildingQuery(args));
+    this.bind.onRootElement&lt;IQuerySuccessEventArgs&gt;(QueryEvents.querySuccess, (args: IQuerySuccessEventArgs) =&gt; this.handleQuerySuccess(args));
+    this.bind.onRootElement&lt;IDuringQueryEventArgs&gt;(QueryEvents.duringQuery, (args: IDuringQueryEventArgs) =&gt; this.handleDuringQuery());
+    this.bind.onRootElement&lt;IQueryErrorEventArgs&gt;(QueryEvents.queryError, (args: IQueryErrorEventArgs) =&gt; this.handleQueryError());
+    $$(this.root).on(ResultListEvents.changeLayout, (e: Event, args: IChangeLayoutEventArgs) =&gt; this.handleChangeLayout(args));
+&nbsp;
+    if (this.options.enableInfiniteScroll) {
+      this.handlePageChanged();
+      this.bind.on(&lt;HTMLElement&gt;this.options.infiniteScrollContainer, 'scroll', <span class="fstat-no" title="function not covered" >(e: Event)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >        this.successiveScrollCount = 0;</span>
+<span class="cstat-no" title="statement not covered" >        this.handleScrollOfResultList();</span>
+      });
+    }
+    this.bind.onQueryState(MODEL_EVENTS.CHANGE_ONE, QUERY_STATE_ATTRIBUTES.FIRST, <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.handlePageChanged())</span>;
+&nbsp;
+    this.initResultContainer();
+    Assert.exists(this.options.resultContainer);
+&nbsp;
+    this.initWaitAnimationContainer();
+    Assert.exists(this.options.waitAnimationContainer);
+&nbsp;
+    this.setupTemplatesVersusLayouts();
+    $$(this.root).on(ResultLayoutEvents.populateResultLayout, (e, args) =&gt; args.layouts.push(this.options.layout));
+    this.setupRenderer();
+  }
+&nbsp;
+  /**
+   * Get the fields needed to be automatically included in the query for this result list.
+   * @returns {string[]}
+   */
+  public getAutoSelectedFieldsToInclude(): string[] {
+&nbsp;
+    return _.chain(this.options.resultTemplate.getFields())
+      .concat(this.getMinimalFieldsToInclude())
+      .compact()
+      .unique()
+      .value();
+  }
+&nbsp;
+  private setupTemplatesVersusLayouts() {
+    const layoutClassToAdd = `coveo-${this.options.layout}-layout-container`;
+    $$(this.options.resultContainer).addClass(layoutClassToAdd);
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.options.layout === 'table') {
+<span class="cstat-no" title="statement not covered" >      this.options.resultTemplate = new TableTemplate((&lt;TemplateList&gt;this.options.resultTemplate).templates || []);</span>
+    }
+&nbsp;
+    // A TemplateList is the scenario where the result template are directly embedded inside the ResultList
+    // This is the typical scenario when a page gets created by the interface editor, for example.
+    // In that case, we try to stick closely that what is actually configured inside the page, and do no "special magic".
+    // Stick to the "hardcoded" configuration present in the page.
+    // We only add the correct layout options if it has not been set manually.
+    if (this.options.resultTemplate instanceof TemplateList) {
+      _.each((&lt;TemplateList&gt;this.options.resultTemplate).templates, (tmpl: Template) =&gt; {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!tmpl.layout) {
+          tmpl.layout = &lt;ValidLayout&gt;this.options.layout;
+        }
+      });
+    } else if (this.options.resultTemplate instanceof DefaultResultTemplate &amp;&amp; this.options.layout == 'list') {
+      ResponsiveDefaultResultTemplate.init(this.root, this, this.options);
+    }
+  }
+&nbsp;
+  /**
+   * Empties the current result list content and appends the given array of HTMLElement.
+   *
+   * Can append to existing elements in the result list, or replace them.
+   *
+   * Triggers the `newResultsDisplayed` and `newResultDisplayed` events.
+   * @param resultsElement
+   * @param append
+   */
+  public renderResults(resultElements: HTMLElement[], append = false): Promise&lt;void&gt; {
+    if (!append) {
+      this.options.resultContainer.innerHTML = '';
+    }
+&nbsp;
+    return this.renderer.renderResults(resultElements, append, this.triggerNewResultDisplayed.bind(this))
+      .then(() =&gt; this.triggerNewResultsDisplayed());
+  }
+&nbsp;
+  /**
+   * Builds and returns an array of HTMLElement with the given result set.
+   * @param results the result set to build an array of HTMLElement from.
+   */
+  public buildResults(results: IQueryResults): Promise&lt;HTMLElement[]&gt; {
+    const res: { elem: HTMLElement, idx: number }[] = [];
+    const resultsPromises = _.map(results.results, (result: IQueryResult, index: number) =&gt; {
+      return this.buildResult(result).then((resultElement: HTMLElement) =&gt; {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (resultElement != null) {
+          res.push({ elem: resultElement, idx: index });
+        }
+        ResultList.resultCurrentlyBeingRendered = null;
+        return resultElement;
+      });
+    });
+&nbsp;
+    // We need to sort by the original index order, because in lazy loading mode, it's possible that results does not gets rendered
+    // in the correct order returned by the index, depending on the time it takes to load all the results component for a given result template
+    return Promise.all(resultsPromises).then(() =&gt; {
+      return _.pluck(_.sortBy(res, 'idx'), 'elem');
+    });
+  }
+&nbsp;
+  /**
+   * Builds and returns an HTMLElement for the given result.
+   * @param result the result to build an HTMLElement from.
+   * @returns {HTMLElement}
+   */
+  public buildResult(result: IQueryResult): Promise&lt;HTMLElement&gt; {
+    Assert.exists(result);
+    QueryUtils.setStateObjectOnQueryResult(this.queryStateModel.get(), result);
+    QueryUtils.setSearchInterfaceObjectOnQueryResult(this.searchInterface, result);
+    ResultList.resultCurrentlyBeingRendered = result;
+    return this.options.resultTemplate.instantiateToElement(result, {
+      wrapInDiv: true,
+      checkCondition: true,
+      currentLayout: &lt;ValidLayout&gt;this.options.layout,
+      responsiveComponents: this.searchInterface.responsiveComponents
+    }).then((resultElement: HTMLElement) =&gt; {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (resultElement != null) {
+        Component.bindResultToElement(resultElement, result);
+      }
+      this.currentlyDisplayedResults.push(result);
+      return this.autoCreateComponentsInsideResult(resultElement, result).initResult.then(() =&gt; {
+        return resultElement;
+      });
+    });
+  }
+&nbsp;
+  /**
+   * Executes a query to fetch new results. After the query returns, renders the new results.
+   *
+   * Asserts that there are more results to display by verifying whether the last query has returned as many results as
+   * requested.
+   *
+   * Asserts that the ResultList is not currently fetching results.
+   * @param count The number of results to fetch and display.
+   */
+  public displayMoreResults(count: number) {
+    Assert.isLargerOrEqualsThan(1, count);
+&nbsp;
+    if (this.isCurrentlyFetchingMoreResults()) {
+      this.logger.warn('Ignoring request to display more results since we\'re already doing so');
+      return;
+    }
+    if (!this.hasPotentiallyMoreResultsToDisplay()) {
+      this.logger.warn('Ignoring request to display more results since we know there aren\'t more to display');
+      return;
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.options.enableInfiniteScrollWaitingAnimation) {
+      this.showWaitingAnimationForInfiniteScrolling();
+    }
+&nbsp;
+    this.fetchingMoreResults = this.queryController.fetchMore(count);
+    this.fetchingMoreResults.then((data: IQueryResults) =&gt; {
+      Assert.exists(data);
+      this.usageAnalytics.logCustomEvent&lt;IAnalyticsNoMeta&gt;(analyticsActionCauseList.pagerScrolling, {}, this.element);
+      const results = data.results;
+      this.reachedTheEndOfResults = count &gt; data.results.length;
+      this.buildResults(data).then((elements: HTMLElement[]) =&gt; {
+        this.renderResults(elements, true);
+        _.each(results, (result) =&gt; {
+          this.currentlyDisplayedResults.push(result);
+        });
+        this.triggerNewResultsDisplayed();
+      });
+    });
+&nbsp;
+    this.fetchingMoreResults.finally(() =&gt; {
+      this.hideWaitingAnimationForInfiniteScrolling();
+      this.fetchingMoreResults = undefined;
+      Defer.defer(() =&gt; {
+        this.successiveScrollCount++;
+        if (this.successiveScrollCount &lt;= ResultList.MAX_AMOUNT_OF_SUCESSIVE_REQUESTS) {
+          this.handleScrollOfResultList();
+        } else {
+          this.logger.info(`Result list has triggered 5 consecutive queries to try and fill up the scrolling container, but it is still unable to do so`);
+          this.logger.info(`Try explicitly setting the 'data-infinite-scroll-container-selector' option on the result list. See : https://coveo.github.io/search-ui/components/resultlist.html#options.infinitescrollcontainer`);
+        }
+      });
+    });
+&nbsp;
+    return this.fetchingMoreResults;
+  }
+&nbsp;
+  /**
+   * Gets the list of currently displayed result.
+   * @returns {IQueryResult[]}
+   */
+  public getDisplayedResults(): IQueryResult[] {
+    return this.currentlyDisplayedResults;
+  }
+&nbsp;
+  /**
+   * Gets the list of currently displayed result HTMLElement.
+   * @returns {HTMLElement[]}
+   */
+  public getDisplayedResultsElements(): HTMLElement[] {
+    return $$(this.options.resultContainer).findAll('.CoveoResult');
+  }
+&nbsp;
+  public enable(): void {
+    super.enable();
+    $$(this.element).removeClass('coveo-hidden');
+  }
+  public disable(): void {
+    super.disable();
+    $$(this.element).addClass('coveo-hidden');
+  }
+&nbsp;
+  protected autoCreateComponentsInsideResult(element: HTMLElement, result: IQueryResult): IInitResult {
+    Assert.exists(element);
+&nbsp;
+    const initOptions = this.searchInterface.options.originalOptionsObject;
+    const resultComponentBindings: IResultsComponentBindings = _.extend({}, this.getBindings(), {
+      resultElement: element
+    });
+    const initParameters: IInitializationParameters = {
+      options: initOptions,
+      bindings: resultComponentBindings,
+      result: result
+    };
+    return Initialization.automaticallyCreateComponentsInside(element, initParameters);
+  }
+&nbsp;
+  protected triggerNewResultDisplayed(result: IQueryResult, resultElement: HTMLElement) {
+    const args: IDisplayedNewResultEventArgs = {
+      result: result,
+      item: resultElement
+    };
+    $$(this.element).trigger(ResultListEvents.newResultDisplayed, args);
+  }
+&nbsp;
+  protected triggerNewResultsDisplayed() {
+    $$(this.element).trigger(ResultListEvents.newResultsDisplayed, {});
+  }
+&nbsp;
+  private handleDuringQuery() {
+    this.logger.trace('Emptying the result container');
+    this.cancelFetchingMoreResultsIfNeeded();
+    this.showWaitingAnimation();
+    this.showOrHideElementsDependingOnState(false, false);
+  }
+&nbsp;
+  private handleQueryError() {
+    this.hideWaitingAnimation();
+    $$(this.options.resultContainer).empty();
+    this.currentlyDisplayedResults = [];
+  }
+&nbsp;
+  private handleQuerySuccess(data: IQuerySuccessEventArgs) {
+    Assert.exists(data);
+    Assert.exists(data.results);
+    const results = data.results;
+    this.logger.trace('Received query results from new query', results);
+    this.hideWaitingAnimation();
+    ResultList.resultCurrentlyBeingRendered = undefined;
+    this.currentlyDisplayedResults = [];
+    this.buildResults(data.results).then((elements: HTMLElement[]) =&gt; {
+      this.renderResults(elements);
+      this.reachedTheEndOfResults = false;
+      this.showOrHideElementsDependingOnState(true, this.currentlyDisplayedResults.length != 0);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (DeviceUtils.isMobileDevice() &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >this.options.mobileScrollContainer != undefined)</span> {
+<span class="cstat-no" title="statement not covered" >        this.options.mobileScrollContainer.scrollTop = 0;</span>
+      }
+&nbsp;
+      if (this.options.enableInfiniteScroll &amp;&amp; results.results.length == data.queryBuilder.numberOfResults) {
+        // This will check right away if we need to add more results to make the scroll container full &amp; scrolling.
+        this.scrollBackToTop();
+        this.handleScrollOfResultList();
+      }
+    });
+  }
+&nbsp;
+  private handleScrollOfResultList() {
+    if (this.isCurrentlyFetchingMoreResults() || !this.options.enableInfiniteScroll) {
+      return;
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.isScrollingOfResultListAlmostAtTheBottom() &amp;&amp; this.hasPotentiallyMoreResultsToDisplay()) {
+      this.displayMoreResults(this.options.infiniteScrollPageSize);
+    }
+  }
+&nbsp;
+  private handlePageChanged() {
+    this.bind.onRootElement(QueryEvents.deferredQuerySuccess, () =&gt; {
+      setTimeout(() =&gt; {
+        this.scrollBackToTop();
+      }, 0);
+    });
+  }
+&nbsp;
+  private scrollBackToTop() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.options.infiniteScrollContainer instanceof Window) {
+      const win = &lt;Window&gt;this.options.infiniteScrollContainer;
+      win.scrollTo(0, 0);
+    } else {
+<span class="cstat-no" title="statement not covered" >      const el = &lt;HTMLElement&gt;this.options.infiniteScrollContainer;</span>
+<span class="cstat-no" title="statement not covered" >      el.scrollTop = 0;</span>
+    }
+  }
+&nbsp;
+  private handleNewQuery() {
+    $$(this.element).removeClass('coveo-hidden');
+    ResultList.resultCurrentlyBeingRendered = undefined;
+  }
+&nbsp;
+  private handleBuildingQuery(args: IBuildingQueryEventArgs) {
+    if (this.options.fieldsToInclude != null) {
+      // remove the @
+      args.queryBuilder.addFieldsToInclude(_.map(this.options.fieldsToInclude, (field) =&gt; field.substr(1)));
+    }
+    if (this.options.autoSelectFieldsToInclude) {
+      const otherResultListsElements = _.reject($$(this.root).findAll(`.${Component.computeCssClassName(ResultList)}`), resultListElement =&gt; resultListElement == this.element);
+      const otherFields = _.flatten(_.map(otherResultListsElements, (otherResultListElement) =&gt; {
+        const otherResultListInstance = &lt;ResultList&gt;get(otherResultListElement);
+        if (otherResultListInstance) {
+          return otherResultListInstance.getAutoSelectedFieldsToInclude();
+        } else {
+          return [];
+        }
+      }));
+&nbsp;
+      args.queryBuilder.addRequiredFields(_.unique(otherFields.concat(this.getAutoSelectedFieldsToInclude())));
+      args.queryBuilder.includeRequiredFields = true;
+    }
+  }
+&nbsp;
+  private handleChangeLayout(args: IChangeLayoutEventArgs) {
+    if (args.layout === this.options.layout) {
+      this.enable();
+      this.options.resultTemplate.layout = &lt;ValidLayout&gt;this.options.layout;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (args.results) {
+        // Prevent flickering when switching to a new layout that is empty
+        // add a temporary placeholder, the same that is used on initialization
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.options.resultContainer.innerHTML == '') {
+          new InitializationPlaceholder(this.root, { resultList: true, layout: args.layout });
+        }
+        Defer.defer(() =&gt; {
+          this.buildResults(args.results).then((elements: HTMLElement[]) =&gt; {
+            this.renderResults(elements);
+          });
+        });
+      }
+    } else {
+      this.disable();
+    }
+  }
+&nbsp;
+  private isCurrentlyFetchingMoreResults(): boolean {
+    return Utils.exists(this.fetchingMoreResults);
+  }
+&nbsp;
+  private getMinimalFieldsToInclude() {
+    // these fields are needed for analytics click event
+    return ['author', 'language', 'urihash', 'objecttype', 'collection', 'source', 'language', 'permanentid'];
+  }
+&nbsp;
+  private isScrollingOfResultListAlmostAtTheBottom(): boolean {
+    // this is in a try catch because the unit test fail otherwise (Window does not exist for phantom js in the console)
+    let isWindow;
+    try {
+      isWindow = this.options.infiniteScrollContainer instanceof Window;
+    } catch (e) {
+<span class="cstat-no" title="statement not covered" >      isWindow = false;</span>
+    }
+    return isWindow ? this.isScrollAtBottomForWindowElement() : <span class="branch-1 cbranch-no" title="branch not covered" >this.isScrollAtBottomForHtmlElement();</span>
+  }
+&nbsp;
+  private isScrollAtBottomForWindowElement() {
+    const win = new Win(window);
+    const windowHeight = win.height();
+    const scrollTop = win.scrollY();
+    const bodyHeight = new Doc(document).height();
+    return bodyHeight - (windowHeight + scrollTop) &lt; windowHeight / 2;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private isScrollAtBottomForHtmlElement() {</span>
+<span class="cstat-no" title="statement not covered" >    const el = &lt;HTMLElement&gt;this.options.infiniteScrollContainer;</span>
+<span class="cstat-no" title="statement not covered" >    const elementHeight = el.clientHeight;</span>
+<span class="cstat-no" title="statement not covered" >    const scrollHeight = el.scrollHeight;</span>
+<span class="cstat-no" title="statement not covered" >    const bottomPosition = el.scrollTop + elementHeight;</span>
+<span class="cstat-no" title="statement not covered" >    return (scrollHeight - bottomPosition) &lt; elementHeight / 2;</span>
+  }
+&nbsp;
+  public hasPotentiallyMoreResultsToDisplay(): boolean {
+    return this.currentlyDisplayedResults.length &gt; 0 &amp;&amp; !this.reachedTheEndOfResults;
+  }
+&nbsp;
+  private cancelFetchingMoreResultsIfNeeded() {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.isCurrentlyFetchingMoreResults()) {
+<span class="cstat-no" title="statement not covered" >      this.logger.trace('Cancelling fetching more results');</span>
+<span class="cstat-no" title="statement not covered" >      Promise.reject(this.fetchingMoreResults);</span>
+<span class="cstat-no" title="statement not covered" >      this.fetchingMoreResults = undefined;</span>
+    }
+  }
+&nbsp;
+  private showOrHideElementsDependingOnState(hasQuery: boolean, hasResults: boolean) {
+    const showIfQuery = $$(this.element).findAll('.coveo-show-if-query');
+    const showIfNoQuery = $$(this.element).findAll('.coveo-show-if-no-query');
+    const showIfResults = $$(this.element).findAll('.coveo-show-if-results');
+    const showIfNoResults = $$(this.element).findAll('.coveo-show-if-no-results');
+&nbsp;
+    _.each(showIfQuery, (s: HTMLElement) =&gt; {
+      $$(s).toggle(hasQuery);
+    });
+    _.each(showIfNoQuery, (s: HTMLElement) =&gt; {
+      $$(s).toggle(!hasQuery);
+    });
+    _.each(showIfResults, (s: HTMLElement) =&gt; {
+      $$(s).toggle(hasQuery &amp;&amp; hasResults);
+    });
+    _.each(showIfNoResults, (s: HTMLElement) =&gt; {
+      $$(s).toggle(hasQuery &amp;&amp; !hasResults);
+    });
+  }
+&nbsp;
+  private showWaitingAnimation() {
+    switch (this.options.waitAnimation.toLowerCase()) {
+      case 'fade':
+        $$(this.options.waitAnimationContainer).addClass('coveo-fade-out');
+        break;
+      case 'spinner':
+        _.each(this.options.resultContainer.children, <span class="fstat-no" title="function not covered" >(child: HTMLElement)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          $$(child).hide();</span>
+        });
+        <span class="missing-if-branch" title="else path not taken" >E</span>if ($$(this.options.waitAnimationContainer).find('.coveo-wait-animation') == undefined) {
+          this.options.waitAnimationContainer.appendChild(DomUtils.getBasicLoadingAnimation());
+        }
+        break;
+    }
+  }
+&nbsp;
+  private hideWaitingAnimation() {
+    switch (this.options.waitAnimation.toLowerCase()) {
+      case 'fade':
+        $$(this.options.waitAnimationContainer).removeClass('coveo-fade-out');
+        break;
+      case 'spinner':
+        const spinner = $$(this.options.waitAnimationContainer).find('.coveo-loading-spinner');
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (spinner) {
+<span class="cstat-no" title="statement not covered" >          $$(spinner).detach();</span>
+        }
+        break;
+    }
+  }
+&nbsp;
+  private showWaitingAnimationForInfiniteScrolling() {
+    const spinner = DomUtils.getLoadingSpinner();
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.options.layout == 'card' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >this.options.enableInfiniteScroll)</span> {
+<span class="cstat-no" title="statement not covered" >      const previousSpinnerContainer = $$(this.options.waitAnimationContainer).findAll('.coveo-loading-spinner-container');</span>
+<span class="cstat-no" title="statement not covered" >      _.each(previousSpinnerContainer, <span class="fstat-no" title="function not covered" >previousSpinner </span>=&gt; <span class="cstat-no" title="statement not covered" >$$(previousSpinner).remove())</span>;</span>
+<span class="cstat-no" title="statement not covered" >      const spinnerContainer = $$('div', {</span>
+        className: 'coveo-loading-spinner-container'
+      });
+<span class="cstat-no" title="statement not covered" >      spinnerContainer.append(spinner);</span>
+<span class="cstat-no" title="statement not covered" >      this.options.waitAnimationContainer.appendChild(spinnerContainer.el);</span>
+    } else {
+      this.options.waitAnimationContainer.appendChild(DomUtils.getLoadingSpinner());
+    }
+&nbsp;
+  }
+&nbsp;
+  private hideWaitingAnimationForInfiniteScrolling() {
+    const spinners = $$(this.options.waitAnimationContainer).findAll('.coveo-loading-spinner');
+    const containers = $$(this.options.waitAnimationContainer).findAll('.coveo-loading-spinner-container');
+    _.each(spinners, spinner =&gt; $$(spinner).remove());
+    _.each(containers, <span class="fstat-no" title="function not covered" >container </span>=&gt; <span class="cstat-no" title="statement not covered" >$$(container).remove())</span>;
+  }
+&nbsp;
+  private initResultContainer() {
+    if (!this.options.resultContainer) {
+      const elemType = this.options.layout === 'table' ? <span class="branch-0 cbranch-no" title="branch not covered" >'table' </span>: 'div';
+      this.options.resultContainer = $$(elemType, { className: 'coveo-result-list-container' }).el;
+      this.element.appendChild(this.options.resultContainer);
+    }
+  }
+&nbsp;
+  private initWaitAnimationContainer() {
+    if (!this.options.waitAnimationContainer) {
+      this.options.waitAnimationContainer = this.options.resultContainer;
+    }
+  }
+&nbsp;
+  private setupRenderer() {
+    const autoCreateComponentsFn = this.autoCreateComponentsInsideResult.bind(this);
+    switch (this.options.layout) {
+      case 'card':
+        this.renderer = new ResultListCardRenderer(this.options, autoCreateComponentsFn);
+        break;
+<span class="branch-1 cbranch-no" title="branch not covered" >      case 'table':</span>
+<span class="cstat-no" title="statement not covered" >        this.renderer = new ResultListTableRenderer(this.options, autoCreateComponentsFn);</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case 'list':
+      default:
+        this.renderer = new ResultListRenderer(this.options, autoCreateComponentsFn);
+        break;
+    }
+  }
+}
+&nbsp;
+Initialization.registerAutoCreateComponent(ResultList);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

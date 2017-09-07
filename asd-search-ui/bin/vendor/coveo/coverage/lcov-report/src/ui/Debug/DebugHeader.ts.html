@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Debug/DebugHeader.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/Debug/DebugHeader.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">92.38% <small>(97 / 105)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">66.67% <small>(14 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">91.67% <small>(22 / 24)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">91.21% <small>(83 / 91)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Debug/</a> &#187; DebugHeader.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">72</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IComponentBindings } from '../Base/ComponentBindings';
+import { Checkbox } from '../FormWidgets/Checkbox';
+import { COMPONENT_OPTIONS_ATTRIBUTES } from '../../models/ComponentOptionsModel';
+import { TextInput } from '../FormWidgets/TextInput';
+import { $$, Dom } from '../../utils/Dom';
+import { ResultListEvents, IDisplayedNewResultEventArgs } from '../../events/ResultListEvents';
+import { QueryEvents, IDoneBuildingQueryEventArgs } from '../../events/QueryEvents';
+import { InitializationEvents } from '../../events/InitializationEvents';
+import { stringify } from 'circular-json';
+import * as _ from 'underscore';
+&nbsp;
+export class DebugHeader {
+  private debug = false;
+  private enableQuerySyntax = false;
+  private highlightRecommendation = false;
+  private requestAllFields = false;
+  private search: HTMLElement;
+  private downloadLink: Dom;
+  private widgets: HTMLElement[] = [];
+&nbsp;
+  constructor(public root: HTMLElement, public element: HTMLElement, public bindings: IComponentBindings, public onSearch: (value: string) =&gt; void, public infoToDebug: any) {
+    this.widgets.push(this.buildEnabledHighlightRecommendation());
+    this.widgets.push(this.buildEnableDebugCheckbox());
+    this.widgets.push(this.buildEnableQuerySyntaxCheckbox());
+    this.widgets.push(this.buildRequestAllFieldsCheckbox());
+    this.widgets.push(this.buildSearch());
+    this.widgets.push(this.buildDownloadLink());
+    this.moveTo(element);
+&nbsp;
+    $$(this.root).on(ResultListEvents.newResultDisplayed, (e, args: IDisplayedNewResultEventArgs) =&gt; this.handleNewResultDisplayed(args));
+    $$(this.root).on(QueryEvents.doneBuildingQuery, (e, args: IDoneBuildingQueryEventArgs) =&gt; this.handleDoneBuildingQuery(args));
+  }
+&nbsp;
+  public moveTo(newElement: HTMLElement) {
+    _.each(this.widgets, (widget: HTMLElement) =&gt; newElement.appendChild(widget));
+    this.element = newElement;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public setSearch(onSearch: (value: string) =&gt; void)</span> {
+<span class="cstat-no" title="statement not covered" >    this.onSearch = onSearch;</span>
+  }
+&nbsp;
+  public setNewInfoToDebug(newInfoToDebug) {
+    this.infoToDebug = newInfoToDebug;
+    this.rebuildDownloadLink();
+  }
+&nbsp;
+  private rebuildDownloadLink() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.downloadLink) {
+      this.downloadLink.setAttribute('href', this.buildDownloadHref());
+    }
+  }
+&nbsp;
+  private handleNewResultDisplayed(args: IDisplayedNewResultEventArgs) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (args.item != null &amp;&amp; args.result.isRecommendation &amp;&amp; this.highlightRecommendation) {
+      $$(args.item).addClass('coveo-is-recommendation');
+    }
+  }
+&nbsp;
+  private handleDoneBuildingQuery(args: IDoneBuildingQueryEventArgs) {
+    args.queryBuilder.enableDebug = this.debug || args.queryBuilder.enableDebug;
+    if (this.requestAllFields) {
+      args.queryBuilder.includeRequiredFields = false;
+    }
+  }
+&nbsp;
+  private buildSearch() {
+    const txtInput = new TextInput(<span class="fstat-no" title="function not covered" >(txtInputInstance)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      const value = txtInputInstance.getValue().toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >      this.onSearch(value);</span>
+    }, 'Search in debug');
+    this.search = txtInput.build();
+    return this.search;
+  }
+&nbsp;
+  private buildDownloadLink() {
+    const downloadLink = $$('a', {
+      download: 'debug.json',
+      'href': this.buildDownloadHref()
+    }, 'Download');
+    this.downloadLink = downloadLink;
+    return downloadLink.el;
+  }
+&nbsp;
+  private buildEnableDebugCheckbox() {
+    const checkbox = new Checkbox((checkboxInstance) =&gt; {
+      this.debug = checkboxInstance.isSelected();
+&nbsp;
+      this.bindings.queryController.executeQuery({
+        closeModalBox: false
+      });
+      let input = this.search.querySelector('input') as HTMLInputElement;
+      input.value = '';
+    }, 'Enable query debug');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.debug) {
+<span class="cstat-no" title="statement not covered" >      checkbox.select();</span>
+    }
+    return checkbox.build();
+  }
+&nbsp;
+  private buildEnableQuerySyntaxCheckbox() {
+    const checkbox = new Checkbox((checkboxInstance) =&gt; {
+      this.enableQuerySyntax = checkboxInstance.isSelected();
+      this.bindings.componentOptionsModel.set(COMPONENT_OPTIONS_ATTRIBUTES.SEARCH_BOX, { enableQuerySyntax: this.enableQuerySyntax });
+      this.bindings.queryController.executeQuery({
+        closeModalBox: false
+      });
+    }, 'Enable query syntax in search box');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.enableQuerySyntax) {
+<span class="cstat-no" title="statement not covered" >      checkbox.select();</span>
+    }
+    return checkbox.build();
+  }
+&nbsp;
+  private buildRequestAllFieldsCheckbox() {
+    const checkbox = new Checkbox((checkboxInstance) =&gt; {
+      this.requestAllFields = checkboxInstance.isSelected();
+      this.bindings.queryController.executeQuery({
+        closeModalBox: false
+      });
+    }, 'Request all fields available');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.requestAllFields) {
+<span class="cstat-no" title="statement not covered" >      checkbox.select();</span>
+    }
+    return checkbox.build();
+  }
+&nbsp;
+  private buildEnabledHighlightRecommendation() {
+    const checkbox = new Checkbox((checkboxInstance) =&gt; {
+      this.highlightRecommendation = checkboxInstance.isSelected();
+      this.bindings.queryController.executeQuery({
+        closeModalBox: false
+      });
+    }, 'Highlight recommendation');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.highlightRecommendation) {
+<span class="cstat-no" title="statement not covered" >      checkbox.select();</span>
+    }
+    return checkbox.build();
+  }
+&nbsp;
+  private buildDownloadHref() {
+    const toDownload = {};
+    _.each(this.infoToDebug, (info, key) =&gt; {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (info['bindings']) {
+<span class="cstat-no" title="statement not covered" >        toDownload[key] = info['options'];</span>
+      } else {
+        toDownload[key] = _.omit(info, 'state', 'searchInterface');
+      }
+    });
+    return 'data:text/json;charset=utf-8,' + encodeURIComponent(stringify(toDownload));
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

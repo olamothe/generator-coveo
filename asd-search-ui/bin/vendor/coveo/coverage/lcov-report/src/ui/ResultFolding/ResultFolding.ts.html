@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/ResultFolding/ResultFolding.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/ResultFolding/ResultFolding.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">98.1% <small>(155 / 158)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">92.5% <small>(37 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">93.75% <small>(30 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">99.32% <small>(145 / 146)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/ResultFolding/</a> &#187; ResultFolding.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Template } from '../Templates/Template';
+import { Component } from '../Base/Component';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { ComponentOptions } from '../Base/ComponentOptions';
+import { DefaultFoldingTemplate } from './DefaultFoldingTemplate';
+import { IQueryResult } from '../../rest/QueryResult';
+import { Utils } from '../../utils/Utils';
+import { QueryUtils } from '../../utils/QueryUtils';
+import { Initialization, IInitializationParameters, IInitResult } from '../Base/Initialization';
+import { Assert } from '../../misc/Assert';
+import { $$ } from '../../utils/Dom';
+import { l } from '../../strings/Strings';
+import * as _ from 'underscore';
+import { exportGlobally } from '../../GlobalExports';
+&nbsp;
+import 'styling/_ResultFolding';
+import { SVGIcons } from '../../utils/SVGIcons';
+import { SVGDom } from '../../utils/SVGDom';
+&nbsp;
+export interface IResultFoldingOptions {
+  resultTemplate?: Template;
+  normalCaption?: string;
+  expandedCaption?: string;
+  moreCaption?: string;
+  lessCaption?: string;
+  oneResultCaption?: string;
+}
+&nbsp;
+/**
+ * The `ResultFolding` component renders folded result sets. It is usable inside a result template when there is an
+ * active [`Folding`]{@link Folding} component in the page. This component takes care of rendering the parent result and
+ * its child results in a coherent manner.
+ *
+ * This component is a result template component (see [Result Templates](https://developers.coveo.com/x/aIGfAQ)).
+ *
+ * See [Folding Results](https://developers.coveo.com/x/7hUvAg).
+ */
+export class ResultFolding extends Component {
+  static ID = 'ResultFolding';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'ResultFolding': ResultFolding,
+      'DefaultFoldingTemplate': DefaultFoldingTemplate
+    });
+  }
+&nbsp;
+  /**
+   * The options for the component
+   * @componentOptions
+   */
+  static options: IResultFoldingOptions = {
+&nbsp;
+    /**
+     * Specifies the template to use to render each of the child results for a top result.
+     *
+     * You can specify a previously registered template to use either by referring to its HTML `id` attribute or to a
+     * CSS selector (see {@link TemplateCache}).
+     *
+     * **Example:**
+     *
+     * Specifying a previously registered template by referring to its HTML `id` attribute:
+     *
+     * ```html
+     * &lt;span class="CoveoResultFolding" data-result-template-id="Foo"&gt;&lt;/span&gt;
+     * ```
+     *
+     * Specifying a previously registered template by referring to a CSS selector:
+     *
+     * ```html
+     * &lt;span class='CoveoResultFolding' data-result-template-selector="#Foo"&gt;&lt;/span&gt;
+     * ```
+     *
+     * If you do not specify a custom folding template, the component uses the default result folding template.
+     */
+    resultTemplate: ComponentOptions.buildTemplateOption({ defaultFunction: () =&gt; new DefaultFoldingTemplate() }),
+&nbsp;
+    /**
+     * Specifies the caption to display at the top of the child results when the folding result set is not expanded.
+     *
+     * Default value is `undefined`, which displays no caption.
+     */
+    normalCaption: ComponentOptions.buildLocalizedStringOption(),
+&nbsp;
+    /**
+     * Specifies the caption to display at the top of the child results when the folding result set is expanded.
+     *
+     * Default value is `undefined`, which displays no caption.
+     */
+    expandedCaption: ComponentOptions.buildLocalizedStringOption(),
+&nbsp;
+    /**
+     * Specifies the caption to display on the link to expand / show child results.
+     *
+     * Default value is the localized string for `ShowMore`.
+     */
+    moreCaption: ComponentOptions.buildLocalizedStringOption({ postProcessing: (value) =&gt; value || l('ShowMore') }),
+&nbsp;
+    /**
+     * Specifies the caption to display on the link to shrink the loaded folding result set back to only the top result.
+     *
+     * Default value is the localized string for `ShowLess`.
+     */
+    lessCaption: ComponentOptions.buildLocalizedStringOption({ postProcessing: (value) =&gt; value || l('ShowLess') }),
+&nbsp;
+    /**
+     * Specifies the caption to display when there is only one result in a folding result set.
+     *
+     * Default value is the localized string for `DisplayingTheOnlyMessage`
+     */
+    oneResultCaption: ComponentOptions.buildLocalizedStringOption({ postProcessing: (value) =&gt; value || l('DisplayingTheOnlyMessage') })
+  };
+&nbsp;
+  private normalCaption: HTMLElement;
+  private expandedCaption: HTMLElement;
+  private oneResultCaption: HTMLElement;
+  private results: HTMLElement;
+  private showMore: HTMLElement;
+  private showLess: HTMLElement;
+  private waitAnimation: HTMLElement;
+  private moreResultsPromise: Promise&lt;IQueryResult[]&gt;;
+  private showingMoreResults = false;
+&nbsp;
+  public childResults: IQueryResult[];
+&nbsp;
+  /**
+   * Creates a new ResultFolding component.
+   * @param options The options for the ResultFolding component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   * @param result The result to associate the component with.
+   */
+  constructor(public element: HTMLElement, public options?: IResultFoldingOptions, bindings?: IComponentBindings, public result?: IQueryResult) {
+    super(element, ResultFolding.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+&nbsp;
+    this.options = ComponentOptions.initComponentOptions(this.element, ResultFolding, options);
+&nbsp;
+    Assert.exists(result);
+&nbsp;
+    this.buildElements();
+    this.displayThoseResults(this.result.childResults).then(() =&gt; {
+      this.updateElementVisibility();
+&nbsp;
+      if ($$(this.element.parentElement).hasClass('CoveoCardOverlay')) {
+        this.bindOverlayEvents();
+      }
+&nbsp;
+      if (this.result.childResults.length == 0 &amp;&amp; !this.result.moreResults) {
+        $$(this.element).hide();
+      }
+    });
+  }
+&nbsp;
+  /**
+   *
+   * @returns {Promise&lt;IQueryResult[]&gt;}
+   */
+  public showMoreResults() {
+    Assert.exists(this.result.moreResults);
+&nbsp;
+    this.cancelAnyPendingShowMore();
+    this.moreResultsPromise = this.result.moreResults();
+    this.waitAnimation = $$('div', { className: 'coveo-loading-spinner' }).el;
+    this.results.appendChild(this.waitAnimation);
+    this.updateElementVisibility();
+&nbsp;
+    let ret = this.moreResultsPromise
+      .then((results?: IQueryResult[]) =&gt; {
+        this.childResults = results;
+        this.showingMoreResults = true;
+        return this.displayThoseResults(results).then(() =&gt; {
+          this.updateElementVisibility(results.length);
+          return results;
+        });
+&nbsp;
+      });
+&nbsp;
+    ret.finally(() =&gt; {
+      this.moreResultsPromise = undefined;
+      $$(this.waitAnimation).detach();
+      this.waitAnimation = undefined;
+    });
+&nbsp;
+    return ret;
+  }
+&nbsp;
+  public showLessResults() {
+    this.cancelAnyPendingShowMore();
+    this.showingMoreResults = false;
+    this.displayThoseResults(this.result.childResults);
+    this.updateElementVisibility();
+    this.scrollToResultElement();
+  }
+&nbsp;
+  private buildElements() {
+    this.buildHeader();
+    this.buildResults();
+    this.buildFooter();
+  }
+&nbsp;
+  private buildHeader() {
+    let header = $$('div', { className: 'coveo-folding-header' }).el;
+    this.element.appendChild(header);
+    if (this.options.normalCaption != undefined &amp;&amp; this.options.expandedCaption != undefined) {
+      this.normalCaption = $$('div', { className: 'coveo-folding-normal-caption' }, this.options.normalCaption).el;
+      header.appendChild(this.normalCaption);
+&nbsp;
+      this.expandedCaption = $$('div', { className: 'coveo-folding-expanded-caption' }, this.options.expandedCaption).el;
+      header.appendChild(this.expandedCaption);
+    }
+    this.oneResultCaption = $$('div', { className: 'coveo-folding-oneresult-caption' }, this.options.oneResultCaption).el;
+    header.appendChild(this.oneResultCaption);
+  }
+&nbsp;
+  private buildResults() {
+    this.results = $$('div', { className: 'coveo-folding-results' }).el;
+    this.element.appendChild(this.results);
+  }
+&nbsp;
+  private buildFooter() {
+    let footer = $$('div', { className: 'coveo-folding-footer' }).el;
+    this.element.parentElement.appendChild(footer);
+&nbsp;
+    if (this.result.moreResults) {
+      this.showMore = $$('div', { className: 'coveo-folding-footer-section-for-less' }).el;
+      $$(this.showMore).on('click', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.showMoreResults())</span>;
+      footer.appendChild(this.showMore);
+&nbsp;
+      this.showLess = $$('div', { className: 'coveo-folding-footer-section-for-more' }).el;
+      $$(this.showLess).on('click', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.showLessResults())</span>;
+      footer.appendChild(this.showLess);
+&nbsp;
+      let footerIconShowMore = $$('div', { className: 'coveo-folding-more' }, $$('span', { className: 'coveo-folding-footer-icon' }, SVGIcons.icons.arrowDown).el).el;
+      SVGDom.addClassToSVGInContainer(footerIconShowMore, 'coveo-folding-more-svg');
+      let footerIconShowLess = $$('div', { className: 'coveo-folding-less' }, $$('span', { className: 'coveo-folding-footer-icon' }, SVGIcons.icons.arrowUp).el).el;
+      SVGDom.addClassToSVGInContainer(footerIconShowLess, 'coveo-folding-less-svg');
+      let showMoreLink = $$('a', { className: 'coveo-folding-show-more' }, this.options.moreCaption).el;
+      let showLessLink = $$('a', { className: 'coveo-folding-show-less' }, this.options.lessCaption).el;
+      this.showMore.appendChild(showMoreLink);
+      this.showLess.appendChild(showLessLink);
+      this.showMore.appendChild(footerIconShowMore);
+      this.showLess.appendChild(footerIconShowLess);
+    }
+  }
+&nbsp;
+  private updateElementVisibility(subResultsLength?: number) {
+    if (this.normalCaption) {
+      $$(this.normalCaption).toggle(!this.showingMoreResults &amp;&amp; this.result.childResults.length &gt; 0);
+    }
+    if (this.expandedCaption) {
+      $$(this.expandedCaption).toggle(this.showingMoreResults);
+    }
+    $$(this.oneResultCaption).toggleClass('coveo-hidden', !(subResultsLength &amp;&amp; subResultsLength == 1));
+&nbsp;
+    if (this.showMore) {
+      $$(this.showMore).toggle(!this.showingMoreResults &amp;&amp; !Utils.exists(this.moreResultsPromise));
+      $$(this.showLess).toggle(this.showingMoreResults);
+    }
+&nbsp;
+    let showIfNormal = $$(this.element).find('.coveo-show-if-normal');
+    if (showIfNormal) {
+      $$(showIfNormal).toggle(!this.showingMoreResults);
+    }
+&nbsp;
+    let showIfExpanded = $$(this.element).find('.coveo-show-if-expanded');
+    if (showIfExpanded) {
+      $$(showIfExpanded).toggle(this.showingMoreResults);
+    }
+  }
+&nbsp;
+  private scrollToResultElement() {
+    let resultElem = $$(this.element).closest('CoveoResult');
+    window.scrollTo(0, window.scrollY + resultElem.getBoundingClientRect().top);
+  }
+&nbsp;
+  private displayThoseResults(results: IQueryResult[]): Promise&lt;boolean&gt; {
+    const childResultsPromises = _.map(results, (result) =&gt; {
+      return this.renderChildResult(result);
+    });
+&nbsp;
+    return Promise.all(childResultsPromises).then((childsToAppend: HTMLElement[]) =&gt; {
+      $$(this.results).empty();
+      _.each(childsToAppend, (oneChild) =&gt; {
+        this.results.appendChild(oneChild);
+      });
+      return true;
+    });
+  }
+&nbsp;
+  private renderChildResult(childResult: IQueryResult): Promise&lt;HTMLElement&gt; {
+    QueryUtils.setStateObjectOnQueryResult(this.queryStateModel.get(), childResult);
+    QueryUtils.setSearchInterfaceObjectOnQueryResult(this.searchInterface, childResult);
+&nbsp;
+    return this.options.resultTemplate.instantiateToElement(childResult, {
+      wrapInDiv: false,
+      checkCondition: false,
+      responsiveComponents: this.searchInterface.responsiveComponents
+    }).then((oneChild: HTMLElement) =&gt; {
+      $$(oneChild).addClass('coveo-result-folding-child-result');
+&nbsp;
+      $$(oneChild).toggleClass('coveo-normal-child-result', !this.showingMoreResults);
+      $$(oneChild).toggleClass('coveo-expanded-child-result', this.showingMoreResults);
+      return this.autoCreateComponentsInsideResult(oneChild, childResult).initResult.then(() =&gt; {
+        return oneChild;
+      });
+    });
+  }
+&nbsp;
+  private autoCreateComponentsInsideResult(element: HTMLElement, result: IQueryResult): IInitResult {
+    Assert.exists(element);
+&nbsp;
+    let initOptions = this.searchInterface.options;
+    let initParameters: IInitializationParameters = { options: initOptions, bindings: this.getBindings(), result: result };
+    return Initialization.automaticallyCreateComponentsInside(element, initParameters);
+  }
+&nbsp;
+  private cancelAnyPendingShowMore() {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.moreResultsPromise) {
+<span class="cstat-no" title="statement not covered" >      this.moreResultsPromise = undefined;</span>
+    }
+&nbsp;
+    Assert.doesNotExists(this.moreResultsPromise);
+    Assert.doesNotExists(this.waitAnimation);
+  }
+&nbsp;
+  private bindOverlayEvents() {
+    this.bind.one(this.element.parentElement, 'openCardOverlay', () =&gt; {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.result.moreResults) {
+        this.showMoreResults();
+      }
+    });
+  }
+}
+&nbsp;
+Initialization.registerAutoCreateComponent(ResultFolding);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,984 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/controllers/FacetQueryController.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/controllers/FacetQueryController.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">79.53% <small>(136 / 171)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">65.63% <small>(63 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">72.73% <small>(24 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">79.11% <small>(125 / 158)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/controllers/</a> &#187; FacetQueryController.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">184</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">59</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">57</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">52</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">56</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">29</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">61</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-yes">105</span>
+<span class="cline-any cline-yes">75</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">123</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/// &lt;reference path='../ui/Facet/Facet.ts' /&gt;
+&nbsp;
+import { Facet } from '../ui/Facet/Facet';
+import { IGroupByRequest } from '../rest/GroupByRequest';
+import { IGroupByResult } from '../rest/GroupByResult';
+import { ExpressionBuilder } from '../ui/Base/ExpressionBuilder';
+import { FacetValue } from '../ui/Facet/FacetValues';
+import { Utils } from '../utils/Utils';
+import { QueryBuilder } from '../ui/Base/QueryBuilder';
+import { FacetSearchParameters } from '../ui/Facet/FacetSearchParameters';
+import { Assert } from '../misc/Assert';
+import { IIndexFieldValue } from '../rest/FieldValue';
+import { FacetUtils } from '../ui/Facet/FacetUtils';
+import { IQueryResults } from '../rest/QueryResults';
+import { IGroupByValue } from '../rest/GroupByValue';
+import { IEndpointError } from '../rest/EndpointError';
+import { IQueryBuilderExpression } from '../ui/Base/QueryBuilder';
+import * as _ from 'underscore';
+&nbsp;
+export class FacetQueryController {
+  public expressionToUseForFacetSearch: string;
+  public basicExpressionToUseForFacetSearch: string;
+  public advancedExpressionToUseForFacetSearch: string;
+  public constantExpressionToUseForFacetSearch: string;
+  public lastGroupByRequestIndex: number;
+  public lastGroupByRequest: IGroupByRequest;
+  public lastGroupByResult: IGroupByResult;
+&nbsp;
+  private currentSearchPromise: Promise&lt;IQueryResults&gt;;
+&nbsp;
+  constructor(public facet: Facet) {
+  }
+&nbsp;
+  /**
+   * Reset the expression for the facet search, used when a new query is triggered
+   */
+  public prepareForNewQuery() {
+    this.lastGroupByRequestIndex = undefined;
+    this.expressionToUseForFacetSearch = undefined;
+    this.constantExpressionToUseForFacetSearch = undefined;
+  }
+&nbsp;
+  /**
+   * Compute the filter expression that the facet need to output for the query
+   * @returns {string}
+   */
+  public computeOurFilterExpression(): string {
+    let builder = new ExpressionBuilder();
+    let selected = this.facet.values.getSelected();
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (selected.length &gt; 0) {
+      if (this.facet.options.useAnd) {
+        _.each(selected, (value: FacetValue) =&gt; {
+          builder.addFieldExpression(&lt;string&gt;this.facet.options.field, '==', [value.value]);
+        });
+      } else {
+        builder.addFieldExpression(&lt;string&gt;this.facet.options.field, '==', _.map(selected, (value: FacetValue) =&gt; value.value));
+      }
+    }
+    let excluded = this.facet.values.getExcluded();
+    if (excluded.length &gt; 0) {
+      builder.addFieldNotEqualExpression(&lt;string&gt;this.facet.options.field, _.map(excluded, (value: FacetValue) =&gt; value.value));
+    }
+    if (Utils.isNonEmptyString(this.facet.options.additionalFilter)) {
+      builder.add(this.facet.options.additionalFilter);
+    }
+    return builder.build();
+  }
+&nbsp;
+  /**
+   * Build the group by request for the facet, and insert it in the query builder
+   * @param queryBuilder
+   */
+  public putGroupByIntoQueryBuilder(queryBuilder: QueryBuilder) {
+    Assert.exists(queryBuilder);
+&nbsp;
+    let allowedValues = this.createGroupByAllowedValues();
+    let groupByRequest = this.createBasicGroupByRequest(allowedValues);
+&nbsp;
+    let queryOverrideObject = this.createGroupByQueryOverride(queryBuilder);
+    if (!Utils.isNullOrUndefined(queryOverrideObject)) {
+      groupByRequest.queryOverride = queryOverrideObject.basic;
+      groupByRequest.advancedQueryOverride = queryOverrideObject.advanced;
+      groupByRequest.constantQueryOverride = queryOverrideObject.constant;
+      this.expressionToUseForFacetSearch = queryOverrideObject.withoutConstant;
+      this.basicExpressionToUseForFacetSearch = queryOverrideObject.basic;
+      this.advancedExpressionToUseForFacetSearch = queryOverrideObject.advanced;
+      this.constantExpressionToUseForFacetSearch = queryOverrideObject.constant;
+    } else {
+      let parts = queryBuilder.computeCompleteExpressionParts();
+      this.expressionToUseForFacetSearch = parts.withoutConstant == null ? '@uri' : parts.withoutConstant;
+      this.basicExpressionToUseForFacetSearch = parts.basic == null ? '@uri' : <span class="branch-1 cbranch-no" title="branch not covered" >parts.basic;</span>
+      this.advancedExpressionToUseForFacetSearch = parts.advanced;
+      this.constantExpressionToUseForFacetSearch = parts.constant;
+    }
+    this.lastGroupByRequestIndex = queryBuilder.groupByRequests.length;
+    this.lastGroupByRequest = groupByRequest;
+    queryBuilder.groupByRequests.push(groupByRequest);
+  }
+&nbsp;
+  /**
+   * Search inside the facet, using a group by request
+   * @param params
+   * @param oldLength Optional params, used by the search method to call itself recursively to fetch all required values
+   * @returns {Promise|Promise&lt;T&gt;}
+   */
+  public search(params: FacetSearchParameters, <span class="missing-if-branch" title="else path not taken" >E</span>oldLength = params.nbResults): Promise&lt;IIndexFieldValue[]&gt; {
+    return new Promise((resolve, reject) =&gt; {
+      let onResult = <span class="fstat-no" title="function not covered" >(fieldValues?: IIndexFieldValue[])</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >        let newLength = fieldValues.length;</span>
+<span class="cstat-no" title="statement not covered" >        fieldValues = this.checkForFacetSearchValuesToRemove(fieldValues, params.valueToSearch);</span>
+<span class="cstat-no" title="statement not covered" >        if (FacetUtils.needAnotherFacetSearch(fieldValues.length, newLength, oldLength, 5)) {</span>
+          // This means that we removed enough values from the returned one that we need to perform a new search with more values requested.
+<span class="cstat-no" title="statement not covered" >          params.nbResults += 5;</span>
+<span class="cstat-no" title="statement not covered" >          return this.search(params, fieldValues.length);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          resolve(fieldValues);</span>
+        }
+      };
+&nbsp;
+      let searchPromise = this.facet.getEndpoint().search(params.getQuery());
+      this.currentSearchPromise = searchPromise;
+&nbsp;
+      searchPromise.then(<span class="fstat-no" title="function not covered" >(queryResults: IQueryResults)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >        if (this.currentSearchPromise == searchPromise) {</span>
+          // params.getQuery() will generate a query for all excluded values + some new values
+          // there is no clean way to do a group by and remove some values
+          // so instead we request more values than we need, and crop all the one we don't want
+<span class="cstat-no" title="statement not covered" >          let valuesCropped: IGroupByValue[] = [];</span>
+<span class="cstat-no" title="statement not covered" >          if (queryResults.groupByResults &amp;&amp; queryResults.groupByResults[0]) {</span>
+<span class="cstat-no" title="statement not covered" >            _.each(queryResults.groupByResults[0].values, <span class="fstat-no" title="function not covered" >(v: IGroupByValue)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >              if (v.lookupValue) {</span>
+<span class="cstat-no" title="statement not covered" >                if (!_.contains(params.alwaysExclude, v.lookupValue.toLowerCase())) {</span>
+<span class="cstat-no" title="statement not covered" >                  valuesCropped.push(v);</span>
+                }
+              } else {
+<span class="cstat-no" title="statement not covered" >                if (!_.contains(params.alwaysExclude, v.value.toLowerCase())) {</span>
+<span class="cstat-no" title="statement not covered" >                  valuesCropped.push(v);</span>
+                }
+              }
+            });
+          }
+<span class="cstat-no" title="statement not covered" >          onResult(_.first(valuesCropped, params.nbResults));</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          reject();</span>
+        }
+      })
+        .catch(<span class="fstat-no" title="function not covered" >(error: IEndpointError)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          reject(error);</span>
+        });
+    });
+  }
+&nbsp;
+  public fetchMore(numberOfValuesToFetch: number) {
+    let params = new FacetSearchParameters(this.facet);
+    params.alwaysInclude = this.facet.options.allowedValues || _.pluck(this.facet.values.getAll(), 'value');
+    params.nbResults = numberOfValuesToFetch;
+    return this.facet.getEndpoint().search(params.getQuery()).then(<span class="fstat-no" title="function not covered" >(results: IQueryResults)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      if (this.facet.options.allowedValues &amp;&amp; results &amp;&amp; results.groupByResults &amp;&amp; results.groupByResults[0]) {</span>
+<span class="cstat-no" title="statement not covered" >        let values = results.groupByResults[0].values;</span>
+<span class="cstat-no" title="statement not covered" >        values = _.filter(values, <span class="fstat-no" title="function not covered" >(value: IGroupByValue)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          return _.contains(_.map(this.facet.options.allowedValues, <span class="fstat-no" title="function not covered" >allowedValue </span>=&gt; <span class="cstat-no" title="statement not covered" >allowedValue.toLowerCase())</span>, value.value.toLowerCase());</span>
+        });
+<span class="cstat-no" title="statement not covered" >        results.groupByResults[0].values = values;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return results;</span>
+    });
+  }
+&nbsp;
+  public searchInFacetToUpdateDelta(facetValues: FacetValue[]) {
+    let params = new FacetSearchParameters(this.facet);
+    let query = params.getQuery();
+    query.aq = this.computeOurFilterExpression();
+    _.each(facetValues, (facetValue: FacetValue) =&gt; {
+      facetValue.waitingForDelta = true;
+    });
+    query.groupBy = [this.createBasicGroupByRequest(_.map(facetValues, (facetValue: FacetValue) =&gt; facetValue.value))];
+    query.groupBy[0].completeFacetWithStandardValues = false;
+    return this.facet.getEndpoint().search(query);
+  }
+&nbsp;
+  protected createGroupByAllowedValues() {
+    // if you want to keep displayed values next time, take all current values as allowed values
+    // otherwise take only the selected value
+    if (this.facet.options.allowedValues != undefined) {
+      return this.facet.options.allowedValues;
+    } else if (this.facet.options.customSort != undefined) {
+      // If there is a custom sort, we still need to add selectedValues to the group by
+      // Filter out duplicates with a lower case comparison on the value
+      return this.getUnionWithCustomSortLowercase(this.facet.options.customSort, this.getAllowedValuesFromSelected());
+    } else {
+      return _.map(this.getAllowedValuesFromSelected(), (facetValue: FacetValue) =&gt; facetValue.value);
+    }
+  }
+&nbsp;
+  private getUnionWithCustomSortLowercase(customSort: string[], facetValues: FacetValue[]) {
+    // This will take the custom sort, compare it against the passed in facetValues
+    // The comparison is lowercase.
+    // The union of the 2 arrays with duplicated filtered out is returned.
+&nbsp;
+    let toCompare = _.map(customSort, (val: string) =&gt; {
+      return val.toLowerCase();
+    });
+    let filtered = _.chain(facetValues)
+      .filter((facetValue: FacetValue) =&gt; {
+        return !_.contains(toCompare, facetValue.value.toLowerCase());
+      })
+      .map((facetValue: FacetValue) =&gt; {
+        return facetValue.value;
+      })
+      .value();
+    return _.compact(customSort.concat(filtered));
+  }
+&nbsp;
+  protected getAllowedValuesFromSelected() {
+    let facetValues: FacetValue[] = [];
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.facet.options.useAnd || !this.facet.keepDisplayedValuesNextTime) {
+      let selected = this.facet.values.getSelected();
+      if (selected.length == 0) {
+        return undefined;
+      }
+      facetValues = this.facet.values.getSelected();
+    } else {
+<span class="cstat-no" title="statement not covered" >      facetValues = this.facet.values.getAll();</span>
+    }
+    return facetValues;
+  }
+&nbsp;
+  private createGroupByQueryOverride(queryBuilder: QueryBuilder): IQueryBuilderExpression {
+    let additionalFilter = this.facet.options.additionalFilter ? this.facet.options.additionalFilter : '';
+    let queryOverrideObject: IQueryBuilderExpression = undefined;
+&nbsp;
+    if (this.facet.options.useAnd) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (Utils.isNonEmptyString(additionalFilter)) {
+<span class="cstat-no" title="statement not covered" >        queryOverrideObject = queryBuilder.computeCompleteExpressionParts();</span>
+<span class="cstat-no" title="statement not covered" >        if (Utils.isEmptyString(queryOverrideObject.basic)) {</span>
+<span class="cstat-no" title="statement not covered" >          queryOverrideObject.basic = '@uri';</span>
+        }
+      }
+    } else {
+      if (this.facet.values.hasSelectedOrExcludedValues()) {
+        queryOverrideObject = queryBuilder.computeCompleteExpressionPartsExcept(this.computeOurFilterExpression());
+        if (Utils.isEmptyString(queryOverrideObject.basic)) {
+          queryOverrideObject.basic = '@uri';
+        }
+      } else {
+        if (Utils.isNonEmptyString(additionalFilter)) {
+          queryOverrideObject = queryBuilder.computeCompleteExpressionParts();
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (Utils.isEmptyString(queryOverrideObject.basic)) {
+            queryOverrideObject.basic = '@uri';
+          }
+        }
+      }
+    }
+&nbsp;
+    if (queryOverrideObject) {
+      if (Utils.isNonEmptyString(additionalFilter)) {
+        queryOverrideObject.constant = queryOverrideObject.constant ? <span class="branch-0 cbranch-no" title="branch not covered" >queryOverrideObject.constant + ' ' + additionalFilter </span>: additionalFilter;
+      }
+    }
+    _.each(_.keys(queryOverrideObject), (k) =&gt; {
+      if (Utils.isEmptyString(queryOverrideObject[k]) || Utils.isNullOrUndefined(queryOverrideObject[k])) {
+        delete queryOverrideObject[k];
+      }
+    });
+    if (_.keys(queryOverrideObject).length == 0) {
+      queryOverrideObject = undefined;
+    }
+    return queryOverrideObject;
+  }
+&nbsp;
+  protected createBasicGroupByRequest(allowedValues?: string[], addComputedField: boolean = true): IGroupByRequest {
+    let nbOfRequestedValues = this.facet.numberOfValues;
+    if (this.facet.options.customSort != null) {
+      // If we have a custom sort, we need to make sure that we always request at least enough values to always receive them
+      let usedValues = this.getUnionWithCustomSortLowercase(this.facet.options.customSort, this.facet.values.getSelected().concat(this.facet.values.getExcluded()));
+      nbOfRequestedValues = Math.max(nbOfRequestedValues, usedValues.length);
+    }
+    let groupByRequest: IGroupByRequest = {
+      field: &lt;string&gt;this.facet.options.field,
+      maximumNumberOfValues: nbOfRequestedValues + (this.facet.options.enableMoreLess ? 1 : 0),
+      sortCriteria: this.facet.options.sortCriteria,
+      injectionDepth: this.facet.options.injectionDepth,
+      completeFacetWithStandardValues: this.facet.options.allowedValues == undefined ? true : false
+    };
+    if (this.facet.options.lookupField) {
+      groupByRequest.lookupField = &lt;string&gt;this.facet.options.lookupField;
+    }
+    if (allowedValues != null) {
+      groupByRequest.allowedValues = allowedValues;
+    }
+&nbsp;
+    if (addComputedField &amp;&amp; Utils.isNonEmptyString(&lt;string&gt;this.facet.options.computedField)) {
+      groupByRequest.computedFields = [{
+        field: &lt;string&gt;this.facet.options.computedField,
+        operation: this.facet.options.computedFieldOperation
+      }];
+    }
+    return groupByRequest;
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private checkForFacetSearchValuesToRemove(fieldValues: IIndexFieldValue[], valueToCheckAgainst: string)</span> {</span>
+<span class="cstat-no" title="statement not covered" >    let regex = FacetUtils.getRegexToUseForFacetSearch(valueToCheckAgainst, this.facet.options.facetSearchIgnoreAccents);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return _.filter&lt;IIndexFieldValue&gt;(fieldValues, <span class="fstat-no" title="function not covered" >(fieldValue)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      let isAllowed =</span>
+        _.isEmpty(this.facet.options.allowedValues) ||
+        _.contains(this.facet.options.allowedValues, fieldValue.value);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      let value = this.facet.getValueCaption(fieldValue);</span>
+<span class="cstat-no" title="statement not covered" >      return isAllowed &amp;&amp; regex.test(value);</span>
+    });
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

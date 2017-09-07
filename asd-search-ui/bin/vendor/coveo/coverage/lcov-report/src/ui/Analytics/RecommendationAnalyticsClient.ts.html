@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Analytics/RecommendationAnalyticsClient.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/Analytics/RecommendationAnalyticsClient.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">100% <small>(36 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">80% <small>(8 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(5 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(33 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Analytics/</a> &#187; RecommendationAnalyticsClient.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { LiveAnalyticsClient } from './LiveAnalyticsClient';
+import { IAnalyticsActionCause, analyticsActionCauseList } from './AnalyticsActionListMeta';
+import { IQueryResult } from '../../rest/QueryResult';
+import { AnalyticsEndpoint } from '../../rest/AnalyticsEndpoint';
+import { IAPIAnalyticsEventResponse } from '../../rest/APIAnalyticsEventResponse';
+import { Component } from '../Base/Component';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { Recommendation } from '../Recommendation/Recommendation';
+import { SearchInterface } from '../SearchInterface/SearchInterface';
+&nbsp;
+export class RecommendationAnalyticsClient extends LiveAnalyticsClient {
+&nbsp;
+  private recommendation: Recommendation;
+&nbsp;
+  constructor(public endpoint: AnalyticsEndpoint,
+    public rootElement: HTMLElement,
+    public userId: string,
+    public userDisplayName: string,
+    public anonymous: boolean,
+    public splitTestRunName: string,
+    public splitTestRunVersion: string,
+    public originLevel1: string,
+    public sendToCloud: boolean,
+    public bindings: IComponentBindings) {
+    super(endpoint, rootElement, userId, userDisplayName, anonymous, splitTestRunName, splitTestRunVersion, originLevel1, sendToCloud);
+    this.recommendation = &lt;Recommendation&gt;this.bindings.searchInterface;
+  }
+&nbsp;
+  public logSearchEvent&lt;TMeta&gt;(actionCause: IAnalyticsActionCause, meta: TMeta) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (actionCause == analyticsActionCauseList.interfaceLoad) {
+      actionCause = analyticsActionCauseList.recommendationInterfaceLoad;
+    }
+    super.logSearchEvent(actionCause, meta);
+  }
+&nbsp;
+  public logClickEvent&lt;TMeta&gt;(actionCause: IAnalyticsActionCause, meta: TMeta, result: IQueryResult, element: HTMLElement): Promise&lt;IAPIAnalyticsEventResponse | IAPIAnalyticsEventResponse[]&gt; {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (actionCause == analyticsActionCauseList.documentOpen) {
+      actionCause = analyticsActionCauseList.recommendationOpen;
+    }
+&nbsp;
+    const promises = [super.logClickEvent(actionCause, meta, result, element)];
+&nbsp;
+    if (this.recommendation.mainQuerySearchUID &amp;&amp; this.recommendation.mainQueryPipeline != null) {
+      // We log a second click associated with the main interface query to tell the analytics that the query was a success.
+      let mainInterface = &lt;SearchInterface&gt;Component.get(this.recommendation.options.mainSearchInterface, SearchInterface);
+      result.queryUid = this.recommendation.mainQuerySearchUID;
+      result.pipeline = this.recommendation.mainQueryPipeline;
+      promises.push(mainInterface.usageAnalytics.logClickEvent(actionCause, meta, result, element));
+    }
+    return Promise.all(promises);
+  }
+&nbsp;
+  protected getOriginLevel2(element: HTMLElement): string {
+    return this.recommendation.getId();
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

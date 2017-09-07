@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/ResponsiveComponents/ResponsiveDefaultResultTemplate.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/ui/ResponsiveComponents/ResponsiveDefaultResultTemplate.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">42.22% <small>(19 / 45)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">14.29% <small>(2 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">25% <small>(2 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">43.9% <small>(18 / 41)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/ResponsiveComponents/</a> &#187; ResponsiveDefaultResultTemplate.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">49</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
+  IResponsiveComponent, IResponsiveComponentOptions,
+  ResponsiveComponentsManager
+} from './ResponsiveComponentsManager';
+import { SearchInterface } from '../SearchInterface/SearchInterface';
+import { ResultList } from '../ResultList/ResultList';
+import { $$, Dom } from '../../utils/Dom';
+import { Component } from '../Base/Component';
+import { Logger } from '../../misc/Logger';
+import { ResponsiveDropdown } from './ResponsiveDropdown/ResponsiveDropdown';
+&nbsp;
+export class ResponsiveDefaultResultTemplate implements IResponsiveComponent {
+  private searchInterface: SearchInterface;
+  private resultList: ResultList;
+&nbsp;
+  private currentMode: string;
+&nbsp;
+  public static init(root: HTMLElement, component: ResultList, options: IResponsiveComponentOptions) {
+    if (!$$(root).find(`.${Component.computeCssClassName(ResultList)}`)) {
+      let logger = new Logger('ResponsiveDefaultResultTemplate');
+      logger.trace('No ResultLayout component found : Cannot instantiate ResponsiveResultLayout');
+      return;
+    }
+    ResponsiveComponentsManager.register(ResponsiveDefaultResultTemplate, $$(root), ResultList.ID, component, options);
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  constructor(public <span class="cstat-no" title="statement not covered" >coveoRoot: Dom,</span> public <span class="cstat-no" title="statement not covered" >ID: string,</span> options: IResponsiveComponentOptions, responsiveDropdown?: ResponsiveDropdown)</span> {
+<span class="cstat-no" title="statement not covered" >    this.searchInterface = &lt;SearchInterface&gt;Component.get(this.coveoRoot.el, SearchInterface, false);</span>
+<span class="cstat-no" title="statement not covered" >    this.currentMode = 'large';</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public registerComponent(accept: ResultList)</span> {
+<span class="cstat-no" title="statement not covered" >    if (accept instanceof ResultList) {</span>
+<span class="cstat-no" title="statement not covered" >      this.resultList = accept;</span>
+<span class="cstat-no" title="statement not covered" >      return true;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  public handleResizeEvent() {</span></span>
+<span class="cstat-no" title="statement not covered" >    let lastResults = this.resultList.queryController.getLastResults();</span>
+<span class="cstat-no" title="statement not covered" >    if (this.needSmallMode()) {</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.resultList.options.resultContainer).addClass('coveo-card-layout-container');</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.resultList.options.resultContainer).removeClass(`coveo-list-layout-container`);</span>
+<span class="cstat-no" title="statement not covered" >      if (this.currentMode != 'small') {</span>
+<span class="cstat-no" title="statement not covered" >        if (lastResults) {</span>
+<span class="cstat-no" title="statement not covered" >          this.resultList.buildResults(lastResults).then(<span class="fstat-no" title="function not covered" >(elements: HTMLElement[])</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            this.resultList.renderResults(elements);</span>
+          });
+        }
+<span class="cstat-no" title="statement not covered" >        this.currentMode = 'small';</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      $$(this.resultList.options.resultContainer).removeClass('coveo-card-layout-container');</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.resultList.options.resultContainer).addClass(`coveo-list-layout-container`);</span>
+<span class="cstat-no" title="statement not covered" >      if (this.currentMode != 'large') {</span>
+<span class="cstat-no" title="statement not covered" >        if (lastResults) {</span>
+<span class="cstat-no" title="statement not covered" >          this.resultList.buildResults(lastResults).then(<span class="fstat-no" title="function not covered" >(elements: HTMLElement[])</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            this.resultList.renderResults(elements);</span>
+          });
+        }
+<span class="cstat-no" title="statement not covered" >        this.currentMode = 'large';</span>
+      }
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private needSmallMode(): boolean {</span>
+<span class="cstat-no" title="statement not covered" >    return this.coveoRoot.width() &lt;= this.searchInterface.responsiveComponents.getSmallScreenWidth();</span>
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

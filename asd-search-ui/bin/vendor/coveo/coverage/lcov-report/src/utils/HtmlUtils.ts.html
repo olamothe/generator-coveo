@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/utils/HtmlUtils.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/utils/HtmlUtils.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">79.17% <small>(38 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">83.33% <small>(10 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">64.29% <small>(9 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">77.78% <small>(35 / 45)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/utils/</a> &#187; HtmlUtils.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IQueryResult } from '../rest/QueryResult';
+import { SearchEndpoint } from '../rest/SearchEndpoint';
+import * as _ from 'underscore';
+&nbsp;
+/**
+ * Options for building an `&lt;a&gt;` tag.
+ */
+export interface IAnchorUtilsOptions {
+  /**
+   * The tag's text content.
+   */
+  text?: string;
+  /**
+   * The target (`href` attribute).
+   */
+  target?: string;
+  /**
+   * The CSS class(es) of the tag.
+   */
+  class?: string;
+}
+&nbsp;
+/**
+ * Options for building an `&lt;img&gt;` tag.
+ */
+export interface IImageUtilsOptions {
+  /**
+   * The alternative text for the image (`alt` attribute).
+   */
+  alt?: string;
+  /**
+   * The height of the image
+   */
+  height?: string;
+  /**
+   * The width of the image
+   */
+  width?: string;
+}
+&nbsp;
+export class HTMLUtils {
+  static buildAttributeString(options: any): string {
+    var ret = [];
+    _.each(options, (val: any, key?: string, obj?) =&gt; {
+      if (val != undefined) {
+        ret.push(key + '=' + JSON.stringify(val.toString()));
+      }
+    });
+    return ret.join(' ');
+  }
+}
+&nbsp;
+export class AnchorUtils {
+  static buildAnchor(href: string, options?: IAnchorUtilsOptions) {
+    var text;
+    if (!options || !options.text) {
+      text = href;
+    } else {
+      text = options.text;
+      options.text = undefined;
+    }
+    return `&lt;a href='${href}' ${HTMLUtils.buildAttributeString(options)}&gt;${text}&lt;/a&gt;`;
+  }
+}
+&nbsp;
+export class ImageUtils {
+  static buildImage(src?: string, options?: IImageUtilsOptions) {
+    var ret = '&lt;img ';
+    ret += src ? `src='${src}' ` : '';
+    ret += HTMLUtils.buildAttributeString(options) + '/&gt;';
+    return ret;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  static selectImageFromResult(result: IQueryResult)</span>: HTMLElement {
+<span class="cstat-no" title="statement not covered" >    return &lt;HTMLElement&gt;document.querySelector(`img[data-coveo-uri-hash=${result.raw['urihash']}]`);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  static buildImageWithDirectSrcAttribute(endpoint: SearchEndpoint, result: IQueryResult)</span> {
+<span class="cstat-no" title="statement not covered" >    var image = new Image();</span>
+<span class="cstat-no" title="statement not covered" >    var dataStreamUri = endpoint.getViewAsDatastreamUri(result.uniqueId, '$Thumbnail$', { contentType: 'image/png' });</span>
+<span class="cstat-no" title="statement not covered" >    image.onload = <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      ImageUtils.selectImageFromResult(result).setAttribute('src', dataStreamUri);</span>
+    };
+<span class="cstat-no" title="statement not covered" >    image.src = dataStreamUri;</span>
+  }
+&nbsp;
+  static buildImageWithBase64SrcAttribute(endpoint: SearchEndpoint, result: IQueryResult) {
+    endpoint.getRawDataStream(result.uniqueId, '$Thumbnail$')
+      .then(<span class="fstat-no" title="function not covered" >(response)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >        var rawBinary = String.fromCharCode.apply(null, new Uint8Array(response));</span>
+<span class="cstat-no" title="statement not covered" >        ImageUtils.selectImageFromResult(result).setAttribute('src', 'data:image/png;base64, ' + btoa(rawBinary));</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        ImageUtils.selectImageFromResult(result).remove();</span>
+      });
+  }
+&nbsp;
+  static buildImageFromResult(result: IQueryResult, endpoint: SearchEndpoint, options?: IImageUtilsOptions) {
+    options = options ? <span class="branch-0 cbranch-no" title="branch not covered" >options </span>: &lt;IImageUtilsOptions&gt;{};
+&nbsp;
+    let img = ImageUtils.buildImage(undefined, _.extend(options, { 'data-coveo-uri-hash': result.raw['urihash'] }));
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (endpoint.isJsonp()) {
+      // For jsonp we can't GET/POST for binary data. We are limited to only setting the src attribute directly on the img.
+<span class="cstat-no" title="statement not covered" >      ImageUtils.buildImageWithDirectSrcAttribute(endpoint, result);</span>
+    } else {
+      // Base 64 img allows us to GET/POST the image as raw binary, so that we can also pass the credential of the user
+      // Useful for phonegap.
+      ImageUtils.buildImageWithBase64SrcAttribute(endpoint, result);
+    }
+    return img;
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

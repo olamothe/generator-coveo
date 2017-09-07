@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/ResultsPerPage/ResultsPerPage.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/ResultsPerPage/ResultsPerPage.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">90% <small>(81 / 90)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">68.75% <small>(11 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">65% <small>(13 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">92.5% <small>(74 / 80)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/ResultsPerPage/</a> &#187; ResultsPerPage.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from '../Base/Component';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { ComponentOptions } from '../Base/ComponentOptions';
+import { Initialization } from '../Base/Initialization';
+import { QueryEvents, IQuerySuccessEventArgs, INoResultsEventArgs } from '../../events/QueryEvents';
+import { analyticsActionCauseList, IAnalyticsResultsPerPageMeta, IAnalyticsActionCause } from '../Analytics/AnalyticsActionListMeta';
+import { Assert } from '../../misc/Assert';
+import { $$ } from '../../utils/Dom';
+import { KeyboardUtils, KEYBOARD } from '../../utils/KeyboardUtils';
+import { DeviceUtils } from '../../utils/DeviceUtils';
+import * as _ from 'underscore';
+import { exportGlobally } from '../../GlobalExports';
+import { l } from '../../strings/Strings';
+&nbsp;
+import 'styling/_ResultsPerPage';
+&nbsp;
+&nbsp;
+export interface IResultsPerPageOptions {
+  choicesDisplayed?: number[];
+  initialChoice?: number;
+}
+&nbsp;
+/**
+ * The ResultsPerPage component attaches itself to a `div` and allows the end user to choose how many results to
+ * display per page.
+ *
+ * **Note:** Adding a ResultPerPage component to your page overrides the value of
+ * {@link SearchInterface.options.resultsPerPage}.
+ */
+export class ResultsPerPage extends Component {
+  static ID = 'ResultsPerPage';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'ResultsPerPage': ResultsPerPage
+    });
+  }
+&nbsp;
+  /**
+   * The options for the ResultsPerPage
+   * @componentOptions
+   */
+  static options: IResultsPerPageOptions = {
+&nbsp;
+    /**
+     * Specifies the possible values of number of results to display per page that the end user can select from.
+     *
+     * See also {@link ResultsPerPage.options.initialChoice}.
+     *
+     * Default value is `[10, 25, 50, 100]`.
+     */
+    choicesDisplayed: ComponentOptions.buildCustomListOption&lt;number[]&gt;(function (list: string[]) {
+      let values = _.map(list, <span class="fstat-no" title="function not covered" >function (value)</span> {
+<span class="cstat-no" title="statement not covered" >        return parseInt(value, 10);</span>
+      });
+      return values.length == 0 ? null : <span class="branch-1 cbranch-no" title="branch not covered" >values;</span>
+    }, {
+        defaultFunction: () =&gt; {
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (DeviceUtils.isMobileDevice()) {
+<span class="cstat-no" title="statement not covered" >            return [10, 25, 50];</span>
+          } else {
+            return [10, 25, 50, 100];
+          }
+        },
+      }),
+    /**
+     * Specifies the value to select by default for the number of results to display per page.
+     *
+     * Default value is the first value of {@link ResultsPerPage.options.choicesDisplayed}.
+     */
+    initialChoice: ComponentOptions.buildNumberOption()
+  };
+&nbsp;
+  private currentResultsPerPage: number;
+  private span: HTMLElement;
+  private list: HTMLElement;
+&nbsp;
+  /**
+   * Creates a new ResultsPerPage. The component renders itself on every query success.
+   * @param element The HTMLElement on which to instantiate the component (normally a `div`).
+   * @param options The options for the ResultsPerPage component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   */
+  constructor(public element: HTMLElement, public options?: IResultsPerPageOptions, bindings?: IComponentBindings) {
+    super(element, ResultsPerPage.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+    this.options = ComponentOptions.initComponentOptions(element, ResultsPerPage, options);
+&nbsp;
+    this.currentResultsPerPage = this.getInitialChoice();
+    this.queryController.options.resultsPerPage = this.currentResultsPerPage;
+&nbsp;
+    this.bind.onRootElement(QueryEvents.querySuccess, (args: IQuerySuccessEventArgs) =&gt; this.handleQuerySuccess(args));
+    this.bind.onRootElement(QueryEvents.queryError, <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.handleQueryError())</span>;
+    this.bind.onRootElement(QueryEvents.noResults, <span class="fstat-no" title="function not covered" >(args: INoResultsEventArgs)</span> =&gt; <span class="cstat-no" title="statement not covered" >this.handleNoResults())</span>;
+    this.initComponent(element);
+  }
+&nbsp;
+  /**
+   * Sets the current number of results per page, then executes a query.
+   *
+   * Also logs an event in the usage analytics (`pagerResize` by default) with the new current number of results per
+   * page as meta data.
+   * @param resultsPerPage The new number of results per page to select.
+   * @param analyticCause The event to log in the usage analytics.
+   */
+  public setResultsPerPage(resultsPerPage: number, <span class="missing-if-branch" title="else path not taken" >E</span>analyticCause: IAnalyticsActionCause = analyticsActionCauseList.pagerResize) {
+    Assert.exists(resultsPerPage);
+    Assert.check(this.options.choicesDisplayed.indexOf(resultsPerPage) != -1, 'The specified number of results is not available in the options.');
+    this.currentResultsPerPage = resultsPerPage;
+    this.queryController.options.resultsPerPage = this.currentResultsPerPage;
+    this.usageAnalytics.logCustomEvent&lt;IAnalyticsResultsPerPageMeta&gt;(analyticCause, { currentResultsPerPage: this.currentResultsPerPage }, this.element);
+    this.queryController.executeQuery({
+      ignoreWarningSearchEvent: true,
+      keepLastSearchUid: true,
+      origin: this
+    });
+  }
+&nbsp;
+  private getInitialChoice(): number {
+    let initialChoice = this.options.choicesDisplayed[0];
+    if (this.options.initialChoice !== undefined) {
+      if (this.options.choicesDisplayed.indexOf(this.options.initialChoice) &gt; -1) {
+        initialChoice = this.options.initialChoice;
+      } else {
+        this.logger.warn('The initial number of results is not within the choices displayed. Consider setting a value that can be selected. The first choice will be selected instead.');
+      }
+    }
+    return initialChoice;
+  }
+&nbsp;
+  private initComponent(element: HTMLElement) {
+    this.span = $$('span', {
+      className: 'coveo-results-per-page-text'
+    }, l('ResultsPerPage')).el;
+    element.appendChild(this.span);
+    this.list = $$('ul', {
+      className: 'coveo-results-per-page-list'
+    }).el;
+    element.appendChild(this.list);
+  }
+&nbsp;
+  private render() {
+    $$(this.span).removeClass('coveo-results-per-page-no-results');
+    let numResultsList: number[] = this.options.choicesDisplayed;
+    for (var i = 0; i &lt; numResultsList.length; i++) {
+&nbsp;
+      let listItem = $$('li', {
+        className: 'coveo-results-per-page-list-item',
+        tabindex: 0
+      });
+      if (numResultsList[i] == this.currentResultsPerPage) {
+        listItem.addClass('coveo-active');
+      }
+&nbsp;
+      ((resultsPerPage: number) =&gt; {
+        let clickAction = <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.handleClickPage(numResultsList[resultsPerPage]);</span>
+        listItem.on('click', clickAction);
+        listItem.on('keyup', KeyboardUtils.keypressAction(KEYBOARD.ENTER, clickAction));
+      })(i);
+&nbsp;
+      listItem.el.appendChild($$('a', {
+        className: 'coveo-results-per-page-list-item-text'
+      }, numResultsList[i].toString()).el);
+      this.list.appendChild(listItem.el);
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleQueryError() {</span>
+<span class="cstat-no" title="statement not covered" >    this.reset();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleNoResults() {</span>
+<span class="cstat-no" title="statement not covered" >    this.reset();</span>
+  }
+&nbsp;
+  private handleQuerySuccess(data: IQuerySuccessEventArgs) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (data.results.results.length != 0) {
+      this.reset();
+      this.render();
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleClickPage(resultsPerPage: number)</span> {
+<span class="cstat-no" title="statement not covered" >    Assert.exists(resultsPerPage);</span>
+<span class="cstat-no" title="statement not covered" >    this.setResultsPerPage(resultsPerPage);</span>
+  }
+&nbsp;
+  private reset() {
+    $$(this.span).addClass('coveo-results-per-page-no-results');
+    $$(this.list).empty();
+  }
+}
+&nbsp;
+Initialization.registerAutoCreateComponent(ResultsPerPage);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

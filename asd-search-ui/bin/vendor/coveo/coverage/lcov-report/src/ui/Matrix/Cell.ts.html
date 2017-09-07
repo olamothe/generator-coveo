@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Matrix/Cell.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/ui/Matrix/Cell.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">51.28% <small>(20 / 39)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">16.67% <small>(1 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">45.45% <small>(5 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">48.65% <small>(18 / 37)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Matrix/</a> &#187; Cell.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">633</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">633</span>
+<span class="cline-any cline-yes">633</span>
+<span class="cline-any cline-yes">633</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1449</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2410</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">994</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { $$ } from '../../utils/Dom';
+import * as _ from 'underscore';
+&nbsp;
+/**
+ * Represent a single cell of data in the {@link Matrix} component.
+ */
+export class Cell {
+  private value: any;
+  private element: HTMLElement;
+  private previewActive = false;
+&nbsp;
+  constructor(<span class="missing-if-branch" title="if path not taken" >I</span>value: any = 0, el?: HTMLElement) {
+    this.element = el;
+    this.value = value;
+  }
+&nbsp;
+  /**
+   * Return the value of the cell.
+   * @returns {any}
+   */
+  public getValue(): any {
+    return this.value;
+  }
+&nbsp;
+  /**
+   * Return the `HTMLElement` for the cell.
+   * @returns {HTMLElement}
+   */
+  public getHTML(): HTMLElement {
+    return this.element;
+  }
+&nbsp;
+  /**
+   * Set the value if the cell.
+   * @param value
+   */
+  public setValue(value: any) {
+    this.value = value;
+  }
+&nbsp;
+  /**
+   * Set the `HTMLElement` for the cell.
+   * @param html
+   */
+<span class="fstat-no" title="function not covered" >  public setHTML(html: HTMLElement)</span> {
+<span class="cstat-no" title="statement not covered" >    this.element = html;</span>
+  }
+&nbsp;
+  /**
+   * Show the preview of the cell.
+   * @param minWidth css minWidth property : eg 100px
+   * @param maxWidth css maxWidth property : eg 100px
+   */
+<span class="fstat-no" title="function not covered" >  public addPreview(minWidth: string, maxWidth: string)</span> {
+<span class="cstat-no" title="statement not covered" >    this.previewActive = true;</span>
+<span class="cstat-no" title="statement not covered" >    let previewContainer = $$('div', {</span>
+      className: 'matrix-results-preview-container'
+    });
+<span class="cstat-no" title="statement not covered" >    previewContainer.el.style.minWidth = minWidth;</span>
+<span class="cstat-no" title="statement not covered" >    previewContainer.el.style.maxWidth = maxWidth;</span>
+<span class="cstat-no" title="statement not covered" >    previewContainer.on('click', <span class="fstat-no" title="function not covered" >(e: MouseEvent)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      e.stopPropagation();</span>
+    });
+<span class="cstat-no" title="statement not covered" >    this.element.appendChild(previewContainer.el);</span>
+<span class="cstat-no" title="statement not covered" >    let container = $$(this.element).findAll('.matrix-results-preview-container');</span>
+<span class="cstat-no" title="statement not covered" >    _.each(container, <span class="fstat-no" title="function not covered" >(c: HTMLElement)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      $$(c).hide();</span>
+    });
+  }
+&nbsp;
+  /**
+   * Remove the preview of the cell
+   */
+<span class="fstat-no" title="function not covered" >  public removePreview() {</span>
+<span class="cstat-no" title="statement not covered" >    this.previewActive = false;</span>
+<span class="cstat-no" title="statement not covered" >    let container = $$(this.element).find('.matrix-results-preview-container');</span>
+<span class="cstat-no" title="statement not covered" >    if (container) {</span>
+<span class="cstat-no" title="statement not covered" >      $$(container).detach();</span>
+    }
+  }
+&nbsp;
+  /**
+   * Update the preview with a new template
+   * @param template
+   */
+<span class="fstat-no" title="function not covered" >  public updatePreview(template: string)</span> {
+<span class="cstat-no" title="statement not covered" >    if (this.previewActive) {</span>
+<span class="cstat-no" title="statement not covered" >      let preview = $$(this.element).find('.matrix-results-preview-container');</span>
+<span class="cstat-no" title="statement not covered" >      preview.innerHTML += template;</span>
+<span class="cstat-no" title="statement not covered" >      $$(preview).show();</span>
+    }
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

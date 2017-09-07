@@ -1,0 +1,1401 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/ResultTagging/ResultTagging.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/ui/ResultTagging/ResultTagging.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">56.43% <small>(136 / 241)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">17.65% <small>(9 / 51)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">25.45% <small>(14 / 55)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">55.91% <small>(123 / 220)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/ResultTagging/</a> &#187; ResultTagging.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from '../Base/Component';
+import { ComponentOptions, IFieldOption } from '../Base/ComponentOptions';
+import { IFieldDescription } from '../../rest/FieldDescription';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { Assert } from '../../misc/Assert';
+import { Utils } from '../../utils/Utils';
+import { Initialization } from '../Base/Initialization';
+import { IIndexFieldValue } from '../../rest/FieldValue';
+import { StringUtils } from '../../utils/StringUtils';
+import { l } from '../../strings/Strings';
+import { KEYBOARD, KeyboardUtils } from '../../utils/KeyboardUtils';
+import { QueryStateModel } from '../../models/QueryStateModel';
+import { ITaggingRequest } from '../../rest/TaggingRequest';
+import { $$ } from '../../utils/Dom';
+import { analyticsActionCauseList } from '../Analytics/AnalyticsActionListMeta';
+import { IQueryResult } from '../../rest/QueryResult';
+import * as _ from 'underscore';
+import { exportGlobally } from '../../GlobalExports';
+&nbsp;
+import 'styling/_ResultTagging';
+import { SVGIcons } from '../../utils/SVGIcons';
+import { SVGDom } from '../../utils/SVGDom';
+&nbsp;
+export interface IResultTaggingOptions {
+  field: IFieldOption;
+  suggestBoxSize?: number;
+  autoCompleteTimer?: number;
+}
+&nbsp;
+export interface IAnalyticsResultTaggingMeta {
+  facetId: string;
+  facetValue?: string;
+  facetTitle?: string;
+}
+&nbsp;
+/**
+ * The ResultTagging component lists the current tag field values of its associated result and renders a control that
+ * allows the end user to add values to a tag field.
+ *
+ * This component is a result template component (see [Result Templates](https://developers.coveo.com/x/aIGfAQ)).
+ */
+export class ResultTagging extends Component {
+  static ID = 'ResultTagging';
+  static autoCompleteClass = 'coveo-result-tagging-auto-complete';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'ResultTagging': ResultTagging
+    });
+  }
+&nbsp;
+  /**
+   * @componentOptions
+   */
+  static options: IResultTaggingOptions = {
+&nbsp;
+    /**
+     * Specifies the tag field that the component will use.
+     *
+     * Specifying a value for this options is necessary for this component to work.
+     */
+    field: ComponentOptions.buildFieldOption({
+      match: <span class="fstat-no" title="function not covered" >(field: IFieldDescription)</span> =&gt; <span class="cstat-no" title="statement not covered" >field.type == 'Tag',</span>
+      required: true
+    }),
+&nbsp;
+    /**
+     * Specifies the number of items to show in the list of suggested items.
+     *
+     * Default value is `5`. Minimum value is `0 `.
+     */
+    suggestBoxSize: ComponentOptions.buildNumberOption({ defaultValue: 5, min: 0 }),
+&nbsp;
+    /**
+     * Specifies how much time (in milliseconds) it takes for the list of suggested items to disappear when it loses
+     * focus.
+     *
+     * Default value is `2000`. Minimum value is `0`.
+     */
+    autoCompleteTimer: ComponentOptions.buildNumberOption({ defaultValue: 2000, min: 0 })
+  };
+&nbsp;
+  static AUTO_COMPLETE_CLASS = 'coveo-result-tagging-auto-complete';
+&nbsp;
+  private autoCompleteZone: HTMLElement;
+  private textBox: HTMLInputElement;
+  private autoCompletePopup: HTMLElement;
+  private tagZone: HTMLElement;
+  private tags: string[];
+&nbsp;
+  /**
+   * Creates a new ResultTagging component.
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the ResultTagging component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   * @param result The result to associate the component with.
+   */
+  constructor(public element: HTMLElement, public options?: IResultTaggingOptions, bindings?: IComponentBindings, public result?: IQueryResult) {
+    super(element, ResultTagging.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+&nbsp;
+    this.options = ComponentOptions.initComponentOptions(element, ResultTagging, options);
+    this.result = result || <span class="branch-1 cbranch-no" title="branch not covered" >this.resolveResult();</span>
+    Assert.exists(this.componentOptionsModel);
+    Assert.exists(this.result);
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.options.field) {
+<span class="cstat-no" title="statement not covered" >      this.logger.error('You must specify a field to the ResultTagging component');</span>
+      return;
+    }
+    let fieldValue = Utils.getFieldValue(this.result, &lt;string&gt;this.options.field);
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (fieldValue &amp;&amp; Utils.isNonEmptyString(fieldValue)) {
+      this.tags = fieldValue.split(';');
+    } else <span class="cstat-no" title="statement not covered" >if (fieldValue &amp;&amp; Utils.isNonEmptyArray(fieldValue)) {</span>
+<span class="cstat-no" title="statement not covered" >      this.tags = fieldValue;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.tags = [];</span>
+    }
+    this.tags = _.map(this.tags, (t) =&gt; {
+      return t.trim();
+    });
+    this.tagZone = $$('div', {
+      className: 'coveo-result-tagging-tag-zone'
+    }).el;
+    element.appendChild(this.tagZone);
+    element.appendChild(this.buildTagIcon());
+&nbsp;
+    this.autoCompleteZone = $$('div', {
+      className: 'coveo-result-tagging-auto-complete-zone'
+    }).el;
+    element.appendChild(this.autoCompleteZone);
+    this.autoCompleteZone.appendChild(this.buildTextBox());
+    this.autoCompleteZone.appendChild(this.buildAddIcon());
+    this.autoCompleteZone.appendChild(this.buildClearIcon());
+    this.buildExistingTags();
+  }
+&nbsp;
+  private buildExistingTags() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.tags) {
+      _.each(this.tags, (tag: string) =&gt; {
+        this.tagZone.appendChild(this.buildTagValue(tag));
+      });
+    }
+  }
+&nbsp;
+  private buildTagIcon(): HTMLElement {
+    let tagZone = $$('div', {
+      className: 'coveo-result-tagging-add-tag'
+    });
+    let tagTextBox = $$('span', {
+      className: 'coveo-result-tagging-add-tag-text'
+    });
+    tagTextBox.text(l('EnterTag'));
+    let tagIcon = $$('span', {
+      className: 'coveo-result-tagging-add-tag-icon'
+    });
+    tagIcon.on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      _.defer(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        this.focusOnTextBox();</span>
+      }, 20);
+    });
+    tagZone.el.appendChild(tagIcon.el);
+    tagZone.append(tagTextBox.el);
+    tagZone.setAttribute('title', l('EnterTag'));
+    return tagZone.el;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private focusOnTextBox() {</span>
+<span class="cstat-no" title="statement not covered" >    this.textBox.focus();</span>
+  }
+&nbsp;
+  private buildTagValue(tagValue: string): HTMLElement {
+    let tag = $$('div', {
+      className: 'coveo-result-tagging-coveo-tag'
+    });
+    tag.el.appendChild(this.buildShortenedTagWithTitle(tagValue));
+    let deleteIcon = $$('span', {
+      className: 'coveo-result-tagging-delete-icon'
+    }, SVGIcons.icons.checkboxHookExclusionMore);
+    SVGDom.addClassToSVGInContainer(deleteIcon.el, 'coveo-result-tagging-delete-icon-svg');
+    tag.el.appendChild(deleteIcon.el);
+    deleteIcon.on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.doRemoveTag(tag.el, tagValue.toLowerCase());</span>
+    });
+    return tag.el;
+  }
+&nbsp;
+  private buildShortenedTagWithTitle(tagValue: string): HTMLElement {
+    let shortenedTag = StringUtils.removeMiddle(tagValue, 16, '...');
+    let clickableValue = $$('a', {
+      title: tagValue,
+      href: 'javascript:void(0);'
+    });
+    clickableValue.text(shortenedTag);
+&nbsp;
+    this.bindFacetEventOnValue(clickableValue.el, tagValue);
+    return clickableValue.el;
+  }
+&nbsp;
+  private buildTextBox(): HTMLInputElement {
+    this.textBox = &lt;HTMLInputElement&gt;$$('input', {
+      type: 'text',
+      className: 'coveo-add-tag-textbox',
+      placeholder: l('EnterTag')
+    }).el;
+&nbsp;
+    this.autoCompletePopup = $$('div', {
+      className: ResultTagging.autoCompleteClass
+    }).el;
+    this.autoCompleteZone.appendChild(this.autoCompletePopup);
+    this.manageAutocompleteAutoHide();
+    $$(this.textBox).on('keyup', (<span class="fstat-no" title="function not covered" >(e: KeyboardEvent)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      if (e.keyCode == KEYBOARD.UP_ARROW || e.keyCode == KEYBOARD.DOWN_ARROW || e.keyCode == KEYBOARD.ENTER) {</span>
+<span class="cstat-no" title="statement not covered" >        this.manageUpDownEnter(e.keyCode);</span>
+      } else <span class="cstat-no" title="statement not covered" >if (!KeyboardUtils.isArrowKeyPushed(e.keyCode)) {</span>
+<span class="cstat-no" title="statement not covered" >        this.populateSuggestions();</span>
+      }
+<span class="cstat-no" title="statement not covered" >      $$(this.element).removeClass('coveo-error');</span>
+    }));
+    $$(this.textBox).on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.populateSuggestions();</span>
+    });
+    return this.textBox;
+  }
+&nbsp;
+  private buildAddIcon(): HTMLElement {
+    let icon = $$('div', {
+      className: 'coveo-result-tagging-add-tag-tick-icon'
+    }, SVGIcons.icons.taggingOk);
+    SVGDom.addClassToSVGInContainer(icon.el, 'coveo-result-tagging-add-tag-tick-icon-svg');
+    let clickable = $$('span');
+    clickable.on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.doAddTag();</span>
+    });
+    icon.el.appendChild(clickable.el);
+    return icon.el;
+  }
+&nbsp;
+  private buildClearIcon(): HTMLElement {
+    let icon = $$('div', {
+      className: 'coveo-result-tagging-clear-icon'
+    }, SVGIcons.icons.checkboxHookExclusionMore);
+    SVGDom.addClassToSVGInContainer(icon.el, 'coveo-result-tagging-clear-icon-svg');
+    let clickable = $$('span');
+    clickable.on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.textBox.value = '';</span>
+    });
+    icon.el.appendChild(clickable.el);
+    return icon.el;
+  }
+&nbsp;
+  private bindFacetEventOnValue(element: HTMLElement, value: string) {
+    let facetAttributeName = QueryStateModel.getFacetId(&lt;string&gt;this.options.field);
+    let facetModel: string[] = this.queryStateModel.get(facetAttributeName);
+    let facets: Component[] = this.componentStateModel.get(facetAttributeName);
+    let atLeastOneFacetIsEnabled = _.filter(facets, <span class="fstat-no" title="function not covered" >(value: Component)</span> =&gt; <span class="cstat-no" title="statement not covered" >!value.disabled)</span>.length &gt; 0;
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (facetModel != null &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >atLeastOneFacetIsEnabled)</span> {
+<span class="cstat-no" title="statement not covered" >      $$(element).on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (_.contains(facetModel, value)) {</span>
+<span class="cstat-no" title="statement not covered" >          this.queryStateModel.set(facetAttributeName, _.without(facetModel, value));</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          this.queryStateModel.set(facetAttributeName, _.union(facetModel, [value]));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this.queryController.deferExecuteQuery({</span>
+          beforeExecuteQuery: <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.usageAnalytics.logSearchEvent&lt;IAnalyticsResultTaggingMeta&gt;(analyticsActionCauseList.documentTag, {</span>
+            facetId: &lt;string&gt;this.options.field,
+            facetValue: value
+          })
+        });
+      });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (_.contains(facetModel, value)) {</span>
+<span class="cstat-no" title="statement not covered" >        $$(element).addClass('coveo-selected');</span>
+      }
+<span class="cstat-no" title="statement not covered" >      $$(element).addClass('coveo-clickable');</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private clearPopup() {</span>
+<span class="cstat-no" title="statement not covered" >    $$(this.autoCompletePopup).hide();</span>
+<span class="cstat-no" title="statement not covered" >    $$(this.autoCompletePopup).empty();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private showPopup() {</span>
+<span class="cstat-no" title="statement not covered" >    $$(this.autoCompletePopup).show();</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private populateSuggestions() {</span></span>
+<span class="cstat-no" title="statement not covered" >    let endpoint = this.queryController.getEndpoint();</span>
+<span class="cstat-no" title="statement not covered" >    let searchText = this.textBox.value;</span>
+<span class="cstat-no" title="statement not covered" >    let searchOptions = {</span>
+      field: &lt;string&gt;this.options.field,
+      ignoreAccents: true,
+      sortCriteria: 'occurences',
+      maximumNumberOfValues: this.options.suggestBoxSize,
+      queryOverride: '@uri',
+      pattern: this.buildRegEx(searchText),
+      patternType: 'RegularExpression'
+    };
+<span class="cstat-no" title="statement not covered" >    endpoint.listFieldValues(searchOptions).then(<span class="fstat-no" title="function not covered" >(fieldValues: IIndexFieldValue[])</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.clearPopup();</span>
+<span class="cstat-no" title="statement not covered" >      _.each(fieldValues, <span class="fstat-no" title="function not covered" >(fieldValue: IIndexFieldValue)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        this.autoCompletePopup.appendChild(this.buildSelectableValue(fieldValue.lookupValue));</span>
+      });
+<span class="cstat-no" title="statement not covered" >      this.showPopup();</span>
+<span class="cstat-no" title="statement not covered" >      this.autoCompletePopup.style.width = this.textBox.offsetWidth + ' px';</span>
+    });
+  }
+&nbsp;
+  private manageAutocompleteAutoHide() {
+    let timeout: any;
+&nbsp;
+    $$(this.textBox).on('mouseover', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      clearTimeout(timeout);</span>
+    });
+&nbsp;
+    $$(this.autoCompletePopup).on('mouseout', (<span class="fstat-no" title="function not covered" >(e)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      if ($$(&lt;HTMLElement&gt;e.target).hasClass(ResultTagging.autoCompleteClass)) {</span>
+<span class="cstat-no" title="statement not covered" >        timeout = setTimeout(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >          this.clearPopup();</span>
+        }, this.options.autoCompleteTimer);
+      }
+    }));
+&nbsp;
+    $$(this.autoCompletePopup).on('mouseenter', (<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      clearTimeout(timeout);</span>
+    }));
+&nbsp;
+    $$(this.element).on('mouseenter', (<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.clearPopup();</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.element).addClass('coveo-opened');</span>
+    }));
+&nbsp;
+    $$($$(this.element).closest('.CoveoResult')).on('mouseleave', (<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.clearPopup();</span>
+<span class="cstat-no" title="statement not covered" >      if (this.textBox.value == '') {</span>
+<span class="cstat-no" title="statement not covered" >        $$(this.element).removeClass('coveo-opened');</span>
+      }
+    }));
+&nbsp;
+    $$($$(this.element).closest('.CoveoResult')).on('focusout', (<span class="fstat-no" title="function not covered" >(e)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      if (this.textBox.value != '' &amp;&amp; ($$(&lt;HTMLElement&gt;e.target).closest('.CoveoResult') != $$(this.element).closest('.CoveoResult'))) {</span>
+<span class="cstat-no" title="statement not covered" >        $$(this.element).addClass('coveo-error');</span>
+      }
+    }));
+&nbsp;
+    $$($$(this.element).closest('.CoveoResult')).on('focusin', (<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.element).removeClass('coveo-error');</span>
+    }));
+  }
+&nbsp;
+  // Exclude tags that are already on the result (Since we can tag with the same value twice.
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private buildRegEx(searchTerm: string)</span> {</span>
+<span class="cstat-no" title="statement not covered" >    return '(?=.*' + searchTerm + ')' + _.map(this.tags, <span class="fstat-no" title="function not covered" >(tag: string)</span> =&gt; <span class="cstat-no" title="statement not covered" >this.buildTermToExclude(tag))</span>.join('') + '.*';</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private buildTermToExclude(term: string)</span> {
+<span class="cstat-no" title="statement not covered" >    return '(?!^' + term + '$)';</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private manageUpDownEnter(code: number)</span> {
+<span class="cstat-no" title="statement not covered" >    let selectableArray = $$(this.element).findAll('.coveo-selectable');</span>
+<span class="cstat-no" title="statement not covered" >    if (code == KEYBOARD.ENTER) {</span>
+<span class="cstat-no" title="statement not covered" >      this.doAddTag();</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (selectableArray.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      let newIndex = this.computeNextIndex(code, selectableArray);</span>
+<span class="cstat-no" title="statement not covered" >      newIndex = Math.max(0, newIndex);</span>
+<span class="cstat-no" title="statement not covered" >      newIndex = Math.min(selectableArray.length - 1, newIndex);</span>
+<span class="cstat-no" title="statement not covered" >      let selected = $$(selectableArray[newIndex]);</span>
+<span class="cstat-no" title="statement not covered" >      selected.addClass('coveo-selected');</span>
+<span class="cstat-no" title="statement not covered" >      this.textBox.value = selected.text();</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private computeNextIndex(code: number, selectableArray: HTMLElement[])</span>: number {
+<span class="cstat-no" title="statement not covered" >    let nextIndex = 0;</span>
+<span class="cstat-no" title="statement not covered" >    _.each(selectableArray, <span class="fstat-no" title="function not covered" >(selectable: HTMLElement, index)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if ($$(selectable).hasClass('coveo-selected')) {</span>
+<span class="cstat-no" title="statement not covered" >        if (code == KEYBOARD.UP_ARROW) {</span>
+<span class="cstat-no" title="statement not covered" >          nextIndex = index - 1;</span>
+        } else <span class="cstat-no" title="statement not covered" >if (code == KEYBOARD.DOWN_ARROW) {</span>
+<span class="cstat-no" title="statement not covered" >          nextIndex = index + 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        $$(selectable).removeClass('coveo-selected');</span>
+      }
+    });
+<span class="cstat-no" title="statement not covered" >    return nextIndex;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private buildSelectableValue(lookupValue: string)</span>: HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >    let line = $$('div', {</span>
+      className: 'coveo-selectable'
+    });
+<span class="cstat-no" title="statement not covered" >    line.el.appendChild(this.buildShortenedTagWithTitle(lookupValue));</span>
+<span class="cstat-no" title="statement not covered" >    line.on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      this.doAddTagWithValue(lookupValue);</span>
+    });
+<span class="cstat-no" title="statement not covered" >    return line.el;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private doRemoveTag(element: HTMLElement, tagValue: string)</span> {</span>
+<span class="cstat-no" title="statement not covered" >    let request: ITaggingRequest = {</span>
+      fieldName: &lt;string&gt;this.options.field,
+      fieldValue: tagValue,
+      doAdd: false,
+      uniqueId: this.result.uniqueId
+    };
+<span class="cstat-no" title="statement not covered" >    this.queryController.getEndpoint().tagDocument(request).then(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      this.tags.splice(_.indexOf(this.tags, tagValue), 1);</span>
+<span class="cstat-no" title="statement not covered" >      $$(element).detach();</span>
+    });
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private doAddTagWithValue(tagValue: string)</span> {</span>
+<span class="cstat-no" title="statement not covered" >    _.each(tagValue.split(','), <span class="fstat-no" title="function not covered" >(tag: string)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.doAddSingleTagValue(tag);</span>
+    });
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private doAddSingleTagValue(tagValue: string)</span> {</span>
+<span class="cstat-no" title="statement not covered" >    this.clearPopup();</span>
+<span class="cstat-no" title="statement not covered" >    if (_.indexOf(this.tags, tagValue) &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.element).addClass('coveo-error');</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    this.tags.push(tagValue);</span>
+<span class="cstat-no" title="statement not covered" >    let request: ITaggingRequest = {</span>
+      fieldName: &lt;string&gt;this.options.field,
+      fieldValue: tagValue,
+      doAdd: true,
+      uniqueId: this.result.uniqueId
+    };
+<span class="cstat-no" title="statement not covered" >    this.queryController.getEndpoint().tagDocument(request).then(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      this.tagZone.appendChild(this.buildTagValue(tagValue));</span>
+<span class="cstat-no" title="statement not covered" >      this.textBox.value = '';</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.element).removeClass('coveo-error');</span>
+    }).catch(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+      // We do this otherwise it's possible to add the same tag while we wait for the server's response
+<span class="cstat-no" title="statement not covered" >      this.tags = _.without(this.tags, _.findWhere(this.tags, tagValue));</span>
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private doAddTag() {</span>
+<span class="cstat-no" title="statement not covered" >    let tagValue = Utils.trim(this.textBox.value.toLowerCase());</span>
+<span class="cstat-no" title="statement not covered" >    this.doAddTagWithValue(tagValue);</span>
+  }
+}
+Initialization.registerAutoCreateComponent(ResultTagging);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

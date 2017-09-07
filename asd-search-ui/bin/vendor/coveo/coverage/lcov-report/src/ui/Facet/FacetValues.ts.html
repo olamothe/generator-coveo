@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Facet/FacetValues.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/ui/Facet/FacetValues.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">77.3% <small>(143 / 185)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">65% <small>(39 / 60)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">81.4% <small>(35 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">76.84% <small>(136 / 177)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Facet/</a> &#187; FacetValues.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">634</span>
+<span class="cline-any cline-yes">634</span>
+<span class="cline-any cline-yes">634</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">553</span>
+<span class="cline-any cline-yes">553</span>
+<span class="cline-any cline-yes">59</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">494</span>
+<span class="cline-any cline-yes">344</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">553</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">90</span>
+<span class="cline-any cline-yes">70</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">148</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">148</span>
+<span class="cline-any cline-yes">148</span>
+<span class="cline-any cline-yes">148</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">148</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">449</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">449</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">449</span>
+<span class="cline-any cline-yes">449</span>
+<span class="cline-any cline-yes">449</span>
+<span class="cline-any cline-yes">449</span>
+<span class="cline-any cline-yes">449</span>
+<span class="cline-any cline-yes">449</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">449</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">244</span>
+<span class="cline-any cline-yes">449</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">202</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">242</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">15307</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">375</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">163</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5993</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3671</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">703</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-yes">56</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">418</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">392</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">390</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Assert } from '../../misc/Assert';
+import { Utils } from '../../utils/Utils';
+import { IGroupByValue } from '../../rest/GroupByValue';
+import { IIndexFieldValue } from '../../rest/FieldValue';
+import { IGroupByResult } from '../../rest/GroupByResult';
+import * as Globalize from 'globalize';
+import * as _ from 'underscore';
+&nbsp;
+/**
+ * A class which holds information and operation available on a single facet value returned by a {@link IGroupByRequest}.&lt;br/&gt;
+ * This class is used extensibely in the {@link Facet} component.
+ */
+export class FacetValue {
+  value: string;
+  lookupValue: string;
+  occurrences: number;
+  computedField: number;
+  delta: number;
+  score: number;
+  selected: boolean = false;
+  excluded: boolean = false;
+  waitingForDelta: boolean = false;
+&nbsp;
+  reset() {
+    this.selected = false;
+    this.excluded = false;
+  }
+&nbsp;
+  updateCountsFromNewValue(newValue: FacetValue) {
+    Assert.exists(newValue);
+    this.occurrences = newValue.occurrences;
+    this.delta = newValue.delta;
+    this.computedField = newValue.computedField;
+  }
+&nbsp;
+  cloneWithZeroOccurrences(): FacetValue {
+    this.occurrences = 0;
+    this.computedField = undefined;
+    this.delta = undefined;
+    return this;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  cloneWithDelta(count: number, delta: number)</span>: FacetValue {
+<span class="cstat-no" title="statement not covered" >    Assert.isLargerOrEqualsThan(0, count);</span>
+<span class="cstat-no" title="statement not covered" >    var clone = this.cloneWithZeroOccurrences();</span>
+<span class="cstat-no" title="statement not covered" >    clone.delta = delta;</span>
+<span class="cstat-no" title="statement not covered" >    clone.occurrences = count;</span>
+<span class="cstat-no" title="statement not covered" >    return clone;</span>
+  }
+&nbsp;
+  getFormattedCount() {
+    var count: string = undefined;
+    if (Utils.exists(this.delta) &amp;&amp; this.delta &gt; 0) {
+      count = '+' + Globalize.format(this.delta, 'n0');
+    } else {
+      if (this.occurrences &gt; 0) {
+        count = Globalize.format(this.occurrences, 'n0');
+      }
+    }
+    return count;
+  }
+&nbsp;
+  getFormattedComputedField(format: string) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.computedField != 0) {
+      return Globalize.format(this.computedField, format);
+    } else {
+<span class="cstat-no" title="statement not covered" >      return undefined;</span>
+    }
+  }
+&nbsp;
+  static create(value: any): FacetValue {
+    if (_.isString(value)) {
+      return FacetValue.createFromValue(value);
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (_.isObject(value)) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if ('computedFieldResults' in value) {
+<span class="cstat-no" title="statement not covered" >        return FacetValue.createFromGroupByValue(value);</span>
+      } else {
+        return FacetValue.createFromFieldValue(value);
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      throw new Error('Can\'t create value from ' + value);</span>
+    }
+  }
+&nbsp;
+  static createFromValue(value: string): FacetValue {
+    Assert.isNonEmptyString(value);
+&nbsp;
+    var facetValue = new FacetValue();
+    facetValue.value = value;
+    facetValue.lookupValue = value;
+&nbsp;
+    return facetValue;
+  }
+&nbsp;
+  static createFromGroupByValue(groupByValue: IGroupByValue): FacetValue {
+    Assert.exists(groupByValue);
+&nbsp;
+    Assert.exists(groupByValue);
+&nbsp;
+    var facetValue = new FacetValue();
+    facetValue.value = groupByValue.value;
+    facetValue.lookupValue = Utils.exists(groupByValue.lookupValue) ? groupByValue.lookupValue : groupByValue.value;
+    facetValue.occurrences = groupByValue.numberOfResults;
+    facetValue.computedField = Utils.isNonEmptyArray(groupByValue.computedFieldResults) ? <span class="branch-0 cbranch-no" title="branch not covered" >groupByValue.computedFieldResults[0] </span>: undefined;
+    facetValue.score = groupByValue.score;
+&nbsp;
+    return facetValue;
+  }
+&nbsp;
+  static createFromFieldValue(fieldValue: IIndexFieldValue): FacetValue {
+    Assert.exists(fieldValue);
+&nbsp;
+    var facetValue = new FacetValue();
+    facetValue.value = fieldValue.value;
+    facetValue.lookupValue = fieldValue.lookupValue;
+    facetValue.occurrences = fieldValue.numberOfResults;
+&nbsp;
+    return facetValue;
+  }
+}
+&nbsp;
+export class FacetValues {
+  private values: FacetValue[];
+&nbsp;
+  constructor(groupByResult?: IGroupByResult) {
+    if (Utils.exists(groupByResult)) {
+      this.values = _.map(groupByResult.values, groupByValue =&gt; FacetValue.createFromGroupByValue(groupByValue));
+    } else {
+      this.values = [];
+    }
+  }
+&nbsp;
+  add(facetValue: FacetValue) {
+    Assert.exists(facetValue);
+    Assert.check(!this.contains(facetValue.value));
+    this.values.push(facetValue);
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  remove(value: string)</span> {
+<span class="cstat-no" title="statement not covered" >    Assert.isNonEmptyString(value);</span>
+<span class="cstat-no" title="statement not covered" >    value = value;</span>
+<span class="cstat-no" title="statement not covered" >    this.values = _.filter(this.values, <span class="fstat-no" title="function not covered" >(elem: FacetValue)</span> =&gt; <span class="cstat-no" title="statement not covered" >elem.value != value)</span>;</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  size(): number {</span>
+<span class="cstat-no" title="statement not covered" >    return this.values.length;</span>
+  }
+&nbsp;
+  isEmpty(): boolean {
+    return this.values.length == 0;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  at(index: number)</span>: FacetValue {
+<span class="cstat-no" title="statement not covered" >    Assert.isLargerOrEqualsThan(0, index);</span>
+<span class="cstat-no" title="statement not covered" >    Assert.isSmallerThan(this.values.length, index);</span>
+<span class="cstat-no" title="statement not covered" >    return this.values[index];</span>
+  }
+&nbsp;
+  get(value: string): FacetValue {
+    return _.find(this.values, (elem: FacetValue) =&gt; elem.value.toLowerCase() == value.toLowerCase());
+  }
+&nbsp;
+  contains(value: string): boolean {
+    return Utils.exists(this.get(value));
+  }
+&nbsp;
+  getAll(): FacetValue[] {
+    return this.values;
+  }
+&nbsp;
+  getSelected(): FacetValue[] {
+    return _.filter(this.values, (value: FacetValue) =&gt; value.selected);
+  }
+&nbsp;
+  getExcluded(): FacetValue[] {
+    return _.filter(this.values, (value: FacetValue) =&gt; value.excluded);
+  }
+&nbsp;
+  hasSelectedOrExcludedValues(): boolean {
+    return this.getSelected().length != 0 || this.getExcluded().length != 0;
+  }
+&nbsp;
+  reset() {
+    _.each(this.values, (elem: FacetValue) =&gt; elem.reset());
+  }
+&nbsp;
+  importActiveValuesFromOtherList(other: FacetValues) {
+    Assert.exists(other);
+&nbsp;
+    _.each(other.getSelected(), (otherValue: FacetValue) =&gt; {
+      var myValue = this.get(otherValue.value);
+      if (Utils.exists(myValue)) {
+        myValue.selected = true;
+      } else {
+        this.values.push(otherValue.cloneWithZeroOccurrences());
+      }
+    });
+&nbsp;
+    _.each(other.getExcluded(), (otherValue: FacetValue) =&gt; {
+      var myValue = this.get(otherValue.value);
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (Utils.exists(myValue)) {
+<span class="cstat-no" title="statement not covered" >        myValue.excluded = true;</span>
+      } else <span class="missing-if-branch" title="else path not taken" >E</span>if (otherValue.occurrences != 0) {
+        var occurrences = otherValue.occurrences;
+        var clone = otherValue.cloneWithZeroOccurrences();
+        clone.occurrences = occurrences;
+        this.values.push(clone);
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.values.push(otherValue.cloneWithZeroOccurrences());</span>
+      }
+    });
+  }
+&nbsp;
+  updateCountsFromNewValues(newValues: FacetValues) {
+    Assert.exists(newValues);
+&nbsp;
+    this.values = _.map(this.values, (myValue: FacetValue) =&gt; {
+      var newValue = newValues.get(myValue.value);
+      if (Utils.exists(newValue)) {
+        myValue.updateCountsFromNewValue(newValue);
+        return myValue;
+      } else if (myValue.occurrences == null) {
+        return myValue.cloneWithZeroOccurrences();
+      }
+      return myValue;
+    });
+  }
+&nbsp;
+  updateDeltaWithFilteredFacetValues(filtered: FacetValues) {
+    Assert.exists(filtered);
+    _.each(this.values, (unfilteredValue: FacetValue) =&gt; {
+      var filteredValue = filtered.get(unfilteredValue.value);
+      unfilteredValue.waitingForDelta = false;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (Utils.exists(filteredValue)) {
+<span class="cstat-no" title="statement not covered" >        if (unfilteredValue.occurrences - filteredValue.occurrences &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >          unfilteredValue.delta = unfilteredValue.occurrences - filteredValue.occurrences;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          unfilteredValue.delta = null;</span>
+        }
+      } else if (!unfilteredValue.selected &amp;&amp; !unfilteredValue.excluded) {
+        unfilteredValue.delta = unfilteredValue.occurrences;
+      }
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  mergeWithUnfilteredFacetValues(unfiltered: FacetValues)</span> {
+<span class="cstat-no" title="statement not covered" >    Assert.exists(unfiltered);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var values: FacetValue[] = [];</span>
+<span class="cstat-no" title="statement not covered" >    _.each(unfiltered.values, <span class="fstat-no" title="function not covered" >(unfilteredValue: FacetValue)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      var filteredValue = this.get(unfilteredValue.value);</span>
+<span class="cstat-no" title="statement not covered" >      if (Utils.exists(filteredValue)) {</span>
+<span class="cstat-no" title="statement not covered" >        if (filteredValue.occurrences == unfilteredValue.occurrences) {</span>
+<span class="cstat-no" title="statement not covered" >          values.push(filteredValue);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          values.push(unfilteredValue.cloneWithDelta(unfilteredValue.occurrences, unfilteredValue.occurrences - filteredValue.occurrences));</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered" >        values.push(unfilteredValue.cloneWithDelta(unfilteredValue.occurrences, unfilteredValue.occurrences));</span>
+      }
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var index = 0;</span>
+<span class="cstat-no" title="statement not covered" >    _.each(this.values, <span class="fstat-no" title="function not covered" >(value: FacetValue)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      var unfilteredValue = unfiltered.get(value.value);</span>
+<span class="cstat-no" title="statement not covered" >      if (!Utils.exists(unfilteredValue)) {</span>
+<span class="cstat-no" title="statement not covered" >        if (value.selected || value.excluded) {</span>
+<span class="cstat-no" title="statement not covered" >          values.splice(index, 0, value);</span>
+<span class="cstat-no" title="statement not covered" >          index++;</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered" >        for (var i = 0; i &lt; values.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >          if (values[i].value == value.value) {</span>
+<span class="cstat-no" title="statement not covered" >            index = i + 1;</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          }
+        }
+      }
+    });
+<span class="cstat-no" title="statement not covered" >    this.values = values;</span>
+  }
+&nbsp;
+  sortValuesDependingOnStatus(excludeLastIndex?: number) {
+    this.values = _.sortBy(this.values, (value: FacetValue) =&gt; {
+      if (value.selected) {
+        return 1;
+      } else if (value.excluded) {
+        return 3;
+      } else {
+        return 2;
+      }
+    });
+    if (excludeLastIndex != null &amp;&amp; excludeLastIndex &lt; this.values.length) {
+      var nbExclude = this.getExcluded().length;
+      var excludes = this.values.splice(this.values.length - nbExclude, nbExclude);
+      Array.prototype.splice.apply(this.values, (&lt;any[]&gt;[excludeLastIndex - nbExclude, 0]).concat(excludes));
+    }
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

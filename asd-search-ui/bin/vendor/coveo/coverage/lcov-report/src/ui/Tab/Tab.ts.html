@@ -1,0 +1,1332 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Tab/Tab.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/Tab/Tab.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">94.81% <small>(128 / 135)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">90.57% <small>(48 / 53)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">82.14% <small>(23 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">95.12% <small>(117 / 123)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Tab/</a> &#187; Tab.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">45</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">72</span>
+<span class="cline-any cline-yes">72</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">132</span>
+<span class="cline-any cline-yes">72</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-yes">72</span>
+<span class="cline-any cline-yes">72</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ResponsiveTabs } from '../ResponsiveComponents/ResponsiveTabs';
+import { Component } from '../Base/Component';
+import { ComponentOptions } from '../Base/ComponentOptions';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { MODEL_EVENTS, IAttributeChangedEventArg } from '../../models/Model';
+import { QueryEvents, IBuildingQueryEventArgs } from '../../events/QueryEvents';
+import { InitializationEvents } from '../../events/InitializationEvents';
+import { QueryStateModel, QUERY_STATE_ATTRIBUTES } from '../../models/QueryStateModel';
+import { analyticsActionCauseList, IAnalyticsInterfaceChange } from '../Analytics/AnalyticsActionListMeta';
+import { SearchEndpoint } from '../../rest/SearchEndpoint';
+import { Initialization } from '../Base/Initialization';
+import { Utils } from '../../utils/Utils';
+import { Assert } from '../../misc/Assert';
+import { $$ } from '../../utils/Dom';
+import { KeyboardUtils, KEYBOARD } from '../../utils/KeyboardUtils';
+import * as _ from 'underscore';
+import { exportGlobally } from '../../GlobalExports';
+import 'styling/_Tab';
+&nbsp;
+export interface ITabOptions {
+  expression?: string;
+  constant?: boolean;
+  id?: string;
+  icon?: string;
+  caption?: string;
+  sort?: string;
+  layout?: string;
+  endpoint?: SearchEndpoint;
+  enableDuplicateFiltering?: boolean;
+  pipeline?: string;
+  maximumAge?: number;
+  enableResponsiveMode?: boolean;
+  dropdownHeaderLabel?: string;
+}
+&nbsp;
+/**
+ * The Tab component renders a bar that allows the end user to select a specific search interface.
+ *
+ * This component attaches itself to a `div` element. It is in charge of adding an advanced expression to the outgoing
+ * query in order to refine the results.
+ *
+ * The Tab component can also hide and show different parts of the UI. For each individual component in the UI, you can
+ * specify whether you wish to include or exclude that component when the user selects a certain Tab.
+ *
+ * **Including and Excluding Other HTML Components:**
+ *
+ * You can hide or show a specific HTML component based on the currently selected Tab by adding one of the following
+ * attributes to its tag:
+ *
+ * - `&lt;div data-tab="foobar"&gt;`: Only include this element in the Tab with `foobar` as its `data-id`.
+ * - `&lt;div data-tab-not="foobar"&gt;`: Do not include this element in the Tab with `foobar` as its `data-id`.
+ * - `&lt;div data-tab="foobar,somethingelse"&gt;`: Only include this element in the Tab with `foobar` as its `data-id` and in
+ * the Tab with `somethingelse` as its `data-id`.
+ *
+ * **Setting a New Endpoint for a Tab:**
+ *
+ * A Tab can use a custom endpoint when performing a query. Of course, you need to make sure that the endpoint exists in
+ * the array of Coveo.SearchEndpoint.endpoints (see {@link SearchEndpoint.endpoints}).
+ *
+ * ```
+ * Coveo.SearchEndpoint.endpoints["specialEndpoint"] = new Coveo.SearchEndpoint({
+ *     restUri : 'https://somewhere.com/rest/search'
+ * })
+ *
+ * [ ... ]
+ *
+ * &lt;div class='CoveoTab' data-endpoint='specialEndpoint'&gt;&lt;/div&gt;
+ *
+ * ```
+ */
+export class Tab extends Component {
+  static ID = 'Tab';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'Tab': Tab
+    });
+  }
+&nbsp;
+  /**
+   * The options for a Tab
+   * @componentOptions
+   */
+  static options: ITabOptions = {
+&nbsp;
+    /**
+     * Specifies a unique ID for the Tab.
+     *
+     * Specifying a value for this option is necessary for this component to work.
+     */
+    id: ComponentOptions.buildStringOption({ required: true }),
+&nbsp;
+    /**
+     * Specifies the caption of the Tab.
+     *
+     * Specifying a value for this option is necessary for this component to work.
+     */
+    caption: ComponentOptions.buildLocalizedStringOption({ required: true }),
+&nbsp;
+    /**
+     * Specifies an icon to use for the Tab.
+     *
+     * @deprecated This options is mostly kept for legacy reasons. If possible, you should avoid using it.
+     */
+    icon: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies an advanced expression or filter that the Tab should add to any outgoing query.
+     *
+     * **Example:**
+     *
+     * `@objecttype==Message`
+     *
+     * Default value is `undefined` and the Tab applies no additional expression or filter to the query.
+     */
+    expression: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the {@link SearchEndpoint} to point to when performing queries from within the Tab.
+     *
+     * By default, the Tab uses the "default" endpoint.
+     */
+    endpoint: ComponentOptions.buildCustomOption(<span class="fstat-no" title="function not covered" >(endpoint)</span> =&gt; <span class="cstat-no" title="statement not covered" >endpoint != null ? SearchEndpoint.endpoints[endpoint] : null)</span>,
+&nbsp;
+    /**
+     * Specifies the default sort criteria to use when selecting the Tab. A {@link Sort} component with the same
+     * parameter needs to be present in the search interface in order for this option to function properly.
+     *
+     * **Examples:**
+     *
+     * - `data-sort='relevancy'`
+     * - `data-sort='date descending'`
+     *
+     * Default value is `undefined` and the normal {@link Sort} component behavior applies.
+     */
+    sort: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the default layout to display when the user selects the Tab (see {@link ResultList.options.layout} and
+     * {@link ResultLayout}).
+     *
+     * See the {@link ValidLayout} type for the list of possible values.
+     *
+     * If not specified, it will default to 'list'.
+     *
+     * See also [Result Layouts](https://developers.coveo.com/x/yQUvAg).
+     *
+     * Default value is `undefined` and the component selects the first available layout.
+     */
+    layout: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies whether to include the {@link Tab.options.expression} in the constant part of the query.
+     *
+     * The index specially optimizes the constant part of the query to execute faster. However, you must be careful not
+     * to include dynamic query expressions, otherwise the cache will lose its efficiency.
+     *
+     * Default value is `true`.
+     */
+    constant: ComponentOptions.buildBooleanOption({ defaultValue: true }),
+&nbsp;
+    /**
+     * Specifies whether to filter duplicates in the search results when the user selects the Tab.
+     *
+     * Setting this option to `true` forces duplicates to not appear in the search results. However, {@link Facet}
+     * counts still include duplicates, which can be confusing for the end user. This is a limitation of the index.
+     *
+     * **Example:**
+     *
+     * &gt; The end user narrows a query down to one item that has a duplicate. If this options is `true` and the user
+     * &gt; selects the Tab, only one item appears in the search results while the Facet count is still 2.
+     *
+     * **Note:**
+     *
+     * &gt; It is also possible to enable duplicate filtering for the entire {@link SearchInterface} rather than for a
+     * &gt; single Tab (see {@link SearchInterface.options.enableDuplicateFiltering}).
+     *
+     * Default value is `false`.
+     */
+    enableDuplicateFiltering: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+&nbsp;
+    /**
+     * Specifies the name of the query pipeline to use for the queries when the Tab is selected.
+     *
+     * You can specify a value for this option if your index is in a Coveo Cloud organization in which pipelines have
+     * been created (see [Managing Query Pipelines](http://www.coveo.com/go?dest=cloudhelp&amp;lcid=9&amp;context=128)).
+     *
+     * Default value is `undefined`, which means that pipeline selection conditions defined in the Coveo Cloud
+     * organization apply.
+     */
+    pipeline: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the maximum age (in milliseconds) that cached query results can have to still be usable as results
+     * instead of performing a new query on the index from within the Tab. The cache is located in the Coveo Search API
+     * (which resides between the index and the search interface).
+     *
+     * If cached results that are older than the age you specify in this option are available, a new query will be
+     * performed on the index anyhow.
+     *
+     * On high-volume public web sites, specifying a higher value for this option can greatly improve query response
+     * time at the cost of result freshness.
+     *
+     * **Note:**
+     *
+     * &gt; It is also possible to set a maximum cache age for the entire {@link SearchInterface} rather than for a single
+     * &gt; Tab (see {@link SearchInterface.options.maximumAge}).
+     *
+     * Default value is `undefined` and the Coveo Search API determines the maximum cache age. This is typically
+     * equivalent to 30 minutes (see [Query Parameters - maximumAge](https://developers.coveo.com/display/SearchREST/Query+Parameters#QueryParameters-maximumAge)).
+     */
+    maximumAge: ComponentOptions.buildNumberOption(),
+&nbsp;
+    /**
+     * Specifies whether to enable responsive mode for tabs. Responsive mode makes overflowing tabs disappear, instead
+     * making them available using a dropdown button. Responsive tabs are enabled either when tabs overflow or when the
+     * width of the search interface becomes too small.
+     *
+     * Disabling responsive mode for one Tab also disables it for all tabs. Therefore, you only need to set this option
+     * to `false` on one Tab to disable responsive mode.
+     *
+     * Default value is `true`.
+     */
+    enableResponsiveMode: ComponentOptions.buildBooleanOption({ defaultValue: true }),
+&nbsp;
+    /**
+     * Specifies the label of the button that allows to show the hidden tabs when in responsive mode.
+     *
+     * If more than one Tab in the search interface specifies a value for this option, then the framework uses the first
+     * occurrence of the option.
+     *
+     * The default value is `"More"`.
+     */
+    dropdownHeaderLabel: ComponentOptions.buildLocalizedStringOption()
+&nbsp;
+  };
+&nbsp;
+  private isFirstQuery = true;
+&nbsp;
+  /**
+   * Creates a new Tab. Binds on buildingQuery event as well as an event on click of the element.
+   * @param element The HTMLElement on which to instantiate the component. Normally a `div`.
+   * @param options The options for the Tab component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   */
+  constructor(public element: HTMLElement, public options?: ITabOptions, bindings?: IComponentBindings) {
+    super(element, Tab.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+&nbsp;
+    this.options = ComponentOptions.initComponentOptions(element, Tab, options);
+&nbsp;
+    this.bind.onRootElement(QueryEvents.buildingQuery, (args: IBuildingQueryEventArgs) =&gt; this.handleBuildingQuery(args));
+    this.bind.onRootElement(InitializationEvents.afterInitialization, () =&gt; this.handleAfterInitialization());
+    this.bind.onQueryState(MODEL_EVENTS.CHANGE_ONE, QUERY_STATE_ATTRIBUTES.T, (args: IAttributeChangedEventArg) =&gt; this.handleQueryStateChanged(args));
+    const clickAction = <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.handleClick();</span>
+    this.bind.on(element, 'click', clickAction);
+    this.bind.on(element, 'keyup', KeyboardUtils.keypressAction(KEYBOARD.ENTER, clickAction));
+    this.render();
+    ResponsiveTabs.init(this.root, this, this.options);
+  }
+&nbsp;
+  /**
+   * Selects the current Tab.
+   *
+   * Also logs the `interfaceChange` event in the usage analytics with the new current {@link Tab.options.id} as metada
+   * and triggers a new query.
+   */
+  public select() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.disabled) {
+      const currentLayout = this.queryStateModel.get(QUERY_STATE_ATTRIBUTES.LAYOUT);
+      this.queryStateModel.setMultiple({
+        t: this.options.id,
+        sort: this.options.sort || QueryStateModel.defaultAttributes.sort,
+        layout: this.options.layout || currentLayout || QueryStateModel.defaultAttributes.layout
+      });
+      this.usageAnalytics.logSearchEvent&lt;IAnalyticsInterfaceChange&gt;(analyticsActionCauseList.interfaceChange, { interfaceChangeTo: this.options.id });
+      this.queryController.executeQuery();
+    }
+  }
+&nbsp;
+  /**
+   * Indicates whether the HTMLElement argument is included in the Tab. *Included* elements are shown when the Tab is
+   * selected, whereas *excluded* elements are not.
+   * @param element The HTMLElement to verify.
+   * @returns {boolean} `true` if the HTMLElement is included in the Tab; `false` if it is excluded.
+   */
+  public isElementIncludedInTab(element: HTMLElement): boolean {
+    Assert.exists(element);
+&nbsp;
+    const includedTabs = this.splitListOfTabs(element.getAttribute('data-tab'));
+    const excludedTabs = this.splitListOfTabs(element.getAttribute('data-tab-not'));
+    Assert.check(!(includedTabs.length != 0 &amp;&amp; excludedTabs.length != 0), 'You cannot both explicitly include and exclude an element from tabs.');
+&nbsp;
+    return (includedTabs.length != 0 &amp;&amp; _.indexOf(includedTabs, this.options.id) != -1) ||
+      (excludedTabs.length != 0 &amp;&amp; _.indexOf(excludedTabs, this.options.id) == -1) ||
+      (includedTabs.length == 0 &amp;&amp; excludedTabs.length == 0);
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleClick() {</span>
+<span class="cstat-no" title="statement not covered" >    this.select();</span>
+  }
+&nbsp;
+  private render() {
+    const icon = this.options.icon;
+    if (Utils.isNonEmptyString(icon)) {
+      const iconSpan = $$('span').el;
+      $$(iconSpan).addClass(['coveo-icon', icon]);
+      this.element.insertBefore(iconSpan, this.element.firstChild);
+    }
+&nbsp;
+    const caption = this.options.caption;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (Utils.isNonEmptyString(caption)) {
+      const captionP = document.createElement('p');
+      $$(captionP).text(caption);
+      this.element.appendChild(captionP);
+    }
+    this.element.setAttribute('tabindex', '0');
+  }
+&nbsp;
+  protected handleBuildingQuery(data: IBuildingQueryEventArgs) {
+    Assert.exists(data);
+    this.isFirstQuery = false;
+    if (!this.disabled &amp;&amp; this.isSelected()) {
+      data.queryBuilder.tab = this.options.id;
+&nbsp;
+      if (Utils.isNonEmptyString(this.options.expression)) {
+        if (this.options.constant) {
+          data.queryBuilder.constantExpression.add(this.options.expression);
+        } else {
+          data.queryBuilder.advancedExpression.add(this.options.expression);
+        }
+      }
+&nbsp;
+      if (this.options.enableDuplicateFiltering) {
+        data.queryBuilder.enableDuplicateFiltering = true;
+      }
+&nbsp;
+      if (this.options.pipeline != null) {
+        data.queryBuilder.pipeline = this.options.pipeline;
+      }
+&nbsp;
+      if (this.options.maximumAge != null) {
+        data.queryBuilder.maximumAge = this.options.maximumAge;
+      }
+    }
+  }
+&nbsp;
+  private handleQueryStateChanged(data: IAttributeChangedEventArg) {
+    Assert.exists(data);
+    if (!this.disabled &amp;&amp; this.isSelected()) {
+      $$(this.element).addClass('coveo-selected');
+      this.queryController.setEndpoint(this.options.endpoint);
+      this.showAndHideAppropriateElements();
+    } else {
+      $$(this.element).removeClass('coveo-selected');
+    }
+  }
+&nbsp;
+  private handleAfterInitialization() {
+    if (this.isSelected() &amp;&amp; this.options.layout) {
+      this.queryStateModel.set(QUERY_STATE_ATTRIBUTES.LAYOUT, this.options.layout);
+    }
+  }
+&nbsp;
+  protected isSelected(): boolean {
+    const activeTab = this.queryStateModel.get(QueryStateModel.attributesEnum.t);
+    return activeTab == this.options.id;
+  }
+&nbsp;
+  private showAndHideAppropriateElements() {
+    const showElements = [];
+    const hideElements = [];
+&nbsp;
+    _.each($$(this.root).findAll('[data-tab],[data-tab-not]'), (element) =&gt; {
+      if (this.isElementIncludedInTab(element)) {
+        this.toggleAllComponentsUnder(element, true);
+        showElements.push(element);
+      } else {
+        this.toggleAllComponentsUnder(element, false);
+        hideElements.push(element);
+      }
+    });
+&nbsp;
+    $$(this.root).one(QueryEvents.querySuccess, () =&gt; {
+      _.each(showElements, (elem) =&gt; $$(elem).removeClass('coveo-tab-disabled'));
+      _.each(hideElements, (elem) =&gt; $$(elem).addClass('coveo-tab-disabled'));
+    });
+  }
+&nbsp;
+  private splitListOfTabs(value: string): string[] {
+    if (Utils.exists(value)) {
+      return _.map(value.split(','), (tab) =&gt; Utils.trim(tab));
+    } else {
+      return [];
+    }
+  }
+&nbsp;
+  private toggleAllComponentsUnder(element: HTMLElement, enable: boolean) {
+    Assert.exists(element);
+&nbsp;
+    const togglePossibleComponent = (possibleComponent: HTMLElement) =&gt; {
+      const possibleCmp = Component.get(possibleComponent, undefined, true);
+      if (possibleCmp) {
+        if (enable) {
+          possibleCmp.enable();
+        } else {
+          possibleCmp.disable();
+        }
+      }
+    };
+&nbsp;
+    togglePossibleComponent(element);
+    _.each($$(element).findAll('*'), (el) =&gt; {
+      togglePossibleComponent(el);
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public enable() {</span>
+<span class="cstat-no" title="statement not covered" >    super.enable();</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.display = '';</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public disable() {</span>
+<span class="cstat-no" title="statement not covered" >    super.disable();</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.display = 'none';</span>
+  }
+}
+&nbsp;
+Initialization.registerAutoCreateComponent(Tab);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

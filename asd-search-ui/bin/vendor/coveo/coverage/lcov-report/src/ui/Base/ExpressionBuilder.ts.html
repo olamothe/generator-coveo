@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Base/ExpressionBuilder.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/Base/ExpressionBuilder.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">98.28% <small>(57 / 58)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">85.71% <small>(12 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(13 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">98.08% <small>(51 / 52)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Base/</a> &#187; ExpressionBuilder.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">12107</span>
+<span class="cline-any cline-yes">12107</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">246</span>
+<span class="cline-any cline-yes">246</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">72</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">110</span>
+<span class="cline-any cline-yes">110</span>
+<span class="cline-any cline-yes">110</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">839</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21864</span>
+<span class="cline-any cline-yes">10932</span>
+<span class="cline-any cline-yes">10635</span>
+<span class="cline-any cline-yes">297</span>
+<span class="cline-any cline-yes">255</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">501</span>
+<span class="cline-any cline-yes">167</span>
+<span class="cline-any cline-yes">167</span>
+<span class="cline-any cline-yes">334</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">167</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1256</span>
+<span class="cline-any cline-yes">837</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">419</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">419</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">400</span>
+<span class="cline-any cline-yes">82</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">419</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Assert } from '../../misc/Assert';
+import { QueryUtils } from '../../utils/QueryUtils';
+import * as _ from 'underscore';
+&nbsp;
+/**
+ * An `ExpressionBuilder` that is mostly used by the {@link QueryBuilder}.&lt;br/&gt;
+ * It is used to build a single query expression.&lt;br/&gt;
+ * It allows combining multiple expression parts into a single string and provides utilities to generate common expression parts.
+ */
+export class ExpressionBuilder {
+  private parts: string[] = []; // he he he
+  public wrapParts: boolean = true;
+&nbsp;
+  /**
+   * Add a new part to the expression.
+   * @param expression
+   */
+  public add(expression: string) {
+    Assert.isNonEmptyString(expression);
+    this.parts.push(expression);
+  }
+&nbsp;
+  /**
+   * Take another `ExpressionBuilder`, and copy it.
+   * @param expression
+   */
+  public fromExpressionBuilder(expression: ExpressionBuilder) {
+    this.parts = this.parts.concat(expression.parts);
+  }
+&nbsp;
+  /**
+   * Add a new part to the expression, but specific for field values&lt;br/&gt;
+   * eg @field=(value1,value2,value3).
+   * @param field The field for which to create an expression (e.g.: @foo).
+   * @param operator The operator to use e.g.: = (equal) == (strict equal) &lt;&gt; (not equal).
+   * @param values The values to put in the expression.
+   */
+  public addFieldExpression(field: string, operator: string, values: string[]) {
+    Assert.isNonEmptyString(field);
+    Assert.stringStartsWith(field, '@');
+    Assert.isNonEmptyString(operator);
+    Assert.isLargerOrEqualsThan(1, values.length);
+&nbsp;
+    this.add(QueryUtils.buildFieldExpression(field, operator, values));
+  }
+&nbsp;
+  /**
+   * Add a new part to the expression, but specific for field values&lt;br/&gt;
+   * eg : NOT @field==(value1, value2, value3).
+   * @param field The field for which to create an expression (e.g.: @foo)
+   * @param values The values to put in the expression.
+   */
+  public addFieldNotEqualExpression(field: string, values: string[]) {
+    Assert.isNonEmptyString(field);
+    Assert.stringStartsWith(field, '@');
+    Assert.isLargerOrEqualsThan(1, values.length);
+&nbsp;
+    this.add(QueryUtils.buildFieldNotEqualExpression(field, values));
+  }
+&nbsp;
+  /**
+   * Removes an expression from the builder.
+   * @param expression
+   */
+  public remove(expression: string) {
+    Assert.isNonEmptyString(expression);
+    var index = _.indexOf(this.parts, expression);
+    if (index != -1) {
+      this.parts.splice(_.indexOf(this.parts, expression), 1);
+    }
+  }
+&nbsp;
+  /**
+   * Checks if the builder is currently empty.
+   * @returns {boolean}
+   */
+  public isEmpty(): boolean {
+    return this.parts.length == 0;
+  }
+&nbsp;
+  /**
+   * Builds the expression string by combining all the parts together.&lt;br/&gt;
+   * @param exp expression to join the different parts, default to a space.
+   * @returns {any}
+   */
+  public build(<span class="missing-if-branch" title="else path not taken" >E</span>exp: string = ' '): string {
+    if (this.parts.length == 0) {
+      return undefined;
+    } else if (this.parts.length == 1) {
+      return this.parts[0];
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (this.wrapParts) {
+      return '(' + this.parts.join(')' + exp + '(') + ')';
+    } else {
+<span class="cstat-no" title="statement not covered" >      return this.parts.join(exp);</span>
+    }
+  }
+&nbsp;
+  /**
+   * Merges several `ExpressionBuilder` together.
+   * @param builders Builders that should be merged.
+   * @returns {Coveo.ExpressionBuilder}
+   */
+  static merge(...builders: ExpressionBuilder[]): ExpressionBuilder {
+    var merged = new ExpressionBuilder();
+    _.each(builders, (builder: ExpressionBuilder) =&gt; {
+      merged.parts = merged.parts.concat(builder.parts);
+    });
+&nbsp;
+    return merged;
+  }
+&nbsp;
+  /**
+   * Merges several `ExpressionBuilder` together, using the OR operator.
+   * @param builders Builders that should be merged.
+   * @returns {Coveo.ExpressionBuilder}
+   */
+  static mergeUsingOr(...builders: ExpressionBuilder[]): ExpressionBuilder {
+    var nonEmpty = _.filter(builders, (b: ExpressionBuilder) =&gt; !b.isEmpty());
+&nbsp;
+    var merged = new ExpressionBuilder();
+&nbsp;
+    if (nonEmpty.length == 1) {
+      merged.parts = [].concat(nonEmpty[0].parts);
+    } else if (nonEmpty.length &gt; 1) {
+      var parts = _.map(nonEmpty, b =&gt; b.build());
+      merged.add('(' + parts.join(') OR (') + ')');
+    }
+    return merged;
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

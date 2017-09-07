@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/DidYouMean/DidYouMean.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/DidYouMean/DidYouMean.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">97.96% <small>(96 / 98)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">81.82% <small>(9 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">91.67% <small>(11 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">97.8% <small>(89 / 91)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/DidYouMean/</a> &#187; DidYouMean.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from '../Base/Component';
+import { ComponentOptions } from '../Base/ComponentOptions';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { Assert } from '../../misc/Assert';
+import { QueryEvents, IBuildingQueryEventArgs, INoResultsEventArgs, IQuerySuccessEventArgs } from '../../events/QueryEvents';
+import { $$ } from '../../utils/Dom';
+import { QueryStateModel } from '../../models/QueryStateModel';
+import { Initialization } from '../Base/Initialization';
+import { IQueryCorrection } from '../../rest/QueryCorrection';
+import { StringUtils } from '../../utils/StringUtils';
+import { Utils } from '../../utils/Utils';
+import { analyticsActionCauseList, IAnalyticsNoMeta } from '../Analytics/AnalyticsActionListMeta';
+import { l } from '../../strings/Strings';
+import * as _ from 'underscore';
+import { exportGlobally } from '../../GlobalExports';
+import 'styling/_DidYouMean';
+&nbsp;
+export interface IDidYouMeanOptions {
+  enableAutoCorrection?: boolean;
+}
+&nbsp;
+/**
+ * The DidYouMean component is responsible for displaying query corrections. If this component is in the page and the
+ * query returns no result but finds a possible query correction, the component either suggests the correction or
+ * automatically triggers a new query with the suggested term.
+ */
+export class DidYouMean extends Component {
+  static ID = 'DidYouMean';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'DidYouMean': DidYouMean
+    });
+  }
+&nbsp;
+  /**
+   * The options for the component
+   * @componentOptions
+   */
+  static options: IDidYouMeanOptions = {
+&nbsp;
+    /**
+     * Specifies whether the DidYouMean component automatically triggers a new query when a query returns no result and
+     * a possible correction is available.
+     *
+     * Default value is `true`.
+     */
+    enableAutoCorrection: ComponentOptions.buildBooleanOption({ defaultValue: true }),
+  };
+&nbsp;
+  public correctedTerm: string;
+&nbsp;
+  private hideNext: boolean;
+&nbsp;
+  /**
+   * Creates a new DidYouMean component.
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the DidYouMean component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   */
+  constructor(public element: HTMLElement, public options?: IDidYouMeanOptions, public bindings?: IComponentBindings) {
+&nbsp;
+    super(element, DidYouMean.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+&nbsp;
+    this.options = ComponentOptions.initComponentOptions(element, DidYouMean, options);
+    Assert.exists(element);
+    Assert.exists(this.options);
+&nbsp;
+    this.hideNext = true;
+&nbsp;
+    this.correctedTerm = null;
+&nbsp;
+    this.bind.onRootElement(QueryEvents.buildingQuery, this.handlePrepareQueryBuilder);
+    this.bind.onRootElement(QueryEvents.querySuccess, this.handleProcessNewQueryResults);
+    this.bind.onRootElement(QueryEvents.noResults, this.handleNoResults);
+    this.bind.onRootElement(QueryEvents.newQuery, this.handleNewQuery);
+    $$(this.element).hide();
+  }
+&nbsp;
+  /**
+   * Executes a query with the corrected term.
+   * Throws an exception if the corrected term has not been initialized.
+   * If successful, logs a `didyoumeanClick` event in the usage analytics.
+   */
+  public doQueryWithCorrectedTerm() {
+    Assert.exists(this.correctedTerm);
+    this.queryStateModel.set(QueryStateModel.attributesEnum.q, this.correctedTerm);
+    this.queryController.deferExecuteQuery({
+      beforeExecuteQuery: () =&gt; this.usageAnalytics.logSearchEvent&lt;IAnalyticsNoMeta&gt;(analyticsActionCauseList.didyoumeanClick, {})
+    });
+  }
+&nbsp;
+  private handleNewQuery() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.hideNext) {
+      $$(this.element).empty();
+      $$(this.element).hide();
+      this.correctedTerm = null;
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.hideNext = true;</span>
+    }
+  }
+&nbsp;
+  private handlePrepareQueryBuilder(data: IBuildingQueryEventArgs) {
+    Assert.exists(data);
+    data.queryBuilder.enableDidYouMean = true;
+  }
+&nbsp;
+  private handleNoResults(data: INoResultsEventArgs) {
+    // We do not auto-correct on search-as-you-type queries
+    if (Utils.isNonEmptyArray(data.results.queryCorrections) &amp;&amp; !data.searchAsYouType &amp;&amp; this.options.enableAutoCorrection) {
+      let originalQuery = this.queryStateModel.get(QueryStateModel.attributesEnum.q);
+      this.correctedTerm = data.results.queryCorrections[0].correctedQuery;
+      let correctedSentence = this.buildCorrectedSentence(data.results.queryCorrections[0]);
+      this.queryStateModel.set(QueryStateModel.attributesEnum.q, data.results.queryCorrections[0].correctedQuery);
+      data.retryTheQuery = true;
+      this.hideNext = false;
+&nbsp;
+      let noResultsFor = $$('div', { className: 'coveo-did-you-mean-no-results-for' }).el;
+      noResultsFor.innerHTML = l('noResultFor', '&lt;span class="coveo-highlight coveo-did-you-mean-highlight"&gt;' + StringUtils.htmlEncode(originalQuery) + '&lt;/span&gt;');
+      this.element.appendChild(noResultsFor);
+&nbsp;
+      let automaticCorrect = $$('div', { className: 'coveo-did-you-mean-automatic-correct' }).el;
+      automaticCorrect.innerHTML = l('autoCorrectedQueryTo', '&lt;span class="coveo-highlight"&gt;' + correctedSentence + '&lt;/span&gt;');
+      this.element.appendChild(automaticCorrect);
+&nbsp;
+      $$(this.element).show();
+      this.usageAnalytics.logSearchEvent&lt;IAnalyticsNoMeta&gt;(analyticsActionCauseList.didyoumeanAutomatic, {});
+    }
+  }
+&nbsp;
+  private handleProcessNewQueryResults(data: IQuerySuccessEventArgs) {
+    Assert.exists(data);
+    Assert.exists(data.results);
+&nbsp;
+    let results = data.results;
+    this.logger.trace('Received query results from new query', results);
+&nbsp;
+    if (Utils.isNonEmptyArray(results.queryCorrections)) {
+      let correctedSentence = this.buildCorrectedSentence(results.queryCorrections[0]);
+      this.correctedTerm = results.queryCorrections[0].correctedQuery;
+      let didYouMean = $$('div', { className: 'coveo-did-you-mean-suggestion' }, l('didYouMean', '')).el;
+      this.element.appendChild(didYouMean);
+&nbsp;
+      let searchTerm = $$('a', {}, correctedSentence).el;
+      didYouMean.appendChild(searchTerm);
+&nbsp;
+      $$(searchTerm).on('click', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        this.doQueryWithCorrectedTerm();</span>
+      });
+&nbsp;
+      $$(this.element).show();
+    }
+  }
+&nbsp;
+  private buildCorrectedSentence(correction: IQueryCorrection) {
+    let toReturn = [];
+    let tagStart = '&lt;span class=\'coveo-did-you-mean-word-correction\'&gt;';
+    let tagEnd = '&lt;/span&gt;';
+    let currentOffset = 0;
+    _.each(correction.wordCorrections, (wordCorrection) =&gt; {
+      toReturn.push(StringUtils.htmlEncode(correction.correctedQuery.slice(currentOffset, wordCorrection.offset)));
+      currentOffset = wordCorrection.offset;
+      toReturn.push(tagStart);
+      toReturn.push(StringUtils.htmlEncode(correction.correctedQuery.slice(currentOffset, wordCorrection.length + currentOffset)));
+      toReturn.push(tagEnd);
+      currentOffset = wordCorrection.offset + wordCorrection.length;
+    });
+    toReturn.push(StringUtils.htmlEncode(correction.correctedQuery.slice(currentOffset)));
+    return toReturn.join('');
+  }
+}
+&nbsp;
+Initialization.registerAutoCreateComponent(DidYouMean);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

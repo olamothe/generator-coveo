@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/HiddenQuery/HiddenQuery.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/HiddenQuery/HiddenQuery.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">97.47% <small>(77 / 79)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">92.86% <small>(13 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">83.33% <small>(10 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(70 / 70)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/HiddenQuery/</a> &#187; HiddenQuery.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from '../Base/Component';
+import { ComponentOptions } from '../Base/ComponentOptions';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { l } from '../../strings/Strings';
+import { QueryEvents, IBuildingQueryEventArgs } from '../../events/QueryEvents';
+import { BreadcrumbEvents, IPopulateBreadcrumbEventArgs } from '../../events/BreadcrumbEvents';
+import { analyticsActionCauseList, IAnalyticsContextRemoveMeta } from '../Analytics/AnalyticsActionListMeta';
+import { QUERY_STATE_ATTRIBUTES, QueryStateModel } from '../../models/QueryStateModel';
+import { $$ } from '../../utils/Dom';
+import { Utils } from '../../utils/Utils';
+import { Initialization } from '../Base/Initialization';
+import { Assert } from '../../misc/Assert';
+import * as _ from 'underscore';
+import { exportGlobally } from '../../GlobalExports';
+import 'styling/_HiddenQuery';
+import { SVGIcons } from '../../utils/SVGIcons';
+import { SVGDom } from '../../utils/SVGDom';
+&nbsp;
+export interface IHiddenQueryOptions {
+  maximumDescriptionLength: number;
+  title: string;
+}
+&nbsp;
+/**
+ * The HiddenQuery component handles a "hidden" query parameter (`hq`) and its description (`hd`).
+ *
+ * Concretely, this means that if a HiddenQuery component is present in your page and you load your search interface
+ * with `hq=foo&amp;hd=bar` in the URL hash, the component adds `foo` as an expression to the query (`hq` is the hidden
+ * query) and renders `bar` in the {@link Breadcrumb} (`hd` is the hidden query description).
+ */
+export class HiddenQuery extends Component {
+  static ID = 'HiddenQuery';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'HiddenQuery': HiddenQuery
+    });
+  }
+&nbsp;
+  /**
+   * Possible options for the `HiddenQuery` component
+   * @componentOptions
+   */
+  static options: IHiddenQueryOptions = {
+&nbsp;
+    /**
+     * Specifies the maximum number of characters from the hidden query description (`hd`) to display in the
+     * {@link Breadcrumb}.
+     *
+     * Beyond this length, the HiddenQuery component slices the rest of the description and replaces it by `...`.
+     *
+     * Default value is `100`. Minimum value is `0`.
+     */
+    maximumDescriptionLength: ComponentOptions.buildNumberOption({ min: 0, defaultValue: 100 }),
+&nbsp;
+    /**
+     * Specifies the title that should appear in the {@link Breadcrumb} when the HiddenQuery populates it.
+     *
+     * Default value is the localized string f
+     * or `"Additional filters:"`
+     */
+    title: ComponentOptions.buildLocalizedStringOption({ defaultValue: l('AdditionalFilters') + ': ' })
+  };
+&nbsp;
+  /**
+   * Creates a new HiddenQuery component, which binds multiple events ({@link QueryEvents.buildingQuery},
+   * {@link BreadcrumbEvents.populateBreadcrumb} and {@link BreadcrumbEvents.clearBreadcrumb}).
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the HiddenQuery component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   */
+  constructor(public element: HTMLElement, public options?: IHiddenQueryOptions, bindings?: IComponentBindings) {
+&nbsp;
+    super(element, HiddenQuery.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+    this.options = ComponentOptions.initComponentOptions(element, HiddenQuery, options);
+&nbsp;
+    this.bind.onRootElement(QueryEvents.buildingQuery, (args: IBuildingQueryEventArgs) =&gt; this.handleBuildingQuery(args));
+    this.bind.onRootElement(BreadcrumbEvents.populateBreadcrumb, (args: IPopulateBreadcrumbEventArgs) =&gt; this.handlePopulateBreadcrumb(args));
+    this.bind.onRootElement(BreadcrumbEvents.clearBreadcrumb, <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.setStateEmpty())</span>;
+  }
+&nbsp;
+  /**
+   * Clears any `hd` or `hq` set in the {@link QueryStateModel}.
+   * Also logs the `contextRemove` event in the usage analytics and triggers a new query.
+   */
+  public clear() {
+    this.setStateEmpty();
+    const hiddenDescriptionRemoved = this.getDescription();
+    this.usageAnalytics.logSearchEvent&lt;IAnalyticsContextRemoveMeta&gt;(analyticsActionCauseList.contextRemove, { contextName: hiddenDescriptionRemoved });
+    this.queryController.executeQuery();
+  }
+&nbsp;
+  private setStateEmpty() {
+    this.queryStateModel.set(QUERY_STATE_ATTRIBUTES.HD, '');
+    this.queryStateModel.set(QUERY_STATE_ATTRIBUTES.HQ, '');
+  }
+&nbsp;
+  private handleBuildingQuery(data: IBuildingQueryEventArgs) {
+    Assert.exists(data);
+    const hiddenQuery = this.queryStateModel.get(QUERY_STATE_ATTRIBUTES.HQ);
+    if (Utils.isNonEmptyString(hiddenQuery)) {
+      data.queryBuilder.advancedExpression.add(hiddenQuery);
+    }
+  }
+&nbsp;
+  private handlePopulateBreadcrumb(args: IPopulateBreadcrumbEventArgs) {
+    const description = this.getDescription();
+    if (!_.isEmpty(description) &amp;&amp; !_.isEmpty(this.queryStateModel.get(QUERY_STATE_ATTRIBUTES.HQ))) {
+      const elem = document.createElement('div');
+      $$(elem).addClass('coveo-hidden-query-breadcrumb');
+&nbsp;
+      const title = document.createElement('span');
+      $$(title).addClass('coveo-hidden-query-breadcrumb-title');
+      $$(title).text(this.options.title);
+      elem.appendChild(title);
+&nbsp;
+      const values = document.createElement('span');
+      $$(values).addClass('coveo-hidden-query-breadcrumb-values');
+      elem.appendChild(values);
+&nbsp;
+      const value = $$('span', { className: 'coveo-hidden-query-breadcrumb-value' }, description);
+      values.appendChild(value.el);
+&nbsp;
+      const svgContainer = $$('span', { className: 'coveo-hidden-query-breadcrum-clear-icon' }, SVGIcons.icons.checkboxHookExclusionMore);
+      SVGDom.addClassToSVGInContainer(svgContainer.el, 'coveo-hidden-query-breadcrumb-clear-svg');
+      const clear = $$('span', { className: 'coveo-hidden-query-breadcrumb-clear' });
+      clear.append(svgContainer.el);
+      elem.appendChild(clear.el);
+&nbsp;
+      $$(elem).on('click', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.clear())</span>;
+&nbsp;
+      args.breadcrumbs.push({
+        element: elem
+      });
+    }
+  }
+&nbsp;
+  private getDescription() {
+    let description = this.queryStateModel.get(QueryStateModel.attributesEnum.hd);
+    if (_.isEmpty(description)) {
+      description = this.queryStateModel.get(QueryStateModel.attributesEnum.hq);
+    }
+    if (!_.isEmpty(description)) {
+      if (description.length &gt; this.options.maximumDescriptionLength) {
+        description = description.slice(0, this.options.maximumDescriptionLength) + ' ...';
+      }
+    }
+    return description;
+  }
+}
+Initialization.registerAutoCreateComponent(HiddenQuery);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

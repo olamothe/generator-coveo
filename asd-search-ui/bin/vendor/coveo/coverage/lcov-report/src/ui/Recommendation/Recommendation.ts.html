@@ -1,0 +1,1311 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Recommendation/Recommendation.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/Recommendation/Recommendation.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">96.99% <small>(161 / 166)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">83.33% <small>(40 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">94.44% <small>(34 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">96.67% <small>(145 / 150)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Recommendation/</a> &#187; Recommendation.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3192</span>
+<span class="cline-any cline-yes">380</span>
+<span class="cline-any cline-yes">3192</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-yes">190</span>
+<span class="cline-any cline-yes">1710</span>
+<span class="cline-any cline-yes">1710</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { SearchInterface, ISearchInterfaceOptions } from '../SearchInterface/SearchInterface';
+import { ComponentOptions } from '../Base/ComponentOptions';
+import { QueryEvents, IQuerySuccessEventArgs, IBuildingQueryEventArgs } from '../../events/QueryEvents';
+import { OmniboxEvents } from '../../events/OmniboxEvents';
+import { ResultListEvents } from '../../events/ResultListEvents';
+import { SettingsEvents } from '../../events/SettingsEvents';
+import { PreferencesPanelEvents } from '../../events/PreferencesPanelEvents';
+import { AnalyticsEvents } from '../../events/AnalyticsEvents';
+import { analyticsActionCauseList, IAnalyticsNoMeta } from '../Analytics/AnalyticsActionListMeta';
+import { BreadcrumbEvents } from '../../events/BreadcrumbEvents';
+import { QuickviewEvents } from '../../events/QuickviewEvents';
+import { QUERY_STATE_ATTRIBUTES } from '../../models/QueryStateModel';
+import { Model, MODEL_EVENTS } from '../../models/Model';
+import { Utils } from '../../utils/Utils';
+import { $$ } from '../../utils/Dom';
+import { INoResultsEventArgs } from '../../events/QueryEvents';
+import { IQueryErrorEventArgs } from '../../events/QueryEvents';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { ResponsiveRecommendation } from '../ResponsiveComponents/ResponsiveRecommendation';
+import { history } from 'coveo.analytics';
+import { get } from '../Base/RegisteredNamedMethods';
+import { InitializationEvents } from '../../events/InitializationEvents';
+import { ComponentOptionsModel } from '../../models/ComponentOptionsModel';
+import * as _ from 'underscore';
+import { exportGlobally } from '../../GlobalExports';
+import HistoryQueryElement = CoveoAnalytics.HistoryQueryElement;
+import { DefaultRecommendationTemplate } from '../Templates/DefaultRecommendationTemplate';
+import { RecommendationQuery } from './RecommendationQuery';
+import { RecommendationAnalyticsClient } from '../Analytics/RecommendationAnalyticsClient';
+&nbsp;
+import 'styling/_Recommendation';
+&nbsp;
+export interface IRecommendationOptions extends ISearchInterfaceOptions {
+  mainSearchInterface?: HTMLElement;
+  userContext?: string;
+  id?: string;
+  optionsToUse?: string[];
+  sendActionsHistory?: boolean;
+  hideIfNoResults?: boolean;
+  enableResponsiveMode?: boolean;
+  responsiveBreakpoint?: number;
+  dropdownHeaderLabel?: string;
+}
+&nbsp;
+/**
+ * The Recommendation component is a {@link SearchInterface} that displays recommendations typically based on user
+ * history.
+ *
+ * This component usually listens to the main SearchInterface. When the main SearchInterface generates a query, the
+ * Recommendation component generates another query to get the recommendations at the same time.
+ *
+ * To get history-based recommendations, you will likely want to include the `pageview` script in your page (see
+ * [coveo.analytics.js](https://github.com/coveo/coveo.analytics.js)). However, including this script is not mandatory.
+ * For instance, you could use the Recommendation component without the Coveo Machine Learning service to create a
+ * simple "recommended people" interface.
+ *
+ * It is possible to include this component inside another SearchInterface, but it is also possible to instantiate it as
+ * a "standalone" search interface, without even instantiating a main SearchInterface component. In any case, a
+ * Recommendation component always acts as a full-fledged search interface. Therefore, you can include any component
+ * inside the Recommendation component (Searchbox, Facet, Sort, etc.), just as you would inside the main SearchInterface
+ * component.
+ */
+export class Recommendation extends SearchInterface implements IComponentBindings {
+  static ID = 'Recommendation';
+  private static NEXT_ID = 1;
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'Recommendation': Recommendation,
+      'DefaultRecommendationTemplate': DefaultRecommendationTemplate,
+      'RecommendationQuery': RecommendationQuery,
+      'RecommendationAnalyticsClient': RecommendationAnalyticsClient
+    });
+  }
+&nbsp;
+  /**
+   * The options for the recommendation component
+   * @componentOptions
+   */
+  static options: IRecommendationOptions = {
+&nbsp;
+    /**
+     * Specifies the main {@link SearchInterface} to listen to.
+     */
+    mainSearchInterface: ComponentOptions.buildSelectorOption(),
+&nbsp;
+    /**
+     * Specifies the user context to send to Coveo usage analytics.
+     * The component sends this information with the query alongside the user history to get the recommendations.
+     */
+    userContext: ComponentOptions.buildJsonOption(),
+&nbsp;
+    /**
+     * Specifies the ID of the interface.
+     * The usage analytics use the interface ID to know which recommendation interface was selected.
+     *
+     * Default value is `Recommendation` for the first one and `Recommendation_{number}`, where {number} depends on the
+     * number of Recommendation interfaces with default IDs in the page for the others.
+     */
+    id: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies which options from the main {@link QueryBuilder} to use in the triggered query.
+     *
+     * Possible values are:
+     * - `expression`
+     * - `advancedExpression`
+     * - `constantExpression`
+     * - `disjunctionExpression`
+     *
+     * **Example:**
+     *
+     * Adding the expression (`q`) and the advanced expression (`aq`) parts of the main query in the triggered query:
+     *
+     * `data-options-to-use="expression,advancedExpression"`
+     *
+     * Default value is `expression`.
+     */
+    optionsToUse: ComponentOptions.buildListOption&lt;'expression' | 'advancedExpression' | 'constantExpression' | 'disjunctionExpression'&gt;({ defaultValue: ['expression'] }),
+&nbsp;
+    /**
+     * Specifies whether to send the actions history along with the triggered query.
+     *
+     * Setting this option to `false` makes it impossible for this component to get Coveo Machine Learning
+     * recommendations.
+     *
+     * However, setting this option to `false` can be useful to display side results in a search page.
+     *
+     * Default value is `true`.
+     */
+    sendActionsHistory: ComponentOptions.buildBooleanOption({ defaultValue: true }),
+&nbsp;
+    /**
+     * Specifies whether to hide the Recommendations component if no result or recommendation is available.
+     *
+     * Default value is `false`.
+     */
+    hideIfNoResults: ComponentOptions.buildBooleanOption({ defaultValue: true }),
+    autoTriggerQuery: ComponentOptions.buildBooleanOption({
+      postProcessing: (value: boolean, options: IRecommendationOptions) =&gt; {
+        if (options.mainSearchInterface) {
+          return false;
+        }
+        return value;
+      }
+    }),
+&nbsp;
+    /**
+     * Specifies whether to enable *responsive mode* for Recommendation components. Setting this options to `false` on
+     * any Recommendation component in a search interface disables responsive mode for all other Recommendation
+     * components in the search interface.
+     *
+     * Responsive mode displays all Recommendation components under a single dropdown button whenever the width of the
+     * HTML element which the search interface is bound to reaches or falls behind a certain threshold (see
+     * {@link Recommendation.options.responsiveBreakpoint}).
+     *
+     * See also {@link Recommendation.options.dropdownHeaderLabel}.
+     *
+     * Default value is `true`.
+     */
+    enableResponsiveMode: ComponentOptions.buildBooleanOption({ defaultValue: true }),
+&nbsp;
+    /**
+     * If {@link Recommendation.options.enableResponsiveMode} is `true` for all Recommendation components, specifies the
+     * width threshold (in pixels) of the search interface at which Recommendation components go in responsive mode.
+     *
+     * Recommendation components go in responsive mode when the width of the search interface is equal to or lower than
+     * this value.
+     *
+     * The `search interface` corresponds to the HTML element with the class `CoveoSearchInterface`.
+     *
+     * If more than one Recommendation component in the search interface specifies a value for this option, then the
+     * framework uses the last occurrence of the option.
+     *
+     * Default value is `1000`.
+     */
+    responsiveBreakpoint: ComponentOptions.buildNumberOption({ defaultValue: 1000 }),
+&nbsp;
+    /**
+     * If {@link Recommendation.options.enableResponsiveMode} is `true` for all Recommendation components, specifies the
+     * label of the dropdown button that allows to display the Recommendation components when in responsive mode.
+     *
+     * If more than one Recommendation component in the search interface specifies a value for this option, then the
+     * framework uses the first occurrence of the option.
+     *
+     * Default value is `Recommendations`.
+     */
+    dropdownHeaderLabel: ComponentOptions.buildLocalizedStringOption({ defaultValue: 'Recommendations' })
+  };
+&nbsp;
+  // These are used by the analytics client for recommendation
+  // so that clicks event inside the recommendation component can be modified and attached to the main search interface.
+  public mainQuerySearchUID: string;
+  public mainQueryPipeline: string;
+  public historyStore: CoveoAnalytics.HistoryStore;
+&nbsp;
+  private mainInterfaceQuery: IQuerySuccessEventArgs;
+  private displayStyle: string;
+&nbsp;
+  /**
+   * Creates a new Recommendation component.
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the Recommendation component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time)
+   * @param _window
+   */
+  constructor(public element: HTMLElement, public options: IRecommendationOptions = {}, public <span class="missing-if-branch" title="else path not taken" >E</span>analyticsOptions = {}, <span class="missing-if-branch" title="else path not taken" >E</span>_window = window) {
+    super(element, ComponentOptions.initComponentOptions(element, Recommendation, options), analyticsOptions, _window)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+    if (!this.options.id) {
+      this.generateDefaultId();
+    }
+&nbsp;
+    // This is done to allow the component to be included in another search interface without triggering the parent events.
+    this.preventEventPropagation();
+&nbsp;
+    if (this.options.mainSearchInterface) {
+      this.bindToMainSearchInterface();
+    }
+&nbsp;
+    $$(this.element).on(QueryEvents.buildingQuery, (e: Event, args: IBuildingQueryEventArgs) =&gt; this.handleRecommendationBuildingQuery(args));
+    $$(this.element).on(QueryEvents.querySuccess, (e: Event, args: IQuerySuccessEventArgs) =&gt; this.handleRecommendationQuerySuccess(args));
+    $$(this.element).on(QueryEvents.noResults, (e: Event, args: INoResultsEventArgs) =&gt; this.handleRecommendationNoResults());
+    $$(this.element).on(QueryEvents.queryError, (e: Event, args: IQueryErrorEventArgs) =&gt; this.handleRecommendationQueryError());
+&nbsp;
+&nbsp;
+    this.historyStore = new history.HistoryStore();
+    if (!this.options.mainSearchInterface) {
+      // When the recommendation component is "standalone", we add additional safeguard against bad config.
+      this.ensureCurrentPageViewExistsInStore();
+    }
+    ResponsiveRecommendation.init(this.root, this, options);
+  }
+&nbsp;
+  public getId(): string {
+    return this.options.id;
+  }
+&nbsp;
+  public enable() {
+    super.enable();
+    this.show();
+  }
+&nbsp;
+  public disable() {
+    super.disable();
+    this.hide();
+  }
+&nbsp;
+  public hide(): void {
+    if (!this.displayStyle) {
+      this.displayStyle = this.element.style.display;
+    }
+    $$(this.element).hide();
+  }
+&nbsp;
+  public show(): void {
+    if (!this.displayStyle) {
+      this.displayStyle = this.element.style.display;
+    }
+    this.element.style.display = this.displayStyle;
+  }
+&nbsp;
+  private ensureCurrentPageViewExistsInStore() {
+    // It's not 100% sure that the element will actually be added in the store.
+    // It's possible that an external script configured by the end user to log the page view already did that.
+    // So we *could* end up with duplicate values in the store :
+    // We rely on the fact that the coveo.analytics lib has defensive code against consecutive page view that are identical.
+    // This is mainly done if the recommendation component is being initialized before the page view could be logged correctly by the coveo.analytics externa lib.
+    const historyElement = {
+      name: 'PageView',
+      value: document.location.toString(),
+      time: JSON.stringify(new Date()),
+      title: document.title
+    };
+    this.historyStore.addElement(historyElement);
+  }
+&nbsp;
+  private bindToMainSearchInterface() {
+    this.bindComponentOptionsModelToMainSearchInterface();
+    this.bindQueryEventsToMainSearchInterface();
+  }
+&nbsp;
+  private bindComponentOptionsModelToMainSearchInterface() {
+    // Try to fetch the componentOptions from the main search interface.
+    // Since we do not know which interface is init first (recommendation or full search interface)
+    // add a mechanism that waits for the full search interface to be correctly initialized
+    // then, set the needed values on the component options model.
+    let searchInterfaceComponent = &lt;SearchInterface&gt;get(this.options.mainSearchInterface, SearchInterface);
+    let alreadyInitialized = searchInterfaceComponent != null;
+&nbsp;
+    let onceInitialized = () =&gt; {
+      let mainSearchInterfaceOptionsModel = &lt;ComponentOptionsModel&gt;searchInterfaceComponent.getBindings().componentOptionsModel;
+      this.componentOptionsModel.setMultiple(mainSearchInterfaceOptionsModel.getAttributes());
+      $$(this.options.mainSearchInterface).on(this.componentOptionsModel.getEventName(MODEL_EVENTS.ALL), <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        this.componentOptionsModel.setMultiple(mainSearchInterfaceOptionsModel.getAttributes());</span>
+      });
+    };
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (alreadyInitialized) {
+      onceInitialized();
+    } else {
+<span class="cstat-no" title="statement not covered" >      $$(this.options.mainSearchInterface).on(InitializationEvents.afterComponentsInitialization, <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        searchInterfaceComponent = &lt;SearchInterface&gt;get(this.options.mainSearchInterface, SearchInterface);</span>
+<span class="cstat-no" title="statement not covered" >        onceInitialized();</span>
+      });
+    }
+  }
+&nbsp;
+  private bindQueryEventsToMainSearchInterface() {
+    // Whenever a query sucessfully returns on the full search interface, refresh the recommendation component.
+    $$(this.options.mainSearchInterface).on(QueryEvents.querySuccess, (e: Event, args: IQuerySuccessEventArgs) =&gt; {
+      this.mainInterfaceQuery = args;
+      this.mainQuerySearchUID = args.results.searchUid;
+      this.mainQueryPipeline = args.results.pipeline;
+      this.usageAnalytics.logSearchEvent&lt;IAnalyticsNoMeta&gt;(analyticsActionCauseList.recommendation, {});
+      this.queryController.executeQuery({
+        closeModalBox: false
+      });
+    });
+  }
+&nbsp;
+  private handleRecommendationBuildingQuery(data: IBuildingQueryEventArgs) {
+    if (!this.disabled) {
+      this.modifyQueryForRecommendation(data);
+      this.addRecommendationInfoInQuery(data);
+    }
+&nbsp;
+  }
+&nbsp;
+  private handleRecommendationQuerySuccess(data: IQuerySuccessEventArgs) {
+    if (!this.disabled) {
+      if (this.options.hideIfNoResults) {
+        if (data.results.totalCount === 0) {
+          this.hide();
+        } else {
+          this.show();
+        }
+      }
+    }
+  }
+&nbsp;
+  private handleRecommendationNoResults() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.disabled) {
+      if (this.options.hideIfNoResults) {
+        this.hide();
+      }
+    }
+  }
+&nbsp;
+  private handleRecommendationQueryError() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.disabled) {
+      this.hide();
+    }
+  }
+&nbsp;
+  private modifyQueryForRecommendation(data: IBuildingQueryEventArgs) {
+    if (this.mainInterfaceQuery) {
+      Utils.copyObjectAttributes(data.queryBuilder, this.mainInterfaceQuery.queryBuilder, this.options.optionsToUse);
+    }
+  }
+&nbsp;
+  private addRecommendationInfoInQuery(data: IBuildingQueryEventArgs) {
+    if (!_.isEmpty(this.options.userContext)) {
+      data.queryBuilder.addContext(JSON.parse(this.options.userContext));
+    }
+    if (this.options.sendActionsHistory) {
+      data.queryBuilder.actionsHistory = this.getHistory();
+    }
+&nbsp;
+    data.queryBuilder.recommendation = this.options.id;
+  }
+&nbsp;
+  private getHistory(): string {
+    let historyFromStore = this.historyStore.getHistory();
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (historyFromStore == null) {
+<span class="cstat-no" title="statement not covered" >      historyFromStore = [];</span>
+    }
+    return JSON.stringify(historyFromStore);
+  }
+&nbsp;
+  private preventEventPropagation() {
+    this.preventEventPropagationOn(QueryEvents);
+    this.preventEventPropagationOn(OmniboxEvents);
+    this.preventEventPropagationOn(ResultListEvents);
+    this.preventEventPropagationOn(SettingsEvents);
+    this.preventEventPropagationOn(PreferencesPanelEvents);
+    this.preventEventPropagationOn(AnalyticsEvents);
+    this.preventEventPropagationOn(BreadcrumbEvents);
+    this.preventEventPropagationOn(QuickviewEvents);
+    this.preventEventPropagationOn(InitializationEvents);
+    this.preventEventPropagationOn(this.getAllModelEvents());
+  }
+&nbsp;
+  private preventEventPropagationOn(eventType, <span class="missing-if-branch" title="else path not taken" >E</span>eventName = (event: string) =&gt; { return event; }) {
+    for (let event in eventType) {
+      $$(this.root).on(eventName(event), (e: Event) =&gt; e.stopPropagation());
+    }
+  }
+&nbsp;
+  private getAllModelEvents() {
+    let events = {};
+    _.each(_.values(Model.eventTypes), (event) =&gt; {
+      _.each(_.values(QUERY_STATE_ATTRIBUTES), (attribute) =&gt; {
+        let eventName = this.getBindings().queryStateModel.getEventName(event + attribute);
+        events[eventName] = eventName;
+      });
+    });
+    return events;
+  }
+&nbsp;
+  private generateDefaultId() {
+    let id = 'Recommendation';
+    if (Recommendation.NEXT_ID !== 1) {
+      this.logger.warn('Generating another recommendation default id', 'Consider configuring a human friendly / meaningful id for this interface');
+      id = id + '_' + Recommendation.NEXT_ID;
+    }
+    Recommendation.NEXT_ID++;
+    this.options.id = id;
+  }
+}
+&nbsp;
+// We do not register the Recommendation component since it is done with .coveo('initRecommendation')
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

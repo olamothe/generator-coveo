@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/ChatterTopic/ChatterTopic.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/ui/ChatterTopic/ChatterTopic.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">43.75% <small>(14 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">66.67% <small>(2 / 3)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">46.15% <small>(12 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/ChatterTopic/</a> &#187; ChatterTopic.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from '../Base/Component';
+import { IResultsComponentBindings } from '../Base/ResultsComponentBindings';
+import { IQueryResult } from '../../rest/QueryResult';
+import { Utils } from '../../utils/Utils';
+import { Initialization } from '../Base/Initialization';
+import { $$ } from '../../utils/Dom';
+import { exportGlobally } from '../../GlobalExports';
+&nbsp;
+export interface IChatterTopicOption {
+}
+&nbsp;
+export class ChatterTopic extends Component {
+  static ID = 'ChatterTopic';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'ChatterTopic': ChatterTopic
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  constructor(public <span class="cstat-no" title="statement not covered" >element: HTMLElement,</span> public <span class="cstat-no" title="statement not covered" >options?: IChatterTopicOption,</span> public <span class="cstat-no" title="statement not covered" >bindings?: IResultsComponentBindings,</span> public <span class="cstat-no" title="statement not covered" >result?: IQueryResult)</span></span> {
+    super(element, ChatterTopic.ID, bindings);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!Utils.isNullOrUndefined(Utils.getFieldValue(this.result, 'coveochatterfeedtopics'))) {</span>
+<span class="cstat-no" title="statement not covered" >      let rootElement = $$('div', {</span>
+        className: 'coveo-chatter-result-box-row'
+      });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      let topics = Utils.getFieldValue(result, 'coveochatterfeedtopics').split(';');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      let icon = $$('div', {</span>
+        className: 'coveo-sprites-common-tagging_tag coveo-chatter-result-box-icon'
+      });
+<span class="cstat-no" title="statement not covered" >      rootElement.append(icon.el);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      for (let i = 0; i &lt; topics.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        let topic = $$('span');</span>
+<span class="cstat-no" title="statement not covered" >        topic.text(topics[i]);</span>
+<span class="cstat-no" title="statement not covered" >        rootElement.append(topic.el);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (i &lt; topics.length - 1) {</span>
+<span class="cstat-no" title="statement not covered" >          let separator = $$('span');</span>
+<span class="cstat-no" title="statement not covered" >          separator.text(', ');</span>
+<span class="cstat-no" title="statement not covered" >          rootElement.append(separator.el);</span>
+        }
+      }
+<span class="cstat-no" title="statement not covered" >      $$(element).append(rootElement.el);</span>
+    }
+  }
+}
+&nbsp;
+Initialization.registerAutoCreateComponent(ChatterTopic);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,2394 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Omnibox/Omnibox.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/ui/Omnibox/Omnibox.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">74.16% <small>(264 / 356)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">60.49% <small>(98 / 162)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">60.49% <small>(49 / 81)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">74.47% <small>(245 / 329)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Omnibox/</a> &#187; Omnibox.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">73</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">73</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">73</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">73</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">66</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">64</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">61</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">91</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">///&lt;reference path="FieldAddon.ts" /&gt;
+///&lt;reference path="QueryExtensionAddon.ts" /&gt;
+///&lt;reference path="QuerySuggestAddon.ts" /&gt;
+///&lt;reference path="OldOmniboxAddon.ts" /&gt;
+&nbsp;
+import { ComponentOptionsModel, COMPONENT_OPTIONS_ATTRIBUTES } from '../../models/ComponentOptionsModel';
+export const MagicBox: any = require('exports-loader?Coveo.MagicBox!../../../node_modules/coveomagicbox/bin/MagicBox.min.js');
+import { IQueryboxOptions } from '../Querybox/Querybox';
+import { Component } from '../Base/Component';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { ComponentOptions, IFieldOption } from '../Base/ComponentOptions';
+import { QueryEvents, IBuildingQueryEventArgs } from '../../events/QueryEvents';
+import { StandaloneSearchInterfaceEvents } from '../../events/StandaloneSearchInterfaceEvents';
+import { MODEL_EVENTS, IAttributeChangedEventArg } from '../../models/Model';
+import { QUERY_STATE_ATTRIBUTES } from '../../models/QueryStateModel';
+import { IAnalyticsNoMeta, analyticsActionCauseList, IAnalyticsOmniboxSuggestionMeta } from '../Analytics/AnalyticsActionListMeta';
+import { OmniboxEvents, IOmniboxPreprocessResultForQueryEventArgs } from '../../events/OmniboxEvents';
+import { $$ } from '../../utils/Dom';
+import { Assert } from '../../misc/Assert';
+import { QueryStateModel } from '../../models/QueryStateModel';
+import { Initialization } from '../Base/Initialization';
+import { Querybox } from '../Querybox/Querybox';
+import { FieldAddon } from './FieldAddon';
+import { QueryExtensionAddon } from './QueryExtensionAddon';
+import { QuerySuggestAddon } from './QuerySuggestAddon';
+import { OldOmniboxAddon } from './OldOmniboxAddon';
+import { QueryboxQueryParameters } from '../Querybox/QueryboxQueryParameters';
+import { IAnalyticsActionCause } from '../Analytics/AnalyticsActionListMeta';
+import { IDuringQueryEventArgs } from '../../events/QueryEvents';
+import { PendingSearchAsYouTypeSearchEvent } from '../Analytics/PendingSearchAsYouTypeSearchEvent';
+import { Utils } from '../../utils/Utils';
+import { StandaloneSearchInterface } from '../SearchInterface/SearchInterface';
+import * as _ from 'underscore';
+import { exportGlobally } from '../../GlobalExports';
+import 'styling/_Omnibox';
+import { InitializationEvents } from '../../events/InitializationEvents';
+&nbsp;
+export interface IPopulateOmniboxSuggestionsEventArgs {
+  omnibox: Omnibox;
+  suggestions: Array&lt;Coveo.MagicBox.Suggestion[] | Promise&lt;Coveo.MagicBox.Suggestion[]&gt;&gt;;
+}
+&nbsp;
+export interface IOmniboxSuggestion extends Coveo.MagicBox.Suggestion {
+  executableConfidence?: number;
+}
+&nbsp;
+export interface IOmniboxOptions extends IQueryboxOptions {
+  inline?: boolean;
+  enableFieldAddon?: boolean;
+  enableSimpleFieldAddon?: boolean;
+  listOfFields?: IFieldOption[];
+  fieldAlias?: { [alias: string]: IFieldOption };
+  enableQuerySuggestAddon?: boolean;
+  enableQueryExtensionAddon?: boolean;
+  omniboxTimeout?: number;
+  placeholder?: string;
+  grammar?: (grammar: { start: string; expressions: { [id: string]: Coveo.MagicBox.ExpressionDef }; }) =&gt; { start: string; expressions: { [id: string]: Coveo.MagicBox.ExpressionDef } };
+}
+&nbsp;
+const MINIMUM_EXECUTABLE_CONFIDENCE = 0.8;
+&nbsp;
+/**
+ * The Omnibox component is very similar to the simpler {@link Querybox} component. It supports all of the same options
+ * and behaviors.
+ *
+ * The Omnibox component takes care of adding type-ahead capability to the search input. Custom components can extend
+ * and customize the type-ahead and the suggestions it provides.
+ *
+ * The type-ahead is configurable by activating addons, which the Coveo JavaScript Search Framework provides OOTB
+ * (facets, analytics suggestions, Coveo Machine Learning suggestions and advanced Coveo syntax suggestions).
+ *
+ * It is also possible for external code to provide type-ahead suggestions.
+ *
+ * See also the {@link Searchbox} component, which can automatically instantiate an Omnibox component along with an
+ * optional {@link SearchButton} component.
+ */
+export class Omnibox extends Component {
+  public static ID = 'Omnibox';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'Omnibox': Omnibox,
+      'MagicBox': MagicBox
+    });
+  }
+&nbsp;
+  /**
+   * The options for the omnibox
+   * @componentOptions
+   */
+  static options: IOmniboxOptions = {
+&nbsp;
+    /**
+     * Specifies whether suggestions appearing in the Omnibox should push the result down instead of appearing over the
+     * results.
+     *
+     * Set this option as well as {@link Omnibox.options.enableSearchAsYouType} and
+     * {@link Omnibox.options.enableQuerySuggestAddon} to `true` for a cool effect!
+     *
+     * Default value is `false`.
+     */
+    inline: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+&nbsp;
+    /**
+     * Specifies whether to automatically trigger a new query whenever the end user types new text inside the Omnibox.
+     *
+     * Set this option as well a {@link Omnibox.options.inline} and
+     * {@link Omnibox.options.enableQuerySuggestAddon} to `true` for a cool effect!
+     *
+     * Default value is `false`.
+     */
+    enableSearchAsYouType: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+&nbsp;
+    /**
+     * If {@link Omnibox.options.enableSearchAsYouType} is `true`, specifies the delay (in milliseconds) before
+     * triggering a new query when the user types new text inside the Omnibox.
+     *
+     * Default value is `2000`. Minimum value is `0`.
+     */
+    searchAsYouTypeDelay: ComponentOptions.buildNumberOption({
+      defaultValue: 2000,
+      min: 0,
+      depend: 'enableSearchAsYouType'
+    }),
+&nbsp;
+    /**
+     * If {@link Querybox.options.enableQuerySyntax} is `true`, specifies whether to enable the `field` addon.
+     *
+     * The `field` addon allows the search box to highlight and complete field syntax.
+     *
+     * **Example:**
+     *
+     * &gt; Suppose you want to filter on a certain file type. You start typing `@sysf` in the input. The Omnibox provides
+     * &gt; you with several matching fields. You select the `@sysfiletype` suggestion and type `=`. If this option is set
+     * &gt; to `true`, then the Omnibox provides you with suggestions for available matching file types.
+     *
+     * Default value is `false`.
+     */
+    enableFieldAddon: ComponentOptions.buildBooleanOption({
+      defaultValue: false,
+      depend: 'enableQuerySyntax',
+      postProcessing: (value, options: IOmniboxOptions) =&gt; {
+        if (value) {
+          options.enableQuerySyntax = true;
+        }
+        return value;
+      }
+    }),
+    enableSimpleFieldAddon: ComponentOptions.buildBooleanOption({ defaultValue: false, depend: 'enableFieldAddon' }),
+    listOfFields: ComponentOptions.buildFieldsOption({ depend: 'enableFieldAddon' }),
+&nbsp;
+    /**
+     * Specifies whether to enable the Coveo Machine Learning (Coveo ML) query suggestions.
+     *
+     * This implies that you have a proper Coveo ML integration configured (see
+     * [Managing Machine Learning Query Suggestions in a Query Pipeline](http://www.coveo.com/go?dest=cloudhelp&amp;lcid=9&amp;context=168)).
+     *
+     * Default value is `true`.
+     */
+    enableQuerySuggestAddon: ComponentOptions.buildBooleanOption({
+      defaultValue: true,
+      alias: ['enableTopQueryAddon', 'enableRevealQuerySuggestAddon']
+    }),
+&nbsp;
+    /**
+     * If {@link Querybox.options.enableQuerySyntax} is `true`, specifies whether to enable the `query extension` addon.
+     *
+     * The `query extension` addon allows the Omnibox to complete the syntax for query extensions.
+     *
+     * Default value is `false`.
+     */
+    enableQueryExtensionAddon: ComponentOptions.buildBooleanOption({
+      defaultValue: false,
+      depend: 'enableQuerySyntax',
+      postProcessing: (value, options: IOmniboxOptions) =&gt; {
+        if (value) {
+          options.enableQuerySyntax = true;
+        }
+        return value;
+      }
+    }),
+&nbsp;
+    /**
+     * Specifies a placeholder for the input.
+     */
+    placeholder: ComponentOptions.buildLocalizedStringOption(),
+&nbsp;
+    /**
+     * Specifies a timeout (in milliseconds) before rejecting suggestions in the Omnibox.
+     *
+     * Default value is `2000`. Minimum value is `0`.
+     */
+    omniboxTimeout: ComponentOptions.buildNumberOption({ defaultValue: 2000, min: 0 }),
+    /**
+     * Specifies whether the Coveo Platform should try to interpret special query syntax such as field references in the
+     * query that the user enters in the Querybox (see
+     * [Coveo Query Syntax Reference](http://www.coveo.com/go?dest=adminhelp70&amp;lcid=9&amp;context=10005)).
+     *
+     * Setting this option to `true` also causes the query syntax in the Querybox to highlight.
+     *
+     * Default value is `false`.
+     */
+    enableQuerySyntax: ComponentOptions.buildBooleanOption({
+      defaultValue: false
+    }),
+  };
+&nbsp;
+  public magicBox: Coveo.MagicBox.Instance;
+  private partialQueries: string[] = [];
+  private lastSuggestions: IOmniboxSuggestion[] = [];
+  private lastQuery: string;
+  private modifyEventTo: IAnalyticsActionCause;
+  private movedOnce = false;
+  private searchAsYouTypeTimeout: number;
+  private skipAutoSuggest = false;
+&nbsp;
+  /**
+   * Creates a new Omnibox component. Also enables necessary addons and binds events on various query events.
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the Omnibox component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   */
+  constructor(public element: HTMLElement, public options?: IOmniboxOptions, bindings?: IComponentBindings) {
+    super(element, Omnibox.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+&nbsp;
+    this.options = ComponentOptions.initComponentOptions(element, Omnibox, options);
+&nbsp;
+    const originalValueForQuerySyntax = this.options.enableQuerySyntax;
+    this.options = _.extend({}, this.options, this.componentOptionsModel.get(ComponentOptionsModel.attributesEnum.searchBox));
+&nbsp;
+    if (this.options.enableQuerySuggestAddon) {
+      new QuerySuggestAddon(this);
+    }
+    new OldOmniboxAddon(this);
+    this.createMagicBox();
+&nbsp;
+    this.bind.onRootElement(QueryEvents.buildingQuery, (args: IBuildingQueryEventArgs) =&gt; this.handleBuildingQuery(args));
+    this.bind.onRootElement(StandaloneSearchInterfaceEvents.beforeRedirect, <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.handleBeforeRedirect())</span>;
+    this.bind.onRootElement(QueryEvents.querySuccess, () =&gt; this.handleQuerySuccess());
+    this.bind.onQueryState(MODEL_EVENTS.CHANGE_ONE, QUERY_STATE_ATTRIBUTES.Q, (args: IAttributeChangedEventArg) =&gt; this.handleQueryStateChanged(args));
+    if (this.isAutoSuggestion()) {
+      this.bind.onRootElement(QueryEvents.duringQuery, <span class="fstat-no" title="function not covered" >(args: IDuringQueryEventArgs)</span> =&gt; <span class="cstat-no" title="statement not covered" >this.handleDuringQuery(args))</span>;
+    }
+    this.bind.onComponentOptions(MODEL_EVENTS.CHANGE_ONE, COMPONENT_OPTIONS_ATTRIBUTES.SEARCH_BOX, <span class="fstat-no" title="function not covered" >(args: IAttributeChangedEventArg)</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      if (args.value.enableQuerySyntax != null) {</span>
+<span class="cstat-no" title="statement not covered" >        this.options.enableQuerySyntax = args.value.enableQuerySyntax;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.options.enableQuerySyntax = originalValueForQuerySyntax;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.updateGrammar();</span>
+    });
+  }
+&nbsp;
+  /**
+   * Adds the current content of the input to the query and triggers a query if the current content of the input has
+   * changed since last submit.
+   *
+   * Also logs a `searchboxSubmit` event in the usage analytics.
+   */
+  public submit() {
+    this.magicBox.clearSuggestion();
+    this.updateQueryState();
+    this.triggerNewQuery(false, () =&gt; {
+      this.usageAnalytics.logSearchEvent&lt;IAnalyticsNoMeta&gt;(analyticsActionCauseList.searchboxSubmit, {});
+    });
+  }
+&nbsp;
+  /**
+   * Gets the current content of the input.
+   * @returns {string} The current content of the input.
+   */
+  public getText() {
+    return this.magicBox.getText();
+  }
+&nbsp;
+  /**
+   * Sets the content of the input
+   * @param text The string to set in the input.
+   */
+  public setText(text: string) {
+    this.magicBox.setText(text);
+    this.updateQueryState();
+  }
+&nbsp;
+  /**
+   * Clears the content of the input.
+   */
+<span class="fstat-no" title="function not covered" >  public clear() {</span>
+<span class="cstat-no" title="statement not covered" >    this.magicBox.clear();</span>
+  }
+&nbsp;
+  /**
+   * Gets the `HTMLInputElement` of the Omnibox.
+   */
+  public getInput() {
+    return &lt;HTMLInputElement&gt;this.magicBox.element.querySelector('input');
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getResult() {</span>
+<span class="cstat-no" title="statement not covered" >    return this.magicBox.getResult();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public getDisplayedResult() {</span>
+<span class="cstat-no" title="statement not covered" >    return this.magicBox.getDisplayedResult();</span>
+  }
+&nbsp;
+  public getCursor() {
+    return this.magicBox.getCursor();
+  }
+&nbsp;
+  public resultAtCursor(match?: string | { (result: Coveo.MagicBox.Result): boolean; }) {
+    return this.magicBox.resultAtCursor(match);
+  }
+&nbsp;
+  private createGrammar() {
+    let grammar = null;
+&nbsp;
+    if (this.options.enableQuerySyntax) {
+      grammar = MagicBox.Grammars.Expressions(MagicBox.Grammars.Complete);
+      if (this.options.enableFieldAddon) {
+        new FieldAddon(this);
+      }
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (this.options.fieldAlias != null) {
+<span class="cstat-no" title="statement not covered" >        this.options.listOfFields = this.options.listOfFields || [];</span>
+<span class="cstat-no" title="statement not covered" >        this.options.listOfFields = this.options.listOfFields.concat(_.keys(this.options.fieldAlias));</span>
+      }
+      if (this.options.enableQueryExtensionAddon) {
+        new QueryExtensionAddon(this);
+      }
+    } else {
+      grammar = { start: 'Any', expressions: { Any: /.*/ } };
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.options.grammar != null) {
+<span class="cstat-no" title="statement not covered" >      grammar = this.options.grammar(grammar);</span>
+    }
+&nbsp;
+    return grammar;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private updateGrammar() {</span>
+<span class="cstat-no" title="statement not covered" >    const grammar = this.createGrammar();</span>
+<span class="cstat-no" title="statement not covered" >    this.magicBox.grammar = new MagicBox.Grammar(grammar.start, grammar.expressions);</span>
+<span class="cstat-no" title="statement not covered" >    this.magicBox.setText(this.magicBox.getText());</span>
+  }
+&nbsp;
+  private createMagicBox() {
+    const grammar = this.createGrammar();
+    this.magicBox = MagicBox.create(this.element, new MagicBox.Grammar(grammar.start, grammar.expressions), {
+      inline: this.options.inline,
+      selectableSuggestionClass: 'coveo-omnibox-selectable',
+      selectedSuggestionClass: 'coveo-omnibox-selected',
+      suggestionTimeout: this.options.omniboxTimeout
+    });
+    this.setupMagicBox();
+  }
+&nbsp;
+  private setupMagicBox() {
+    this.magicBox.onmove = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+      // We assume that once the user has moved its selection, it becomes an explicit omnibox analytics event
+<span class="cstat-no" title="statement not covered" >      if (this.isAutoSuggestion()) {</span>
+<span class="cstat-no" title="statement not covered" >        this.modifyEventTo = this.getOmniboxAnalyticsEventCause();</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.movedOnce = true;</span>
+    };
+&nbsp;
+    this.magicBox.onfocus = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (this.isAutoSuggestion()) {</span>
+        // This flag is used to block the automatic query when the UI is loaded with a query (#q=foo)
+        // and then the input is focused. We want to block that query, even if it match the suggestion
+        // Only when there is an actual change in the input (user typing something) is when we want the automatic query to kick in
+<span class="cstat-no" title="statement not covered" >        this.skipAutoSuggest = true;</span>
+      }
+    };
+&nbsp;
+    this.magicBox.onsuggestions = (suggestions: IOmniboxSuggestion[]) =&gt; {
+      // If text is empty, this can mean that user selected text from the search box
+      // and hit "delete" : Reset the partial queries in this case
+      if (Utils.isEmptyString(this.getText())) {
+        this.partialQueries = [];
+      }
+      this.movedOnce = false;
+      this.lastSuggestions = suggestions;
+      if (this.isAutoSuggestion() &amp;&amp; !this.skipAutoSuggest) {
+        this.searchAsYouType();
+      }
+    };
+&nbsp;
+    if (this.options.enableSearchAsYouType) {
+      $$(this.element).addClass('coveo-magicbox-search-as-you-type');
+    }
+&nbsp;
+    this.magicBox.onchange = () =&gt; {
+      this.skipAutoSuggest = false;
+      let text = this.getText();
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (text != undefined &amp;&amp; text != '') {
+        if (this.isAutoSuggestion()) {
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (this.movedOnce) {
+<span class="cstat-no" title="statement not covered" >            this.searchAsYouType(true);</span>
+          }
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>if (this.options.enableSearchAsYouType) {
+          this.searchAsYouType(true);
+        }
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.clear();</span>
+      }
+&nbsp;
+    };
+&nbsp;
+    if (this.options.placeholder) {
+      (&lt;HTMLInputElement&gt;this.magicBox.element.querySelector('input')).placeholder = this.options.placeholder;
+    }
+    this.magicBox.onsubmit = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.magicBox.clearSuggestion();</span>
+<span class="cstat-no" title="statement not covered" >      this.updateQueryState();</span>
+<span class="cstat-no" title="statement not covered" >      this.triggerNewQuery(false, <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        this.usageAnalytics.logSearchEvent&lt;IAnalyticsNoMeta&gt;(analyticsActionCauseList.searchboxSubmit, {});</span>
+      });
+<span class="cstat-no" title="statement not covered" >      this.magicBox.blur();</span>
+    };
+&nbsp;
+    this.magicBox.onselect = (suggestion: IOmniboxSuggestion) =&gt; {
+      let index = _.indexOf(this.lastSuggestions, suggestion);
+      let suggestions = _.compact(_.map(this.lastSuggestions, <span class="fstat-no" title="function not covered" >(suggestion)</span> =&gt; <span class="cstat-no" title="statement not covered" >suggestion.text)</span>);
+      this.magicBox.clearSuggestion();
+      this.updateQueryState();
+      // A bit tricky here : When it's machine learning auto suggestions
+      // the mouse selection and keyboard selection acts differently :
+      // keyboard selection will automatically do the query (which will log a search as you type event -&gt; further modified by this.modifyEventTo if needed)
+      // mouse selection will not "auto" send the query.
+      // the movedOnce variable detect the keyboard movement, and is used to differentiate mouse vs keyboard
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.isAutoSuggestion()) {
+<span class="cstat-no" title="statement not covered" >        this.usageAnalytics.cancelAllPendingEvents();</span>
+<span class="cstat-no" title="statement not covered" >        this.triggerNewQuery(false, <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >          this.usageAnalytics.logSearchEvent&lt;IAnalyticsOmniboxSuggestionMeta&gt;(this.getOmniboxAnalyticsEventCause(), this.buildCustomDataForPartialQueries(index, suggestions));</span>
+        });
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (this.isAutoSuggestion() &amp;&amp; this.movedOnce) {
+<span class="cstat-no" title="statement not covered" >        this.handleAutoSuggestionWithKeyboard(index, suggestions);</span>
+      } else <span class="missing-if-branch" title="else path not taken" >E</span>if (this.isAutoSuggestion() &amp;&amp; !this.movedOnce) {
+        this.handleAutoSuggestionsWithMouse(index, suggestions);
+      }
+&nbsp;
+      // Consider a selection like a reset of the partial queries (it's the end of a suggestion pattern)
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.isAutoSuggestion()) {
+        this.partialQueries = [];
+      }
+    };
+&nbsp;
+    this.magicBox.onblur = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (this.options.enableSearchAsYouType &amp;&amp; !this.options.inline) {</span>
+<span class="cstat-no" title="statement not covered" >        this.setText(this.lastQuery);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.updateQueryState();</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (this.isAutoSuggestion()) {</span>
+<span class="cstat-no" title="statement not covered" >        this.usageAnalytics.sendAllPendingEvents();</span>
+      }
+    };
+&nbsp;
+    this.magicBox.onclear = () =&gt; {
+      this.updateQueryState();
+      if (this.options.triggerQueryOnClear) {
+        this.triggerNewQuery(false, () =&gt; {
+          this.usageAnalytics.logSearchEvent&lt;IAnalyticsNoMeta&gt;(analyticsActionCauseList.searchboxClear, {});
+        });
+      }
+    };
+&nbsp;
+    this.magicBox.ontabpress = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.handleTabPress();</span>
+    };
+&nbsp;
+&nbsp;
+    this.magicBox.getSuggestions = () =&gt; this.handleSuggestions();
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private handleAutoSuggestionWithKeyboard(index: number, suggestions: string[])</span> {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.searchAsYouTypeTimeout) {</span>
+      // Here, there is currently a search as you typed queued up :
+      // Think : user typed very quickly, then very quickly selected a suggestion (without waiting for the search as you type)
+      // Cancel the search as you type query, then immediately do the query with the selection (+analytics event with the selection)
+<span class="cstat-no" title="statement not covered" >      this.usageAnalytics.cancelAllPendingEvents();</span>
+<span class="cstat-no" title="statement not covered" >      clearTimeout(this.searchAsYouTypeTimeout);</span>
+<span class="cstat-no" title="statement not covered" >      this.searchAsYouTypeTimeout = undefined;</span>
+<span class="cstat-no" title="statement not covered" >      this.triggerNewQuery(false, <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        this.usageAnalytics.logSearchEvent&lt;IAnalyticsOmniboxSuggestionMeta&gt;(this.getOmniboxAnalyticsEventCause(), this.buildCustomDataForPartialQueries(index, suggestions));</span>
+      });
+&nbsp;
+    } else {
+      // Here, the search as you type query has returned, but the analytics event has not ye been sent.
+      // Think : user typed slowly, the query returned, and then the user selected a suggestion.
+      // Since the analytics event has not yet been sent (search as you type event have a 5 sec delay)
+      // modify the pending event, then send the newly modified analytics event immediately.
+<span class="cstat-no" title="statement not covered" >      this.modifyEventTo = this.getOmniboxAnalyticsEventCause();</span>
+<span class="cstat-no" title="statement not covered" >      this.modifyCustomDataOnPending(index, suggestions);</span>
+<span class="cstat-no" title="statement not covered" >      this.usageAnalytics.sendAllPendingEvents();</span>
+    }
+  }
+&nbsp;
+  private handleAutoSuggestionsWithMouse(index: number, suggestions: string[]) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.searchAsYouTypeTimeout || index != 0) {
+      // Here : the user either very quickly chose the first suggestion, and the search as you type is still queued up.
+      // OR
+      // the user chose something different then the first suggestion.
+      // Remove the search as you type if it's there, and do the query with the suggestion directly.
+      this.clearSearchAsYouType();
+      this.usageAnalytics.cancelAllPendingEvents();
+      this.triggerNewQuery(false, () =&gt; {
+        this.usageAnalytics.logSearchEvent&lt;IAnalyticsOmniboxSuggestionMeta&gt;(this.getOmniboxAnalyticsEventCause(), this.buildCustomDataForPartialQueries(index, suggestions));
+      });
+&nbsp;
+    } else {
+      // Here : the user either very slowly chose a suggestion, and there is no search as you typed queued up
+      // AND
+      // the user chose the first suggestion.
+      // this means the query is already returned, but the analytics event is still queued up.
+      // modify the analytics event, and send it.
+<span class="cstat-no" title="statement not covered" >      this.modifyEventTo = this.getOmniboxAnalyticsEventCause();</span>
+<span class="cstat-no" title="statement not covered" >      this.modifyCustomDataOnPending(index, suggestions);</span>
+<span class="cstat-no" title="statement not covered" >      this.usageAnalytics.sendAllPendingEvents();</span>
+&nbsp;
+      // This should happen if :
+      // users did a (short) query first, which does not match the first suggestion. (eg: typed "t", then search)
+      // then, refocus the search box. The same suggestion(s) will re-appear.
+      // By selecting the first one with the mouse, we need to retrigger a query because this means the search as you type could not
+      // kick in and do the query automatically.
+<span class="cstat-no" title="statement not covered" >      if (this.lastQuery != this.getText()) {</span>
+<span class="cstat-no" title="statement not covered" >        this.triggerNewQuery(false, <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >          this.usageAnalytics.logSearchEvent&lt;IAnalyticsOmniboxSuggestionMeta&gt;(this.getOmniboxAnalyticsEventCause(), this.buildCustomDataForPartialQueries(index, suggestions));</span>
+        });
+      }
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private modifyCustomDataOnPending(index: number, suggestions: string[])</span> {
+<span class="cstat-no" title="statement not covered" >    let pendingEvt = this.usageAnalytics.getPendingSearchEvent();</span>
+<span class="cstat-no" title="statement not covered" >    if (pendingEvt instanceof PendingSearchAsYouTypeSearchEvent) {</span>
+<span class="cstat-no" title="statement not covered" >      let newCustomData = this.buildCustomDataForPartialQueries(index, suggestions);</span>
+<span class="cstat-no" title="statement not covered" >      _.each(_.keys(newCustomData), <span class="fstat-no" title="function not covered" >(k: string)</span> =&gt; {</span>
+        (&lt;PendingSearchAsYouTypeSearchEvent&gt;<span class="cstat-no" title="statement not covered" >pendingEvt).modifyCustomData(k, newCustomData[k]);</span>
+      });
+    }
+  }
+&nbsp;
+  private buildCustomDataForPartialQueries(index: number, suggestions: string[]): IAnalyticsOmniboxSuggestionMeta {
+    return {
+      partialQueries: this.cleanCustomData(this.partialQueries),
+      suggestionRanking: index,
+      suggestions: this.cleanCustomData(suggestions),
+      partialQuery: _.last(this.partialQueries)
+    };
+  }
+&nbsp;
+  private cleanCustomData(toClean: string[], <span class="missing-if-branch" title="else path not taken" >E</span>rejectLength = 256) {
+    // Filter out only consecutive values that are the identical
+    toClean = _.compact(_.filter(toClean, (partial: string, pos?: number, array?: string[]) =&gt; {
+      return pos === 0 || <span class="branch-1 cbranch-no" title="branch not covered" >partial !== array[pos - 1];</span>
+    }));
+&nbsp;
+    // Custom dimensions cannot be an array in analytics service: Send a string joined by ; instead.
+    // Need to replace ;
+    toClean = _.map(toClean, (partial) =&gt; {
+      return partial.replace(/;/g, '');
+    });
+&nbsp;
+    // Reduce right to get the last X words that adds to less then rejectLength
+    let reducedToRejectLengthOrLess = [];
+    _.reduceRight(toClean, (memo: number, partial: string) =&gt; {
+      let totalSoFar = memo + partial.length;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (totalSoFar &lt;= rejectLength) {
+        reducedToRejectLengthOrLess.push(partial);
+      }
+      return totalSoFar;
+    }, 0);
+    toClean = reducedToRejectLengthOrLess.reverse();
+    let ret = toClean.join(';');
+&nbsp;
+    // analytics service can store max 256 char in a custom event
+    // if we're over that, call cleanup again with an arbitrary 10 less char accepted
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (ret.length &gt;= 256) {
+<span class="cstat-no" title="statement not covered" >      return this.cleanCustomData(toClean, rejectLength - 10);</span>
+    }
+&nbsp;
+    return toClean.join(';');
+  }
+&nbsp;
+  private handleSuggestions() {
+    let suggestionsEventArgs: IPopulateOmniboxSuggestionsEventArgs = {
+      suggestions: [],
+      omnibox: this
+    };
+    this.bind.trigger(this.element, OmniboxEvents.populateOmniboxSuggestions, suggestionsEventArgs);
+    let text = this.getText();
+    if (!Utils.isNullOrEmptyString(text)) {
+      this.partialQueries.push(text);
+    }
+    return _.compact(suggestionsEventArgs.suggestions);
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleBeforeRedirect() {</span>
+<span class="cstat-no" title="statement not covered" >    this.updateQueryState();</span>
+  }
+&nbsp;
+  private handleBuildingQuery(data: IBuildingQueryEventArgs) {
+    Assert.exists(data);
+    Assert.exists(data.queryBuilder);
+    this.updateQueryState();
+    this.lastQuery = this.getQuery(data.searchAsYouType);
+&nbsp;
+    let result: Coveo.MagicBox.Result = this.lastQuery == this.magicBox.getDisplayedResult().input ? this.magicBox.getDisplayedResult().clone() : <span class="branch-1 cbranch-no" title="branch not covered" >this.magicBox.grammar.parse(this.lastQuery).clean();</span>
+    let preprocessResultForQueryArgs: IOmniboxPreprocessResultForQueryEventArgs = {
+      result: result
+    };
+&nbsp;
+    if (this.options.enableQuerySyntax) {
+      let notQuotedValues = preprocessResultForQueryArgs.result.findAll('FieldValueNotQuoted');
+      _.each(notQuotedValues, (value: Coveo.MagicBox.Result) =&gt; value.value = '"' + value.value.replace(/"|\u00A0/g, ' ') + '"');
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (this.options.fieldAlias) {
+<span class="cstat-no" title="statement not covered" >        let fieldNames = preprocessResultForQueryArgs.result.findAll(<span class="fstat-no" title="function not covered" >(result: Coveo.MagicBox.Result)</span> =&gt; <span class="cstat-no" title="statement not covered" >result.expression.id == 'FieldName' &amp;&amp; result.isSuccess())</span>;</span>
+<span class="cstat-no" title="statement not covered" >        _.each(fieldNames, <span class="fstat-no" title="function not covered" >(result: Coveo.MagicBox.Result)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          let alias = _.find(_.keys(this.options.fieldAlias), <span class="fstat-no" title="function not covered" >(alias: string)</span> =&gt; <span class="cstat-no" title="statement not covered" >alias.toLowerCase() == result.value.toLowerCase())</span>;</span>
+<span class="cstat-no" title="statement not covered" >          if (alias != null) {</span>
+<span class="cstat-no" title="statement not covered" >            result.value = &lt;string&gt;this.options.fieldAlias[alias];</span>
+          }
+        });
+      }
+    }
+&nbsp;
+    this.bind.trigger(this.element, OmniboxEvents.omniboxPreprocessResultForQuery, preprocessResultForQueryArgs);
+    let query = preprocessResultForQueryArgs.result.toString();
+    new QueryboxQueryParameters(this.options).addParameters(data.queryBuilder, query);
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleTabPress() {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.options.enableQuerySuggestAddon) {</span>
+<span class="cstat-no" title="statement not covered" >      this.handleTabPressForSuggestions();</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.handleTabPressForOldOmniboxAddon();</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleTabPressForSuggestions() {</span>
+<span class="cstat-no" title="statement not covered" >    if (!this.options.enableSearchAsYouType) {</span>
+<span class="cstat-no" title="statement not covered" >      let suggestions = _.compact(_.map(this.lastSuggestions, <span class="fstat-no" title="function not covered" >(suggestion)</span> =&gt; <span class="cstat-no" title="statement not covered" >suggestion.text)</span>);</span>
+<span class="cstat-no" title="statement not covered" >      this.usageAnalytics.logCustomEvent(this.getOmniboxAnalyticsEventCause(), this.buildCustomDataForPartialQueries(0, suggestions), this.element);</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private handleTabPressForOldOmniboxAddon() {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.lastSuggestions &amp;&amp; this.lastSuggestions[0] &amp;&amp; this.lastSuggestions[0].dom) {</span>
+<span class="cstat-no" title="statement not covered" >      let firstSelected = $$(this.lastSuggestions[0].dom).find('.coveo-omnibox-selected');</span>
+<span class="cstat-no" title="statement not covered" >      let firstSelectable = $$(this.lastSuggestions[0].dom).find('.coveo-omnibox-selectable');</span>
+<span class="cstat-no" title="statement not covered" >      if (firstSelected) {</span>
+<span class="cstat-no" title="statement not covered" >        $$(firstSelected).trigger('tabSelect');</span>
+      } else <span class="cstat-no" title="statement not covered" >if (firstSelectable) {</span>
+<span class="cstat-no" title="statement not covered" >        $$(firstSelectable).trigger('tabSelect');</span>
+      }
+    }
+  }
+&nbsp;
+  private triggerNewQuery(searchAsYouType: boolean, analyticsEvent: () =&gt; void) {
+    clearTimeout(this.searchAsYouTypeTimeout);
+    let text = this.getQuery(searchAsYouType);
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.shouldExecuteQuery(searchAsYouType)) {
+      this.lastQuery = text;
+      analyticsEvent();
+      this.queryController.executeQuery({
+        searchAsYouType: searchAsYouType,
+        logInActionsHistory: true
+      });
+    }
+  }
+&nbsp;
+  private getQuery(searchAsYouType: boolean) {
+    let query: string;
+    if (searchAsYouType) {
+      query = this.magicBox.getWordCompletion();
+      if (query == null &amp;&amp; this.lastSuggestions != null &amp;&amp; this.lastSuggestions.length &gt; 0) {
+        let textSuggestion = _.find(this.lastSuggestions, (suggestion: IOmniboxSuggestion) =&gt; suggestion.text != null);
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (textSuggestion != null) {
+          query = textSuggestion.text;
+        }
+      }
+    }
+    return query || this.magicBox.getText();
+  }
+&nbsp;
+  public updateQueryState() {
+    this.queryStateModel.set(QueryStateModel.attributesEnum.q, this.magicBox.getText());
+  }
+&nbsp;
+  private handleQueryStateChanged(args: IAttributeChangedEventArg) {
+    Assert.exists(args);
+    let q = &lt;string&gt;args.value;
+    if (q != this.magicBox.getText()) {
+      this.magicBox.setText(q);
+    }
+  }
+&nbsp;
+  private handleQuerySuccess() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.isAutoSuggestion()) {
+      this.partialQueries = [];
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private handleDuringQuery(args: IDuringQueryEventArgs)</span> {</span>
+    // When the query results returns ... (args.promise)
+<span class="cstat-no" title="statement not covered" >    args.promise.then(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+      // Get a handle on a pending search as you type (those events are delayed, not sent instantly)
+<span class="cstat-no" title="statement not covered" >      let pendingEvent = this.usageAnalytics.getPendingSearchEvent();</span>
+<span class="cstat-no" title="statement not covered" >      if (pendingEvent instanceof PendingSearchAsYouTypeSearchEvent) {</span>
+        (&lt;PendingSearchAsYouTypeSearchEvent&gt;<span class="cstat-no" title="statement not covered" >pendingEvent).beforeResolve.then(<span class="fstat-no" title="function not covered" >(evt)</span> =&gt; {</span>
+          // Check if we need to modify the event type beforeResolving it
+<span class="cstat-no" title="statement not covered" >          args.promise.then(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (this.modifyEventTo) {</span>
+<span class="cstat-no" title="statement not covered" >              evt.modifyEventCause(this.modifyEventTo);</span>
+<span class="cstat-no" title="statement not covered" >              this.modifyEventTo = null;</span>
+            }
+          });
+        });
+      }
+    });
+  }
+&nbsp;
+  private searchAsYouType(forceExecuteQuery = false) {
+    this.clearSearchAsYouType();
+    if (this.shouldExecuteQuery(true)) {
+      this.searchAsYouTypeTimeout = setTimeout(() =&gt; {
+        if (this.suggestionShouldTriggerQuery() || forceExecuteQuery) {
+          let suggestions = _.map(this.lastSuggestions, (suggestion) =&gt; suggestion.text);
+          let index = _.indexOf(suggestions, this.magicBox.getWordCompletion());
+          this.triggerNewQuery(true, () =&gt; {
+            this.usageAnalytics.logSearchAsYouType&lt;IAnalyticsOmniboxSuggestionMeta&gt;(analyticsActionCauseList.searchboxAsYouType, this.buildCustomDataForPartialQueries(index, suggestions));
+          });
+          this.clearSearchAsYouType();
+        }
+&nbsp;
+      }, this.options.searchAsYouTypeDelay);
+    }
+  }
+&nbsp;
+  private isAutoSuggestion() {
+    return this.options.enableSearchAsYouType &amp;&amp; this.options.enableQuerySuggestAddon;
+  }
+&nbsp;
+  private shouldExecuteQuery(searchAsYouType: boolean) {
+    let text = this.getQuery(searchAsYouType);
+    return this.lastQuery != text &amp;&amp; text != null;
+  }
+&nbsp;
+  private suggestionShouldTriggerQuery(<span class="missing-if-branch" title="else path not taken" >E</span>suggestions = this.lastSuggestions) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.shouldExecuteQuery(true)) {
+      if (suggestions &amp;&amp; suggestions[0]) {
+        let suggestion = suggestions[0];
+        // If we have access to a confidence level, return true if we are equal or above the minimum confidence level.
+        if (suggestion &amp;&amp; suggestion.executableConfidence != undefined) {
+          return suggestion.executableConfidence &gt;= MINIMUM_EXECUTABLE_CONFIDENCE;
+        }
+        // If we don't have access to a confidence level, return true only if it "starts with" the content of the search box
+        if (suggestion.text &amp;&amp; suggestion.text.indexOf(this.magicBox.getText()) == 0) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+&nbsp;
+  private clearSearchAsYouType() {
+    clearTimeout(this.searchAsYouTypeTimeout);
+    this.searchAsYouTypeTimeout = undefined;
+  }
+&nbsp;
+  private getOmniboxAnalyticsEventCause() {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.searchInterface instanceof StandaloneSearchInterface) {
+<span class="cstat-no" title="statement not covered" >      return analyticsActionCauseList.omniboxFromLink;</span>
+    }
+    return analyticsActionCauseList.omniboxAnalytics;
+  }
+}
+&nbsp;
+Omnibox.options = _.extend({}, Omnibox.options, Querybox.options);
+Initialization.registerAutoCreateComponent(Omnibox);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

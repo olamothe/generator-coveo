@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Facet/ValueElementRenderer.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/Facet/ValueElementRenderer.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">88.6% <small>(101 / 114)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">70.83% <small>(17 / 24)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">65% <small>(13 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">89.72% <small>(96 / 107)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Facet/</a> &#187; ValueElementRenderer.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">545</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">68</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">403</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">638</span>
+<span class="cline-any cline-yes">638</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1100</span>
+<span class="cline-any cline-yes">1100</span>
+<span class="cline-any cline-yes">1100</span>
+<span class="cline-any cline-yes">1100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">495</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">530</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">550</span>
+<span class="cline-any cline-yes">403</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">403</span>
+<span class="cline-any cline-yes">403</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">147</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1650</span>
+<span class="cline-any cline-yes">1650</span>
+<span class="cline-any cline-yes">1650</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Facet } from './Facet';
+import { FacetValue } from './FacetValues';
+import { $$ } from '../../utils/Dom';
+import { Utils } from '../../utils/Utils';
+import { l } from '../../strings/Strings';
+import { Component } from '../Base/Component';
+import * as _ from 'underscore';
+import { SVGIcons } from '../../utils/SVGIcons';
+import { SVGDom } from '../../utils/SVGDom';
+&nbsp;
+export class ValueElementRenderer {
+  public listItem: HTMLElement;
+  public label: HTMLElement;
+  public checkbox: HTMLElement;
+  public stylishCheckbox: HTMLElement;
+  public valueCaption: HTMLElement;
+  public valueCount: HTMLElement;
+  public icon: HTMLElement;
+  public excludeIcon: HTMLElement;
+  public computedField: HTMLElement;
+&nbsp;
+  constructor(public facet: Facet, public facetValue: FacetValue) {
+  }
+&nbsp;
+  public withNo(element: HTMLElement[]): ValueElementRenderer;
+  public withNo(element: HTMLElement): ValueElementRenderer;
+  public withNo(element: any): ValueElementRenderer {
+    if (_.isArray(element)) {
+      _.each(element, (e: HTMLElement) =&gt; {
+        if (e) {
+          $$(e).detach();
+        }
+      });
+    } else {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (element) {
+        $$(element).detach();
+      }
+    }
+    return this;
+  }
+&nbsp;
+  public build(): ValueElementRenderer {
+    this.listItem = $$('li', {
+      className: 'coveo-facet-value coveo-facet-selectable'
+    }).el;
+    this.listItem.setAttribute('data-value', this.facetValue.value);
+    this.excludeIcon = this.buildExcludeIcon();
+    this.listItem.appendChild(this.excludeIcon);
+&nbsp;
+    this.label = $$('label', {
+      className: 'coveo-facet-value-label'
+    }).el;
+    this.listItem.appendChild(this.label);
+&nbsp;
+    this.excludeIcon = this.buildExcludeIcon();
+    this.listItem.appendChild(this.excludeIcon);
+&nbsp;
+    $$(this.excludeIcon).on('mouseover', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.listItem).addClass('coveo-facet-value-will-exclude');</span>
+    });
+&nbsp;
+    $$(this.excludeIcon).on('mouseout', <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      $$(this.listItem).removeClass('coveo-facet-value-will-exclude');</span>
+    });
+&nbsp;
+    if (Utils.exists(this.facetValue.computedField)) {
+      this.computedField = this.buildValueComputedField();
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.computedField) {
+        this.label.appendChild(this.computedField);
+      }
+      $$(this.label).addClass('coveo-with-computed-field');
+    }
+    const labelDiv = $$('div', {
+      className: 'coveo-facet-value-label-wrapper'
+    }).el;
+    this.label.appendChild(labelDiv);
+    this.checkbox = this.buildValueCheckbox();
+    labelDiv.appendChild(this.checkbox);
+&nbsp;
+    this.stylishCheckbox = this.buildValueStylishCheckbox();
+    labelDiv.appendChild(this.stylishCheckbox);
+&nbsp;
+    this.valueCount = this.buildValueCount();
+    if (this.valueCount) {
+      labelDiv.appendChild(this.valueCount);
+    }
+    this.valueCaption = this.buildValueCaption();
+    labelDiv.appendChild(this.valueCaption);
+&nbsp;
+    this.setCssClassOnListValueElement();
+    return this;
+  }
+&nbsp;
+  public setCssClassOnListValueElement(): void {
+    $$(this.listItem).toggleClass('coveo-selected', this.facetValue.selected);
+    $$(this.listItem).toggleClass('coveo-excluded', this.facetValue.excluded);
+  }
+&nbsp;
+  protected buildExcludeIcon(): HTMLElement {
+    const excludeIcon = $$('div', {
+      title: l('Exclude', this.facet.getValueCaption(this.facetValue)),
+      className: 'coveo-facet-value-exclude',
+      tabindex: 0
+    }).el;
+    this.addFocusAndBlurEventListeners(excludeIcon);
+    excludeIcon.innerHTML = SVGIcons.icons.checkboxHookExclusionMore;
+    SVGDom.addClassToSVGInContainer(excludeIcon, 'coveo-facet-value-exclude-svg');
+    return excludeIcon;
+  }
+&nbsp;
+  protected buildValueComputedField(): HTMLElement {
+    const computedField = this.facetValue.getFormattedComputedField(this.facet.options.computedFieldFormat);
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (Utils.isNonEmptyString(computedField)) {
+      const elem = $$('span', {
+        className: 'coveo-facet-value-computed-field'
+      }).el;
+      $$(elem).text(computedField);
+      return elem;
+    } else {
+<span class="cstat-no" title="statement not covered" >      return undefined;</span>
+    }
+  }
+&nbsp;
+  protected buildValueCheckbox(): HTMLElement {
+    const checkbox = $$('input', {
+      type: 'checkbox'
+    }).el;
+    if (this.facetValue.selected) {
+      checkbox.setAttribute('checked', 'checked');
+    } else {
+      checkbox.removeAttribute('checked');
+    }
+    if (this.facetValue.excluded) {
+      checkbox.setAttribute('disabled', 'disabled');
+    } else {
+      checkbox.removeAttribute('disabled');
+    }
+    Component.pointElementsToDummyForm(checkbox);
+    return checkbox;
+  }
+&nbsp;
+  protected buildValueStylishCheckbox(): HTMLElement {
+    const checkbox = $$('div', {
+      className: 'coveo-facet-value-checkbox',
+      tabindex: 0
+    }).el;
+    checkbox.innerHTML = SVGIcons.icons.checkboxHookExclusionMore;
+    SVGDom.addClassToSVGInContainer(checkbox, 'coveo-facet-value-checkbox-svg');
+    this.addFocusAndBlurEventListeners(checkbox);
+    return checkbox;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  protected buildValueIcon(): HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >    const icon = this.getValueIcon();</span>
+<span class="cstat-no" title="statement not covered" >    if (Utils.exists(icon)) {</span>
+<span class="cstat-no" title="statement not covered" >      return $$('img', {</span>
+        className: 'coveo-facet-value-icon coveo-icon',
+        src: this.getValueIcon()
+      }).el;
+    } else {
+<span class="cstat-no" title="statement not covered" >      return this.buildValueIconFromSprite();</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  protected getValueIcon(): string {</span>
+<span class="cstat-no" title="statement not covered" >    if (Utils.exists(this.facet.options.valueIcon)) {</span>
+<span class="cstat-no" title="statement not covered" >      return this.facet.options.valueIcon(this.facetValue);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return undefined;</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  protected buildValueIconFromSprite(): HTMLElement {</span>
+<span class="cstat-no" title="statement not covered" >    return $$('div', {</span>
+      className: 'coveo-facet-value-icon coveo-icon ' + this.facet.options.field.substr(1) + ' ' + this.facetValue.value
+    }).el;
+  }
+&nbsp;
+  protected buildValueCaption(): HTMLElement {
+    const caption = this.facet.getValueCaption(this.facetValue);
+    const valueCaption = $$('span', {
+      className: 'coveo-facet-value-caption',
+      title: caption,
+      'data-original-value': this.facetValue.value
+    }).el;
+&nbsp;
+    $$(valueCaption).text(caption);
+    return valueCaption;
+  }
+&nbsp;
+  protected buildValueCount(): HTMLElement {
+    const count = this.facetValue.getFormattedCount();
+    if (Utils.isNonEmptyString(count)) {
+      const countElement = $$('span', {
+        className: 'coveo-facet-value-count'
+      }).el;
+      $$(countElement).text(count);
+      return countElement;
+    } else {
+      return undefined;
+    }
+  }
+&nbsp;
+  private addFocusAndBlurEventListeners(elem: HTMLElement) {
+    $$(elem).on('focus', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>$$(this.listItem).addClass('coveo-focused'))</span>;
+    $$(elem).on('blur', <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>$$(this.listItem).removeClass('coveo-focused'))</span>;
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Misc/FileTypes.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/ui/Misc/FileTypes.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">58.14% <small>(25 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">38.89% <small>(7 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">50% <small>(3 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">57.14% <small>(24 / 42)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Misc/</a> &#187; FileTypes.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">82</span>
+<span class="cline-any cline-yes">82</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">82</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IQueryResult } from '../../rest/QueryResult';
+import { Utils } from '../../utils/Utils';
+import { l } from '../../strings/Strings';
+import { Assert } from '../../misc/Assert';
+import * as _ from 'underscore';
+&nbsp;
+// On-demand mapping of file types to captions. Used by facets, but I don't
+// really like this. Maybe a dedicated filetype facet would be better? Hmm...
+let fileTypeCaptions: { [id: string]: string };
+&nbsp;
+export interface IFileTypeInfo {
+  icon: string;
+  caption: string;
+}
+&nbsp;
+export class FileTypes {
+  static get(result: IQueryResult): IFileTypeInfo {
+    var objecttype = &lt;string&gt;Utils.getFieldValue(result, 'objecttype');
+    var filetype = &lt;string&gt;Utils.getFieldValue(result, 'filetype');
+&nbsp;
+    // When @objecttype is File we fallback on @filetype for icons and such
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (Utils.isNonEmptyString(objecttype) &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >objecttype.toLowerCase() != 'file')</span> {
+<span class="cstat-no" title="statement not covered" >      return FileTypes.getObjectType(objecttype);</span>
+    } else if (Utils.isNonEmptyString(filetype)) {
+      return FileTypes.getFileType(filetype);
+    } else {
+      return {
+        // This will render a default icon. Really it should not happen.
+        icon: 'coveo-icon filetype',
+        caption: l('Unknown')
+      };
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  static getObjectType(objecttype: string)</span>: IFileTypeInfo {
+    // We must use lowercase filetypes because that's how the CSS classes
+    // are generated (they are case sensitive, alas).
+<span class="cstat-no" title="statement not covered" >    const loweredCaseObjecttype = objecttype.toLowerCase();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const variableValue = `objecttype_${loweredCaseObjecttype}`;</span>
+    // Most object types have a set of localized strings in the main dictionary
+<span class="cstat-no" title="statement not covered" >    let localizedString = l(variableValue);</span>
+    // Some strings are sent as `objecttype_[...]` to specify a dictionary to use. If there's no match, try using
+    // the main dictionary by using the original value.
+<span class="cstat-no" title="statement not covered" >    if (localizedString.toLowerCase() == variableValue.toLowerCase()) {</span>
+<span class="cstat-no" title="statement not covered" >      localizedString = l(objecttype);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      'icon': 'coveo-icon objecttype ' + loweredCaseObjecttype.replace(' ', '-'),
+      caption: localizedString
+    };
+  }
+&nbsp;
+  static getFileType(filetype: string): IFileTypeInfo {
+    // We must use lowercase filetypes because that's how the CSS classes
+    // are generated (they are case sensitive, alas).
+    let loweredCaseFiletype = filetype.toLowerCase();
+&nbsp;
+    // Sometimes, filetype begins with a period (typically means the index has
+    // no idea and uses the file extension as a filetype).
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (loweredCaseFiletype[0] == '.') {
+<span class="cstat-no" title="statement not covered" >      loweredCaseFiletype = loweredCaseFiletype.substring(1);</span>
+    }
+&nbsp;
+    const variableValue = `filetype_${loweredCaseFiletype}`;
+    // Most filetypes have a set of localized strings in the main dictionary
+    let localizedString = l(variableValue);
+    if (localizedString.toLowerCase() == variableValue.toLowerCase()) {
+      // Some strings are sent as `filetype_[...]` to specify a dictionary to use. If there's no match, try using
+      // The main dictionary by using the original value.
+      localizedString = l(filetype);
+    }
+    return {
+      'icon': 'coveo-icon filetype ' + loweredCaseFiletype.replace(' ', '-'),
+      caption: localizedString
+    };
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  static getFileTypeCaptions() {</span>
+<span class="cstat-no" title="statement not covered" >    if (fileTypeCaptions == undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      fileTypeCaptions = {};</span>
+<span class="cstat-no" title="statement not covered" >      var strings = String['locales'][String['locale'].toLowerCase()];</span>
+<span class="cstat-no" title="statement not covered" >      Assert.isNotUndefined(strings);</span>
+<span class="cstat-no" title="statement not covered" >      _.each(_.keys(strings), <span class="fstat-no" title="function not covered" >function (key)</span> {</span>
+<span class="cstat-no" title="statement not covered" >        if (key.indexOf('filetype_') == 0) {</span>
+<span class="cstat-no" title="statement not covered" >          fileTypeCaptions[key.substr('filetype_'.length)] = key.toLocaleString();</span>
+        } else <span class="cstat-no" title="statement not covered" >if (key.indexOf('objecttype_') == 0) {</span>
+<span class="cstat-no" title="statement not covered" >          fileTypeCaptions[key.substr('objecttype_'.length)] = key.toLocaleString();</span>
+        }
+      });
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return fileTypeCaptions;</span>
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,1698 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/rest/EndpointCaller.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/rest/EndpointCaller.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">76.92% <small>(140 / 182)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">76.92% <small>(80 / 104)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">64.71% <small>(22 / 34)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">78.16% <small>(136 / 174)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/rest/</a> &#187; EndpointCaller.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">96</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">201</span>
+<span class="cline-any cline-yes">96</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">93</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">78</span>
+<span class="cline-any cline-yes">78</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">165</span>
+<span class="cline-any cline-yes">81</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">55</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">23</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">25</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IStringMap } from '../rest/GenericParam';
+import { Logger } from '../misc/Logger';
+import { Assert } from '../misc/Assert';
+import { TimeSpan } from '../utils/TimeSpanUtils';
+import { DeviceUtils } from '../utils/DeviceUtils';
+import { Utils } from '../utils/Utils';
+import { JQueryUtils } from '../utils/JQueryutils';
+import * as _ from 'underscore';
+&nbsp;
+declare var XDomainRequest;
+declare var $;
+&nbsp;
+/**
+ * Parameters that can be used when calling an {@link EndpointCaller}
+ */
+export interface IEndpointCallParameters {
+  /**
+   * Url to target
+   */
+  url: string;
+  /**
+   * Array of query string params.&lt;br/&gt;
+   * eg: ['foo=1','bar=2']
+   */
+  queryString: string[];
+  /**
+   * Body of the request.&lt;br/&gt;
+   * key -&gt; value map (JSON)
+   */
+  requestData: IStringMap&lt;any&gt;;
+  /**
+   * Request data type.&lt;br/&gt;
+   * eg: "application/json", "application/x-www-form-urlencoded; charset=\"UTF-8\""
+   */
+  requestDataType?: string;
+  /**
+   * Or HTTP verb : GET, POST, PUT, etc.
+   */
+  method: string;
+  /**
+   * responseType of the request.&lt;/br&gt;
+   * eg: "text", "arraybuffer" etc.
+   */
+  responseType: string;
+  /**
+   * Flag to specify if the endpoint should return different type of error as actual 200 success for the browser, but with the error code/message contained in the response.
+   */
+  errorsAsSuccess: boolean;
+}
+&nbsp;
+/**
+ * Information about a request
+ */
+export interface IRequestInfo&lt;T&gt; {
+  /**
+   * Url that was requested
+   */
+  url: string;
+  /**
+   * The query string parameters that were used for this request
+   */
+  queryString: string[];
+  /**
+   * The data that was sent for this request
+   */
+  requestData: IStringMap&lt;any&gt;;
+  /**
+   * The requestDataType that was used for this request
+   */
+  requestDataType: string;
+  /**
+   * The timestamp at which the request started
+   */
+  begun: Date;
+  /**
+   * The method that was used for this request
+   */
+  method: string;
+  /**
+   * The headers for the request.
+   */
+  headers?: IStringMap&lt;string&gt;;
+}
+&nbsp;
+/**
+ * A generic response
+ */
+export interface IResponse&lt;T&gt; {
+  /**
+   * Data of the response
+   */
+  data?: T;
+}
+&nbsp;
+/**
+ * A generic success response
+ */
+export interface ISuccessResponse&lt;T&gt; extends IResponse&lt;T&gt; {
+  /**
+   * The time that the successfull response took to complete
+   */
+  duration: number;
+  /**
+   * Data of the response
+   */
+  data: T;
+}
+&nbsp;
+/**
+ * An error response
+ */
+export interface IErrorResponse extends IResponse&lt;IStringMap&lt;any&gt;&gt; {
+  /**
+   * Status code for the error
+   */
+  statusCode: number;
+  /**
+   * Data about the error
+   */
+  data?: {
+    /**
+     * Message for the error
+     */
+    message?: string;
+    /**
+     * Type of the error
+     */
+    type?: string;
+    /**
+     * A report provided by the search api
+     */
+    executionReport?: string;
+    [key: string]: any;
+  };
+}
+&nbsp;
+/**
+ * Possible options when creating a {@link EndpointCaller}
+ */
+export interface IEndpointCallerOptions {
+  /**
+   * The access token to use for this endpoint.
+   */
+  accessToken?: string;
+  /**
+   * The username to use to log into this endpoint. Used for basic auth.&lt;br/&gt;
+   * Not used if accessToken is provided.
+   */
+  username?: string;
+  /**
+   * The password to use to log into this endpoint. Used for basic auth.&lt;br/&gt;
+   * Not used if accessToken is provided.
+   */
+  password?: string;
+  /**
+   * A function which will allow external code to modify all endpoint call parameters before they are sent by the browser.
+   *
+   * Used in very specific scenario where the network infrastructure require special request headers to be added or removed, for example.
+   */
+  requestModifier?: (params: IRequestInfo&lt;any&gt;) =&gt; IRequestInfo&lt;any&gt;;
+&nbsp;
+  /**
+   * The XmlHttpRequest implementation to use instead of the native one.
+   * If not specified, the native one is used.
+   */
+  xmlHttpRequest?: new () =&gt; XMLHttpRequest;
+}
+&nbsp;
+// In ie8, XMLHttpRequest has no status property, so let's use this enum instead
+enum XMLHttpRequestStatus {
+  OPENED = XMLHttpRequest.OPENED || <span class="branch-1 cbranch-no" title="branch not covered" >1,</span>
+  HEADERS_RECEIVED = XMLHttpRequest.HEADERS_RECEIVED || <span class="branch-1 cbranch-no" title="branch not covered" >2,</span>
+  DONE = XMLHttpRequest.DONE || <span class="branch-1 cbranch-no" title="branch not covered" >4</span>
+}
+&nbsp;
+/**
+ * This class is in charge of calling an endpoint (eg: a {@link SearchEndpoint}).
+ *
+ * This means it's only uses to execute an XMLHttpRequest (for example), massage the response and check if there are errors.
+ *
+ * Will execute the call and return a Promise.
+ *
+ * Call using one of those options :
+ *
+ * * XMLHttpRequest for recent browser that support CORS, or if the endpoint is on the same origin.
+ * * XDomainRequest for older IE browser that do not support CORS.
+ * * Jsonp if all else fails, or is explicitly enabled.
+ */
+export class EndpointCaller {
+  public logger: Logger;
+&nbsp;
+  /**
+   * Set this property to true to enable Jsonp call to the endpoint.&lt;br/&gt;
+   * Be aware that jsonp is "easier" to setup endpoint wise, but has a lot of drawback and limitation for the client code.&lt;br/&gt;
+   * Default to false.
+   * @type {boolean}
+   */
+  public useJsonp = false;
+&nbsp;
+  private static JSONP_ERROR_TIMEOUT = 10000;
+  /**
+   * Create a new EndpointCaller.
+   * @param options Specify the authentication that will be used for this endpoint. Not needed if the endpoint is public and has no authentication
+   */
+  constructor(public options: IEndpointCallerOptions = {}) {
+    this.logger = new Logger(this);
+  }
+&nbsp;
+  /**
+   * Generic call to the endpoint using the provided {@link IEndpointCallParameters}.&lt;br/&gt;
+   * Internally, will decide which method to use to call the endpoint :&lt;br/&gt;
+   * -- XMLHttpRequest for recent browser that support CORS, or if the endpoint is on the same origin.&lt;br/&gt;
+   * -- XDomainRequest for older IE browser that do not support CORS.&lt;br/&gt;
+   * -- Jsonp if all else fails, or is explicitly enabled.
+   * @param params The parameters to use for the call
+   * @returns {any} A promise of the given type
+   */
+  public call&lt;T&gt;(params: IEndpointCallParameters): Promise&lt;ISuccessResponse&lt;T&gt;&gt; {
+&nbsp;
+    var requestInfo: IRequestInfo&lt;T&gt; = {
+      url: params.url,
+      queryString: params.errorsAsSuccess ? <span class="branch-0 cbranch-no" title="branch not covered" >params.queryString.concat(['errorsAsSuccess=1']) </span>: params.queryString,
+      requestData: params.requestData,
+      requestDataType: params.requestDataType || 'application/x-www-form-urlencoded; charset="UTF-8"',
+      begun: new Date(),
+      method: params.method
+    };
+    requestInfo.headers = this.buildRequestHeaders(requestInfo);
+    if (_.isFunction(this.options.requestModifier)) {
+      requestInfo = this.options.requestModifier(requestInfo);
+    }
+&nbsp;
+&nbsp;
+    this.logger.trace('Performing REST request', requestInfo);
+    var urlObject = this.parseURL(requestInfo.url);
+    // In IE8, hostname and port return "" when we are on the same domain.
+    var isLocalHost = (window.location.hostname === urlObject.hostname) || (<span class="branch-1 cbranch-no" title="branch not covered" >urlObject.hostname === '')</span>;
+&nbsp;
+    var currentPort = (window.location.port != '' ? window.location.port : (<span class="branch-1 cbranch-no" title="branch not covered" >window.location.protocol == 'https:' ? '443' : '80')</span>);
+    var isSamePort = currentPort == urlObject.port;
+    var isCrossOrigin = !(isLocalHost &amp;&amp; isSamePort);
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.useJsonp) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.isCORSSupported() || <span class="branch-1 cbranch-no" title="branch not covered" >!isCrossOrigin)</span> {
+        return this.callUsingXMLHttpRequest(requestInfo, params.responseType);
+      } else <span class="cstat-no" title="statement not covered" >if (this.isXDomainRequestSupported()) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.callUsingXDomainRequest(requestInfo);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        return this.callUsingAjaxJsonP(requestInfo);</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      return this.callUsingAjaxJsonP(requestInfo);</span>
+    }
+  }
+&nbsp;
+  /**
+   * Call the endpoint using XMLHttpRequest. Used internally by {@link EndpointCaller.call}.&lt;br/&gt;
+   * Will try internally to handle error if it can.&lt;br/&gt;
+   * Promise will otherwise fail with the error type.
+   * @param requestInfo The info about the request
+   * @param responseType The responseType. Default to text. https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseType
+   * @returns {Promise&lt;T&gt;|Promise}
+   */
+  public callUsingXMLHttpRequest&lt;T&gt;(requestInfo: IRequestInfo&lt;T&gt;, <span class="missing-if-branch" title="if path not taken" >I</span>responseType = 'text'): Promise&lt;ISuccessResponse&lt;T&gt;&gt; {
+    return new Promise((resolve, reject) =&gt; {
+      var xmlHttpRequest = this.getXmlHttpRequest();
+&nbsp;
+      // Beware, most stuff must be set on the event that says the request is OPENED.
+      // Otherwise it'll bork on some browsers. Gotta love standards.
+&nbsp;
+      // This sent variable allowed to remove the second call of onreadystatechange with the state OPENED in IE11
+      var sent = false;
+&nbsp;
+      xmlHttpRequest.onreadystatechange = (ev) =&gt; {
+        if (xmlHttpRequest.readyState == XMLHttpRequestStatus.OPENED &amp;&amp; !sent) {
+          sent = true;
+          xmlHttpRequest.withCredentials = true;
+&nbsp;
+          _.each(requestInfo.headers, (headerValue, headerKey) =&gt; {
+            xmlHttpRequest.setRequestHeader(headerKey, headerValue);
+          });
+&nbsp;
+          if (requestInfo.method == 'GET') {
+            xmlHttpRequest.send();
+          } else if (requestInfo.requestDataType.indexOf('application/json') === 0) {
+            xmlHttpRequest.send(JSON.stringify(requestInfo.requestData));
+          } else {
+            xmlHttpRequest.send(this.convertJsonToFormBody(requestInfo.requestData));
+          }
+&nbsp;
+          // The "responseType" varies if the request is a success or not.
+          // Therefore we postpone setting "responseType" until we know if the
+          // request is a success or not. Doing so, we avoid this potential
+          // error in Chrome:
+          //
+          //   Uncaught InvalidStateError: Failed to read the 'responseText'
+          //   property from 'XMLHttpRequest': The value is only accessible if
+          //   the object's 'responseType' is '' or 'text' (was 'document').
+          //
+        } else if (xmlHttpRequest.readyState == XMLHttpRequestStatus.HEADERS_RECEIVED) {
+          var status = xmlHttpRequest.status;
+&nbsp;
+          if (this.isSuccessHttpStatus(status)) {
+            xmlHttpRequest.responseType = &lt;XMLHttpRequestResponseType&gt;responseType;
+          } else {
+            xmlHttpRequest.responseType = 'text';
+          }
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>if (xmlHttpRequest.readyState == XMLHttpRequestStatus.DONE) {
+          var status = xmlHttpRequest.status;
+          var data;
+          switch (responseType) {
+            case 'json':
+              data = xmlHttpRequest.response;
+              // Work around a bug in IE11 where responseType jsonis not supported : the response comes back as a plain string
+              // Force the json parse manually
+              <span class="missing-if-branch" title="if path not taken" >I</span>if (responseType == 'json' &amp;&amp; DeviceUtils.getDeviceName() == 'IE') {
+<span class="cstat-no" title="statement not covered" >                try {</span>
+<span class="cstat-no" title="statement not covered" >                  data = JSON.parse(data);</span>
+                } catch (e) {
+                  // Do nothing, it probably means the data was JSON already
+                }
+              }
+              break;
+            case 'text':
+              data = this.tryParseResponseText(xmlHttpRequest.responseText, xmlHttpRequest.getResponseHeader('Content-Type'));
+              break;
+            default:
+              data = xmlHttpRequest.response;
+              break;
+          }
+&nbsp;
+          if (data == undefined) {
+            data = this.tryParseResponseText(xmlHttpRequest.responseText, xmlHttpRequest.getResponseHeader('Content-Type'));
+          }
+&nbsp;
+          if (this.isSuccessHttpStatus(status)) {
+            this.handleSuccessfulResponseThatMightBeAnError(requestInfo, data, resolve, reject);
+          } else {
+            this.handleError(requestInfo, xmlHttpRequest.status, data, reject);
+          }
+        }
+      };
+&nbsp;
+      var queryString = requestInfo.queryString;
+      if (requestInfo.method == 'GET') {
+        queryString = queryString.concat(this.convertJsonToQueryString(requestInfo.requestData));
+      }
+      xmlHttpRequest.open(requestInfo.method, this.combineUrlAndQueryString(requestInfo.url, queryString));
+    });
+  }
+&nbsp;
+  /**
+   * Call the endpoint using XDomainRequest https://msdn.microsoft.com/en-us/library/cc288060(v=vs.85).aspx&lt;br/&gt;
+   * Used for IE8/9
+   * @param requestInfo The info about the request
+   * @returns {Promise&lt;T&gt;|Promise}
+   */
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  public callUsingXDomainRequest&lt;T&gt;(requestInfo: IRequestInfo&lt;T&gt;)</span>: Promise&lt;IResponse&lt;T&gt;&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >(resolve, reject)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      var queryString = requestInfo.queryString.concat([]);</span>
+&nbsp;
+      // XDomainRequest don't support including stuff in the header, so we must
+      // put the access token in the query string if we have one.
+<span class="cstat-no" title="statement not covered" >      if (this.options.accessToken) {</span>
+<span class="cstat-no" title="statement not covered" >        queryString.push('access_token=' + encodeURIComponent(this.options.accessToken));</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var xDomainRequest = new XDomainRequest();</span>
+<span class="cstat-no" title="statement not covered" >      if (requestInfo.method == 'GET') {</span>
+<span class="cstat-no" title="statement not covered" >        queryString = queryString.concat(this.convertJsonToQueryString(requestInfo.requestData));</span>
+      }
+<span class="cstat-no" title="statement not covered" >      xDomainRequest.open(requestInfo.method, this.combineUrlAndQueryString(requestInfo.url, queryString));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      xDomainRequest.onload = <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        var data = this.tryParseResponseText(xDomainRequest.responseText, xDomainRequest.contentType);</span>
+<span class="cstat-no" title="statement not covered" >        this.handleSuccessfulResponseThatMightBeAnError(requestInfo, data, resolve, reject);</span>
+      };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      xDomainRequest.onerror = <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        var data = this.tryParseResponseText(xDomainRequest.responseText, xDomainRequest.contentType);</span>
+<span class="cstat-no" title="statement not covered" >        this.handleError(requestInfo, 0, data, reject);</span>
+      };
+&nbsp;
+      // We must set those functions otherwise it will sometime fail in IE
+<span class="cstat-no" title="statement not covered" >      xDomainRequest.ontimeout = <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.logger.error('Request timeout', xDomainRequest, requestInfo.requestData);</span></span>
+<span class="cstat-no" title="statement not covered" >      xDomainRequest.onprogress = <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.logger.trace('Request progress', xDomainRequest, requestInfo.requestData);</span></span>
+&nbsp;
+      // We must open the request in a separate thread, for obscure reasons
+<span class="cstat-no" title="statement not covered" >      _.defer(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (requestInfo.method == 'GET') {</span>
+<span class="cstat-no" title="statement not covered" >          xDomainRequest.send();</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          xDomainRequest.send(this.convertJsonToFormBody(requestInfo.requestData));</span>
+        }
+      });
+    });
+  }
+&nbsp;
+  /**
+   * Call the endpoint using Jsonp https://en.wikipedia.org/wiki/JSONP&lt;br/&gt;
+   * Should be used for dev only, or for very special setup as using jsonp has a lot of drawbacks.
+   * @param requestInfo The info about the request
+   * @returns {Promise&lt;T&gt;|Promise}
+   */
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  public callUsingAjaxJsonP&lt;T&gt;(requestInfo: IRequestInfo&lt;T&gt;)</span>: Promise&lt;IResponse&lt;T&gt;&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    let jQuery = JQueryUtils.getJQuery();</span>
+<span class="cstat-no" title="statement not covered" >    Assert.check(jQuery, 'Using jsonp without having included jQuery is not supported.');</span>
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >(resolve, reject)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      var queryString = requestInfo.queryString.concat(this.convertJsonToQueryString(requestInfo.requestData));</span>
+&nbsp;
+      // JSONP don't support including stuff in the header, so we must
+      // put the access token in the query string if we have one.
+<span class="cstat-no" title="statement not covered" >      if (this.options.accessToken) {</span>
+<span class="cstat-no" title="statement not covered" >        queryString.push('access_token=' + encodeURIComponent(this.options.accessToken));</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      queryString.push('callback=?');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      jQuery.ajax({</span>
+        url: this.combineUrlAndQueryString(requestInfo.url, queryString),
+        dataType: 'jsonp',
+        success: <span class="fstat-no" title="function not covered" >(data: any)</span> =&gt; <span class="cstat-no" title="statement not covered" >this.handleSuccessfulResponseThatMightBeAnError(requestInfo, data, resolve, reject),</span>
+        timeout: EndpointCaller.JSONP_ERROR_TIMEOUT,
+        error: <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.handleError(requestInfo, 0, undefined, reject)</span>
+      });
+    });
+  }
+&nbsp;
+  private parseURL(url: string) {
+    var urlObject = document.createElement('a');
+    urlObject.href = url;
+    return urlObject;
+  }
+&nbsp;
+  private getXmlHttpRequest(): XMLHttpRequest {
+    var newXmlHttpRequest = this.options.xmlHttpRequest || XMLHttpRequest;
+    return new newXmlHttpRequest();
+  }
+&nbsp;
+  private convertJsonToQueryString(json: { [key: string]: any; }): string[] {
+    Assert.exists(json);
+&nbsp;
+    var result: string[] = [];
+    _.each(json, (value, key) =&gt; {
+      if (value != null) {
+        if (_.isObject(value)) {
+          result.push(key + '=' + encodeURIComponent(JSON.stringify(value)));
+        } else {
+          result.push(key + '=' + encodeURIComponent(value.toString()));
+        }
+      }
+    });
+&nbsp;
+    return result;
+  }
+&nbsp;
+  private convertJsonToFormBody(json: { [key: string]: any; }): string {
+    return this.convertJsonToQueryString(json).join('&amp;');
+  }
+&nbsp;
+  private handleSuccessfulResponseThatMightBeAnError&lt;T&gt;(requestInfo: IRequestInfo&lt;T&gt;, data: any, success, error) {
+    if (this.isErrorResponseBody(data)) {
+      this.handleError(requestInfo, data.statusCode, data, error);
+    } else {
+      this.handleSuccess(requestInfo, data, success);
+    }
+  }
+&nbsp;
+  private handleSuccess&lt;T&gt;(requestInfo: IRequestInfo&lt;T&gt;, data: T, success) {
+    var querySuccess: ISuccessResponse&lt;T&gt; = {
+      duration: TimeSpan.fromDates(requestInfo.begun, new Date()).getMilliseconds(),
+      data: data
+    };
+&nbsp;
+    this.logger.trace('REST request successful', data, requestInfo);
+    success(querySuccess);
+  }
+&nbsp;
+  private handleError&lt;T&gt;(requestInfo: IRequestInfo&lt;T&gt;, status: number, data: any, error) {
+    var queryError: IErrorResponse = {
+      statusCode: status,
+      data: data
+    };
+    this.logger.error('REST request failed', status, data, requestInfo);
+    error(queryError);
+  }
+&nbsp;
+  private combineUrlAndQueryString(url: String, queryString: string[]): string {
+    var questionMark = '?';
+    if (url.match(/\?$/)) {
+      questionMark = '';
+    }
+    return url + (queryString.length &gt; 0 ? questionMark + queryString.join('&amp;') : '');
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private isXDomainRequestSupported(): boolean {</span>
+<span class="cstat-no" title="statement not covered" >    return 'XDomainRequest' in window;</span>
+  }
+&nbsp;
+  private isCORSSupported(): boolean {
+    return 'withCredentials' in this.getXmlHttpRequest();
+  }
+&nbsp;
+  private isSuccessHttpStatus(status: number): boolean {
+    return status &gt;= 200 &amp;&amp; status &lt; 300 || status === 304;
+  }
+&nbsp;
+  private tryParseResponseText(json: string, contentType: string): any {
+    if (contentType != null &amp;&amp; contentType.indexOf('application/json') != -1) {
+      if (Utils.isNonEmptyString(json)) {
+        try {
+          return JSON.parse(json);
+        } catch (ex) {
+<span class="cstat-no" title="statement not covered" >          return undefined;</span>
+        }
+      } else {
+        return undefined;
+      }
+    } else {
+      return json;
+    }
+  }
+&nbsp;
+  private isErrorResponseBody(data: any): boolean {
+    if (data &amp;&amp; data.statusCode) {
+      return !this.isSuccessHttpStatus(data.statusCode);
+    } else {
+      return false;
+    }
+  }
+&nbsp;
+  private buildRequestHeaders&lt;T&gt;(requestInfo: IRequestInfo&lt;T&gt;): IStringMap&lt;string&gt; {
+    let headers: IStringMap&lt;string&gt; = {};
+    if (this.options.accessToken) {
+      headers['Authorization'] = `Bearer ${this.options.accessToken}`;
+    } else if (this.options.username &amp;&amp; this.options.password) {
+      headers['Authorization'] = `Basic ${btoa(this.options.username + ':' + this.options.password)}`;
+    }
+&nbsp;
+    if (requestInfo.method == 'GET') {
+      return headers;
+    }
+&nbsp;
+    if (requestInfo.requestDataType.indexOf('application/json') === 0) {
+      headers['Content-Type'] = 'application/json; charset="UTF-8"';
+    } else {
+      headers['Content-Type'] = 'application/x-www-form-urlencoded; charset="UTF-8"';
+    }
+&nbsp;
+    return headers;
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

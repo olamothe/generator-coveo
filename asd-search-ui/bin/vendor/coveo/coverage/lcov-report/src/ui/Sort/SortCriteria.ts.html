@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Sort/SortCriteria.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/Sort/SortCriteria.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">97.87% <small>(46 / 47)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">95% <small>(19 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(9 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">97.73% <small>(43 / 44)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Sort/</a> &#187; SortCriteria.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">262</span>
+<span class="cline-any cline-yes">121</span>
+<span class="cline-any cline-yes">120</span>
+<span class="cline-any cline-yes">116</span>
+<span class="cline-any cline-yes">100</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">98</span>
+<span class="cline-any cline-yes">98</span>
+<span class="cline-any cline-yes">98</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">54</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">116</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Assert } from '../../misc/Assert';
+import { QueryBuilder } from '../Base/QueryBuilder';
+import { Utils } from '../../utils/Utils';
+import { IQueryResult } from '../../rest/QueryResult';
+import * as _ from 'underscore';
+&nbsp;
+export class SortCriteria {
+  private static validSorts = ['relevancy', 'date', 'qre'];
+  private static sortsNeedingDirection = ['date'];
+  private static validDirections = ['ascending', 'descending'];
+&nbsp;
+  /**
+   * Create a new SortCriteria
+   * @param sort The sort criteria (e.g.: relevancy, date)
+   * @param direction The direction by which to sort (e.g.: ascending, descending)
+   */
+  constructor(public sort: string, public direction: string = '') {
+    Assert.isNonEmptyString(sort);
+    Assert.check(_.contains(SortCriteria.validSorts, sort) || SortCriteria.sortIsField(sort));
+    if (SortCriteria.sortNeedsDirection(sort)) {
+      Assert.check(_.contains(SortCriteria.validDirections, direction));
+    } else {
+      Assert.check(direction == '');
+    }
+  }
+&nbsp;
+  /**
+   * Return a new SortCriteria from a string
+   * @param criteria The string from which to create the SortCriteria
+   */
+  static parse(criteria: string): SortCriteria {
+    Assert.isNonEmptyString(criteria);
+    var split = criteria.match(/\S+/g);
+    return new SortCriteria(split[0], split[1]);
+  }
+&nbsp;
+  /**
+   * Put the sort criteria in the passed queryBuilder
+   * @param queryBuilder The queryBuilder in which to put the sort criteria.
+   */
+  public putInQueryBuilder(queryBuilder: QueryBuilder) {
+    Assert.exists(queryBuilder);
+    if (SortCriteria.sortIsField(this.sort)) {
+      queryBuilder.sortCriteria = 'field' + this.direction;
+      queryBuilder.sortField = this.sort;
+    } else if (this.direction != '') {
+      queryBuilder.sortCriteria = this.sort + this.direction;
+    } else {
+      queryBuilder.sortCriteria = this.sort;
+    }
+  }
+&nbsp;
+  /**
+   * Gets the value of the sort criteria from a single {@link IQueryResult}.&lt;br/&gt;
+   * For example, if the sort criteria is 'relevancy', it will return the value of the 'relevancy' field from result.
+   * @param result The {@link IQueryResult} from which to get the value.
+   */
+  public getValueFromResult(result: IQueryResult): any {
+    Assert.exists(result);
+&nbsp;
+    if (SortCriteria.sortIsField(this.sort)) {
+      return Utils.getFieldValue(result, this.sort);
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (this.sort == 'date') {
+      return result.raw['date'];
+    } else {
+<span class="cstat-no" title="statement not covered" >      Assert.fail('Cannot retrieve value: ' + this.sort);</span>
+    }
+  }
+&nbsp;
+  /**
+   * Returns a string representation of the sort criteria (e.g.: 'date ascending').
+   */
+  public toString(): string {
+    if (Utils.isNonEmptyString(this.direction)) {
+      return this.sort + ' ' + this.direction;
+    } else {
+      return this.sort;
+    }
+  }
+&nbsp;
+  /**
+   * Checks if the SortCriteria is equal to another.
+   * @param criteria The SortCriteria to compare with
+   */
+  public equals(criteria: SortCriteria): boolean {
+    Assert.exists(criteria);
+    return criteria.sort == this.sort &amp;&amp; criteria.direction == this.direction;
+  }
+&nbsp;
+  private static sortIsField(criteria: string) {
+    return criteria.charAt(0) == '@';
+  }
+&nbsp;
+  private static sortNeedsDirection(sort: string) {
+    return _.contains(SortCriteria.sortsNeedingDirection, sort) || SortCriteria.sortIsField(sort);
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

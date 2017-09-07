@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/PrintableUri/PrintableUri.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/PrintableUri/PrintableUri.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">98.48% <small>(65 / 66)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">71.43% <small>(10 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(7 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">98.36% <small>(60 / 61)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/PrintableUri/</a> &#187; PrintableUri.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">49</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">49</span>
+<span class="cline-any cline-yes">49</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">47</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">41</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">49</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ComponentOptions } from '../Base/ComponentOptions';
+import { IQueryResult } from '../../rest/QueryResult';
+import { HighlightUtils, StringAndHoles } from '../../utils/HighlightUtils';
+import { Initialization } from '../Base/Initialization';
+import { Utils } from '../../utils/Utils';
+import { $$ } from '../../utils/Dom';
+import { exportGlobally } from '../../GlobalExports';
+import 'styling/_PrintableUri';
+import { ResultLink } from '../ResultLink/ResultLink';
+import { IResultLinkOptions } from '../ResultLink/ResultLinkOptions';
+import { IResultsComponentBindings } from '../Base/ResultsComponentBindings';
+import { StreamHighlightUtils } from '../../utils/StreamHighlightUtils';
+import * as _ from 'underscore';
+import { ComponentOptionsModel } from '../../models/ComponentOptionsModel';
+&nbsp;
+&nbsp;
+export interface IPrintableUriOptions extends IResultLinkOptions {
+}
+&nbsp;
+/**
+ * The `PrintableUri` component inherits from the [ `ResultLink` ]{@link ResultLink} component and supports all of its options.
+ *
+ * This component displays the URI, or path, to access a result.
+ *
+ * This component is a result template component (see [Result Templates](https://developers.coveo.com/x/aIGfAQ)).
+ */
+export class PrintableUri extends ResultLink {
+  static ID = 'PrintableUri';
+  static options: IPrintableUriOptions = {};
+  static doExport = () =&gt; {
+    exportGlobally({
+      'PrintableUri': PrintableUri
+    });
+  }
+  private shortenedUri: string;
+  private uri: string;
+&nbsp;
+  /**
+   * Creates a new PrintableUri.
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the PrintableUri component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   * @param result The result to associate the component with.
+   */
+  constructor(public element: HTMLElement, public options: IPrintableUriOptions, bindings?: IResultsComponentBindings, public result?: IQueryResult) {
+    super(element, ComponentOptions.initComponentOptions(element, PrintableUri, options), bindings, result)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+    this.options = _.extend({}, this.options, this.componentOptionsModel.get(ComponentOptionsModel.attributesEnum.resultLink));
+  }
+&nbsp;
+  public renderParentsXml(element: HTMLElement, parentsXml: string) {
+    const xmlDoc: XMLDocument = Utils.parseXml(parentsXml);
+    const parents = xmlDoc.getElementsByTagName('parent');
+    const tokens: HTMLElement[] = [];
+    const separators: HTMLElement[] = [];
+    for (let i = 0; i &lt; parents.length; i++) {
+      if (i &gt; 0) {
+        const separator = this.buildSeparator();
+        separators.push(separator);
+        element.appendChild(separator);
+      }
+      const parent = &lt;Element&gt;parents.item(i);
+      const token = this.buildHtmlToken(parent.getAttribute('name'), parent.getAttribute('uri'));
+      tokens.push(token);
+&nbsp;
+      element.appendChild(token);
+    }
+  }
+&nbsp;
+  public renderUri(element: HTMLElement, result?: IQueryResult) {
+    const parentsXml = Utils.getFieldValue(result, 'parents');
+    if (parentsXml) {
+      this.renderParentsXml(element, parentsXml);
+    } else {
+      if (!this.options.titleTemplate) {
+        this.uri = result.clickUri;
+        let stringAndHoles: StringAndHoles;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (result.printableUri.indexOf('\\') == -1) {
+          stringAndHoles = StringAndHoles.shortenUri(result.printableUri, $$(element).width());
+        } else {
+<span class="cstat-no" title="statement not covered" >          stringAndHoles = StringAndHoles.shortenPath(result.printableUri, $$(element).width());</span>
+        }
+        this.shortenedUri = HighlightUtils.highlightString(stringAndHoles.value, result.printableUriHighlights, stringAndHoles.holes, 'coveo-highlight');
+        const link = $$('a', { className: 'coveo-printable-uri-part', title: result.printableUri });
+        link.setHtml(this.shortenedUri);
+        element.appendChild(link.el);
+      } else <span class="missing-if-branch" title="else path not taken" >E</span>if (this.options.titleTemplate) {
+        const newTitle = this.parseStringTemplate(this.options.titleTemplate);
+        this.element.innerHTML = newTitle ? StreamHighlightUtils.highlightStreamText(newTitle, this.result.termsToHighlight, this.result.phrasesToHighlight) : <span class="branch-1 cbranch-no" title="branch not covered" >this.result.clickUri;</span>
+      }
+    }
+    element.title = this.result.printableUri;
+  }
+&nbsp;
+  public buildSeparator() {
+    const separator = $$('span', { className: 'coveo-printable-uri-separator' }, ' &gt; ');
+    return separator.el;
+  }
+&nbsp;
+&nbsp;
+  public buildHtmlToken(name: string, uri: string) {
+    let modifiedName = name.charAt(0).toUpperCase() + name.slice(1);
+    const link = $$('span', { className: 'coveo-printable-uri-part' }, modifiedName);
+    this.uri = uri;
+    return link.el;
+  }
+&nbsp;
+&nbsp;
+&nbsp;
+}
+PrintableUri.options = _.extend({}, PrintableUri.options, ResultLink.options);
+Initialization.registerAutoCreateComponent(PrintableUri);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

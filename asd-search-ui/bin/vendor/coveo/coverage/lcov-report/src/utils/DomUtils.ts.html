@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/utils/DomUtils.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/utils/DomUtils.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">66.04% <small>(35 / 53)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">50% <small>(4 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">62.5% <small>(5 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">65.38% <small>(34 / 52)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">src/utils/</a> &#187; DomUtils.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { $$, Dom } from './Dom';
+import { IQueryResult } from '../rest/QueryResult';
+import { IResultsComponentBindings } from '../ui/Base/ResultsComponentBindings';
+import { DateUtils } from './DateUtils';
+import { FileTypes } from '../ui/Misc/FileTypes';
+import { Utils } from './Utils';
+import { StringUtils } from './StringUtils';
+import { SVGIcons } from './SVGIcons';
+&nbsp;
+export class DomUtils {
+<span class="fstat-no" title="function not covered" >  static getPopUpCloseButton(captionForClose: string, captionForReminder: string)</span>: string {
+<span class="cstat-no" title="statement not covered" >    let container = document.createElement('span');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let closeButton = document.createElement('span');</span>
+<span class="cstat-no" title="statement not covered" >    $$(closeButton).addClass('coveo-close-button');</span>
+<span class="cstat-no" title="statement not covered" >    container.appendChild(closeButton);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let iconClose = document.createElement('span');</span>
+<span class="cstat-no" title="statement not covered" >    $$(iconClose).addClass('coveo-icon');</span>
+<span class="cstat-no" title="statement not covered" >    $$(iconClose).addClass('coveo-sprites-quickview-close');</span>
+<span class="cstat-no" title="statement not covered" >    closeButton.appendChild(iconClose);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $$(closeButton).text(captionForClose);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let closeReminder = document.createElement('span');</span>
+<span class="cstat-no" title="statement not covered" >    $$(closeReminder).addClass('coveo-pop-up-reminder');</span>
+<span class="cstat-no" title="statement not covered" >    $$(closeReminder).text(captionForReminder);</span>
+<span class="cstat-no" title="statement not covered" >    container.appendChild(closeReminder);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return container.outerHTML;</span>
+  }
+&nbsp;
+  static getBasicLoadingAnimation() {
+    let loadDotClass = 'coveo-loading-dot';
+    let dom = document.createElement('div');
+    dom.className = 'coveo-first-loading-animation';
+    dom.innerHTML = `&lt;div class='coveo-logo'&gt;${SVGIcons.icons.coveoLogo}&lt;/div&gt;
+    &lt;div class='coveo-loading-container'&gt;
+      &lt;div class='${loadDotClass}'&gt;&lt;/div&gt;
+      &lt;div class='${loadDotClass}'&gt;&lt;/div&gt;
+      &lt;div class='${loadDotClass}'&gt;&lt;/div&gt;
+      &lt;div class='${loadDotClass}'&gt;&lt;/div&gt;
+    &lt;/div&gt;`;
+    return dom;
+  }
+&nbsp;
+  static highlightElement(initialString: string, valueToSearch: string): string {
+    let regex = new RegExp(Utils.escapeRegexCharacter(StringUtils.latinize(valueToSearch)), 'i');
+    let firstChar = StringUtils.latinize(initialString).search(regex);
+    let lastChar = firstChar + valueToSearch.length;
+    return `${StringUtils.htmlEncode(initialString.slice(0, firstChar))}&lt;span class='coveo-highlight'&gt;${StringUtils.htmlEncode(initialString.slice(firstChar, lastChar))}&lt;/span&gt;${StringUtils.htmlEncode(initialString.slice(lastChar))}`;
+  }
+&nbsp;
+  static getLoadingSpinner(): HTMLElement {
+    let loading = $$('div', {
+      className: 'coveo-loading-spinner'
+    });
+    return loading.el;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  static getModalBoxHeader(title: string)</span>: Dom {
+<span class="cstat-no" title="statement not covered" >    let header = $$('div');</span>
+<span class="cstat-no" title="statement not covered" >    header.el.innerHTML = `&lt;div class='coveo-modalbox-right-header'&gt;</span>
+        &lt;span class='coveo-modalbox-close-button'&gt;
+          &lt;span class='coveo-icon coveo-sprites-common-clear'&gt;&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class='coveo-modalbox-left-header'&gt;
+        &lt;span class='coveo-modalbox-pop-up-reminder'&gt; ${title || ''}&lt;/span&gt;
+      &lt;/div&gt;`;
+<span class="cstat-no" title="statement not covered" >    return header;</span>
+  }
+&nbsp;
+  static getQuickviewHeader(result: IQueryResult, options: { showDate: boolean; title: string }, bindings: IResultsComponentBindings): Dom {
+    let date = '';
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (options.showDate) {
+      date = DateUtils.dateTimeToString(new Date(Utils.getFieldValue(result, 'date')));
+    }
+    let fileType = FileTypes.get(result);
+    let header = $$('div');
+    header.el.innerHTML = `&lt;div class='coveo-quickview-right-header'&gt;
+        &lt;span class='coveo-quickview-time'&gt;${date}&lt;/span&gt;
+        &lt;span class='coveo-quickview-close-button'&gt;
+          &lt;span class='coveo-icon coveo-sprites-common-clear'&gt;&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class='coveo-quickview-left-header'&gt;
+        &lt;span class='coveo-quickview-icon coveo-small ${fileType.icon}'&gt;&lt;/span&gt;
+        &lt;a class='coveo-quickview-pop-up-reminder'&gt; ${options.title || ''}&lt;/a&gt;
+      &lt;/div&gt;`;
+    new Coveo[Coveo['Salesforce'] ? <span class="branch-0 cbranch-no" title="branch not covered" >'SalesforceResultLink' </span>: 'ResultLink'](header.find('.coveo-quickview-pop-up-reminder'), undefined, bindings, result);
+    return header;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  static getCurrentScript(): HTMLScriptElement {</span>
+<span class="cstat-no" title="statement not covered" >    return &lt;HTMLScriptElement&gt;document.currentScript;</span>
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

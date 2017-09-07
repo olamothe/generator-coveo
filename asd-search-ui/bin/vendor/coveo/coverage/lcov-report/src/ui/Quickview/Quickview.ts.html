@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Quickview/Quickview.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/ui/Quickview/Quickview.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">71.76% <small>(94 / 131)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">39.02% <small>(16 / 41)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">60% <small>(15 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">70.34% <small>(83 / 118)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Quickview/</a> &#187; Quickview.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">198</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">64</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-yes">67</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from '../Base/Component';
+import { ComponentOptions, ComponentOptionsType } from '../Base/ComponentOptions';
+import { IResultsComponentBindings } from '../Base/ResultsComponentBindings';
+import { Template } from '../Templates/Template';
+import { DomUtils } from '../../utils/DomUtils';
+import { DeviceUtils } from '../../utils/DeviceUtils';
+import { IQueryResult } from '../../rest/QueryResult';
+import { $$, Dom } from '../../utils/Dom';
+import { DefaultQuickviewTemplate } from './DefaultQuickviewTemplate';
+import { ResultListEvents } from '../../events/ResultListEvents';
+import { StringUtils } from '../../utils/StringUtils';
+import { QuickviewDocument } from './QuickviewDocument';
+import { QueryStateModel } from '../../models/QueryStateModel';
+import { QuickviewEvents } from '../../events/QuickviewEvents';
+import { Initialization, IInitializationParameters } from '../Base/Initialization';
+import { KeyboardUtils, KEYBOARD } from '../../utils/KeyboardUtils';
+import { ModalBox as ModalBoxModule } from '../../ExternalModulesShim';
+import { exportGlobally } from '../../GlobalExports';
+&nbsp;
+import 'styling/_Quickview';
+import { SVGIcons } from '../../utils/SVGIcons';
+import { SVGDom } from '../../utils/SVGDom';
+&nbsp;
+export interface IQuickviewOptions {
+  title?: string;
+  showDate?: boolean;
+  contentTemplate?: Template;
+  enableLoadingAnimation?: boolean;
+  loadingAnimation?: HTMLElement | Promise&lt;HTMLElement&gt;;
+  alwaysShow?: boolean;
+  size?: string;
+}
+&nbsp;
+interface IQuickviewOpenerObject {
+  content: Promise&lt;Dom&gt;;
+  loadingAnimation: HTMLElement | Promise&lt;HTMLElement&gt;;
+}
+&nbsp;
+/**
+ * The `Quickview` component renders a button / link which the end user can click to open a modal box containing certain
+ * content about a result. Most of the time, this component references a [`QuickviewDocument`]{@link QuickviewDocument}
+ * in its [`contentTemplate`]{@link Quickview.options.contentTemplate}.
+ *
+ * **Note:**
+ * &gt; - You can change the appearance of the `Quickview` link / button by adding HTML inside the body of its `div`.
+ * &gt; - You can change the content of the `Quickview` modal box link by specifying a template ID or selector (see the
+ * &gt; [`contentTemplate`]{@link Quickview.options.contentTemplate} option).
+ *
+ * **Example:**
+ * ```html
+ * [ ... ]
+ *
+ * &lt;script class='result-template' type='text/underscore' id='myContentTemplateId'&gt;
+ *   &lt;div&gt;
+ *     &lt;span&gt;This content will be displayed when then end user opens the Quickview modal box. It could also include other Coveo component, and use core helpers.&lt;/span&gt;
+ *     &lt;table class="CoveoFieldTable"&gt;
+ *       &lt;tr data-field="@liboardshorttitle" data-caption="Board" /&gt;
+ *       &lt;tr data-field="@licategoryshorttitle" data-caption="Category" /&gt;
+ *       &lt;tr data-field="@sysauthor" data-caption="Author" /&gt;
+ *     &lt;/table&gt;
+ *   &lt;/div&gt;
+ * &lt;/script&gt;
+ *
+ * [ ... ]
+ *
+ * &lt;div class='CoveoResultList'&gt;
+ *   &lt;script class='result-template' type='text/underscore' id='myResultTemplateId'&gt;
+ *
+ *   [ ... ]
+ *
+ *     &lt;!-- The `myContentTemplateId` template applies when displaying content in the Quickview modal box. --&gt;
+ *       &lt;div class='CoveoQuickview' data-template-id='myContentTemplateId'&gt;
+ *         &lt;!-- This changes the appearance of the Quickview button itself in the results --&gt;
+ *         &lt;span&gt;Click here for a Quickview&lt;/span&gt;
+ *       &lt;/div&gt;
+ *   &lt;/script&gt;
+ *
+ *   [ ... ]
+ *
+ * &lt;!-- Note that this is all optional. Simply including `&lt;div class='CoveoQuickview'&gt;&lt;/div&gt;` in the markup suffices most of the time and includes a default template, and default button appearance. --&gt;
+ * ```
+ *
+ * This component is a result template component (see [Result Templates](https://developers.coveo.com/x/aIGfAQ)).
+ */
+export class Quickview extends Component {
+  static ID = 'Quickview';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'Quickview': Quickview,
+      'QuickviewDocument': QuickviewDocument
+    });
+  }
+&nbsp;
+  /**
+   * @componentOptions
+   */
+  static options: IQuickviewOptions = {
+&nbsp;
+    /**
+     * Specifies whether to always show the `Quickview` button / link, even when the index body of an item is empty.
+     *
+     * In such cases, the [`contentTemplate`]{@link Quickview.options.contentTemplate} defines what appears in the
+     * `Quickview` modal box. Consequently, if there is no quickview for the item, you *MUST* specify a custom
+     * `contentTemplate`, otherwise the component will throw an error when opened.
+     *
+     * Default value is `false`.
+     */
+    alwaysShow: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+&nbsp;
+    /**
+     * Specifies the title that should appear in the `Quickview` modal box header.
+     *
+     * Default value is `undefined`.
+     */
+    title: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies whether to display the item date in the `Quickview` modal box header.
+     *
+     * Default value is `true`.
+     */
+    showDate: ComponentOptions.buildBooleanOption({ defaultValue: true }),
+    enableLoadingAnimation: ComponentOptions.buildBooleanOption({ defaultValue: true }),
+&nbsp;
+    /**
+     * Specifies a custom template to use when displaying content in the `Quickview` modal box.
+     *
+     * **Note:**
+     * &gt; You can use [`CoreHelpers`]{@link ICoreHelpers} methods in your content template.
+     *
+     * You can specify a previously registered template to use either by referring to its HTML `id` attribute or to a
+     * CSS selector (see [`TemplateCache`]{@link TemplateCache}).
+     *
+     * **Example:**
+     *
+     * Specifying a previously registered template by referring to its HTML `id` attribute:
+     *
+     * ```html
+     * &lt;div class="CoveoQuickview" data-template-id="myContentTemplateId"&gt;&lt;/div&gt;
+     * ```
+     *
+     * Specifying a previously registered template by referring to a CSS selector:
+     *
+     * ```html
+     * &lt;div class='CoveoQuickview' data-template-selector=".myContentTemplateSelector"&gt;&lt;/div&gt;
+     * ```
+     *
+     * If you do not specify a custom content template, the component uses its default template.
+     */
+    contentTemplate: ComponentOptions.buildTemplateOption({
+      selectorAttr: 'data-template-selector',
+      idAttr: 'data-template-id'
+    }),
+    loadingAnimation: ComponentOptions.buildOption&lt;HTMLElement | Promise&lt;HTMLElement&gt;&gt;(ComponentOptionsType.NONE, (element: HTMLElement) =&gt; {
+      const loadingAnimationSelector = element.getAttribute('data-loading-animation-selector');
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (loadingAnimationSelector != null) {
+<span class="cstat-no" title="statement not covered" >        const loadingAnimation = $$(document.documentElement).find(loadingAnimationSelector);</span>
+<span class="cstat-no" title="statement not covered" >        if (loadingAnimation != null) {</span>
+<span class="cstat-no" title="statement not covered" >          $$(loadingAnimation).detach();</span>
+<span class="cstat-no" title="statement not covered" >          return loadingAnimation;</span>
+        }
+      }
+      const id = element.getAttribute('data-loading-animation-template-id');
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (id != null) {
+<span class="cstat-no" title="statement not covered" >        const loadingAnimationTemplate = ComponentOptions.loadResultTemplateFromId(id);</span>
+<span class="cstat-no" title="statement not covered" >        if (loadingAnimationTemplate) {</span>
+<span class="cstat-no" title="statement not covered" >          return loadingAnimationTemplate.instantiateToElement(undefined, {</span>
+            checkCondition: false
+          });
+        }
+      }
+      return DomUtils.getBasicLoadingAnimation();
+    })
+  };
+&nbsp;
+  public static resultCurrentlyBeingRendered: IQueryResult = null;
+&nbsp;
+  private modalbox: Coveo.ModalBox.ModalBox;
+&nbsp;
+  /**
+   * Creates a new `Quickview` component.
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the `Quickview` component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   * @param result The result to associate the component with.
+   * @param ModalBox The quickview modal box.
+   */
+  constructor(public element: HTMLElement, public options?: IQuickviewOptions, public bindings?: IResultsComponentBindings, public result?: IQueryResult, private ModalBox = ModalBoxModule) {
+    super(element, Quickview.ID, bindings)<span class="branch-1 cbranch-no" title="branch not covered" >;</span>
+    this.options = ComponentOptions.initComponentOptions(element, Quickview, options);
+&nbsp;
+    if (this.options.contentTemplate == null) {
+      this.options.contentTemplate = new DefaultQuickviewTemplate();
+    }
+&nbsp;
+    // If there is no content inside the Quickview div,
+    // we need to add something that will show up in the result template itself
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (/^\s*$/.test(this.element.innerHTML)) {
+      const iconForQuickview = $$('div', { className: 'coveo-icon-for-quickview' }, SVGIcons.icons.quickview);
+      SVGDom.addClassToSVGInContainer(iconForQuickview.el, 'coveo-icon-for-quickview-svg');
+      const captionForQuickview = $$(
+        'div',
+        { className: 'coveo-caption-for-icon', tabindex: 0 },
+        'Quickview'.toLocaleString()
+      ).el;
+      const div = $$('div');
+      div.append(iconForQuickview.el);
+      div.append(captionForQuickview);
+      $$(this.element).append(div.el);
+    }
+&nbsp;
+    this.bindClick(result);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.bindings.resultElement) {
+<span class="cstat-no" title="statement not covered" >      this.bind.on(this.bindings.resultElement, ResultListEvents.openQuickview, <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.open())</span>;</span>
+    }
+  }
+&nbsp;
+  /**
+   * Opens the `Quickview` modal box.
+   */
+  public open() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.modalbox == null) {
+      // To prevent the keyboard from opening on mobile if the search bar has focus
+      Quickview.resultCurrentlyBeingRendered = this.result;
+      $$(&lt;HTMLElement&gt;document.activeElement).trigger('blur');
+&nbsp;
+      const openerObject = this.prepareOpenQuickviewObject();
+      this.createModalBox(openerObject).then(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        this.bindQuickviewEvents(openerObject);</span>
+<span class="cstat-no" title="statement not covered" >        this.animateAndOpen();</span>
+<span class="cstat-no" title="statement not covered" >        this.queryStateModel.set(QueryStateModel.attributesEnum.quickview, this.getHashId());</span>
+<span class="cstat-no" title="statement not covered" >        Quickview.resultCurrentlyBeingRendered = null;</span>
+      });
+    }
+  }
+&nbsp;
+  /**
+   * Closes the `Quickview` modal box.
+   */
+  public close() {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.modalbox != null) {
+      this.modalbox.close();
+      this.modalbox = null;
+    }
+  }
+&nbsp;
+  public getHashId() {
+    return this.result.queryUid + '.' + this.result.index + '.' + StringUtils.hashCode(this.result.uniqueId);
+  }
+&nbsp;
+  private bindClick(result: IQueryResult) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof result.hasHtmlVersion == 'undefined' || result.hasHtmlVersion || <span class="branch-2 cbranch-no" title="branch not covered" >this.options.alwaysShow)</span> {
+      const clickAction = <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.open();</span>
+      $$(this.element).on('click', clickAction);
+      this.bind.on(this.element, 'keyup', KeyboardUtils.keypressAction(KEYBOARD.ENTER, clickAction));
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.element.style.display = 'none';</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private bindQuickviewEvents(openerObject: IQuickviewOpenerObject)</span> {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $$(this.modalbox.content).on(QuickviewEvents.quickviewLoaded, <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (openerObject.loadingAnimation instanceof HTMLElement) {</span>
+<span class="cstat-no" title="statement not covered" >        $$(openerObject.loadingAnimation).remove();</span>
+      } else <span class="cstat-no" title="statement not covered" >if (openerObject.loadingAnimation instanceof Promise) {</span>
+<span class="cstat-no" title="statement not covered" >        openerObject.loadingAnimation.then(<span class="fstat-no" title="function not covered" >(anim)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          $$(anim).remove();</span>
+        });
+      }
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private animateAndOpen() {</span>
+<span class="cstat-no" title="statement not covered" >    const quickviewDocument = $$(this.modalbox.modalBox).find('.' + Component.computeCssClassName(QuickviewDocument));</span>
+<span class="cstat-no" title="statement not covered" >    if (quickviewDocument) {</span>
+<span class="cstat-no" title="statement not covered" >      Initialization.dispatchNamedMethodCallOrComponentCreation('open', quickviewDocument, null);</span>
+    }
+  }
+&nbsp;
+  private createModalBox(openerObject: IQuickviewOpenerObject) {
+    const computedModalBoxContent = $$('div');
+    return openerObject.content.then((builtContent) =&gt; {
+      computedModalBoxContent.append(builtContent.el);
+      this.modalbox = this.ModalBox.open(computedModalBoxContent.el, {
+        title: DomUtils.getQuickviewHeader(this.result, {
+          showDate: this.options.showDate,
+          title: this.options.title
+        }, this.bindings).el.outerHTML,
+        className: 'coveo-quick-view',
+        validation: <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.closeQuickview();</span>
+<span class="cstat-no" title="statement not covered" >          return true;</span>
+        },
+        body: this.element.ownerDocument.body,
+        sizeMod: 'big'
+      });
+      this.setQuickviewSize();
+<span class="cstat-no" title="statement not covered" >      return computedModalBoxContent;</span>
+    });
+  }
+&nbsp;
+  private prepareOpenQuickviewObject() {
+    const loadingAnimation = this.options.loadingAnimation;
+    return {
+      loadingAnimation: loadingAnimation,
+      content: this.prepareQuickviewContent(loadingAnimation)
+    };
+  }
+&nbsp;
+  private prepareQuickviewContent(loadingAnimation: HTMLElement | Promise&lt;HTMLElement&gt;): Promise&lt;Dom&gt; {
+    return this.options.contentTemplate.instantiateToElement(this.result).then((built: HTMLElement) =&gt; {
+      const content = $$(built);
+&nbsp;
+      const initOptions = this.searchInterface.options;
+      const initParameters: IInitializationParameters = {
+        options: initOptions,
+        bindings: this.getBindings(),
+        result: this.result
+      };
+      return Initialization.automaticallyCreateComponentsInside(content.el, initParameters).initResult.then(() =&gt; {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (content.find('.' + Component.computeCssClassName(QuickviewDocument)) != undefined &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >this.options.enableLoadingAnimation)</span> {
+<span class="cstat-no" title="statement not covered" >          if (loadingAnimation instanceof HTMLElement) {</span>
+<span class="cstat-no" title="statement not covered" >            content.prepend(loadingAnimation);</span>
+          } else <span class="cstat-no" title="statement not covered" >if (loadingAnimation instanceof Promise) {</span>
+<span class="cstat-no" title="statement not covered" >            loadingAnimation.then(<span class="fstat-no" title="function not covered" >(anim)</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >              content.prepend(anim);</span>
+            });
+          }
+        }
+        return content;
+      });
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private closeQuickview() {</span>
+<span class="cstat-no" title="statement not covered" >    this.queryStateModel.set(QueryStateModel.attributesEnum.quickview, '');</span>
+  }
+&nbsp;
+  private setQuickviewSize() {
+    const wrapper = $$($$(this.modalbox.modalBox).find('.coveo-modal-content'));
+<span class="cstat-no" title="statement not covered" >    wrapper.el.style.width = this.options.size;</span>
+<span class="cstat-no" title="statement not covered" >    wrapper.el.style.height = this.options.size;</span>
+<span class="cstat-no" title="statement not covered" >    wrapper.el.style.maxWidth = this.options.size;</span>
+<span class="cstat-no" title="statement not covered" >    wrapper.el.style.maxHeight = this.options.size;</span>
+  }
+}
+Initialization.registerAutoCreateComponent(Quickview);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

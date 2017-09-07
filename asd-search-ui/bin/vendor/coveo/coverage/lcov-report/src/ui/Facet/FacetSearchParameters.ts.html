@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Facet/FacetSearchParameters.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/Facet/FacetSearchParameters.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">95.89% <small>(70 / 73)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">85% <small>(17 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(14 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">95.71% <small>(67 / 70)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Facet/</a> &#187; FacetSearchParameters.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/// &lt;reference path="Facet.ts" /&gt;
+&nbsp;
+import { Facet } from './Facet';
+import { Utils } from '../../utils/Utils';
+import { FacetUtils } from './FacetUtils';
+import { IGroupByRequest } from '../../rest/GroupByRequest';
+import { IQuery } from '../../rest/Query';
+import { QueryBuilder } from '../Base/QueryBuilder';
+import { $$ } from '../../utils/Dom';
+import * as _ from 'underscore';
+&nbsp;
+export class FacetSearchParameters {
+  public nbResults: number;
+  public ignoreAccents: boolean;
+  public valueToSearch: string = '';
+  public alwaysInclude: string[] = [];
+  public alwaysExclude: string[] = [];
+  public sortCriteria = 'occurrences';
+  public fetchMore = false;
+&nbsp;
+  constructor(public facet: Facet) {
+    this.nbResults = facet.options.numberOfValuesInFacetSearch;
+    this.ignoreAccents = facet.options.facetSearchIgnoreAccents;
+  }
+&nbsp;
+  public setValueToSearch(value: string) {
+    this.valueToSearch = value;
+    if (Utils.isNonEmptyString(value)) {
+      this.valueToSearch = this.valueToSearch.trim();
+      this.alwaysInclude = this.alwaysInclude.concat(FacetUtils.getValuesToUseForSearchInFacet(this.valueToSearch, this.facet));
+    }
+    return this;
+  }
+&nbsp;
+  public excludeCurrentlyDisplayedValuesInSearch(searchResults: HTMLElement) {
+    _.each(this.getCurrentlyShowedValueInSearch(searchResults), (v) =&gt; {
+      const expandedValues = FacetUtils.getValuesToUseForSearchInFacet(v, this.facet);
+      _.each(expandedValues, (expanded) =&gt; {
+        this.alwaysExclude.push(expanded);
+      });
+    });
+    _.each(this.facet.getDisplayedFacetValues(), (v) =&gt; {
+      this.alwaysExclude.push(v.value);
+    });
+  }
+&nbsp;
+  public getGroupByRequest(): IGroupByRequest {
+    this.lowerCaseAll();
+    let nbResults = this.nbResults;
+    nbResults += this.alwaysExclude.length;
+&nbsp;
+    let typedByUser = [];
+    if (this.valueToSearch) {
+      typedByUser = ['*' + this.valueToSearch + '*'];
+    }
+&nbsp;
+    let completeFacetWithStandardValues = true;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.facet.options.lookupField != null) {
+<span class="cstat-no" title="statement not covered" >      completeFacetWithStandardValues = false;</span>
+    }
+&nbsp;
+    const request: IGroupByRequest = {
+      allowedValues: typedByUser.concat(this.alwaysInclude).concat(this.alwaysExclude),
+      maximumNumberOfValues: nbResults,
+      completeFacetWithStandardValues: completeFacetWithStandardValues,
+      field: &lt;string&gt;this.facet.options.field,
+      sortCriteria: this.facet.options.sortCriteria || this.sortCriteria,
+      injectionDepth: this.facet.options.injectionDepth,
+    };
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.facet.options.lookupField) {
+<span class="cstat-no" title="statement not covered" >      request.lookupField = &lt;string&gt;this.facet.options.lookupField;</span>
+    }
+&nbsp;
+    if (this.facet.options.computedField) {
+      request.computedFields = [{
+        field: &lt;string&gt;this.facet.options.computedField,
+        operation: this.facet.options.computedFieldOperation
+      }];
+    }
+    return request;
+  }
+&nbsp;
+  public getQuery(): IQuery {
+    let lastQuery = _.clone(this.facet.queryController.getLastQuery());
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!lastQuery) {
+      // There should normally always be a last query available
+      // If not, just create an empty one.
+<span class="cstat-no" title="statement not covered" >      lastQuery = new QueryBuilder().build();</span>
+    }
+    // We want to always force query syntax to true for a facet search,
+    // but arrange for the basic expression to adapt itself with no syntax block
+    if (lastQuery.enableQuerySyntax) {
+      lastQuery.q = this.facet.facetQueryController.basicExpressionToUseForFacetSearch;
+    } else {
+      if (this.facet.facetQueryController.basicExpressionToUseForFacetSearch == '@uri') {
+        lastQuery.q = '';
+      } else {
+        lastQuery.q = `&lt;@- ${this.facet.facetQueryController.basicExpressionToUseForFacetSearch} -@&gt;`;
+      }
+    }
+    lastQuery.enableQuerySyntax = true;
+    lastQuery.cq = this.facet.facetQueryController.constantExpressionToUseForFacetSearch;
+    lastQuery.aq = this.facet.facetQueryController.advancedExpressionToUseForFacetSearch;
+    lastQuery.enableDidYouMean = false;
+    lastQuery.firstResult = 0;
+    lastQuery.numberOfResults = 0;
+    lastQuery.fieldsToInclude = [];
+    lastQuery.groupBy = [this.getGroupByRequest()];
+    return lastQuery;
+  }
+&nbsp;
+  private getCurrentlyShowedValueInSearch(searchResults: HTMLElement) {
+    return _.map($$(searchResults).findAll('.coveo-facet-value-caption'), (val) =&gt; {
+      return $$(val).getAttribute('data-original-value') || $$(val).text();
+    });
+  }
+&nbsp;
+  private lowerCaseAll() {
+    this.alwaysExclude = _.chain(this.alwaysExclude)
+      .map((v) =&gt; {
+        return v.toLowerCase();
+      })
+      .uniq()
+      .value();
+&nbsp;
+    this.alwaysInclude = _.chain(this.alwaysInclude)
+      .map((v) =&gt; {
+        return v.toLowerCase();
+      })
+      .uniq()
+      .value();
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

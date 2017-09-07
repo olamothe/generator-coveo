@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/ResponsiveComponents/ResponsiveComponentsManager.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src/ui/ResponsiveComponents/ResponsiveComponentsManager.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">65.81% <small>(77 / 117)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">36.36% <small>(16 / 44)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">61.54% <small>(16 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">65.18% <small>(73 / 112)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/ResponsiveComponents/</a> &#187; ResponsiveComponentsManager.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">131</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { $$, Dom } from '../../utils/Dom';
+import { InitializationEvents } from '../../events/InitializationEvents';
+import { Component } from '../Base/Component';
+import { SearchInterface } from '../SearchInterface/SearchInterface';
+import { Utils } from '../../utils/Utils';
+import { Tab } from '../Tab/Tab';
+import { ResponsiveFacets } from './ResponsiveFacets';
+import * as _ from 'underscore';
+import { QueryEvents } from '../../events/QueryEvents';
+import { Logger } from '../../misc/Logger';
+&nbsp;
+export interface IResponsiveComponentOptions {
+  enableResponsiveMode?: boolean;
+  responsiveBreakpoint?: number;
+  dropdownHeaderLabel?: string;
+  initializationEventRoot?: Dom;
+}
+&nbsp;
+export interface IResponsiveComponentConstructor {
+  new (root: Dom, ID: string, options: IResponsiveComponentOptions): IResponsiveComponent;
+}
+&nbsp;
+export interface IResponsiveComponent {
+  ID: string;
+  handleResizeEvent(): void;
+  needDropdownWrapper?(): boolean;
+  registerComponent?(accept: Component): boolean;
+}
+&nbsp;
+interface IComponentInitialization {
+  responsiveComponentsManager: ResponsiveComponentsManager;
+  arguments: [IResponsiveComponentConstructor, Dom, string, Component, IResponsiveComponentOptions];
+}
+&nbsp;
+export class ResponsiveComponentsManager {
+&nbsp;
+  public static DROPDOWN_HEADER_WRAPPER_CSS_CLASS = 'coveo-dropdown-header-wrapper';
+  public static RESIZE_DEBOUNCE_DELAY = 200;
+&nbsp;
+  private static componentManagers: ResponsiveComponentsManager[] = [];
+  private static remainingComponentInitializations: number = 0;
+  private static componentInitializations: IComponentInitialization[] = [];
+&nbsp;
+  public resizeListener;
+&nbsp;
+  private disabledComponents: string[] = [];
+  private coveoRoot: Dom;
+  private responsiveComponents: IResponsiveComponent[] = [];
+  private searchBoxElement: HTMLElement;
+  private dropdownHeadersWrapper: Dom;
+  private searchInterface: SearchInterface;
+  private logger: Logger;
+&nbsp;
+  // Register takes a class and will instantiate it after framework initialization has completed.
+  public static register(responsiveComponentConstructor: IResponsiveComponentConstructor, root: Dom, ID: string, component: Component, options: IResponsiveComponentOptions): void {
+    // options.initializationEventRoot can be set in some instance (like recommendation) where the root of the interface triggering the init event
+    // is different from the one that will be used for calculation size.
+    const initEventRoot = options.initializationEventRoot || root;
+    initEventRoot.on(InitializationEvents.afterInitialization, <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (this.shouldEnableResponsiveMode(root)) {</span>
+<span class="cstat-no" title="statement not covered" >        let responsiveComponentsManager = _.find(this.componentManagers, <span class="fstat-no" title="function not covered" >(componentManager)</span> =&gt; <span class="cstat-no" title="statement not covered" >root.el == componentManager.coveoRoot.el)</span>;</span>
+<span class="cstat-no" title="statement not covered" >        if (!responsiveComponentsManager) {</span>
+<span class="cstat-no" title="statement not covered" >          responsiveComponentsManager = new ResponsiveComponentsManager(root);</span>
+<span class="cstat-no" title="statement not covered" >          this.componentManagers.push(responsiveComponentsManager);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!Utils.isNullOrUndefined(options.enableResponsiveMode) &amp;&amp; !options.enableResponsiveMode) {</span>
+<span class="cstat-no" title="statement not covered" >          responsiveComponentsManager.disableComponent(ID);</span>
+<span class="cstat-no" title="statement not covered" >          return;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.componentInitializations.push({</span>
+          responsiveComponentsManager: responsiveComponentsManager,
+          arguments: [responsiveComponentConstructor, root, ID, component, options]
+        });
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.remainingComponentInitializations--;</span>
+<span class="cstat-no" title="statement not covered" >      if (this.remainingComponentInitializations == 0) {</span>
+<span class="cstat-no" title="statement not covered" >        this.instantiateResponsiveComponents(); </span>// necessary to verify if all components are disabled before they are initialized.
+<span class="cstat-no" title="statement not covered" >        if (root.width() == 0) {</span>
+<span class="cstat-no" title="statement not covered" >          let logger = new Logger('ResponsiveComponentsManager');</span>
+<span class="cstat-no" title="statement not covered" >          logger.info(`Search interface width is 0, cannot dispatch resize events to responsive components. Will try again after first</span>
+          query success.`);
+<span class="cstat-no" title="statement not covered" >          root.one(QueryEvents.querySuccess, <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.resizeAllComponentsManager();</span>
+          });
+        } else {
+<span class="cstat-no" title="statement not covered" >          this.resizeAllComponentsManager();</span>
+        }
+      }
+    });
+    this.remainingComponentInitializations++;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private static shouldEnableResponsiveMode(root: Dom)</span>: boolean {
+<span class="cstat-no" title="statement not covered" >    let searchInterface = &lt;SearchInterface&gt;Component.get(root.el, SearchInterface, true);</span>
+<span class="cstat-no" title="statement not covered" >    return searchInterface instanceof SearchInterface &amp;&amp; searchInterface.options.enableAutomaticResponsiveMode;</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private static instantiateResponsiveComponents() {</span>
+<span class="cstat-no" title="statement not covered" >    _.each(this.componentInitializations, <span class="fstat-no" title="function not covered" >componentInitialization </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      let responsiveComponentsManager = componentInitialization.responsiveComponentsManager;</span>
+<span class="cstat-no" title="statement not covered" >      responsiveComponentsManager.register.apply(responsiveComponentsManager, componentInitialization.arguments);</span>
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  private static resizeAllComponentsManager(): void {</span>
+<span class="cstat-no" title="statement not covered" >    _.each(this.componentManagers, <span class="fstat-no" title="function not covered" >componentManager </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      componentManager.resizeListener();</span>
+    });
+  }
+&nbsp;
+  constructor(root: Dom) {
+    this.coveoRoot = root;
+    this.searchInterface = &lt;SearchInterface&gt;Component.get(this.coveoRoot.el, SearchInterface, false);
+    this.dropdownHeadersWrapper = $$('div', { className: ResponsiveComponentsManager.DROPDOWN_HEADER_WRAPPER_CSS_CLASS });
+    this.searchBoxElement = this.getSearchBoxElement();
+    this.logger = new Logger(this);
+    this.resizeListener = _.debounce(() =&gt; {
+      if (this.coveoRoot.width() != 0) {
+        this.addDropdownHeaderWrapperIfNeeded();
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.shouldSwitchToSmallMode()) {
+          this.coveoRoot.addClass('coveo-small-interface');
+        } else <span class="cstat-no" title="statement not covered" >if (!this.shouldSwitchToSmallMode()) {</span>
+<span class="cstat-no" title="statement not covered" >          this.coveoRoot.removeClass('coveo-small-interface');</span>
+        }
+        _.each(this.responsiveComponents, responsiveComponent =&gt; {
+          responsiveComponent.handleResizeEvent();
+        });
+      } else {
+        this.logger.warn(`The width of the search interface is 0, cannot dispatch resize events to responsive components. This means that the tabs will not
+        automatically fit in the tab section. Also, the facet and recommendation component will not hide in a menu. Could the search
+        interface display property be none? Could its visibility property be set to hidden? Also, if either of these scenarios happen during
+        loading, it could be the cause of this issue.`);
+      }
+    }, ResponsiveComponentsManager.RESIZE_DEBOUNCE_DELAY, true);
+    window.addEventListener('resize', this.resizeListener);
+    this.bindNukeEvents();
+  }
+&nbsp;
+  public register(responsiveComponentConstructor: IResponsiveComponentConstructor, root: Dom, ID: string, component: Component, options: IResponsiveComponentOptions): void {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.isDisabled(ID)) {
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    if (!this.isActivated(ID)) {
+      let responsiveComponent = new responsiveComponentConstructor(root, ID, options);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (this.isTabs(ID)) {
+<span class="cstat-no" title="statement not covered" >        this.responsiveComponents.push(responsiveComponent);</span>
+      } else {
+        // Tabs need to be rendered last, so any dropdown header(eg: facet) is already there when the responsive tabs check for overflow.
+        this.responsiveComponents.unshift(responsiveComponent);
+      }
+    }
+    _.each(this.responsiveComponents, (responsiveComponent: IResponsiveComponent) =&gt; {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (responsiveComponent.registerComponent != null) {
+        responsiveComponent.registerComponent(component);
+      }
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public disableComponent(ID: string)</span> {
+<span class="cstat-no" title="statement not covered" >    this.disabledComponents.push(ID);</span>
+  }
+&nbsp;
+  private isDisabled(ID: string) {
+    return _.indexOf(this.disabledComponents, ID) != -1;
+  }
+&nbsp;
+  private shouldSwitchToSmallMode(): boolean {
+    let aComponentNeedsTabSection = this.needDropdownWrapper();
+    let reachedBreakpoint = this.coveoRoot.width() &lt;= this.searchInterface.responsiveComponents.getMediumScreenWidth();
+    return aComponentNeedsTabSection || reachedBreakpoint;
+  }
+&nbsp;
+  private needDropdownWrapper(): boolean {
+    for (let i = 0; i &lt; this.responsiveComponents.length; i++) {
+      let responsiveComponent = this.responsiveComponents[i];
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (responsiveComponent.needDropdownWrapper &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >responsiveComponent.needDropdownWrapper())</span> {
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+      }
+    }
+    return false;
+  }
+&nbsp;
+  private addDropdownHeaderWrapperIfNeeded(): void {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.needDropdownWrapper()) {
+<span class="cstat-no" title="statement not covered" >      let tabSection = $$(this.coveoRoot).find('.coveo-tab-section');</span>
+<span class="cstat-no" title="statement not covered" >      if (this.searchBoxElement) {</span>
+<span class="cstat-no" title="statement not covered" >        this.dropdownHeadersWrapper.insertAfter(this.searchBoxElement);</span>
+      } else <span class="cstat-no" title="statement not covered" >if (tabSection) {</span>
+<span class="cstat-no" title="statement not covered" >        this.dropdownHeadersWrapper.insertAfter(tabSection);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.coveoRoot.prepend(this.dropdownHeadersWrapper.el);</span>
+      }
+    }
+  }
+&nbsp;
+  private isTabs(ID: string): boolean {
+    return ID == 'Tab';
+  }
+&nbsp;
+  private isActivated(ID: string): boolean {
+    return _.find(this.responsiveComponents, current =&gt; current.ID == ID) != undefined;
+  }
+&nbsp;
+  private getSearchBoxElement(): HTMLElement {
+    let searchBoxElement = this.coveoRoot.find('.coveo-search-section');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (searchBoxElement) {
+<span class="cstat-no" title="statement not covered" >      return &lt;HTMLElement&gt;searchBoxElement;</span>
+    } else {
+      return &lt;HTMLElement&gt;this.coveoRoot.find('.CoveoSearchbox');
+    }
+  }
+&nbsp;
+  private bindNukeEvents(): void {
+    $$(this.coveoRoot).on(InitializationEvents.nuke, <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      window.removeEventListener('resize', this.resizeListener);</span>
+    });
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/AdvancedSearch/DateInput/InTheLastDateInput.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">src/ui/AdvancedSearch/DateInput/InTheLastDateInput.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">94.44% <small>(34 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(8 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">80% <small>(4 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">93.94% <small>(31 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">src/ui/AdvancedSearch/DateInput/</a> &#187; InTheLastDateInput.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-yes">20</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { DateInput } from './DateInput';
+import { $$ } from '../../../utils/Dom';
+import { l } from '../../../strings/Strings';
+import { Dropdown } from '../../FormWidgets/Dropdown';
+import { NumericSpinner } from '../../FormWidgets/NumericSpinner';
+import { DateUtils } from '../../../utils/DateUtils';
+&nbsp;
+export class InTheLastDateInput extends DateInput {
+  public dropdown: Dropdown;
+  public spinner: NumericSpinner;
+&nbsp;
+  constructor(public root: HTMLElement) {
+    super(l('InTheLast'), root);
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public reset() {</span>
+<span class="cstat-no" title="statement not covered" >    this.dropdown.reset();</span>
+<span class="cstat-no" title="statement not covered" >    this.spinner.reset();</span>
+  }
+&nbsp;
+  public build(): HTMLElement {
+    super.build();
+    let input = $$('fieldset', { className: 'coveo-advanced-search-date-input' });
+    (&lt;HTMLFieldSetElement&gt;input.el).disabled = true;
+&nbsp;
+    this.spinner = new NumericSpinner(this.onChange.bind(this));
+    input.append(this.spinner.getElement());
+&nbsp;
+    this.dropdown = new Dropdown(this.onChange.bind(this), ['Days', 'Months']);
+    this.dropdown.setId('coveo-advanced-search-in-the-last-select');
+    input.append(this.dropdown.getElement());
+&nbsp;
+    this.element.appendChild(input.el);
+&nbsp;
+    $$(this.getRadio()).on('change', this.onChange.bind(this));
+    return this.element;
+  }
+&nbsp;
+  public getValue(): string {
+    let currentDate = new Date();
+    let time = this.spinner.getIntValue();
+    let size = this.dropdown.getValue().toLowerCase();
+&nbsp;
+    let date = new Date();
+    if (size == 'months') {
+      date.setMonth(currentDate.getMonth() - time);
+    } else {
+      date.setDate(currentDate.getDate() - time);
+    }
+&nbsp;
+    return this.isSelected() &amp;&amp; time ? '@date&gt;=' + DateUtils.dateForQuery(date) : '';
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

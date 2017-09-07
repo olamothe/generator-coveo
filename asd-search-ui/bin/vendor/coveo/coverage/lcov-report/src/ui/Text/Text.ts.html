@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ui/Text/Text.ts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/ui/Text/Text.ts</span></h1>
+    <h2>
+        Statements: <span class="metric">48.48% <small>(16 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">66.67% <small>(2 / 3)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">48.28% <small>(14 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">src/ui/Text/</a> &#187; Text.ts</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ComponentOptions } from '../Base/ComponentOptions';
+import { Component } from '../Base/Component';
+import { IComponentBindings } from '../Base/ComponentBindings';
+import { Initialization } from '../Base/Initialization';
+import { $$ } from '../../utils/Dom';
+import { exportGlobally } from '../../GlobalExports';
+&nbsp;
+import 'styling/_Text';
+&nbsp;
+export interface ITextOptions {
+  value?: string;
+  size?: string;
+  style?: string;
+  color?: string;
+  weight?: string;
+  textAlign?: string;
+&nbsp;
+  marginTop?: string;
+  marginBottom?: string;
+  marginLeft?: string;
+  marginRight?: string;
+&nbsp;
+  paddingTop?: string;
+  paddingBottom?: string;
+  paddingLeft?: string;
+  paddingRight?: string;
+}
+&nbsp;
+/**
+ * The Text component embeds itself in a result template to output a simple text value.
+ *
+ * The only purpose of this component is to make it possible to easily add different text values to result templates
+ * when using the Coveo JavaScript Search Interface Editor (see
+ * [JavaScript Search Interface Editor](http://www.coveo.com/go?dest=cloudhelp&amp;lcid=9&amp;context=230)).
+ *
+ * If you are not designing a search interface using the Coveo JavaScript Search Interface Editor, using this component
+ * is unnecessary.
+ *
+ * This component is a result template component (see [Result Templates](https://developers.coveo.com/x/aIGfAQ)).
+ */
+export class Text extends Component {
+  static ID = 'Text';
+&nbsp;
+  static doExport = () =&gt; {
+    exportGlobally({
+      'Text': Text
+    });
+  }
+&nbsp;
+  /**
+   * @componentOptions
+   */
+  static options: ITextOptions = {
+&nbsp;
+    /**
+     * Specifies the localized string value that the component should render.
+     */
+    value: ComponentOptions.buildLocalizedStringOption(),
+&nbsp;
+    /**
+     * Specifies the size of the text (set as the `font-size` CSS property).
+     */
+    size: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the style of the text (set as the `font-style` CSS property).
+     */
+    style: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the color of the text (set as the `color` CSS property).
+     */
+    color: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the weight of the text (set as the `font-weight` CSS property).
+     */
+    weight: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the alignment of the text (set as the `text-align` CSS property).
+     */
+    textAlign: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the top margin of the text (set as the `margin-top` CSS property).
+     */
+    marginTop: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the bottom margin of the text (set as the `margin-bottom` CSS property).
+     */
+    marginBottom: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the left margin of the text (set as the `margin-left` CSS property).
+     */
+    marginLeft: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the right margin of the text (set as the `margin-right` CSS property).
+     */
+    marginRight: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the top padding of the text (set as the `padding-top` CSS property).
+     */
+    paddingTop: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the bottom padding of the text (set as the `padding-bottom` CSS property).
+     */
+    paddingBottom: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the left padding of the text (set as the `padding-left` CSS property).
+     */
+    paddingLeft: ComponentOptions.buildStringOption(),
+&nbsp;
+    /**
+     * Specifies the right padding of the text (set as the `padding-right` CSS property).
+     */
+    paddingRight: ComponentOptions.buildStringOption()
+  };
+&nbsp;
+  /**
+   * Creates a new Text component.
+   * @param element The HTMLElement on which to instantiate the component.
+   * @param options The options for the Text component.
+   * @param bindings The bindings that the component requires to function normally. If not set, these will be
+   * automatically resolved (with a slower execution time).
+   */
+<span class="fstat-no" title="function not covered" >  constructor(public <span class="cstat-no" title="statement not covered" >element: HTMLElement,</span> public <span class="cstat-no" title="statement not covered" >options?: ITextOptions,</span> bindings?: IComponentBindings)</span> {
+    super(element, Text.ID, bindings);
+<span class="cstat-no" title="statement not covered" >    this.options = ComponentOptions.initComponentOptions(element, Text, options);</span>
+<span class="cstat-no" title="statement not covered" >    $$(this.element).text(this.options.value);</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.fontSize = this.options.size;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.fontStyle = this.options.style;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.color = this.options.color;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.fontWeight = this.options.weight;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.textAlign = this.options.textAlign;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.marginTop = this.options.marginTop;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.marginBottom = this.options.marginBottom;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.marginRight = this.options.marginRight;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.marginLeft = this.options.marginLeft;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.paddingTop = this.options.paddingTop;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.paddingBottom = this.options.paddingBottom;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.paddingLeft = this.options.paddingLeft;</span>
+<span class="cstat-no" title="statement not covered" >    this.element.style.paddingRight = this.options.paddingRight;</span>
+  }
+}
+&nbsp;
+Initialization.registerAutoCreateComponent(Text);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 19 2017 17:48:34 GMT+0000 (UTC)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
