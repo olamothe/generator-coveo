@@ -1,4 +1,4 @@
-# generator-ps-search-ui-sfdc
+# generator-coveo
 
 [![Build Status](https://travis-ci.org/olamothe/generator-coveo.svg?branch=master)](https://travis-ci.org/olamothe/generator-coveo) [![npm version](https://badge.fury.io/js/generator-coveo.svg)](https://badge.fury.io/js/generator-coveo)
 
