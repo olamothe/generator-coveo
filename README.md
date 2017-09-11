@@ -1,6 +1,6 @@
 # generator-coveo
 
-[![Build Status](https://travis-ci.org/olamothe/generator-coveo.svg?branch=master)](https://travis-ci.org/olamothe/generator-coveo) [![npm version](https://badge.fury.io/js/generator-coveo.svg)](https://badge.fury.io/js/generator-coveo)
+[![Build Status](https://travis-ci.org/coveo/generator-coveo.svg?branch=master)](https://travis-ci.org/coveo/generator-coveo) [![npm version](https://badge.fury.io/js/generator-coveo.svg)](https://badge.fury.io/js/generator-coveo)
 
 > generator-coveo generating a nodejs module as development environment to interact with the Coveo Search UI framework
 
