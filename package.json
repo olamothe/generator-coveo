@@ -1,21 +1,13 @@
 {
   "name": "generator-coveo",
-  "version": "0.1.7",
+  "version": "0.1.0",
   "description": "Generator for Coveo Project",
   "repository": {
     "type": "git",
     "url": "https://github.com/coveo/generator-coveo.git"
   },
   "files": [
-    "generators",
-    "utils",
-    "routes",
-    "app",
-    "config",
-    "typescript",
-    "sass",
-    "views",
-    "vendor"
+    "generators"
   ],
   "keywords": [
     "yeoman-generator",
