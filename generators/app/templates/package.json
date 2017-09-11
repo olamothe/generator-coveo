@@ -11,7 +11,7 @@
     <% if(sass) { %>"sass:watch": "node-sass sass/Index.scss bin/css/coveo.customization.<%= projectSafeName %>.css --watch",<% } %>
     <% if(typescript) { %>"prettier": "prettier --single-quote --print-width 120 --write 'src/**/*.ts'",<% } %>
     <% if(typescript) { %>"tslint": "tslint -c tslint.json src/**/*.ts",<% } %>
-    "postinstall": "npm run setup <% if(typescript) { %>&& npm run build && npm run dev<% } %>"
+    "postinstall": "npm run setup <% if (sass) { %>&& npm run sass <% } %> <% if(typescript) { %>&& npm run build && npm run dev<% } %>"
   },
   "keywords": [
     "coveo",

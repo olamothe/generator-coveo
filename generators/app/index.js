@@ -2,7 +2,6 @@
 const path = require('path');
 const Generator = require('yeoman-generator');
 const _ = require('lodash');
-const extend = require('deep-extend');
 const mkdirp = require('mkdirp');
 const chalk = require('chalk');
 const yosay = require('yosay');
@@ -26,15 +25,6 @@ module.exports = class extends Generator {
             name: 'project',
             message: 'Your project name?',
             default: path.basename(process.cwd())
-        }, {
-            type: 'list',
-            name: 'projecttype',
-            message: 'Your project type?',
-            choices: [
-                'Salesforce',
-                'Coveo hosted search pages',
-                'Local only'
-            ]
         }, {
             type: 'confirm',
             name: 'typescript',

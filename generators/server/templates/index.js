@@ -24,48 +24,61 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 const determineBody = () => {
-    return fs.readFileSync('./views/partials/standard.body.ejs');
+    return Promise.resolve(fs.readFileSync('./views/partials/standard.body.ejs').toString());
 }
 
 const determineHeader = () => {
     if (configYeoman.typescript) {
-        return ejs.render(fs.readFileSync('./views/partials/customization.header.ejs').toString(), configYeoman);
+        return Promise.resolve(ejs.render(fs.readFileSync('./views/partials/customization.header.ejs').toString(), configYeoman).toString());
+    } else {
+        return Promise.resolve(ejs.render(fs.readFileSync('./views/partials/standard.header.ejs').toString(), configYeoman).toString());
     }
 }
 
 const determineEndpointScript = () => {
-    if (configYeoman.searchtokenbody != null && configYeoman.searchtokenbody != '') {
-        return fetch(`${configYeoman.coveoplatformurl}/rest/search/token`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${configYeoman.apikey}`,
-                'Content-Type': `application/json; charset="UTF-8"`
-            },
-            body: JSON.stringify(configYeoman.searchtokenbody)
-        })
-            .then(res => res.json())
-            .then(tokenRes => {
-                return ejs.render(fs.readFileSync('./views/partials/endpointscript.ejs').toString(), Object.assign({}, configYeoman, {
-                    apikey: tokenRes.token
-                }));
-            })
+    if (configYeoman.apikey) {
+        if (configYeoman.searchtokenbody != null && configYeoman.searchtokenbody != '') {
+            return generateSearchToken();
+        } else {
+            return Promise.resolve(ejs.render(fs.readFileSync('./views/partials/customization.endpointscript.ejs').toString(), configYeoman).toString());
+        }
     } else {
-        return Promise.resolve(ejs.render(fs.readFileSync('./views/partials/endpointscript.ejs').toString(), configYeoman))
+        return Promise.resolve(ejs.render(fs.readFileSync('./views/partials/standard.endpointscript.ejs').toString(), configYeoman).toString());
     }
+}
+
+const generateSearchToken = () => {
+    return fetch(`${configYeoman.coveoplatformurl}/rest/search/token`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${configYeoman.apikey}`,
+            'Content-Type': `application/json; charset="UTF-8"`
+        },
+        body: JSON.stringify(configYeoman.searchtokenbody)
+    })
+        .then(res => res.json())
+        .then(tokenRes => {
+            const config = Object.assign({}, configYeoman, {
+                apikey: tokenRes.token
+            });
+            return ejs.render(fs.readFileSync('./views/partials/customization.endpointscript.ejs').toString(), config).toString();
+        })
 }
 
 app.use('/bin', express.static('bin'));
 
 app.get('/', function (req, res) {
-    res.render('index', Object.assign({}, configYeoman, {
-        body: determineBody(),
-        header: determineHeader(),
-        endpointscript: determineEndpointScript()
-    }));
+    Promise.all([determineBody(), determineHeader(), determineEndpointScript()]).then(values => {
+        res.render('index', Object.assign({}, configYeoman, {
+            body: values[0],
+            header: values[1],
+            endpointscript: values[2]
+        }));
+    });
 });
 
 app.listen(8080, () => {
     console.log('Listening on localhost:8080')
-})
+});
 
 
