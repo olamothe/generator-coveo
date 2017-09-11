@@ -5,8 +5,13 @@ const _ = require('lodash');
 const mkdirp = require('mkdirp');
 const chalk = require('chalk');
 const yosay = require('yosay');
-const utils = require('../../utils');
 const fetch = require('node-fetch');
+
+const makeRepoName = (name) => {
+    name = _.kebabCase(name);
+    name = name.indexOf('-search-ui') > 0 ? name : name + '-search-ui';
+    return name;
+}
 
 module.exports = class extends Generator {
 
