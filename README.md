@@ -17,13 +17,12 @@
 
 The generator will ask you a couple of questions, in order to be able to connect to your Coveo index and do queries. You will need to know your Coveo organization ID ( from the Coveo administration console, access the "Settings" menu in the top right, then Organization > Profile), as well as a valid API key with the requested privileges ( [API Keys - Page ](http://www.coveo.com/go?dest=cloudhelp&lcid=9&context=298) ) 
 
-
 ## What do you get?
 
 Scaffolds out a working directory structure for you:
 
 ```
-|-- <CustomerName>-search-ui
+|-- <ProjectName>-coveo
     |-- package.json
     |-- tsconfig.json
     |-- webpack.config.js
