@@ -1,8 +1,8 @@
+language: node_js
 deploy:
   provider: npm
   email: sandbox_JSUI@coveo.com
   api_key:
     secure: B1UollExAOO76ynoDhyHy71MDFp+yIxWf4sTSNbr5VCQbFZVW8UMNy7DEX7s7CYzOd7zqhFbmMDwROv5RJDLZs7qgPHA06ndGBKfgFWggYczbFzhz/YT7Bg05cSS6jBCFdqXvl0KngFifOBTFZ5n5WzoDdq0kH9v+X9XafqeTdEbNQkxRnXQcQ56H6JY+gEUDO9NjZm6IhEQWXr+BcjVYJOtzMPWJwxVz+ojT3NDJf0fs1AooKwUT4Ow+rW4rQ326ZjkxPyEP4AM+O9MYttMW+heVe4U8OzgD+fa9Ou/nrmxvJGC1sLqGJKNptfxMUkLGtmHYbDEsIcJpsVugJeylGdqVYLWsyf7YRQK5j+9/46bSGvtJ5cD8jX2K0znvkESJhq12j3Ht1FqiBUrgxrp2KgXCVGBmOrcxXdj/ETqMkR9Y0Psijvh8j49N0ArP7zc9mbBpPe7y9I826jElvwoiwoA897cac3i723ZqdSNZl7XYTZaVVp1dbbSNuF1eJO14RuNpO1/1z1iBdIz2eGGc0h59xmi08E2kJeXSN2p09ze/bDt0pjU+k3t/G2Awrim0dvMPmu8cOMl1E9WWZl7AP2xGwPqC5uE4VWNqRuES4bPklqdIh/vSH0buOG6HNISQxnyZx/3PNuFZ6E67ntZmR0U8Ce8DQDEKFZLENkeO5w=
   on:
-    tags: true
     repo: coveo/generator-coveo
