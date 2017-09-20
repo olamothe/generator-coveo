@@ -1,8 +1,9 @@
 'use strict';
-const path = require('path');
-const _ = require('lodash');
 const Generator = require('yeoman-generator');
-var mkdirp = require('mkdirp');
+const ejs = require('ejs');
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+const utils = require('../utils/utils');
 
 module.exports = class extends Generator {
     constructor(args, opts) {
@@ -10,6 +11,19 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        this.fs.copy(this.templatePath('**'), this.destinationPath('views'));
+        Promise.all([
+            utils.determineHeader(this.options.baseProps, this.templatePath()),
+            utils.determineBody(Object.assign({}, this.options.baseProps, { root: 'body' }), this.templatePath()),
+            utils.determineEndpointScript(this.options.baseProps, this.templatePath())
+        ]).then(values => {
+            ejs.renderFile(this.templatePath('index.ejs'), Object.assign({}, this.options.baseProps, {
+                header: values[0],
+                body: values[1],
+                endpointscript: values[2]
+            }), (err, rendered) => {
+                mkdirp(this.destinationPath('pages'));
+                fs.writeFile(this.destinationPath('pages/index.html'), rendered);
+            });
+        });
     }
 }

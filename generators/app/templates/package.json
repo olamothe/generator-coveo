@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "setup": "node scripts/setup.js",
-    "dev": "nodemon index.js -w .yo-rc.json -w views/",
+    "dev": "node index.js",
     <% if(typescript) { %>"build": "webpack",<% } %>
     <% if(sass) { %>"sass": "node-sass sass/Index.scss bin/css/coveo.customization.<%= projectSafeName %>.css",<% } %>
     <% if(sass) { %>"sass:watch": "node-sass sass/Index.scss bin/css/coveo.customization.<%= projectSafeName %>.css --watch",<% } %>
@@ -31,7 +31,8 @@
     "express": "^4.15.4",
     "webpack-dev-server": "^2.4.2",
     "webpack-hot-middleware": "^2.18.2",
-    "nodemon": "^1.11.0"
+    "visualforce-html-webpack-plugin": "^0.0.3"
+
   },
   "dependencies": {
     "coveo-search-ui": "^2.2900.x"

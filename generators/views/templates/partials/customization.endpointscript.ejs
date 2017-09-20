@@ -1,1 +1,11 @@
-Coveo.SearchEndpoint.configureCloudV2Endpoint('<%= coveoorganizationid %>', '<%= apikey %>');
+
+  fetch('/token').then(function (token) {
+    return token.json()
+  }).then(function (tokenRes) {
+    if (!tokenRes.token) {
+      console.error(tokenRes);
+    } else {
+      Coveo.SearchEndpoint.configureCloudV2Endpoint('searchuisamples', tokenRes.token);
+      Coveo.init(document.querySelector('#search'));
+    }
+  })

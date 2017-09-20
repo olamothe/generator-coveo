@@ -1,40 +1,25 @@
 'use strict';
-const path = require('path');
-const _ = require('lodash');
 const Generator = require('yeoman-generator');
-var mkdirp = require('mkdirp');
+const path = require('path');
+const utils = require('../utils/utils');
 
 module.exports = class extends Generator {
     constructor(args, opts) {
         super(args, opts);
-
-        this.option('customer', {
-            type: String,
-            required: true,
-            desc: 'Customer name'
-        });
-    }
-
-    initializing() {
-        this.props = {};
-        this.props.project = this.options.project;
-        this.props.projectSafeName = _.snakeCase(this.options.project);
     }
 
     writing() {
-        const templateObj = { 
-          projectSafeName : this.props.projectSafeName,
-          capitalizeprojectSafeName : this.props.projectSafeName.replace(/\b\w/g, l => l.toUpperCase()),
-        }
-
-        this.fs.copyTpl(
-          this.templatePath('**'),
-          this.destinationPath('sfdc'), 
-          templateObj
-        );
-
-        mkdirp.sync(this.destinationPath('sfdc/components'));
-        mkdirp.sync(this.destinationPath('sfdc/pages'));
-        mkdirp.sync(this.destinationPath('sfdc/aura'));
+        const props = Object.assign({}, this.options.baseProps, {
+            root: 'div'
+        });
+        utils.determineBody(props, require('path').resolve('../generators/views/templates/')).then(body => {
+            this.fs.copyTpl(
+                this.templatePath('pages/customization.community.ejs'),
+                this.destinationPath('pages/sfdc/community.page'), Object.assign({}, this.options.baseProps, {
+                    body: body,
+                    root: 'div'
+                })
+            );
+        });
     }
 }

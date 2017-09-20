@@ -3,6 +3,7 @@ const path = require('path');
 const _ = require('lodash');
 var mkdirp = require('mkdirp');
 const Generator = require('yeoman-generator');
+const utils = require('../utils/utils');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -15,11 +16,14 @@ module.exports = class extends Generator {
       this.options.baseProps
     );
 
-    this.fs.copyTpl(
-      this.templatePath('webpack.config.js'),
-      this.destinationPath('webpack.config.js'),
-      this.options.baseProps
-    );
+    utils.determineEndpointScript(this.options.baseProps, require('path').resolve('../generators/views/templates/')).then(endpointScript => {
+      this.fs.copyTpl(
+        this.templatePath('webpack.config.js'),
+        this.destinationPath('webpack.config.js'),
+        Object.assign({}, this.options.baseProps, { endpointscript: endpointScript })
+      );
+    });
+
 
     this.fs.copyTpl(
       this.templatePath('tslint.json'),

@@ -77,14 +77,44 @@ module.exports = class extends Generator {
                 }
                 return false;
             }
+        }, {
+            type: 'checkbox',
+            name: 'projectType',
+            message: 'Select the type of Coveo deployment',
+            choices: ['Coveo for Salesforce', 'Local development']
         }];
 
         return this.prompt(prompts).then((answers) => {
             this.props = answers;
-            this.props.repoName = utils.makeRepoName(this.props.project);
+            this.props.identity = 'anonymous';
+            if (this.props.coveolink == 'Using an API key with the power to impersonate users to perform authenticated queries against your Coveo Index.') {
+                this.props.identity = 'impersonate';
+            }
+            // We don't need to save the "coveolink" answer. The identity will be enough.
+            delete this.props.coveolink;
+
+            if (this.props.projectType.length == 0) {
+                this.props.local = true;
+            }
+            if (this.props.projectType.indexOf('Coveo for Salesforce') != -1) {
+                this.props.salesforce = true;
+            }
+            if (this.props.projectType.indexOf('Local development') != -1) {
+                this.props.local = true;
+            }
+            delete this.props.projectType;
+
+            this.props.repoName = makeRepoName(this.props.project);
             this.props.projectSafeName = _.snakeCase(this.props.project);
             this.props.coveoplatformurl = 'https://platform.cloud.coveo.com';
-            this.props.searchtokenbody = '';
+            this.props.searchtokenbody = {
+                "userIds": [
+                    {
+                        "name": "anonymous@coveo.com",
+                        "provider": "Email Security Provider"
+                    }
+                ]
+            };
         });
     }
 
@@ -136,11 +166,22 @@ module.exports = class extends Generator {
             );
         }
 
-        this.composeWith(
-            require.resolve('../views'), {
-                baseProps: this.props
-            }
-        )
+        if (this.props.local) {
+            this.composeWith(
+                require.resolve('../views'), {
+                    baseProps: this.props
+                }
+            )
+        }
+
+        if (this.props.salesforce) {
+            this.composeWith(
+                require.resolve('../sfdc'), {
+                    baseProps: this.props
+                }
+            )
+        }
+
 
         this.composeWith(
             require.resolve('../server'), {
