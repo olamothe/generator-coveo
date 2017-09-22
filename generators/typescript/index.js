@@ -16,7 +16,7 @@ module.exports = class extends Generator {
       this.options.baseProps
     );
 
-    utils.determineEndpointScript(this.options.baseProps, require('path').resolve('../generators/views/templates/')).then(endpointScript => {
+    utils.determineEndpointScript(this.options.baseProps, require('path').resolve(__dirname + '/../views/templates/')).then(endpointScript => {
       this.fs.copyTpl(
         this.templatePath('webpack.config.js'),
         this.destinationPath('webpack.config.js'),
