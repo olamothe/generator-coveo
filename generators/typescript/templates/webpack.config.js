@@ -30,7 +30,8 @@ if (!production) {
         '<CoveoV2:SearchInterface.*?></CoveoV2:SearchInterface>': coveoComponentMock
       },
       Resources: {
-        <%= projectSafeName %>: '../js/'
+        <%= projectSafeName %>_js: '../js/',
+        <%= projectSafeName %>_css: '../css/'
       }
     }
   }))

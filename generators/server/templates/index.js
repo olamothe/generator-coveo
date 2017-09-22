@@ -1,12 +1,12 @@
 'use strict';
 const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const ejs = require('ejs');
 const fetch = require('node-fetch');
-const $ = require('cheerio');
 
 const configWebpack = require('./webpack.config.js');
 const entryKeys = Object.keys(configWebpack.entry);
@@ -24,9 +24,6 @@ const middleware = webpackDevMiddleware(compiler, {
 
 const hotmiddleware = webpackHotMiddleware(compiler);
 
-app.use(middleware);
-app.use(hotmiddleware);
-
 const generateSearchToken = () => {
     return fetch(`${configYeoman.coveoplatformurl}/rest/search/token`, {
         method: 'POST',
@@ -38,27 +35,44 @@ const generateSearchToken = () => {
     }).then(res => res.json())
 }
 
-app.use(express.static('bin'));
-app.use(express.static('pages'));
-
-const watchAndReload = (eventType, filename) => {
-    if (eventType == 'change') {
-        console.log(filename);
+const watchAndReload = (eventType, filename, timeout) => {
+    const invalidate = () => {
         middleware.invalidate(stats => {
             hotmiddleware.publish(Object.assign({}, stats.toJson(), { action: 'sync', hash: stats.toJson().hash + '0' }));
         });
     }
+    if (eventType == 'change') {
+        if (timeout) {
+            setTimeout(invalidate, timeout);
+        } else {
+            invalidate();
+        }
+    }
 }
 
-fs.watch('pages', (eventType, filename) => {
-    watchAndReload(eventType, filename);
-});
+const watch = (pathToWatch, timeout) => {
+    const standardPathToWatch = path.resolve(pathToWatch);
+    if (fs.existsSync(standardPathToWatch)) {
+        fs.watch(standardPathToWatch, (eventType, filename) => {
+            watchAndReload(eventType, filename, timeout);
+        })
+    }
+}
 
-fs.watch('.yo-rc.json', (eventType, filename) => {
-    configYeoman = JSON.parse(fs.readFileSync('.yo-rc.json'))['generator-coveo'];
-    console.log(configYeoman.coveoplatformurl);
-    watchAndReload(eventType, filename);
+watch('pages');
+watch('pages/sfdc');
+fs.watch('.yo-rc.json', () => {
+    setTimeout(() => {
+        configYeoman = JSON.parse(fs.readFileSync('.yo-rc.json'))['generator-coveo'];
+        watchAndReload('change');
+    }, 1000);
 })
+
+
+app.use(middleware);
+app.use(hotmiddleware);
+app.use(express.static('bin'));
+app.use(express.static('pages'));
 
 app.use('/sfdc', (req, res) => {
 
@@ -69,9 +83,7 @@ app.use('/sfdc', (req, res) => {
     } else {
         res.status(404).send('Not found!');
     }
-
 });
-
 
 app.get('/token', (req, res) => {
     if (configYeoman.apikey) {

@@ -90,6 +90,9 @@ module.exports = class extends Generator {
             if (this.props.coveolink == 'Using an API key with the power to impersonate users to perform authenticated queries against your Coveo Index.') {
                 this.props.identity = 'impersonate';
             }
+            if (this.props.coveolink == 'Connect to a sample organization owned by Coveo for demo purposes') {
+                this.props.identity = 'sample';
+            }
             // We don't need to save the "coveolink" answer. The identity will be enough.
             delete this.props.coveolink;
 
@@ -182,13 +185,11 @@ module.exports = class extends Generator {
             )
         }
 
-
         this.composeWith(
             require.resolve('../server'), {
                 baseProps: this.props
             }
         )
-
     }
 
     installing() {
