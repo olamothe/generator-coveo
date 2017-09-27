@@ -7,8 +7,8 @@
     "setup": "node scripts/setup.js",
     "dev": "node index.js",
     <% if(typescript) { %>"build": "webpack",<% } %>
-    <% if(sass) { %>"sass": "node-sass sass/Index.scss bin/css/coveo.customization.<%= projectSafeName %>.css",<% } %>
-    <% if(sass) { %>"sass:watch": "node-sass sass/Index.scss bin/css/coveo.customization.<%= projectSafeName %>.css --watch",<% } %>
+    <% if(sass) { %>"sass": "node-sass sass/Index.scss bin/<%= projectSafeName %>_unzip/css/coveo.customization.<%= projectSafeName %>.css",<% } %>
+    <% if(sass) { %>"sass:watch": "node-sass sass/Index.scss bin/<%= projectSafeName %>_unzip/css/coveo.customization.<%= projectSafeName %>.css --watch",<% } %>
     <% if(typescript) { %>"prettier": "prettier --single-quote --print-width 120 --write 'src/**/*.ts'",<% } %>
     <% if(typescript) { %>"tslint": "tslint -c tslint.json src/**/*.ts",<% } %>
     "postinstall": "npm run setup <% if (sass) { %>&& npm run sass <% } %> <% if(typescript) { %>&& npm run build && npm run dev<% } %>"

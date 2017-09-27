@@ -15,7 +15,6 @@ const determineHeader = (baseProps, tmplPath) => {
 
 const determineEndpointScript = (baseProps, tmplPath) => {
   if (baseProps.apikey) {
-
     return Promise.resolve(ejs.render(fs.readFileSync(`${tmplPath}/partials/customization.endpointscript.ejs`).toString(), baseProps).toString());
   } else {
     return Promise.resolve(ejs.render(fs.readFileSync(`${tmplPath}/partials/standard.endpointscript.ejs`).toString(), baseProps).toString());

@@ -30,21 +30,19 @@ if (!production) {
         '<CoveoV2:SearchInterface.*?></CoveoV2:SearchInterface>': coveoComponentMock
       },
       Resources: {
-        <%= projectSafeName %>_js: '../js/',
-        <%= projectSafeName %>_css: '../css/'
+        <%= projectSafeName %>: '../<%= projectSafeName %>_unzip/'
       }
     }
   }))
   <% } %>
 }
 
-
 module.exports = {
   entry: {
     'coveo.customization.<%= projectSafeName %>': ['./src/Index.ts']
   },
   output: {
-    path: require('path').resolve('./bin/js'),
+    path: require('path').resolve('./bin/<%= projectSafeName %>_unzip/js'),
     filename: minimize ? `[name].min.js` : `[name].js`,
     libraryTarget: 'umd',
     library: '<%= projectSafeName %>',
