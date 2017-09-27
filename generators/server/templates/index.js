@@ -7,6 +7,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const ejs = require('ejs');
 const fetch = require('node-fetch');
+const cheerio = require('cheerio');
 
 const configWebpack = require('./webpack.config.js');
 const entryKeys = Object.keys(configWebpack.entry);
@@ -79,7 +80,16 @@ app.use('/sfdc', (req, res) => {
     const allCompilationAssets = res.locals.webpackStats.compilation.assets;
     const requested = req.path.replace('/', '');
     if (allCompilationAssets[`${requested}.html`]) {
-        res.send(allCompilationAssets[`${requested}.html`].source());
+        const $ = cheerio.load(allCompilationAssets[`${requested}.html`].source());
+
+        if (fs.existsSync(`pages/sfdc/${requested}.component`)) {
+            $('body').append(fs.readFileSync(`pages/sfdc/${requested}.component`).toString().replace('<apex:component>', '').replace('</apex:component>', ''));
+            res.send($.html());
+        } else {
+            $('body').append(`<p>Coveo Search page does not exist.<br/>Please create a file named <strong>${requested}.component</strong> in the ./pages/sfdc directory.</p>`)
+            res.send($.html());
+        }
+
     } else {
         res.status(404).send('Not found!');
     }

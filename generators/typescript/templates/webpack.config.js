@@ -46,7 +46,7 @@ module.exports = {
     filename: minimize ? `[name].min.js` : `[name].js`,
     libraryTarget: 'umd',
     library: '<%= projectSafeName %>',
-    publicPath: '/js/'
+    publicPath: '/<%= projectSafeName %>_unzip/js/'
   },
   externals: {
     'coveo-search-ui': 'Coveo'
