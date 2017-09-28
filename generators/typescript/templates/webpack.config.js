@@ -10,7 +10,7 @@ if (minimize) {
 }
 <% if(salesforce) { %> 
   const coveoComponentMock = `
-  <script src="../vendor/coveo/js/CoveoJsSearch.js"></script>
+  <script src="../vendor/coveo/js/CoveoJsSearch.Lazy.js"></script>
   <script src="../vendor/coveo/js/templates/templates.js"></script>
   <link rel="stylesheet" href="../vendor/coveo/css/CoveoFullSearch.css" />
   <script>
