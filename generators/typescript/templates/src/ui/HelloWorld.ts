@@ -18,14 +18,14 @@ export interface IHelloWorldOptions {
  * Use this dummy component by adding a div with the class 'CoveoHelloWorld' inside your search page.
  */
 export class HelloWorld extends Component {
-  static ID = 'HelloWorld';
+  public static ID = 'HelloWorld';
 
   /**
    * The static options property allows you to register different option for your component
    * In this case, this means that you could configure the component by setting "data-dummy-text" and "data-dummy-query"
    * on your component markup
    */
-  static options: IHelloWorldOptions = {
+  public static options: IHelloWorldOptions = {
     dummyText: ComponentOptions.buildStringOption({
       defaultValue: 'Hello world'
     }),
@@ -35,7 +35,7 @@ export class HelloWorld extends Component {
   };
 
   /**
-   * The constructor of every components is build the same way : 
+   * The constructor of every components is build the same way :
    * - the HTMLElement that your component is bound to
    * - The options that were passed at initialization for your component
    * - The bindings, which represent singleton in every search interface. You can use those bindings to execute a query, log a Usage Analytics events, access the root of the search interface, etc.
@@ -50,7 +50,9 @@ export class HelloWorld extends Component {
     $$(this.element).text(this.options.dummyText);
 
     // This is a simple example about how you could bind a function to execute on a simple query event.
-    this.bind.onRootElement(QueryEvents.buildingQuery, (args: IBuildingQueryEventArgs) => this.handleBuildingQuery(args));
+    this.bind.onRootElement(QueryEvents.buildingQuery, (args: IBuildingQueryEventArgs) =>
+      this.handleBuildingQuery(args)
+    );
   }
 
   private handleBuildingQuery(args: IBuildingQueryEventArgs) {

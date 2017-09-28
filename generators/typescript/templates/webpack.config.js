@@ -42,7 +42,7 @@ module.exports = {
     'coveo.customization.<%= projectSafeName %>': ['./src/Index.ts']
   },
   output: {
-    path: require('path').resolve('./bin/<%= projectSafeName %>_unzip/js'),
+    path: require('path').resolve('./staticresources/<%= projectSafeName %>_unzip/js'),
     filename: minimize ? `[name].min.js` : `[name].js`,
     libraryTarget: 'umd',
     library: '<%= projectSafeName %>',

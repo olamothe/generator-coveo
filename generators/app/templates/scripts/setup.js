@@ -6,19 +6,19 @@
 const fs = require('fs');
 const ncp = require('ncp').ncp;
 
-if (!fs.existsSync('./bin')) {
-  fs.mkdirSync('./bin');
+if (!fs.existsSync('./staticresources')) {
+  fs.mkdirSync('./staticresources');
 }
 
-if (!fs.existsSync('./bin/vendor')) {
-  fs.mkdirSync('./bin/vendor');
+if (!fs.existsSync('./staticresources/vendor')) {
+  fs.mkdirSync('./staticresources/vendor');
 }
 
-if (!fs.existsSync('./bin/vendor/coveo')) {
-  fs.mkdirSync('./bin/vendor/coveo');
+if (!fs.existsSync('./staticresources/vendor/coveo')) {
+  fs.mkdirSync('./staticresources/vendor/coveo');
 }
 
-ncp('./node_modules/coveo-search-ui/bin', './bin/vendor/coveo', {
+ncp('./node_modules/coveo-search-ui/bin', './staticresources/vendor/coveo', {
   clobber: true
 }, (err) => {
   if (err) {

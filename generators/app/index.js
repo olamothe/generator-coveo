@@ -31,14 +31,6 @@ module.exports = class extends Generator {
             message: 'Your project name?',
             default: path.basename(process.cwd())
         }, {
-            type: 'confirm',
-            name: 'typescript',
-            message: 'Do you want to generate the code for a custom component built with TypeScript using Webpack ?'
-        }, {
-            type: 'confirm',
-            name: 'sass',
-            message: 'Do you want to generate the boilerplate to use sass to act as a preprocessor for your style sheets (CSS) ?'
-        }, {
             type: 'list',
             name: 'coveolink',
             message: 'How do you want to connect to your Coveo Organization ?',
@@ -153,21 +145,18 @@ module.exports = class extends Generator {
             this.props
         );
 
-        if (this.props.sass) {
-            this.composeWith(
-                require.resolve('../sass'), {
-                    baseProps: this.props
-                }
-            )
-        }
+        this.composeWith(
+            require.resolve('../sass'), {
+                baseProps: this.props
+            }
+        )
 
-        if (this.props.typescript) {
-            this.composeWith(
-                require.resolve('../typescript'), {
-                    baseProps: this.props
-                }
-            );
-        }
+        this.composeWith(
+            require.resolve('../typescript'), {
+                baseProps: this.props
+            }
+        );
+
 
         if (this.props.local) {
             this.composeWith(

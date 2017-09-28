@@ -6,11 +6,7 @@ const determineBody = (baseProps, tmplPath) => {
 }
 
 const determineHeader = (baseProps, tmplPath) => {
-  if (baseProps.typescript) {
-    return Promise.resolve(ejs.render(fs.readFileSync(`${tmplPath}/partials/customization.header.ejs`).toString(), baseProps).toString());
-  } else {
-    return Promise.resolve(ejs.render(fs.readFileSync(`${tmplPath}/partials/standard.header.ejs`).toString(), baseProps).toString());
-  }
+  return Promise.resolve(ejs.render(fs.readFileSync(`${tmplPath}/partials/customization.header.ejs`).toString(), baseProps).toString());
 }
 
 const determineEndpointScript = (baseProps, tmplPath) => {

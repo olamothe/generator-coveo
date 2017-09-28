@@ -72,7 +72,7 @@ fs.watch('.yo-rc.json', () => {
 
 app.use(middleware);
 app.use(hotmiddleware);
-app.use(express.static('bin'));
+app.use(express.static('staticresources'));
 app.use(express.static('pages'));
 
 app.use('/sfdc', (req, res) => {
