@@ -1,6 +1,6 @@
 # generator-coveo
 
-![npm version](https://badge.fury.io/js/generator-coveo.svg)](https://badge.fury.io/js/generator-coveo)
+![npm version](https://badge.fury.io/js/generator-coveo.svg)(https://badge.fury.io/js/generator-coveo)
 
 > Generates a working project to develop with Coveo.
 

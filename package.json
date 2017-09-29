@@ -1,6 +1,6 @@
 {
   "name": "generator-coveo",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Generator for Coveo Project",
   "repository": {
     "type": "git",
