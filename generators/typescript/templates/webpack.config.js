@@ -8,7 +8,7 @@ const plugins = [];
 if (minimize) {
   plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
-<% if(salesforce) { %> 
+<% if (!(typeof salesforce === 'undefined' || salesforce === null)) { %> 
   const coveoComponentMock = `
   <script src="../vendor/coveo/js/CoveoJsSearch.Lazy.js"></script>
   <script src="../vendor/coveo/js/templates/templates.js"></script>
@@ -23,7 +23,7 @@ if (minimize) {
 
 if (!production) {
   plugins.push(new webpack.HotModuleReplacementPlugin());
-  <% if(salesforce) { %>
+  <% if (!(typeof salesforce === 'undefined' || salesforce === null)) { %>
   plugins.push(new VisualforceHtmlPlugin({
     SalesforceContext: {
       CustomModifiers: {
