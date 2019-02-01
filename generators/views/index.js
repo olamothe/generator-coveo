@@ -22,7 +22,7 @@ module.exports = class extends Generator {
                 endpointscript: values[2]
             }), (err, rendered) => {
                 mkdirp(this.destinationPath('pages'));
-                fs.writeFile(this.destinationPath('pages/index.html'), rendered);
+                fs.writeFileSync(this.destinationPath('pages/index.html'), rendered);
             });
         });
     }
