@@ -38,12 +38,14 @@ export class HelloWorld extends Component {
    * The constructor of every components is build the same way :
    * - the HTMLElement that your component is bound to
    * - The options that were passed at initialization for your component
-   * - The bindings, which represent singleton in every search interface. You can use those bindings to execute a query, log a Usage Analytics events, access the root of the search interface, etc.
+   * - The bindings, which represent singleton in every search interface.
+   *    You can use those bindings to execute a query, log a Usage Analytics events, access the root of the search interface, etc.
    */
   constructor(public element: HTMLElement, public options: IHelloWorldOptions, public bindings: IComponentBindings) {
     // Our components inherits the base Coveo.Component class
     super(element, HelloWorld.ID, bindings);
-    // This line will parse the attributes set on the HTMLElement, for example "data-dummy-text", and return the effective option that your component need to handle.
+    // This line will parse the attributes set on the HTMLElement, for example "data-dummy-text",
+    //    and return the effective option that your component need to handle.
     this.options = ComponentOptions.initComponentOptions(element, HelloWorld, options);
 
     // This is a simple example about how you could reference the options and use them internally inside your component's code.
