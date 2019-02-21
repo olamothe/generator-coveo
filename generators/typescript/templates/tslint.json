@@ -15,7 +15,7 @@
     "no-default-export": true,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "max-line-length": 140,
+    "max-line-length": [ true, { "limit": 140, "ignore-pattern": "^import |//" } ],
     "no-angle-bracket-type-assertion": false,
     "no-var-requires": false,
     "whitespace": [

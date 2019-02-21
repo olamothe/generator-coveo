@@ -8,7 +8,7 @@ const plugins = [];
 if (minimize) {
   plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
-<% if (!(typeof salesforce === 'undefined' || salesforce === null)) { %> 
+<% if (!(typeof salesforce === 'undefined' || salesforce === null)) { %>
   const coveoComponentMock = `
   <script src="../vendor/coveo/js/CoveoJsSearch.Lazy.js"></script>
   <script src="../vendor/coveo/js/templates/templates.js"></script>
@@ -38,6 +38,7 @@ if (!production) {
 }
 
 module.exports = {
+  mode: production ? 'production' : 'development',
   entry: {
     'coveo.customization.<%= projectSafeName %>': ['./src/Index.ts']
   },
@@ -56,7 +57,7 @@ module.exports = {
   },
   devtool: 'source-map',
   module: {
-    loaders: [
+    rules: [
       { test: /\.ts$/, loader: 'ts-loader' }
     ]
   },
